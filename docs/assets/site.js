@@ -113,7 +113,7 @@
           'text/html': new Blob([data.richHtml], { type: 'text/html' }),
           'text/plain': new Blob([text], { type: 'text/plain' }),
         })]);
-        copied(btn, 'Copied as rich text. Paste into a new story; upload each image at its bold marker.');
+        copied(btn, 'Copied as rich text. Images aren’t included: a bold line marks each one, with its address.');
         return;
       } catch { /* try plain text below */ }
     }

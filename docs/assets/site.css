@@ -192,6 +192,21 @@ a:hover { text-decoration-thickness: 2px; }
 .byline > *:not(:last-child)::after { content: "·"; margin: 0 10px; color: var(--muted); }
 .byline > span:first-child { color: var(--strong); font-weight: 600; }
 
+/* --- the story's other homes: Medium, LinkedIn, the project ------------------------------ */
+.also { margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 22px; font: 400 14px/1.5 var(--f-ui); }
+.also p { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.also-label { color: var(--muted); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+.also a { font-weight: 600; }
+.story-foot { max-width: 68ch; margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line); font: 400 15px/1.55 var(--f-ui); }
+.also-end { margin: 0; display: flex; flex-wrap: wrap; gap: 6px 0; color: var(--text); }
+.also-end > span:not(:last-child)::after { content: "·"; margin: 0 12px; color: var(--muted); }
+.also-end a { font-weight: 600; }
+.more { margin-top: 26px; }
+.more h2 { margin: 0 0 10px; font: 600 12px/1.2 var(--f-ui); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.more ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.more a { font: var(--h2-weight) 18px/1.3 var(--f-display); letter-spacing: var(--h-track); }
+:root[data-page="jarvis"] .also-label, :root[data-page="jarvis"] .more h2 { letter-spacing: 0.16em; }
+
 /* --- figures: the images are dark by design, so they sit in a dark frame in both modes -------- */
 .fig { margin: 36px 0; }
 .fig-cover { margin: 0 0 40px; }
@@ -215,7 +230,6 @@ details.alt > summary span { font-weight: 400; }
 details.alt > summary:hover { color: var(--strong); }
 details.alt p { margin: 8px 0 0; padding: 10px 12px; border-radius: 8px; background: var(--surface2); color: var(--text); font: 400 14px/1.55 var(--f-ui); max-width: 68ch; }
 details.alt p.lbl { padding: 0; background: none; margin: 10px 0 -4px; font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
-details.alt p.note { margin-top: 10px; }
 
 /* --- the article text ------------------------------------------------------------------------ */
 .prose { max-width: 68ch; }
@@ -230,7 +244,7 @@ details.alt p.note { margin-top: 10px; }
 .prose li { margin: 0 0 0.55em; padding-left: 0.2em; }
 .prose li::marker { color: var(--accent); }
 .prose code { font: 0.84em var(--f-mono); background: var(--surface2); padding: 0.1em 0.35em; border-radius: 4px; }
-.prose .close { margin-top: 2.2em; padding-top: 1.2em; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92em; }
+.prose .close { margin-top: 2em; color: var(--muted); font-size: 0.92em; }
 .prose .fig { margin: 2em 0; }
 
 /* --- the publishing kit ---------------------------------------------------------------------- */
@@ -250,10 +264,6 @@ details.alt p.note { margin-top: 10px; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .kit-body { padding: 2px 16px 18px; display: grid; gap: 26px; }
 .kit h2 { margin: 0 0 10px; font: 600 11.5px/1.2 var(--f-ui); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.kit-status { margin: 0 0 12px; display: flex; align-items: center; gap: 8px; color: var(--text); font-size: 13.5px; }
-.kit-status .dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--muted); flex: none; }
-.kit-status .dot.on { background: var(--accent); border-color: var(--accent); }
-.kit-open { margin-left: auto; font-weight: 600; white-space: nowrap; }
 .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .btn {
   min-height: 40px; padding: 9px 12px; cursor: pointer; text-align: center;
@@ -284,15 +294,10 @@ details.alt p.note { margin-top: 10px; }
 .share-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .share h3 { margin: 0; font: 600 13.5px/1.3 var(--f-ui); color: var(--strong); }
 .share-meta { margin: 2px 0 0; font-size: 12px; color: var(--muted); }
-.share-warn { margin: 8px 0 0; font-size: 12.5px; color: var(--text); padding-left: 10px; border-left: 2px solid var(--accent2); }
 .share pre {
   margin: 10px 0 0; max-height: 13em; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere;
   font: 400 13px/1.55 var(--f-ui); color: var(--text); background: var(--surface2); padding: 10px 12px; border-radius: 6px;
 }
-.notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 13.5px; }
-.notes li { padding-left: 12px; border-left: 2px solid var(--accent); color: var(--text); }
-.notes b { color: var(--strong); font-weight: 600; }
-.kit-src { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
 
 /* --- copy feedback --------------------------------------------------------------------------- */
 .toast {
@@ -334,9 +339,12 @@ details.alt p.note { margin-top: 10px; }
 .card:has(.card-link:focus-visible) { outline: 2px solid var(--focus); outline-offset: 3px; }
 .card .sub { margin: 10px 0 0; font-size: 15.5px; line-height: 1.5; color: var(--text); }
 .card .meta { margin: 14px 0 0; font: 400 13.5px/1.4 var(--f-ui); color: var(--muted); }
-.card .links { margin: auto 0 0; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 18px; font: 600 14px/1.3 var(--f-ui); }
+.card .links { margin: auto 0 0; padding-top: 16px; font: 600 15px/1.3 var(--f-ui); }
+.card .elsewhere { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font: 500 13px/1.5 var(--f-ui); }
+.card .elsewhere .also-label { font-size: 11px; }
+.card .elsewhere .grp { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.card .elsewhere a { position: relative; z-index: 2; color: var(--text); }
 .card .links a { position: relative; z-index: 2; color: var(--strong); }
-.card .links span { color: var(--muted); font-weight: 400; }
 
 /* --- motion ---------------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {

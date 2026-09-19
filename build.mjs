@@ -1,8 +1,9 @@
 // Builds the static articles site into docs/:  node build.mjs
 //
 // Reads the three article folders that sit next to this one on the Desktop (article.md, images,
-// share texts, and the existing copy page for alt text, captions and "Before you publish" notes),
-// and writes plain HTML, CSS and JS with relative links, ready for GitHub Pages "deploy from /docs".
+// share texts, and the existing copy page for alt text and captions), and writes plain HTML, CSS
+// and JS for https://articles.edgarasneverdauskas.com, served by GitHub Pages from /docs.
+// Links inside the site are relative; canonical, og:url, og:image and the sitemap are absolute.
 // No dependencies. The source folders are only read, never written.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,19 +13,23 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const DOCS = path.join(here, 'docs');
 const desktop = path.dirname(here);
 
-// --- the articles -----------------------------------------------------------------------------
-// `date` is the date article.md was last written (its file date), labelled "Written" on the site,
-// because Medium's publish dates could not be read from here. Set `published` to the Medium date
-// (YYYY-MM-DD) to show "Published" instead.
+// --- the site ---------------------------------------------------------------------------------
+// This site is the articles' home: canonical, og:url and social images all point here.
+const SITE_URL = 'https://articles.edgarasneverdauskas.com';
+const SITE_HOST = new URL(SITE_URL).host;
+const HOME_URL = 'https://edgarasneverdauskas.com';
+
+// --- the articles (newest first, the order of the home page) ----------------------------------
+// medium / linkedin: the story's other copies. project: the thing the story is about.
 const ARTICLES = [
   {
     slug: 'css-3d-lab',
     dir: path.join(desktop, 'css-3d-lab-article'),
     sourceHtml: 'css-3d-lab-article.html',
-    medium: '',
-    date: '2026-09-19',
-    published: '',
-    kicker: '18–19 Sep 2026 · 135 models',
+    medium: 'https://medium.com/@edgarasneverdauskas/one-day-building-css-3d-lab-with-claude-2e6852ba0e65',
+    linkedin: 'https://www.linkedin.com/pulse/one-day-building-css-3d-lab-claude-edgaras-neverdauskas-xjlbc/',
+    project: 'https://css3dlab.edgarasneverdauskas.com',
+    kicker: 'About a day · 135 models',
     coverInCopy: true,
     fontsLink: '',
   },
@@ -33,9 +38,9 @@ const ARTICLES = [
     dir: path.join(desktop, 'selfawarewriting-article'),
     sourceHtml: 'self-aware-writing-article.html',
     medium: 'https://medium.com/@edgarasneverdauskas/a-book-that-knows-youre-reading-it-ef41561ae846',
-    date: '2026-09-17',
-    published: '',
-    kicker: '19 Aug – 15 Sep 2026 · 4 chapters',
+    linkedin: 'https://www.linkedin.com/pulse/book-knows-youre-reading-edgaras-neverdauskas-h7mfc/',
+    project: 'https://selfawarewriting.com',
+    kicker: 'Four weeks · 4 chapters',
     coverInCopy: true,
     // Same as the source build: the numbers card goes after the Codex paragraph, and the last
     // paragraph is set in italics; plain mentions of the book's site become links.
@@ -49,9 +54,9 @@ const ARTICLES = [
     dir: path.join(desktop, 'jarvis-article'),
     sourceHtml: 'five-days-jarvis.html',
     medium: 'https://medium.com/@edgarasneverdauskas/five-days-building-j-a-r-v-i-s-with-claude-0533b1953060',
-    date: '2026-09-14',
-    published: '',
-    kicker: '10–14 Sep 2026 · 39 hours',
+    linkedin: 'https://www.linkedin.com/pulse/five-days-building-jarvis-claude-edgaras-neverdauskas-kqxjc/',
+    project: 'https://jarvis.edgarasneverdauskas.com',
+    kicker: 'Five days · 39 hours',
     // The JARVIS copy page marks only the numbers card inside the copied article.
     coverInCopy: false,
     // The source page's captions here are working labels ("Upload it here…"), not reader captions,
@@ -138,15 +143,24 @@ const attr = (s) => esc(s).replace(/"/g, '&quot;');
 const decode = (s) => String(s ?? '').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 const stripTags = (s) => decode(String(s).replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
 const pngSize = (file) => { const b = fs.readFileSync(file); return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) }; };
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const fmtDate = (iso) => { const [y, m, d] = iso.split('-').map(Number); return `${d} ${MONTHS[m - 1]} ${y}`; };
 const num = (n) => n.toLocaleString('en-US');
+const pageUrl = (slug) => `${SITE_URL}/${slug}/`;
+
+// Links to a sibling article's Medium or LinkedIn copy point at its page on this site instead:
+// relative on the page itself, absolute in anything copied for use elsewhere.
+const ARTICLE_URLS = new Map(ARTICLES.flatMap((x) => [x.medium, x.linkedin].filter(Boolean).map((u) => [u.replace(/\/+$/, ''), x.slug])));
+const siblingSlug = (url) => ARTICLE_URLS.get(url.replace(/[?#].*$/, '').replace(/\/+$/, ''));
+const linkFor = (url, mode) => {
+  const slug = siblingSlug(url);
+  if (!slug) return url;
+  return mode === 'copy' ? pageUrl(slug) : `../${slug}/`;
+};
 
 // The markdown in these articles is simple: headings, paragraphs, "- " lists, one image line,
 // **bold**, *italic*, `code` and [links](url). Same converter as the source build scripts.
-const inline = (s, a = {}) => {
+const inline = (s, a = {}, mode = 'page') => {
   let h = esc(s)
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, text, url) => `<a href="${attr(linkFor(decode(url), mode))}">${text}</a>`)
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
     .replace(/`([^`]+)`/g, '<code>$1</code>');
@@ -171,15 +185,14 @@ function readSourcePage(a) {
     if (!file || alt === undefined) throw new Error(`${a.sourceHtml}: a figure without a known image or alt text`);
     figures[file] = { alt: decode(alt), caption: cap ? stripTags(cap) : '' };
   }
-  const notesBlock = /<ul class="notes">([\s\S]*?)<\/ul>/.exec(html)?.[1];
-  const notes = notesBlock ? [...notesBlock.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => m[1].trim()) : [];
-  return { figures, notes };
+  return { figures };
 }
 
 // --- per-article build ------------------------------------------------------------------------
 fs.rmSync(DOCS, { recursive: true, force: true });
 fs.mkdirSync(path.join(DOCS, 'assets', 'fonts'), { recursive: true });
 fs.writeFileSync(path.join(DOCS, '.nojekyll'), '');
+fs.writeFileSync(path.join(DOCS, 'CNAME'), `${SITE_HOST}\n`);
 
 const fontSrc = path.join(desktop, 'selfawarewriting-article', 'src');
 for (const f of ['dm-sans-latin.woff2', 'eb-garamond-latin.woff2', 'eb-garamond-latin-italic.woff2']) {
@@ -192,6 +205,13 @@ fs.writeFileSync(path.join(DOCS, 'assets', 'site.css'),
   `/* Generated by build.mjs from src/site.css. Edit the source, then run: node build.mjs */\n${fontFaces}\n${tokenCss}\n${fs.readFileSync(path.join(here, 'src', 'site.css'), 'utf8')}`);
 fs.copyFileSync(path.join(here, 'src', 'site.js'), path.join(DOCS, 'assets', 'site.js'));
 
+// Titles first, so each page can link to the others by name.
+
+const TITLES = Object.fromEntries(ARTICLES.map((a) => {
+  const firstLine = fs.readFileSync(path.join(a.dir, 'article.md'), 'utf8').replace(/\r/g, '').split('\n', 1)[0];
+  if (!firstLine.startsWith('# ')) throw new Error(`${a.slug}: article.md must start with "# Title"`);
+  return [a.slug, plain(firstLine.slice(2))];
+}));
 const built = [];
 for (const a of ARTICLES) {
   const out = path.join(DOCS, a.slug);
@@ -202,19 +222,17 @@ for (const a of ARTICLES) {
   const images = Object.keys(IMAGE_LABELS).filter((f) => fs.existsSync(path.join(a.dir, f))).map((file) => {
     fs.copyFileSync(path.join(a.dir, file), path.join(out, file));
     let from = src.figures[file];
-    let reused = '';
     // SAW and CSS 3D Lab: the LinkedIn cover is the same design as the Medium cover, and the
     // source page gives it no text of its own, so it carries the Medium cover's alt and caption.
     if (!from && file === 'cover-linkedin-1920x1080.png' && src.figures['cover-medium-1500x750.png']) {
       from = src.figures['cover-medium-1500x750.png'];
-      reused = 'Alt text and caption are the Medium cover’s: same design, wider shape.';
     }
     if (!from) throw new Error(`${a.slug}: no alt text for ${file} in ${a.sourceHtml}`);
     const caption = a.captions?.[file] ?? from.caption;
     if (!caption) throw new Error(`${a.slug}: no caption for ${file}`);
     if (from.alt.length > 500) throw new Error(`${a.slug}: ${file} alt text is over Medium's 500 characters`);
     const { w, h } = pngSize(path.join(a.dir, file));
-    return { file, key: file.split('-')[0] === 'cover' ? file.replace(/-\d.*$/, '') : 'numbers', label: IMAGE_LABELS[file], alt: from.alt, caption, w, h, reused, captionWritten: Boolean(a.captions?.[file]) };
+    return { file, key: file.split('-')[0] === 'cover' ? file.replace(/-\d.*$/, '') : 'numbers', label: IMAGE_LABELS[file], alt: from.alt, caption, w, h };
   });
   const img = Object.fromEntries(images.map((i) => [i.file, i]));
   const cover = img['cover-medium-1500x750.png'];
@@ -229,31 +247,38 @@ for (const a of ARTICLES) {
   const words = md.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ').replace(/[#*`\[\]]|\(http[^)]*\)/g, ' ').split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(1, Math.round(words / 230));
 
-  const marker = (i) => `<p><strong>[Upload ${esc(i.file)} here. Caption: ${esc(i.caption)} Alt text: ${esc(i.alt)}]</strong></p>`;
+  // The page gets figures; the copy for other editors gets a bold line with the image's address,
+  // caption and alt text, since pasted images don't travel.
+  const marker = (i) => `<p><strong>[Image: ${esc(pageUrl(a.slug) + i.file)} Caption: ${esc(i.caption)} Alt text: ${esc(i.alt)}]</strong></p>`;
   const page = [];
-  const copy = [`<h1>${inline(blocks[0].slice(2))}</h1>`, `<p><em>${inline(blocks[1].slice(1, -1))}</em></p>`];
+  const copy = [`<h1>${inline(blocks[0].slice(2), a, 'copy')}</h1>`, `<p><em>${inline(blocks[1].slice(1, -1), a, 'copy')}</em></p>`];
   if (a.coverInCopy && cover) copy.push(marker(cover));
   let numbersPlaced = false;
-  const push = (h) => { page.push(h); copy.push(h); };
+  const both = (render) => { page.push(render('page')); copy.push(render('copy')); };
   const pushNumbers = () => { if (!numbers || numbersPlaced) return; page.push(figure(numbers)); copy.push(marker(numbers)); numbersPlaced = true; };
   blocks.slice(2).forEach((b, j, rest) => {
-    if (b.startsWith('## ')) push(`<h2>${inline(b.slice(3), a)}</h2>`);
+    if (b.startsWith('## ')) both((m) => `<h2>${inline(b.slice(3), a, m)}</h2>`);
     else if (b.startsWith('![')) {
       if (!b.includes('numbers-1400.png')) throw new Error(`${a.slug}: unknown image line ${b}`);
       pushNumbers();
-    } else if (b.startsWith('- ')) push(`<ul>\n${b.split('\n').map((l) => `<li>${inline(l.replace(/^- /, ''), a)}</li>`).join('\n')}\n</ul>`);
-    else if (j === rest.length - 1) push(`<p class="close">${a.closeEm ? `<em>${inline(b, a)}</em>` : inline(b, a)}</p>`);
-    else push(`<p>${inline(b, a)}</p>`);
+    } else if (b.startsWith('- ')) both((m) => `<ul>\n${b.split('\n').map((l) => `<li>${inline(l.replace(/^- /, ''), a, m)}</li>`).join('\n')}\n</ul>`);
+    else if (j === rest.length - 1) both((m) => `<p class="close">${a.closeEm ? `<em>${inline(b, a, m)}</em>` : inline(b, a, m)}</p>`);
+    else both((m) => `<p>${inline(b, a, m)}</p>`);
     if (a.numbersAfter?.test(b)) pushNumbers();
   });
   if (numbers && !numbersPlaced) throw new Error(`${a.slug}: the numbers card has no place in the article`);
 
-  // share texts: only the files that exist; the Facebook file holds a short and a longer version
+  // The Markdown copy: sibling-article links and the image point at this site, absolutely.
+  const mdCopy = md
+    .replace(/\]\((https?:[^)\s]+)\)/g, (m, url) => `](${linkFor(url, 'copy')})`)
+    .replace(/\]\((numbers-1400\.png)\)/g, `](${pageUrl(a.slug)}$1)`);
+
+  // share texts: only the files that exist; a file may hold a short and a longer version
   const shares = [];
   for (const [file, label] of SHARE_FILES) {
     const p = path.join(a.dir, file);
     if (!fs.existsSync(p)) continue;
-    const text = fs.readFileSync(p, 'utf8').replace(/\r/g, '').trim();
+    const text = fs.readFileSync(p, 'utf8').replace(/\r/g, '').trim().replaceAll('[article link]', pageUrl(a.slug));
     const two = /^SHORT VERSION\s*\n([\s\S]*?)\n\s*LONGER VERSION\s*\n([\s\S]*)$/.exec(text);
     const id = file.replace(/-post\.txt$/, '');
     if (two) {
@@ -262,19 +287,23 @@ for (const a of ARTICLES) {
     } else shares.push({ id, label, file, text });
   }
 
-  const pubLabel = a.published ? `Published ${fmtDate(a.published)}` : `Written ${fmtDate(a.date)}`;
-  const pubIso = a.published || a.date;
-  const info = { ...a, title, subtitle, words, minutes, cover, images, shares, notes: src.notes, pubLabel, pubIso };
+  const info = { ...a, title, subtitle, words, minutes, cover, images, shares };
   built.push(info);
 
   const kitData = JSON.stringify({ richHtml: copy.join('\n') }).replace(/</g, '\\u003c');
-  fs.writeFileSync(path.join(out, 'index.html'), articlePage(info, page.join('\n'), md, kitData));
+  fs.writeFileSync(path.join(out, 'index.html'), articlePage(info, page.join('\n'), mdCopy, kitData));
 }
 
 fs.writeFileSync(path.join(DOCS, 'index.html'), indexPage(built));
+fs.writeFileSync(path.join(DOCS, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${[`${SITE_URL}/`, ...built.map((a) => pageUrl(a.slug))].map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}
+</urlset>
+`);
+fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 // --- templates --------------------------------------------------------------------------------
-function head({ pageKey, title, description, image, imageAlt, canonical, type, fontsLink, base }) {
+function head({ pageKey, title, description, image, imageAlt, url, type, fontsLink, base }) {
   return `<!doctype html>
 <html lang="en" data-page="${pageKey}">
 <head>
@@ -285,7 +314,10 @@ function head({ pageKey, title, description, image, imageAlt, canonical, type, f
 <meta name="author" content="${AUTHOR}">
 <meta name="color-scheme" content="light dark">
 <script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-${canonical ? `<link rel="canonical" href="${attr(canonical)}">\n` : ''}<meta property="og:type" content="${type}">
+<link rel="canonical" href="${attr(url)}">
+<meta property="og:type" content="${type}">
+<meta property="og:url" content="${attr(url)}">
+<meta property="og:site_name" content="Articles — ${AUTHOR}">
 <meta property="og:title" content="${attr(title)}">
 <meta property="og:description" content="${attr(description)}">
 <meta property="og:image" content="${attr(image)}">
@@ -317,15 +349,35 @@ function figure(i, { hero = false } = {}) {
       <button type="button" class="chip" data-copy="alt-${i.key}" aria-label="Copy alt text, ${i.label.toLowerCase()}">Copy alt</button>
       <a class="chip" href="${i.file}" download aria-label="Download image, ${i.label.toLowerCase()} (${i.file})">Download</a>
     </div>
-    <details class="alt"><summary>Alt text <span>· ${i.alt.length} of 500 characters</span></summary><p id="alt-${i.key}">${esc(i.alt)}</p></details>
+    <details class="alt"><summary>Alt text <span>· ${i.alt.length} characters</span></summary><p id="alt-${i.key}">${esc(i.alt)}</p></details>
   </figcaption>
 </figure>`;
 }
 
+function hostOf(url) { return new URL(url).host; }
+function ext(url, text) { return `<a href="${attr(url)}" rel="noopener">${text}<span aria-hidden="true"> ↗</span></a>`; }
+
+// "Also on": the story's Medium and LinkedIn copies, and the project it is about.
+function alsoTop(a) {
+  const links = [a.medium && ext(a.medium, 'Medium'), a.linkedin && ext(a.linkedin, 'LinkedIn')].filter(Boolean);
+  return `<nav class="also" aria-label="This story elsewhere">
+        ${links.length ? `<p><span class="also-label">Also on</span>${links.join('')}</p>` : ''}
+        ${a.project ? `<p><span class="also-label">Project</span>${ext(a.project, esc(hostOf(a.project)))}</p>` : ''}
+      </nav>`;
+}
+function alsoEnd(a, list) {
+  const copies = [a.medium && ext(a.medium, 'Medium'), a.linkedin && ext(a.linkedin, 'LinkedIn')].filter(Boolean);
+  const others = list.filter((x) => x.slug !== a.slug);
+  return `<footer class="story-foot">
+      <p class="also-end">${copies.length ? `<span>Read it on ${copies.join(' / ')}</span>` : ''}${a.project ? `<span>${ext(a.project, 'Visit the project')}</span>` : ''}</p>
+      <nav class="more" aria-labelledby="more-${a.slug}">
+        <h2 id="more-${a.slug}">More build stories</h2>
+        <ul>${others.map((x) => `<li><a href="../${x.slug}/">${esc(TITLES[x.slug])}</a></li>`).join('')}</ul>
+      </nav>
+    </footer>`;
+}
+
 function kit(a, md) {
-  const mediumLine = a.medium
-    ? `<p class="kit-status"><span class="dot on" aria-hidden="true"></span><span>Published on Medium</span><a class="kit-open" href="${attr(a.medium)}" rel="noopener">Open<span aria-hidden="true"> ↗</span><span class="vh"> the story on Medium</span></a></p>`
-    : `<p class="kit-status"><span class="dot" aria-hidden="true"></span>Not yet published on Medium</p>`;
   const imageRows = a.images.map((i) => `<li class="img-row">
           <img src="${i.file}" alt="" width="${i.w}" height="${i.h}" loading="lazy" decoding="async">
           <p class="img-name">${esc(i.label)}<span>${esc(i.file)} · ${i.w}&nbsp;×&nbsp;${i.h}</span></p>
@@ -337,8 +389,7 @@ function kit(a, md) {
             </div>
             <details class="alt"><summary>Caption and alt text</summary>
               <p class="lbl">Caption</p><p id="k-cap-${i.key}">${esc(i.caption)}</p>
-              <p class="lbl">Alt text · ${i.alt.length} of 500</p><p id="k-alt-${i.key}">${esc(i.alt)}</p>
-              ${i.reused ? `<p class="lbl note">${esc(i.reused)}</p>` : ''}
+              <p class="lbl">Alt text · ${i.alt.length} characters</p><p id="k-alt-${i.key}">${esc(i.alt)}</p>
             </details>
           </div>
         </li>`).join('\n');
@@ -347,24 +398,22 @@ function kit(a, md) {
             <h3>${esc(s.label)}</h3>
             <button type="button" class="chip" data-copy="share-${s.id}" aria-label="Copy ${s.label}">Copy</button>
           </div>
-          <p class="share-meta">${num([...s.text].length)} characters · ${esc(s.file)}</p>
-          ${s.text.includes('[article link]') ? `<p class="share-warn">Contains the placeholder “[article link]”. Replace it with the article’s address before posting.</p>` : ''}
+          <p class="share-meta">${num([...s.text].length)} characters</p>
           <pre id="share-${s.id}" tabindex="0">${esc(s.text)}</pre>
         </div>`).join('\n');
-  return `<aside class="kit" aria-label="Publishing kit">
+  return `<aside class="kit" aria-label="Share kit">
     <details class="kit-box" id="kit">
-      <summary><span class="kit-sum"><span class="kit-title">Publishing kit</span><span class="kit-hint">Copy the text, images and posts</span></span></summary>
+      <summary><span class="kit-sum"><span class="kit-title">Share kit</span><span class="kit-hint">Copy the story, images and posts</span></span></summary>
       <div class="kit-body">
         <section aria-labelledby="kit-story">
           <h2 id="kit-story">Story</h2>
-          ${mediumLine}
           <div class="btn-grid">
             <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
             <button type="button" class="btn" data-copy="story-title">Copy title</button>
             <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
             <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
           </div>
-          <p class="kit-note">Rich text pastes into the Medium and LinkedIn editors with headings, bold, lists and links. Images don’t travel: the copy has a bold line where each one goes, with its file name, caption and alt text.</p>
+          <p class="kit-note">Rich text keeps the headings, bold, lists and links when pasted into an editor such as Medium or LinkedIn. Images aren’t included: the copy has a bold line where each one goes, with its address, caption and alt text.</p>
           <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown">${esc(md.trim())}</textarea></details>
         </section>
         <section aria-labelledby="kit-images">
@@ -374,26 +423,23 @@ function kit(a, md) {
           </ul>
         </section>
         ${a.shares.length ? `<section aria-labelledby="kit-share">
-          <h2 id="kit-share">Share texts (${a.shares.length})</h2>
+          <h2 id="kit-share">Posts (${a.shares.length})</h2>
         ${shareCards}
-        </section>` : ''}
-        ${a.notes.length ? `<section aria-labelledby="kit-notes">
-          <h2 id="kit-notes">Before you publish</h2>
-          <ul class="notes">
-            ${a.notes.map((n) => `<li>${n}</li>`).join('\n            ')}
-          </ul>
-          <p class="kit-src">From ${esc(a.sourceHtml)}</p>
         </section>` : ''}
       </div>
     </details>
   </aside>`;
 }
 
+function siteFoot(back) {
+  return `<footer class="site-foot">
+  ${back ? '<a href="../"><span aria-hidden="true">←</span> All articles</a>' : `<span>Articles by ${AUTHOR}</span>`}
+  <a href="${HOME_URL}">${esc(hostOf(HOME_URL))}</a>
+</footer>`;
+}
+
 function articlePage(a, body, md, kitData) {
-  const mediumLink = a.medium
-    ? `<a href="${attr(a.medium)}" rel="noopener">Read on Medium<span aria-hidden="true"> ↗</span></a>`
-    : `<span>Not yet on Medium</span>`;
-  return `${head({ pageKey: a.slug, title: a.title, description: a.subtitle, image: a.cover.file, imageAlt: a.cover.alt, canonical: a.medium, type: 'article', fontsLink: a.fontsLink, base: '../' })}
+  return `${head({ pageKey: a.slug, title: a.title, description: a.subtitle, image: pageUrl(a.slug) + a.cover.file, imageAlt: a.cover.alt, url: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: '../' })}
 <body>
 <a class="skip" href="#story">Skip to the article</a>
 <header class="site-head">
@@ -407,18 +453,17 @@ function articlePage(a, body, md, kitData) {
       <p class="kicker">${esc(a.kicker)}</p>
       <h1 id="story-title">${esc(a.title)}</h1>
       <p class="dek" id="story-dek">${esc(a.subtitle)}</p>
-      <p class="byline"><span>${AUTHOR}</span><time datetime="${a.pubIso}">${a.pubLabel}</time><span>${a.minutes} min read · ${num(a.words)} words</span>${mediumLink}</p>
+      <p class="byline"><span>${AUTHOR}</span><span>${a.minutes} min read</span><span>${num(a.words)} words</span></p>
+      ${alsoTop(a)}
     </header>
     ${figure(a.cover, { hero: true })}
     <div class="prose" id="article-body">
 ${body}
     </div>
+    ${alsoEnd(a, ARTICLES)}
   </article>
 </main>
-<footer class="site-foot">
-  <a href="../"><span aria-hidden="true">←</span> All articles</a>
-  <span>${AUTHOR} · 2026</span>
-</footer>
+${siteFoot(true)}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script type="application/json" id="kit-data">${kitData}</script>
 </body>
@@ -433,12 +478,13 @@ function indexPage(list) {
         <p class="kicker">${esc(a.kicker)}</p>
         <h2><a class="card-link" href="${a.slug}/">${esc(a.title)}</a></h2>
         <p class="sub">${esc(a.subtitle)}</p>
-        <p class="meta"><time datetime="${a.pubIso}">${a.pubLabel}</time> · ${a.minutes} min read</p>
-        <p class="links"><a href="${a.slug}/">Read the article</a>${a.medium ? `<a href="${attr(a.medium)}" rel="noopener">On Medium<span aria-hidden="true"> ↗</span></a>` : '<span>Not yet on Medium</span>'}</p>
+        <p class="meta">${a.minutes} min read</p>
+        <p class="links"><a href="${a.slug}/">Read the article<span aria-hidden="true"> →</span></a></p>
+        <p class="elsewhere"><span class="grp"><span class="also-label">Also on</span>${a.medium ? ext(a.medium, 'Medium') : ''}${a.linkedin ? ext(a.linkedin, 'LinkedIn') : ''}</span>${a.project ? `<span class="grp"><span class="also-label">Project</span>${ext(a.project, esc(hostOf(a.project)))}</span>` : ''}</p>
       </div>
     </article>`).join('\n    ');
   const first = list[0];
-  return `${head({ pageKey: 'index', title: `Articles · ${AUTHOR}`, description: 'Three build stories by Edgaras Neverdauskas, each counted from the session logs and git history.', image: `${first.slug}/${first.cover.file}`, imageAlt: first.cover.alt, canonical: '', type: 'website', fontsLink: '', base: '' })}
+  return `${head({ pageKey: 'index', title: `Articles — ${AUTHOR}`, description: 'Build stories, counted from the logs.', image: pageUrl(first.slug) + first.cover.file, imageAlt: first.cover.alt, url: `${SITE_URL}/`, type: 'website', fontsLink: '', base: '' })}
 <body>
 <a class="skip" href="#main">Skip to the articles</a>
 <header class="site-head">
@@ -447,15 +493,15 @@ function indexPage(list) {
 </header>
 <main class="index" id="main" tabindex="-1">
   <header class="index-head">
-    <p class="kicker">Articles</p>
-    <h1>Building with AI, counted from the logs</h1>
-    <p class="dek">Three build stories by ${AUTHOR}. Each one goes back through the session logs and the git history, so the numbers are counted, not remembered.</p>
+    <p class="kicker">${AUTHOR}</p>
+    <h1>Articles</h1>
+    <p class="dek">Build stories, counted from the logs.</p>
   </header>
   <div class="cards">
     ${cards}
   </div>
 </main>
-<footer class="site-foot"><span>${AUTHOR} · 2026</span></footer>
+${siteFoot(false)}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
@@ -464,7 +510,7 @@ function indexPage(list) {
 
 // --- report -----------------------------------------------------------------------------------
 for (const a of built) {
-  console.log(`${a.slug}: ${num(a.words)} words, ${a.minutes} min, ${a.images.length} images, ${a.shares.length} share texts, ${a.notes.length} notes${a.medium ? '' : ', not on Medium yet'}`);
+  console.log(`${a.slug}: ${num(a.words)} words, ${a.minutes} min, ${a.images.length} images, ${a.shares.length} posts`);
 }
 console.log(`contrast: ${contrastReport.length} text pairs checked, lowest ${minRatio.ratio}:1 (${minRatio.page} ${minRatio.mode} ${minRatio.pair})`);
 console.log(`wrote ${path.relative(here, DOCS)}${path.sep}`);
