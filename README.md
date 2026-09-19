@@ -25,6 +25,18 @@ The build reads the three article folders that sit next to this one on the Deskt
 The source folders are only read, never changed. `docs/` is deleted and written fresh on every
 build, so edit `build.mjs` and `src/`, not `docs/`.
 
+To rebuild the hub and synchronize the matching single-article page into every project's public
+assets, run:
+
+```
+node build.mjs --sync-projects
+```
+
+That writes `/article/` into CSS 3D Lab's `public/`, Self-Aware Writing's `public/`, and
+J.A.R.V.I.S.'s `src/client/public/`. Their normal production builds then publish the pages with the
+projects. The central article URL stays canonical; each project copy uses its own `/article/` URL
+for social previews and sends cross-article links back to this hub.
+
 - `build.mjs`: the article list (slug, external links and project link), colour tokens, the Markdown converter and the page templates. It stops with an error if any text colour pair drops below 4.5:1 contrast, if an image has no alt text, or if alt text goes over Medium's 500-character limit.
 - `src/site.css`: the shared components and each article's type and shape. The build puts the fonts and colour tokens in front of it.
 - `src/site.js`: the theme switch and the copy buttons.

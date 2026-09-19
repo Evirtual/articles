@@ -12,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const DOCS = path.join(here, 'docs');
 const desktop = path.dirname(here);
+const SYNC_PROJECTS = process.argv.includes('--sync-projects');
 
 // --- the site ---------------------------------------------------------------------------------
 // This site is the articles' home: canonical, og:url and social images all point here.
@@ -29,6 +30,7 @@ const ARTICLES = [
     medium: 'https://medium.com/@edgarasneverdauskas/one-day-building-css-3d-lab-with-claude-2e6852ba0e65',
     linkedin: 'https://www.linkedin.com/pulse/one-day-building-css-3d-lab-claude-edgaras-neverdauskas-xjlbc/',
     project: 'https://css3dlab.edgarasneverdauskas.com',
+    mirrorDir: 'C:\\dev\\css-3d-lab\\public\\article',
     kicker: 'About a day · 135 models',
     coverInCopy: true,
     fontsLink: '',
@@ -40,6 +42,7 @@ const ARTICLES = [
     medium: 'https://medium.com/@edgarasneverdauskas/a-book-that-knows-youre-reading-it-ef41561ae846',
     linkedin: 'https://www.linkedin.com/pulse/book-knows-youre-reading-edgaras-neverdauskas-h7mfc/',
     project: 'https://selfawarewriting.com',
+    mirrorDir: path.join(desktop, 'selfawarewriting', 'public', 'article'),
     kicker: 'Four weeks · 4 chapters',
     coverInCopy: true,
     // Same as the source build: the numbers card goes after the Codex paragraph, and the last
@@ -56,6 +59,7 @@ const ARTICLES = [
     medium: 'https://medium.com/@edgarasneverdauskas/five-days-building-j-a-r-v-i-s-with-claude-0533b1953060',
     linkedin: 'https://www.linkedin.com/pulse/five-days-building-jarvis-claude-edgaras-neverdauskas-kqxjc/',
     project: 'https://jarvis.edgarasneverdauskas.com',
+    mirrorDir: path.join(desktop, 'jarvis', 'src', 'client', 'public', 'article'),
     kicker: 'Five days · 39 hours',
     // The JARVIS copy page marks only the numbers card inside the copied article.
     coverInCopy: false,
@@ -153,7 +157,7 @@ const siblingSlug = (url) => ARTICLE_URLS.get(url.replace(/[?#].*$/, '').replace
 const linkFor = (url, mode) => {
   const slug = siblingSlug(url);
   if (!slug) return url;
-  return mode === 'copy' ? pageUrl(slug) : `../${slug}/`;
+  return mode === 'copy' || mode === 'mirror' ? pageUrl(slug) : `../${slug}/`;
 };
 
 // The markdown in these articles is simple: headings, paragraphs, "- " lists, one image line,
@@ -251,11 +255,12 @@ for (const a of ARTICLES) {
   // caption and alt text, since pasted images don't travel.
   const marker = (i) => `<p><strong>[Image: ${esc(pageUrl(a.slug) + i.file)} Caption: ${esc(i.caption)} Alt text: ${esc(i.alt)}]</strong></p>`;
   const page = [];
+  const mirror = [];
   const copy = [`<h1>${inline(blocks[0].slice(2), a, 'copy')}</h1>`, `<p><em>${inline(blocks[1].slice(1, -1), a, 'copy')}</em></p>`];
   if (a.coverInCopy && cover) copy.push(marker(cover));
   let numbersPlaced = false;
-  const both = (render) => { page.push(render('page')); copy.push(render('copy')); };
-  const pushNumbers = () => { if (!numbers || numbersPlaced) return; page.push(figure(numbers)); copy.push(marker(numbers)); numbersPlaced = true; };
+  const both = (render) => { page.push(render('page')); mirror.push(render('mirror')); copy.push(render('copy')); };
+  const pushNumbers = () => { if (!numbers || numbersPlaced) return; page.push(figure(numbers)); mirror.push(figure(numbers)); copy.push(marker(numbers)); numbersPlaced = true; };
   blocks.slice(2).forEach((b, j, rest) => {
     if (b.startsWith('## ')) both((m) => `<h2>${inline(b.slice(3), a, m)}</h2>`);
     else if (b.startsWith('![')) {
@@ -292,6 +297,7 @@ for (const a of ARTICLES) {
 
   const kitData = JSON.stringify({ richHtml: copy.join('\n') }).replace(/</g, '\\u003c');
   fs.writeFileSync(path.join(out, 'index.html'), articlePage(info, page.join('\n'), mdCopy, kitData));
+  if (SYNC_PROJECTS) syncProjectArticle(info, mirror.join('\n'), mdCopy, kitData);
 }
 
 fs.writeFileSync(path.join(DOCS, 'index.html'), indexPage(built));
@@ -303,7 +309,7 @@ ${[`${SITE_URL}/`, ...built.map((a) => pageUrl(a.slug))].map((u) => `  <url><loc
 fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 // --- templates --------------------------------------------------------------------------------
-function head({ pageKey, title, description, image, imageAlt, url, type, fontsLink, base }) {
+function head({ pageKey, title, description, image, imageAlt, url, canonical = url, type, fontsLink, base }) {
   return `<!doctype html>
 <html lang="en" data-page="${pageKey}">
 <head>
@@ -314,7 +320,7 @@ function head({ pageKey, title, description, image, imageAlt, url, type, fontsLi
 <meta name="author" content="${AUTHOR}">
 <meta name="color-scheme" content="light dark">
 <script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="canonical" href="${attr(url)}">
+<link rel="canonical" href="${attr(canonical)}">
 <meta property="og:type" content="${type}">
 <meta property="og:url" content="${attr(url)}">
 <meta property="og:site_name" content="Articles — ${AUTHOR}">
@@ -365,14 +371,14 @@ function alsoTop(a) {
         ${a.project ? `<p><span class="also-label">Project</span>${ext(a.project, esc(hostOf(a.project)))}</p>` : ''}
       </nav>`;
 }
-function alsoEnd(a, list) {
+function alsoEnd(a, list, mirror = false) {
   const copies = [a.medium && ext(a.medium, 'Medium'), a.linkedin && ext(a.linkedin, 'LinkedIn')].filter(Boolean);
   const others = list.filter((x) => x.slug !== a.slug);
   return `<footer class="story-foot">
       <p class="also-end">${copies.length ? `<span>Read it on ${copies.join(' / ')}</span>` : ''}${a.project ? `<span>${ext(a.project, 'Visit the project')}</span>` : ''}</p>
       <nav class="more" aria-labelledby="more-${a.slug}">
         <h2 id="more-${a.slug}">More build stories</h2>
-        <ul>${others.map((x) => `<li><a href="../${x.slug}/">${esc(TITLES[x.slug])}</a></li>`).join('')}</ul>
+        <ul>${others.map((x) => `<li><a href="${mirror ? pageUrl(x.slug) : `../${x.slug}/`}">${esc(TITLES[x.slug])}</a></li>`).join('')}</ul>
       </nav>
     </footer>`;
 }
@@ -431,19 +437,20 @@ function kit(a, md) {
   </aside>`;
 }
 
-function siteFoot(back) {
+function siteFoot(back, mirror = false) {
   return `<footer class="site-foot">
-  ${back ? '<a href="../"><span aria-hidden="true">←</span> All articles</a>' : `<span>Articles by ${AUTHOR}</span>`}
+  ${back ? `<a href="${mirror ? `${SITE_URL}/` : '../'}"><span aria-hidden="true">←</span> All articles</a>` : `<span>Articles by ${AUTHOR}</span>`}
   <a href="${HOME_URL}">${esc(hostOf(HOME_URL))}</a>
 </footer>`;
 }
 
-function articlePage(a, body, md, kitData) {
-  return `${head({ pageKey: a.slug, title: a.title, description: a.subtitle, image: pageUrl(a.slug) + a.cover.file, imageAlt: a.cover.alt, url: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: '../' })}
+function articlePage(a, body, md, kitData, { mirror = false } = {}) {
+  const url = mirror ? `${a.project}/article/` : pageUrl(a.slug);
+  return `${head({ pageKey: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../' })}
 <body>
 <a class="skip" href="#story">Skip to the article</a>
 <header class="site-head">
-  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <nav aria-label="Site"><a class="home" href="${mirror ? `${SITE_URL}/` : '../'}"><span aria-hidden="true">←</span> All articles</a></nav>
   ${themeSwitchHtml()}
 </header>
 <main class="layout" id="main">
@@ -460,15 +467,29 @@ function articlePage(a, body, md, kitData) {
     <div class="prose" id="article-body">
 ${body}
     </div>
-    ${alsoEnd(a, ARTICLES)}
+    ${alsoEnd(a, ARTICLES, mirror)}
   </article>
 </main>
-${siteFoot(true)}
+${siteFoot(true, mirror)}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script type="application/json" id="kit-data">${kitData}</script>
 </body>
 </html>
 `;
+}
+
+function syncProjectArticle(a, body, md, kitData) {
+  const out = path.resolve(a.mirrorDir);
+  if (path.basename(out).toLowerCase() !== 'article') throw new Error(`${a.slug}: mirror target must end in /article`);
+  fs.rmSync(out, { recursive: true, force: true });
+  fs.mkdirSync(path.join(out, 'assets', 'fonts'), { recursive: true });
+  for (const file of ['site.css', 'site.js']) fs.copyFileSync(path.join(DOCS, 'assets', file), path.join(out, 'assets', file));
+  for (const file of ['dm-sans-latin.woff2', 'eb-garamond-latin.woff2', 'eb-garamond-latin-italic.woff2']) {
+    fs.copyFileSync(path.join(DOCS, 'assets', 'fonts', file), path.join(out, 'assets', 'fonts', file));
+  }
+  for (const image of a.images) fs.copyFileSync(path.join(a.dir, image.file), path.join(out, image.file));
+  fs.writeFileSync(path.join(out, 'index.html'), articlePage(a, body, md, kitData, { mirror: true }));
+  console.log(`synced ${a.project}/article/ -> ${out}`);
 }
 
 function indexPage(list) {
