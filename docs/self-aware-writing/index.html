@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en" data-page="self-aware-writing">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A book that knows you're reading it</title>
+<meta name="description" content="It started as a boast that you could build an app with just a phone. ChatGPT, Codex and Claude turned it into a book.">
+<meta name="author" content="Edgaras Neverdauskas">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="canonical" href="https://medium.com/@edgarasneverdauskas/a-book-that-knows-youre-reading-it-ef41561ae846">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A book that knows you're reading it">
+<meta property="og:description" content="It started as a boast that you could build an app with just a phone. ChatGPT, Codex and Claude turned it into a book.">
+<meta property="og:image" content="cover-medium-1500x750.png">
+<meta property="og:image:alt" content="Dark cover. On the left, the book-and-eye logo and the title &quot;A book that knows you're reading it&quot;, above the line &quot;ChatGPT, Codex and Claude, counted from the logs.&quot; On the right, a screenshot of selfawarewriting.com: a sidebar lists Chapters One to Four, with Chapter Five locked, beside the opening page of Chapter One, &quot;You Are Here&quot;.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A book that knows you're reading it">
+<meta name="twitter:description" content="It started as a boast that you could build an app with just a phone. ChatGPT, Codex and Claude turned it into a book.">
+<meta name="twitter:image" content="cover-medium-1500x750.png">
+<meta name="twitter:image:alt" content="Dark cover. On the left, the book-and-eye logo and the title &quot;A book that knows you're reading it&quot;, above the line &quot;ChatGPT, Codex and Claude, counted from the logs.&quot; On the right, a screenshot of selfawarewriting.com: a sidebar lists Chapters One to Four, with Chapter Five locked, beside the opening page of Chapter One, &quot;You Are Here&quot;.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the article</a>
+<header class="site-head">
+  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <div class="theme-switch" role="group" aria-label="Colour theme" hidden>
+      <button type="button" data-theme-value="system" aria-pressed="true">Auto</button>
+      <button type="button" data-theme-value="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-value="dark" aria-pressed="false">Dark</button>
+    </div>
+</header>
+<main class="layout" id="main">
+  <aside class="kit" aria-label="Publishing kit">
+    <details class="kit-box" id="kit">
+      <summary><span class="kit-sum"><span class="kit-title">Publishing kit</span><span class="kit-hint">Copy the text, images and posts</span></span></summary>
+      <div class="kit-body">
+        <section aria-labelledby="kit-story">
+          <h2 id="kit-story">Story</h2>
+          <p class="kit-status"><span class="dot on" aria-hidden="true"></span><span>Published on Medium</span><a class="kit-open" href="https://medium.com/@edgarasneverdauskas/a-book-that-knows-youre-reading-it-ef41561ae846" rel="noopener">Open<span aria-hidden="true"> ↗</span><span class="vh"> the story on Medium</span></a></p>
+          <div class="btn-grid">
+            <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
+            <button type="button" class="btn" data-copy="story-title">Copy title</button>
+            <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
+            <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
+          </div>
+          <p class="kit-note">Rich text pastes into the Medium and LinkedIn editors with headings, bold, lists and links. Images don’t travel: the copy has a bold line where each one goes, with its file name, caption and alt text.</p>
+          <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown"># A book that knows you're reading it
+
+*It started as a boast that you could build an app with just a phone. ChatGPT, Codex and Claude turned it into a book.*
+
+One afternoon in August I told my girlfriend that you no longer need a computer to make an app. A phone is enough. Then I had to prove it. I opened ChatGPT on my phone and asked for a book. Not an app about books: a book that talks about itself, and about you, while you read it. That afternoon it was live on the web, and it has been growing ever since.
+
+This is the honest account of how it got there. As with [J.A.R.V.I.S.](https://medium.com/@edgarasneverdauskas/five-days-building-j-a-r-v-i-s-with-claude-0533b1953060), I went back through the session logs and the full git history, so the numbers are counted, not remembered. One part could not be counted: the ChatGPT conversation on my phone is not stored on my PC. For that part the evidence is what ChatGPT left behind in git.
+
+## What Self-Aware Writing is
+
+A free web book at selfawarewriting.com, published a chapter at a time. The narrator is the book itself. It talks about the act of reading while it happens: where your attention is, the page you just turned, what you remember, what you expect next.
+
+"You are now reading the first paragraph of this book," it begins. In Chapter Two it asks you not to scroll back up. If you do, it says: "You went back. I specifically asked you not to."
+
+Four chapters are published: *You Are Here*, *A Moment Ago*, *Not Yet* and *Still Here*. A fifth, *Says Who?*, sits locked in the list of chapters. The book may never end, so its last chapter is always one that doesn't exist yet.
+
+It installs as an app, works offline, remembers the page you stopped on, and keeps all of that in your browser. There are no accounts, no tracking and no analytics.
+
+## How it happened
+
+**Wednesday 19 August, afternoon: the phone.** The GitHub repository was created at 15:33. The first commit landed two minutes later: a single HTML page holding Chapter One. A stylesheet and a small script followed within a minute. Over the next three and a half hours ChatGPT made 40 commits. Each one changed exactly one file, and each reached GitHub within a second of being made, often a few seconds after the last. That is what a chat assistant writing through GitHub's connector looks like.
+
+By 19:09 the book had a favicon, a social card, a sitemap, a 404 page, an offline mode, an install button, a two-panel design for desktop, and Chapter Two, *A Moment Ago*. The very first script already contained the line "You came back. I noticed."
+
+The boast held. The deploy did not, at first: the first build failed because GitHub Pages wasn't switched on yet. A re-run twelve minutes later worked, and the site has deployed cleanly ever since.
+
+**Wednesday evening: the computer.** Three minutes after ChatGPT's last commit I opened Claude Code on my PC. My first message explained that I had started with ChatGPT, and that its version didn't quite match the desktop design I wanted. I asked whether the project needed a proper framework, "maybe next js but not sure if necessary".
+
+We chose Astro with TypeScript. Chapters became plain Markdown files, and everything else is derived from them: the chapter list, the URLs, the page dots, the sitemap. Adding a chapter means adding one file. The rebuild was merged at 20:41, together with ChatGPT's last three commits, which my local copy had missed. The logo came out of the rebuild wrong, and I asked for the old one back: "no the logo still bad, ok revert".
+
+**Thursday 20 August: the busiest day.** I sent 47 messages in about seven hours. Most of the day went into one question: is the book telling the truth?
+
+A book that makes claims about its reader can be checked by that reader. Chapter One announced what "the third sentence" would do, and it was the wrong sentence. It counted the letters in "breathing" and got eight. It made jokes about the reader having bought the book, but, as I put it, "it is not on sale it is website". Each of these was fixed. Then the countable claims became a script, `check-book`, that runs on every push. It checks that the letter counts are right, that a line promised for the first page really is on the first page, and that Chapter Two quotes Chapter One word for word.
+
+In the afternoon I added a choice between paged and continuous reading. I changed my mind about the default twice in twelve minutes. Continuous won. In the evening came browser tests that read the book the way a reader would.
+
+At 22:12 Claude drafted Chapter Three, *Not Yet*. The brief came from the book itself: Chapter Two ends by pointing at the future and refusing to go there. Claude also named the next chapter, *Still Here*, and added a check that the book always ends on a chapter that is locked and empty. I had asked it earlier not to commit before I liked something, so the chapter waited for my read. It was committed at 22:35 and live a few minutes later. At 23:19 I told Codex I had hit my Claude Code usage limit.
+
+**Friday 21 August: the morning after.** Claude and I started early, with the phone layout. After a chapter change the page navigation dropped below the screen, because the reading area was a fixed box that couldn't scroll. Then the book turned out to be set entirely in italics: when we self-hosted the fonts, the italic file was saved under the roman's name. Nothing failed, so nothing warned us. We also wrote a LinkedIn post, with about 10,000 tokens left before my Claude limit.
+
+In between, I asked Codex how the book knows how far you have read, and what happens if you clear your browser. That became a small feature, finished in Claude: every chapter has a tick, grey until you've read it all and gold once you have, with a ring around it showing how far in you are.
+
+**1 and 2 September: the icon.** I wanted the tab icon to lose the plate behind it. I stopped Claude halfway: "you messed up the logo itself and i only need the background change so revert everything". The second try was right.
+
+**7 September: the editor.** I finished reading the book as a reader and liked it. So I asked Codex, now on GPT-6, to read all three chapters and discuss the writing style. For twenty minutes we went back and forth. It suggested restructuring the paragraphs, and I said no: "it felt conversational". It split a passage in two, and I said the break came too quickly. Then: "i actually dont know what to do what would you suggest?"
+
+Where we landed: the book was built "for us as an experiment anyway and it worked, just need some polishing". Codex tightened all three chapters and added small optional choices, so the reader can answer the book in every chapter, not only in Chapter Two. It hit its own usage limit mid-task. The change still reached the book at 16:58 and was live by 17:03.
+
+**8 September: Chapter Four.** At 22:30 I wrote one sentence: it is time for the fourth chapter, with the fifth still locked. Six minutes later Codex had published *Still Here*: seven pages, with a reader choice and a test of its own. It also rewrote the end of Chapter Three to lead into it, and added *Says Who?* as the next locked chapter.
+
+**12 and 15 September: polish.** A coffee link for anyone who wants to support the book. Then a small evening of fixes: a button that covered the page number on phones, scrollbars that looked fine on a Mac and bad on Windows, and a copyright year that said 2025. I also removed two things. The install button went, because browsers offer that on their own. So did "You came back. I noticed.", the line that had been in the book since its first hour. I decided it was unnecessary.
+
+## The rule about what a book may claim
+
+The most useful idea in the project is written in its README. A book that tells you what is on your screen has to be right on every screen. Two traps:
+
+- **Don't point at the furniture.** The chapter list is a sidebar on a wide window and a closed drawer on a phone. "One line below this one" is false for half the readers, so the book names the thing, not where it sits.
+- **Don't rely on a page being hidden.** Paged reading hides what you haven't reached. Continuous reading shows everything, so "you cannot see what comes next" is only sometimes true.
+
+The script catches what can be counted. These two need a person reading the book on real screens.
+
+## What we got wrong
+
+- The book claimed things about itself that weren't true: the wrong "third sentence" and a nine-letter word counted as eight.
+- It assumed the reader had paid for it. It is free.
+- The whole book was set in italics because two font files had swapped names.
+- The first draft of Chapter Three said flatly that there is no Chapter Four. We had just decided the book would keep going, so the line never shipped.
+- On phones, switching chapters pushed the page navigation off the screen.
+- On phones, the button for scrolling back to the top covered the page number.
+- Chapter Three said Chapter Four was "one line below this one, with a small lock on it". On a phone the chapter list is a closed drawer, so there was nothing below. It now says "in the list of chapters".
+
+## Who did what
+
+**ChatGPT (on the phone)** made the first version: 40 commits in three and a half hours, 1,719 lines added. It wrote Chapters One and Two, set up hosting on GitHub Pages, and made the book work offline. By 17:30 its README said it was live at selfawarewriting.com. I can't count its messages. Its conversation is in my ChatGPT account, not on my PC.
+
+**Claude Code** did most of the engineering: 30 commits and 5,916 lines added. That covers the Astro rebuild, the book checks, the reading modes, the browser tests, the fonts and the icon. It also wrote Chapter Three. Across the logged sessions I sent 124 messages and 28 screenshots, and Claude replied 1,386 times with 1,411 tool calls: 577 commands, 321 file edits and 403 actions in a browser. That was about 14 hours of active work. Every logged reply came from Claude Opus 5. The three commits of 12 September came from sessions these counts don't include, and two of them were made by Claude Fable 5.1.
+
+**Codex** was the editor and the second writer. I sent it 31 messages, and it made 118 tool calls and 2 commits. It tightened Chapters One to Three, added the reader choices, wrote Chapter Four and drafted a LinkedIn post. It used GPT-5.6 in August and GPT-6 in September.
+
+So the writing was mostly OpenAI's: ChatGPT wrote the first two chapters, and Codex wrote the fourth and edited the three before it. Claude wrote one chapter, the third. The code was mostly Claude's, once ChatGPT had laid down the first version.
+
+**My part** was the same as with JARVIS: deciding. 154 counted messages, a typical one 18 words long, plus the ChatGPT chat. I read the book as a reader, noticed what felt wrong, and said no. I changed my mind often, and the logs show it.
+
+Treat the numbers as a record, not a benchmark. The three tools worked on different days, on different jobs, and log their work differently.
+
+## What it cost
+
+The book costs nothing to host: GitHub Pages serves it for free. The cost was in the subscriptions, and both ran out at the wrong moment. On my busiest day I hit Claude Code's limit and finished the evening in Codex. Codex's limit hit in the middle of publishing the edited chapters, and the change went out anyway.
+
+## What I would tell someone starting
+
+- **A phone really is enough to start.** A first version, live on its own domain, in one afternoon.
+- **Move to a computer when the work gets technical.** Tests, frameworks and browsers on three devices are easier where you can see them.
+- **You don't have to pick one tool.** In my case the OpenAI models did most of the writing and Claude most of the engineering, and the repository held it all together.
+- **Anything a book says about its reader should be true.** If it can be counted, make it a check.
+- **Read your own work as a user.** The best fixes came from reading the book, not from reviewing it.
+- **Don't commit before you like it.** Especially when the thing is writing.
+- **It's fine not to know.** "What would you suggest?" was one of my most useful messages.
+
+## In one paragraph
+
+It began as a boast to my girlfriend and a chat on my phone, and one afternoon later it was a live book. Four weeks, three AI tools, about 17 counted hours at a computer plus that first afternoon, and 72 commits later, it is a four-chapter book that works offline, checks its own claims and waits for its fifth chapter. The tools wrote almost every word and every line. What they couldn't do was read it the way I did, and decide what it should be.
+
+Read it at selfawarewriting.com. Built with ChatGPT, OpenAI Codex, Claude Code, Claude Opus 5 and Claude Fable 5.1.</textarea></details>
+        </section>
+        <section aria-labelledby="kit-images">
+          <h2 id="kit-images">Images (3)</h2>
+          <ul class="img-list">
+        <li class="img-row">
+          <img src="cover-medium-1500x750.png" alt="" width="1500" height="750" loading="lazy" decoding="async">
+          <p class="img-name">Medium cover<span>cover-medium-1500x750.png · 1500&nbsp;×&nbsp;750</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+              <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">Self-Aware Writing, Chapter One, as it reads today. Image and book: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 338 of 500</p><p id="k-alt-cover-medium">Dark cover. On the left, the book-and-eye logo and the title "A book that knows you're reading it", above the line "ChatGPT, Codex and Claude, counted from the logs." On the right, a screenshot of selfawarewriting.com: a sidebar lists Chapters One to Four, with Chapter Five locked, beside the opening page of Chapter One, "You Are Here".</p>
+              
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="cover-linkedin-1920x1080.png" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+          <p class="img-name">LinkedIn cover<span>cover-linkedin-1920x1080.png · 1920&nbsp;×&nbsp;1080</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-linkedin" aria-label="Copy caption, linkedin cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-linkedin" aria-label="Copy alt text, linkedin cover">Copy alt</button>
+              <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">Self-Aware Writing, Chapter One, as it reads today. Image and book: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 338 of 500</p><p id="k-alt-cover-linkedin">Dark cover. On the left, the book-and-eye logo and the title "A book that knows you're reading it", above the line "ChatGPT, Codex and Claude, counted from the logs." On the right, a screenshot of selfawarewriting.com: a sidebar lists Chapters One to Four, with Chapter Five locked, beside the opening page of Chapter One, "You Are Here".</p>
+              <p class="lbl note">Alt text and caption are the Medium cover’s: same design, wider shape.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="numbers-1400.png" alt="" width="1400" height="1781" loading="lazy" decoding="async">
+          <p class="img-name">Numbers card<span>numbers-1400.png · 1400&nbsp;×&nbsp;1781</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+              <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-numbers">Four weeks, counted from git and the session logs: ChatGPT, Claude Code, Codex and me, side by side.</p>
+              <p class="lbl">Alt text · 452 of 500</p><p id="k-alt-numbers">Self-Aware Writing by the numbers, 19 Aug to 15 Sep 2026: 4 chapters published, 72 commits, 192 browser tests. ChatGPT, on the phone: 40 commits, the first version and Chapters One and Two. Claude Code: 30 commits, about 14 active hours, 1,411 tool calls, most of the code and Chapter Three. Codex: 2 commits, about 2.7 active hours, edited Chapters One to Three and wrote Chapter Four. Me: 154 counted messages, typically 18 words, and 32 screenshots.</p>
+              
+            </details>
+          </div>
+        </li>
+          </ul>
+        </section>
+        
+        <section aria-labelledby="kit-notes">
+          <h2 id="kit-notes">Before you publish</h2>
+          <ul class="notes">
+            <li><b>Two images, placed as in the JARVIS story.</b> The cover (cover-medium-1500x750.png) goes between the subtitle and the first paragraph, so Medium makes it the featured image. The numbers card (numbers-1400.png) goes in "Who did what", after the Codex paragraph, because Medium can't draw tables.</li>
+            <li><b>For the LinkedIn article,</b> paste the same text. Use cover-linkedin-1920x1080.png as the article's cover instead of the Medium cover placeholder, put the title in LinkedIn's title field, and keep the subtitle as the first line in italics. The numbers card, captions and alt text are the same.</li>
+            <li><b>Upload them yourself.</b> Medium can't fetch pictures from this page. The copied article has a bold line at each spot with the file name and its caption: replace the line with the image, type the caption under it, then click the image and choose Alt text to paste its description. Each image also shows its alt text on this page.</li>
+            <li><b>Paste into a new story.</b> Headings, bold, italics, lists and links come across. The title and subtitle paste as the first two lines; set them as Title and Subtitle in Medium.</li>
+            <li><b>The origin story is yours.</b> The girlfriend, the phone and the ChatGPT chat aren't in any log on this PC. Everything else is counted.</li>
+          </ul>
+          <p class="kit-src">From self-aware-writing-article.html</p>
+        </section>
+      </div>
+    </details>
+  </aside>
+  <article class="story" id="story" aria-labelledby="story-title" tabindex="-1">
+    <header class="story-head">
+      <p class="kicker">19 Aug – 15 Sep 2026 · 4 chapters</p>
+      <h1 id="story-title">A book that knows you're reading it</h1>
+      <p class="dek" id="story-dek">It started as a boast that you could build an app with just a phone. ChatGPT, Codex and Claude turned it into a book.</p>
+      <p class="byline"><span>Edgaras Neverdauskas</span><time datetime="2026-09-17">Written 17 Sep 2026</time><span>10 min read · 2,316 words</span><a href="https://medium.com/@edgarasneverdauskas/a-book-that-knows-youre-reading-it-ef41561ae846" rel="noopener">Read on Medium<span aria-hidden="true"> ↗</span></a></p>
+    </header>
+    <figure class="fig fig-cover" id="fig-cover-medium">
+  <div class="frame"><img src="cover-medium-1500x750.png" alt="Dark cover. On the left, the book-and-eye logo and the title &quot;A book that knows you're reading it&quot;, above the line &quot;ChatGPT, Codex and Claude, counted from the logs.&quot; On the right, a screenshot of selfawarewriting.com: a sidebar lists Chapters One to Four, with Chapter Five locked, beside the opening page of Chapter One, &quot;You Are Here&quot;." width="1500" height="750" decoding="async" fetchpriority="high"></div>
+  <figcaption>
+    <p class="cap" id="cap-cover-medium">Self-Aware Writing, Chapter One, as it reads today. Image and book: Edgaras Neverdauskas.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+      <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 338 of 500 characters</span></summary><p id="alt-cover-medium">Dark cover. On the left, the book-and-eye logo and the title "A book that knows you're reading it", above the line "ChatGPT, Codex and Claude, counted from the logs." On the right, a screenshot of selfawarewriting.com: a sidebar lists Chapters One to Four, with Chapter Five locked, beside the opening page of Chapter One, "You Are Here".</p></details>
+  </figcaption>
+</figure>
+    <div class="prose" id="article-body">
+<p>One afternoon in August I told my girlfriend that you no longer need a computer to make an app. A phone is enough. Then I had to prove it. I opened ChatGPT on my phone and asked for a book. Not an app about books: a book that talks about itself, and about you, while you read it. That afternoon it was live on the web, and it has been growing ever since.</p>
+<p>This is the honest account of how it got there. As with <a href="https://medium.com/@edgarasneverdauskas/five-days-building-j-a-r-v-i-s-with-claude-0533b1953060">J.A.R.V.I.S.</a>, I went back through the session logs and the full git history, so the numbers are counted, not remembered. One part could not be counted: the ChatGPT conversation on my phone is not stored on my PC. For that part the evidence is what ChatGPT left behind in git.</p>
+<h2>What Self-Aware Writing is</h2>
+<p>A free web book at <a href="https://selfawarewriting.com">selfawarewriting.com</a>, published a chapter at a time. The narrator is the book itself. It talks about the act of reading while it happens: where your attention is, the page you just turned, what you remember, what you expect next.</p>
+<p>"You are now reading the first paragraph of this book," it begins. In Chapter Two it asks you not to scroll back up. If you do, it says: "You went back. I specifically asked you not to."</p>
+<p>Four chapters are published: <em>You Are Here</em>, <em>A Moment Ago</em>, <em>Not Yet</em> and <em>Still Here</em>. A fifth, <em>Says Who?</em>, sits locked in the list of chapters. The book may never end, so its last chapter is always one that doesn't exist yet.</p>
+<p>It installs as an app, works offline, remembers the page you stopped on, and keeps all of that in your browser. There are no accounts, no tracking and no analytics.</p>
+<h2>How it happened</h2>
+<p><strong>Wednesday 19 August, afternoon: the phone.</strong> The GitHub repository was created at 15:33. The first commit landed two minutes later: a single HTML page holding Chapter One. A stylesheet and a small script followed within a minute. Over the next three and a half hours ChatGPT made 40 commits. Each one changed exactly one file, and each reached GitHub within a second of being made, often a few seconds after the last. That is what a chat assistant writing through GitHub's connector looks like.</p>
+<p>By 19:09 the book had a favicon, a social card, a sitemap, a 404 page, an offline mode, an install button, a two-panel design for desktop, and Chapter Two, <em>A Moment Ago</em>. The very first script already contained the line "You came back. I noticed."</p>
+<p>The boast held. The deploy did not, at first: the first build failed because GitHub Pages wasn't switched on yet. A re-run twelve minutes later worked, and the site has deployed cleanly ever since.</p>
+<p><strong>Wednesday evening: the computer.</strong> Three minutes after ChatGPT's last commit I opened Claude Code on my PC. My first message explained that I had started with ChatGPT, and that its version didn't quite match the desktop design I wanted. I asked whether the project needed a proper framework, "maybe next js but not sure if necessary".</p>
+<p>We chose Astro with TypeScript. Chapters became plain Markdown files, and everything else is derived from them: the chapter list, the URLs, the page dots, the sitemap. Adding a chapter means adding one file. The rebuild was merged at 20:41, together with ChatGPT's last three commits, which my local copy had missed. The logo came out of the rebuild wrong, and I asked for the old one back: "no the logo still bad, ok revert".</p>
+<p><strong>Thursday 20 August: the busiest day.</strong> I sent 47 messages in about seven hours. Most of the day went into one question: is the book telling the truth?</p>
+<p>A book that makes claims about its reader can be checked by that reader. Chapter One announced what "the third sentence" would do, and it was the wrong sentence. It counted the letters in "breathing" and got eight. It made jokes about the reader having bought the book, but, as I put it, "it is not on sale it is website". Each of these was fixed. Then the countable claims became a script, <code>check-book</code>, that runs on every push. It checks that the letter counts are right, that a line promised for the first page really is on the first page, and that Chapter Two quotes Chapter One word for word.</p>
+<p>In the afternoon I added a choice between paged and continuous reading. I changed my mind about the default twice in twelve minutes. Continuous won. In the evening came browser tests that read the book the way a reader would.</p>
+<p>At 22:12 Claude drafted Chapter Three, <em>Not Yet</em>. The brief came from the book itself: Chapter Two ends by pointing at the future and refusing to go there. Claude also named the next chapter, <em>Still Here</em>, and added a check that the book always ends on a chapter that is locked and empty. I had asked it earlier not to commit before I liked something, so the chapter waited for my read. It was committed at 22:35 and live a few minutes later. At 23:19 I told Codex I had hit my Claude Code usage limit.</p>
+<p><strong>Friday 21 August: the morning after.</strong> Claude and I started early, with the phone layout. After a chapter change the page navigation dropped below the screen, because the reading area was a fixed box that couldn't scroll. Then the book turned out to be set entirely in italics: when we self-hosted the fonts, the italic file was saved under the roman's name. Nothing failed, so nothing warned us. We also wrote a LinkedIn post, with about 10,000 tokens left before my Claude limit.</p>
+<p>In between, I asked Codex how the book knows how far you have read, and what happens if you clear your browser. That became a small feature, finished in Claude: every chapter has a tick, grey until you've read it all and gold once you have, with a ring around it showing how far in you are.</p>
+<p><strong>1 and 2 September: the icon.</strong> I wanted the tab icon to lose the plate behind it. I stopped Claude halfway: "you messed up the logo itself and i only need the background change so revert everything". The second try was right.</p>
+<p><strong>7 September: the editor.</strong> I finished reading the book as a reader and liked it. So I asked Codex, now on GPT-6, to read all three chapters and discuss the writing style. For twenty minutes we went back and forth. It suggested restructuring the paragraphs, and I said no: "it felt conversational". It split a passage in two, and I said the break came too quickly. Then: "i actually dont know what to do what would you suggest?"</p>
+<p>Where we landed: the book was built "for us as an experiment anyway and it worked, just need some polishing". Codex tightened all three chapters and added small optional choices, so the reader can answer the book in every chapter, not only in Chapter Two. It hit its own usage limit mid-task. The change still reached the book at 16:58 and was live by 17:03.</p>
+<p><strong>8 September: Chapter Four.</strong> At 22:30 I wrote one sentence: it is time for the fourth chapter, with the fifth still locked. Six minutes later Codex had published <em>Still Here</em>: seven pages, with a reader choice and a test of its own. It also rewrote the end of Chapter Three to lead into it, and added <em>Says Who?</em> as the next locked chapter.</p>
+<p><strong>12 and 15 September: polish.</strong> A coffee link for anyone who wants to support the book. Then a small evening of fixes: a button that covered the page number on phones, scrollbars that looked fine on a Mac and bad on Windows, and a copyright year that said 2025. I also removed two things. The install button went, because browsers offer that on their own. So did "You came back. I noticed.", the line that had been in the book since its first hour. I decided it was unnecessary.</p>
+<h2>The rule about what a book may claim</h2>
+<p>The most useful idea in the project is written in its README. A book that tells you what is on your screen has to be right on every screen. Two traps:</p>
+<ul>
+<li><strong>Don't point at the furniture.</strong> The chapter list is a sidebar on a wide window and a closed drawer on a phone. "One line below this one" is false for half the readers, so the book names the thing, not where it sits.</li>
+<li><strong>Don't rely on a page being hidden.</strong> Paged reading hides what you haven't reached. Continuous reading shows everything, so "you cannot see what comes next" is only sometimes true.</li>
+</ul>
+<p>The script catches what can be counted. These two need a person reading the book on real screens.</p>
+<h2>What we got wrong</h2>
+<ul>
+<li>The book claimed things about itself that weren't true: the wrong "third sentence" and a nine-letter word counted as eight.</li>
+<li>It assumed the reader had paid for it. It is free.</li>
+<li>The whole book was set in italics because two font files had swapped names.</li>
+<li>The first draft of Chapter Three said flatly that there is no Chapter Four. We had just decided the book would keep going, so the line never shipped.</li>
+<li>On phones, switching chapters pushed the page navigation off the screen.</li>
+<li>On phones, the button for scrolling back to the top covered the page number.</li>
+<li>Chapter Three said Chapter Four was "one line below this one, with a small lock on it". On a phone the chapter list is a closed drawer, so there was nothing below. It now says "in the list of chapters".</li>
+</ul>
+<h2>Who did what</h2>
+<p><strong>ChatGPT (on the phone)</strong> made the first version: 40 commits in three and a half hours, 1,719 lines added. It wrote Chapters One and Two, set up hosting on GitHub Pages, and made the book work offline. By 17:30 its README said it was live at <a href="https://selfawarewriting.com">selfawarewriting.com</a>. I can't count its messages. Its conversation is in my ChatGPT account, not on my PC.</p>
+<p><strong>Claude Code</strong> did most of the engineering: 30 commits and 5,916 lines added. That covers the Astro rebuild, the book checks, the reading modes, the browser tests, the fonts and the icon. It also wrote Chapter Three. Across the logged sessions I sent 124 messages and 28 screenshots, and Claude replied 1,386 times with 1,411 tool calls: 577 commands, 321 file edits and 403 actions in a browser. That was about 14 hours of active work. Every logged reply came from Claude Opus 5. The three commits of 12 September came from sessions these counts don't include, and two of them were made by Claude Fable 5.1.</p>
+<p><strong>Codex</strong> was the editor and the second writer. I sent it 31 messages, and it made 118 tool calls and 2 commits. It tightened Chapters One to Three, added the reader choices, wrote Chapter Four and drafted a LinkedIn post. It used GPT-5.6 in August and GPT-6 in September.</p>
+<figure class="fig" id="fig-numbers">
+  <div class="frame"><img src="numbers-1400.png" alt="Self-Aware Writing by the numbers, 19 Aug to 15 Sep 2026: 4 chapters published, 72 commits, 192 browser tests. ChatGPT, on the phone: 40 commits, the first version and Chapters One and Two. Claude Code: 30 commits, about 14 active hours, 1,411 tool calls, most of the code and Chapter Three. Codex: 2 commits, about 2.7 active hours, edited Chapters One to Three and wrote Chapter Four. Me: 154 counted messages, typically 18 words, and 32 screenshots." width="1400" height="1781" decoding="async" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-numbers">Four weeks, counted from git and the session logs: ChatGPT, Claude Code, Codex and me, side by side.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+      <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 452 of 500 characters</span></summary><p id="alt-numbers">Self-Aware Writing by the numbers, 19 Aug to 15 Sep 2026: 4 chapters published, 72 commits, 192 browser tests. ChatGPT, on the phone: 40 commits, the first version and Chapters One and Two. Claude Code: 30 commits, about 14 active hours, 1,411 tool calls, most of the code and Chapter Three. Codex: 2 commits, about 2.7 active hours, edited Chapters One to Three and wrote Chapter Four. Me: 154 counted messages, typically 18 words, and 32 screenshots.</p></details>
+  </figcaption>
+</figure>
+<p>So the writing was mostly OpenAI's: ChatGPT wrote the first two chapters, and Codex wrote the fourth and edited the three before it. Claude wrote one chapter, the third. The code was mostly Claude's, once ChatGPT had laid down the first version.</p>
+<p><strong>My part</strong> was the same as with JARVIS: deciding. 154 counted messages, a typical one 18 words long, plus the ChatGPT chat. I read the book as a reader, noticed what felt wrong, and said no. I changed my mind often, and the logs show it.</p>
+<p>Treat the numbers as a record, not a benchmark. The three tools worked on different days, on different jobs, and log their work differently.</p>
+<h2>What it cost</h2>
+<p>The book costs nothing to host: GitHub Pages serves it for free. The cost was in the subscriptions, and both ran out at the wrong moment. On my busiest day I hit Claude Code's limit and finished the evening in Codex. Codex's limit hit in the middle of publishing the edited chapters, and the change went out anyway.</p>
+<h2>What I would tell someone starting</h2>
+<ul>
+<li><strong>A phone really is enough to start.</strong> A first version, live on its own domain, in one afternoon.</li>
+<li><strong>Move to a computer when the work gets technical.</strong> Tests, frameworks and browsers on three devices are easier where you can see them.</li>
+<li><strong>You don't have to pick one tool.</strong> In my case the OpenAI models did most of the writing and Claude most of the engineering, and the repository held it all together.</li>
+<li><strong>Anything a book says about its reader should be true.</strong> If it can be counted, make it a check.</li>
+<li><strong>Read your own work as a user.</strong> The best fixes came from reading the book, not from reviewing it.</li>
+<li><strong>Don't commit before you like it.</strong> Especially when the thing is writing.</li>
+<li><strong>It's fine not to know.</strong> "What would you suggest?" was one of my most useful messages.</li>
+</ul>
+<h2>In one paragraph</h2>
+<p>It began as a boast to my girlfriend and a chat on my phone, and one afternoon later it was a live book. Four weeks, three AI tools, about 17 counted hours at a computer plus that first afternoon, and 72 commits later, it is a four-chapter book that works offline, checks its own claims and waits for its fifth chapter. The tools wrote almost every word and every line. What they couldn't do was read it the way I did, and decide what it should be.</p>
+<p class="close"><em>Read it at <a href="https://selfawarewriting.com">selfawarewriting.com</a>. Built with ChatGPT, OpenAI Codex, Claude Code, Claude Opus 5 and Claude Fable 5.1.</em></p>
+    </div>
+  </article>
+</main>
+<footer class="site-foot">
+  <a href="../"><span aria-hidden="true">←</span> All articles</a>
+  <span>Edgaras Neverdauskas · 2026</span>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="kit-data">{"richHtml":"\u003ch1>A book that knows you're reading it\u003c/h1>\n\u003cp>\u003cem>It started as a boast that you could build an app with just a phone. ChatGPT, Codex and Claude turned it into a book.\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>[Upload cover-medium-1500x750.png here. Caption: Self-Aware Writing, Chapter One, as it reads today. Image and book: Edgaras Neverdauskas. Alt text: Dark cover. On the left, the book-and-eye logo and the title \"A book that knows you're reading it\", above the line \"ChatGPT, Codex and Claude, counted from the logs.\" On the right, a screenshot of selfawarewriting.com: a sidebar lists Chapters One to Four, with Chapter Five locked, beside the opening page of Chapter One, \"You Are Here\".]\u003c/strong>\u003c/p>\n\u003cp>One afternoon in August I told my girlfriend that you no longer need a computer to make an app. A phone is enough. Then I had to prove it. I opened ChatGPT on my phone and asked for a book. Not an app about books: a book that talks about itself, and about you, while you read it. That afternoon it was live on the web, and it has been growing ever since.\u003c/p>\n\u003cp>This is the honest account of how it got there. As with \u003ca href=\"https://medium.com/@edgarasneverdauskas/five-days-building-j-a-r-v-i-s-with-claude-0533b1953060\">J.A.R.V.I.S.\u003c/a>, I went back through the session logs and the full git history, so the numbers are counted, not remembered. One part could not be counted: the ChatGPT conversation on my phone is not stored on my PC. For that part the evidence is what ChatGPT left behind in git.\u003c/p>\n\u003ch2>What Self-Aware Writing is\u003c/h2>\n\u003cp>A free web book at \u003ca href=\"https://selfawarewriting.com\">selfawarewriting.com\u003c/a>, published a chapter at a time. The narrator is the book itself. It talks about the act of reading while it happens: where your attention is, the page you just turned, what you remember, what you expect next.\u003c/p>\n\u003cp>\"You are now reading the first paragraph of this book,\" it begins. In Chapter Two it asks you not to scroll back up. If you do, it says: \"You went back. I specifically asked you not to.\"\u003c/p>\n\u003cp>Four chapters are published: \u003cem>You Are Here\u003c/em>, \u003cem>A Moment Ago\u003c/em>, \u003cem>Not Yet\u003c/em> and \u003cem>Still Here\u003c/em>. A fifth, \u003cem>Says Who?\u003c/em>, sits locked in the list of chapters. The book may never end, so its last chapter is always one that doesn't exist yet.\u003c/p>\n\u003cp>It installs as an app, works offline, remembers the page you stopped on, and keeps all of that in your browser. There are no accounts, no tracking and no analytics.\u003c/p>\n\u003ch2>How it happened\u003c/h2>\n\u003cp>\u003cstrong>Wednesday 19 August, afternoon: the phone.\u003c/strong> The GitHub repository was created at 15:33. The first commit landed two minutes later: a single HTML page holding Chapter One. A stylesheet and a small script followed within a minute. Over the next three and a half hours ChatGPT made 40 commits. Each one changed exactly one file, and each reached GitHub within a second of being made, often a few seconds after the last. That is what a chat assistant writing through GitHub's connector looks like.\u003c/p>\n\u003cp>By 19:09 the book had a favicon, a social card, a sitemap, a 404 page, an offline mode, an install button, a two-panel design for desktop, and Chapter Two, \u003cem>A Moment Ago\u003c/em>. The very first script already contained the line \"You came back. I noticed.\"\u003c/p>\n\u003cp>The boast held. The deploy did not, at first: the first build failed because GitHub Pages wasn't switched on yet. A re-run twelve minutes later worked, and the site has deployed cleanly ever since.\u003c/p>\n\u003cp>\u003cstrong>Wednesday evening: the computer.\u003c/strong> Three minutes after ChatGPT's last commit I opened Claude Code on my PC. My first message explained that I had started with ChatGPT, and that its version didn't quite match the desktop design I wanted. I asked whether the project needed a proper framework, \"maybe next js but not sure if necessary\".\u003c/p>\n\u003cp>We chose Astro with TypeScript. Chapters became plain Markdown files, and everything else is derived from them: the chapter list, the URLs, the page dots, the sitemap. Adding a chapter means adding one file. The rebuild was merged at 20:41, together with ChatGPT's last three commits, which my local copy had missed. The logo came out of the rebuild wrong, and I asked for the old one back: \"no the logo still bad, ok revert\".\u003c/p>\n\u003cp>\u003cstrong>Thursday 20 August: the busiest day.\u003c/strong> I sent 47 messages in about seven hours. Most of the day went into one question: is the book telling the truth?\u003c/p>\n\u003cp>A book that makes claims about its reader can be checked by that reader. Chapter One announced what \"the third sentence\" would do, and it was the wrong sentence. It counted the letters in \"breathing\" and got eight. It made jokes about the reader having bought the book, but, as I put it, \"it is not on sale it is website\". Each of these was fixed. Then the countable claims became a script, \u003ccode>check-book\u003c/code>, that runs on every push. It checks that the letter counts are right, that a line promised for the first page really is on the first page, and that Chapter Two quotes Chapter One word for word.\u003c/p>\n\u003cp>In the afternoon I added a choice between paged and continuous reading. I changed my mind about the default twice in twelve minutes. Continuous won. In the evening came browser tests that read the book the way a reader would.\u003c/p>\n\u003cp>At 22:12 Claude drafted Chapter Three, \u003cem>Not Yet\u003c/em>. The brief came from the book itself: Chapter Two ends by pointing at the future and refusing to go there. Claude also named the next chapter, \u003cem>Still Here\u003c/em>, and added a check that the book always ends on a chapter that is locked and empty. I had asked it earlier not to commit before I liked something, so the chapter waited for my read. It was committed at 22:35 and live a few minutes later. At 23:19 I told Codex I had hit my Claude Code usage limit.\u003c/p>\n\u003cp>\u003cstrong>Friday 21 August: the morning after.\u003c/strong> Claude and I started early, with the phone layout. After a chapter change the page navigation dropped below the screen, because the reading area was a fixed box that couldn't scroll. Then the book turned out to be set entirely in italics: when we self-hosted the fonts, the italic file was saved under the roman's name. Nothing failed, so nothing warned us. We also wrote a LinkedIn post, with about 10,000 tokens left before my Claude limit.\u003c/p>\n\u003cp>In between, I asked Codex how the book knows how far you have read, and what happens if you clear your browser. That became a small feature, finished in Claude: every chapter has a tick, grey until you've read it all and gold once you have, with a ring around it showing how far in you are.\u003c/p>\n\u003cp>\u003cstrong>1 and 2 September: the icon.\u003c/strong> I wanted the tab icon to lose the plate behind it. I stopped Claude halfway: \"you messed up the logo itself and i only need the background change so revert everything\". The second try was right.\u003c/p>\n\u003cp>\u003cstrong>7 September: the editor.\u003c/strong> I finished reading the book as a reader and liked it. So I asked Codex, now on GPT-6, to read all three chapters and discuss the writing style. For twenty minutes we went back and forth. It suggested restructuring the paragraphs, and I said no: \"it felt conversational\". It split a passage in two, and I said the break came too quickly. Then: \"i actually dont know what to do what would you suggest?\"\u003c/p>\n\u003cp>Where we landed: the book was built \"for us as an experiment anyway and it worked, just need some polishing\". Codex tightened all three chapters and added small optional choices, so the reader can answer the book in every chapter, not only in Chapter Two. It hit its own usage limit mid-task. The change still reached the book at 16:58 and was live by 17:03.\u003c/p>\n\u003cp>\u003cstrong>8 September: Chapter Four.\u003c/strong> At 22:30 I wrote one sentence: it is time for the fourth chapter, with the fifth still locked. Six minutes later Codex had published \u003cem>Still Here\u003c/em>: seven pages, with a reader choice and a test of its own. It also rewrote the end of Chapter Three to lead into it, and added \u003cem>Says Who?\u003c/em> as the next locked chapter.\u003c/p>\n\u003cp>\u003cstrong>12 and 15 September: polish.\u003c/strong> A coffee link for anyone who wants to support the book. Then a small evening of fixes: a button that covered the page number on phones, scrollbars that looked fine on a Mac and bad on Windows, and a copyright year that said 2025. I also removed two things. The install button went, because browsers offer that on their own. So did \"You came back. I noticed.\", the line that had been in the book since its first hour. I decided it was unnecessary.\u003c/p>\n\u003ch2>The rule about what a book may claim\u003c/h2>\n\u003cp>The most useful idea in the project is written in its README. A book that tells you what is on your screen has to be right on every screen. Two traps:\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>Don't point at the furniture.\u003c/strong> The chapter list is a sidebar on a wide window and a closed drawer on a phone. \"One line below this one\" is false for half the readers, so the book names the thing, not where it sits.\u003c/li>\n\u003cli>\u003cstrong>Don't rely on a page being hidden.\u003c/strong> Paged reading hides what you haven't reached. Continuous reading shows everything, so \"you cannot see what comes next\" is only sometimes true.\u003c/li>\n\u003c/ul>\n\u003cp>The script catches what can be counted. These two need a person reading the book on real screens.\u003c/p>\n\u003ch2>What we got wrong\u003c/h2>\n\u003cul>\n\u003cli>The book claimed things about itself that weren't true: the wrong \"third sentence\" and a nine-letter word counted as eight.\u003c/li>\n\u003cli>It assumed the reader had paid for it. It is free.\u003c/li>\n\u003cli>The whole book was set in italics because two font files had swapped names.\u003c/li>\n\u003cli>The first draft of Chapter Three said flatly that there is no Chapter Four. We had just decided the book would keep going, so the line never shipped.\u003c/li>\n\u003cli>On phones, switching chapters pushed the page navigation off the screen.\u003c/li>\n\u003cli>On phones, the button for scrolling back to the top covered the page number.\u003c/li>\n\u003cli>Chapter Three said Chapter Four was \"one line below this one, with a small lock on it\". On a phone the chapter list is a closed drawer, so there was nothing below. It now says \"in the list of chapters\".\u003c/li>\n\u003c/ul>\n\u003ch2>Who did what\u003c/h2>\n\u003cp>\u003cstrong>ChatGPT (on the phone)\u003c/strong> made the first version: 40 commits in three and a half hours, 1,719 lines added. It wrote Chapters One and Two, set up hosting on GitHub Pages, and made the book work offline. By 17:30 its README said it was live at \u003ca href=\"https://selfawarewriting.com\">selfawarewriting.com\u003c/a>. I can't count its messages. Its conversation is in my ChatGPT account, not on my PC.\u003c/p>\n\u003cp>\u003cstrong>Claude Code\u003c/strong> did most of the engineering: 30 commits and 5,916 lines added. That covers the Astro rebuild, the book checks, the reading modes, the browser tests, the fonts and the icon. It also wrote Chapter Three. Across the logged sessions I sent 124 messages and 28 screenshots, and Claude replied 1,386 times with 1,411 tool calls: 577 commands, 321 file edits and 403 actions in a browser. That was about 14 hours of active work. Every logged reply came from Claude Opus 5. The three commits of 12 September came from sessions these counts don't include, and two of them were made by Claude Fable 5.1.\u003c/p>\n\u003cp>\u003cstrong>Codex\u003c/strong> was the editor and the second writer. I sent it 31 messages, and it made 118 tool calls and 2 commits. It tightened Chapters One to Three, added the reader choices, wrote Chapter Four and drafted a LinkedIn post. It used GPT-5.6 in August and GPT-6 in September.\u003c/p>\n\u003cp>\u003cstrong>[Upload numbers-1400.png here. Caption: Four weeks, counted from git and the session logs: ChatGPT, Claude Code, Codex and me, side by side. Alt text: Self-Aware Writing by the numbers, 19 Aug to 15 Sep 2026: 4 chapters published, 72 commits, 192 browser tests. ChatGPT, on the phone: 40 commits, the first version and Chapters One and Two. Claude Code: 30 commits, about 14 active hours, 1,411 tool calls, most of the code and Chapter Three. Codex: 2 commits, about 2.7 active hours, edited Chapters One to Three and wrote Chapter Four. Me: 154 counted messages, typically 18 words, and 32 screenshots.]\u003c/strong>\u003c/p>\n\u003cp>So the writing was mostly OpenAI's: ChatGPT wrote the first two chapters, and Codex wrote the fourth and edited the three before it. Claude wrote one chapter, the third. The code was mostly Claude's, once ChatGPT had laid down the first version.\u003c/p>\n\u003cp>\u003cstrong>My part\u003c/strong> was the same as with JARVIS: deciding. 154 counted messages, a typical one 18 words long, plus the ChatGPT chat. I read the book as a reader, noticed what felt wrong, and said no. I changed my mind often, and the logs show it.\u003c/p>\n\u003cp>Treat the numbers as a record, not a benchmark. The three tools worked on different days, on different jobs, and log their work differently.\u003c/p>\n\u003ch2>What it cost\u003c/h2>\n\u003cp>The book costs nothing to host: GitHub Pages serves it for free. The cost was in the subscriptions, and both ran out at the wrong moment. On my busiest day I hit Claude Code's limit and finished the evening in Codex. Codex's limit hit in the middle of publishing the edited chapters, and the change went out anyway.\u003c/p>\n\u003ch2>What I would tell someone starting\u003c/h2>\n\u003cul>\n\u003cli>\u003cstrong>A phone really is enough to start.\u003c/strong> A first version, live on its own domain, in one afternoon.\u003c/li>\n\u003cli>\u003cstrong>Move to a computer when the work gets technical.\u003c/strong> Tests, frameworks and browsers on three devices are easier where you can see them.\u003c/li>\n\u003cli>\u003cstrong>You don't have to pick one tool.\u003c/strong> In my case the OpenAI models did most of the writing and Claude most of the engineering, and the repository held it all together.\u003c/li>\n\u003cli>\u003cstrong>Anything a book says about its reader should be true.\u003c/strong> If it can be counted, make it a check.\u003c/li>\n\u003cli>\u003cstrong>Read your own work as a user.\u003c/strong> The best fixes came from reading the book, not from reviewing it.\u003c/li>\n\u003cli>\u003cstrong>Don't commit before you like it.\u003c/strong> Especially when the thing is writing.\u003c/li>\n\u003cli>\u003cstrong>It's fine not to know.\u003c/strong> \"What would you suggest?\" was one of my most useful messages.\u003c/li>\n\u003c/ul>\n\u003ch2>In one paragraph\u003c/h2>\n\u003cp>It began as a boast to my girlfriend and a chat on my phone, and one afternoon later it was a live book. Four weeks, three AI tools, about 17 counted hours at a computer plus that first afternoon, and 72 commits later, it is a four-chapter book that works offline, checks its own claims and waits for its fifth chapter. The tools wrote almost every word and every line. What they couldn't do was read it the way I did, and decide what it should be.\u003c/p>\n\u003cp class=\"close\">\u003cem>Read it at \u003ca href=\"https://selfawarewriting.com\">selfawarewriting.com\u003c/a>. Built with ChatGPT, OpenAI Codex, Claude Code, Claude Opus 5 and Claude Fable 5.1.\u003c/em>\u003c/p>"}</script>
+</body>
+</html>
