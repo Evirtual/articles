@@ -20,6 +20,13 @@ const SITE_URL = 'https://articles.edgarasneverdauskas.com';
 const SITE_HOST = new URL(SITE_URL).host;
 const HOME_URL = 'https://edgarasneverdauskas.com';
 
+// The articles are outreach, so they are counted: a visitor count tells me
+// whether writing the next one sends anyone to the project. The copies mirrored
+// into the project sites are not counted here — those pages belong to
+// selfawarewriting.com and css3dlab, which count their own readers or, in the
+// book's case, deliberately count nobody.
+const ANALYTICS = 'https://articles.goatcounter.com/count';
+
 // --- the articles (newest first, the order of the home page) ----------------------------------
 // medium / linkedin: the story's other copies. project: the thing the story is about.
 const ARTICLES = [
@@ -309,7 +316,7 @@ ${[`${SITE_URL}/`, ...built.map((a) => pageUrl(a.slug))].map((u) => `  <url><loc
 fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 // --- templates --------------------------------------------------------------------------------
-function head({ pageKey, title, description, image, imageAlt, url, canonical = url, type, fontsLink, base }) {
+function head({ pageKey, title, description, image, imageAlt, url, canonical = url, type, fontsLink, base, counted = false }) {
   return `<!doctype html>
 <html lang="en" data-page="${pageKey}">
 <head>
@@ -336,7 +343,8 @@ function head({ pageKey, title, description, image, imageAlt, url, canonical = u
 <link rel="icon" href="data:,">
 ${fontsLink ? `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="${attr(fontsLink)}">\n` : ''}<link rel="stylesheet" href="${base}assets/site.css">
 <script src="${base}assets/site.js" defer></script>
-</head>`;
+${counted ? `<script data-goatcounter="${ANALYTICS}" async src="https://gc.zgo.at/count.js"></script>
+` : ''}</head>`;
 }
 
 function themeSwitchHtml() { return `<div class="theme-switch" role="group" aria-label="Colour theme" hidden>
@@ -446,7 +454,7 @@ function siteFoot(back, mirror = false) {
 
 function articlePage(a, body, md, kitData, { mirror = false } = {}) {
   const url = mirror ? `${a.project}/article/` : pageUrl(a.slug);
-  return `${head({ pageKey: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../' })}
+  return `${head({ pageKey: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../', counted: !mirror })}
 <body>
 <a class="skip" href="#story">Skip to the article</a>
 <header class="site-head">
@@ -505,7 +513,7 @@ function indexPage(list) {
       </div>
     </article>`).join('\n    ');
   const first = list[0];
-  return `${head({ pageKey: 'index', title: `Articles — ${AUTHOR}`, description: 'Build stories, counted from the logs.', image: pageUrl(first.slug) + first.cover.file, imageAlt: first.cover.alt, url: `${SITE_URL}/`, type: 'website', fontsLink: '', base: '' })}
+  return `${head({ pageKey: 'index', title: `Articles — ${AUTHOR}`, description: 'Build stories, counted from the logs.', image: pageUrl(first.slug) + first.cover.file, imageAlt: first.cover.alt, url: `${SITE_URL}/`, type: 'website', fontsLink: '', base: '', counted: true })}
 <body>
 <a class="skip" href="#main">Skip to the articles</a>
 <header class="site-head">
