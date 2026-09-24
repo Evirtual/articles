@@ -113,6 +113,24 @@
 :root[data-page="css-3d-lab"] .story-head::before { content: ""; display: block; width: 64px; height: 4px; border-radius: 4px; margin-bottom: 18px; background: linear-gradient(90deg, #8b6cff, #ff4d9d 55%, #ffb547); }
 :root[data-page="css-3d-lab"] .story { box-shadow: 0 30px 80px -40px rgb(40 20 120 / 35%); }
 
+/* The ledger article: the same lab furniture, with the ledger's teal in front of the violet. */
+:root[data-page="css-3d-lab-ledger"] {
+  --f-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --f-kicker: var(--f-mono);
+  --h1-weight: 750;
+  --h-track: -0.03em;
+  --radius: 16px;
+  --sheet-bg: var(--surface);
+  --sheet-line: var(--line);
+  --sheet-pad: clamp(16px, 5vw, 56px);
+  --bg-image: radial-gradient(circle at 0% 0%, var(--glow-a), transparent 42%), radial-gradient(circle at 100% 100%, var(--glow-b), transparent 45%), radial-gradient(var(--dot) 1.3px, transparent 1.7px);
+  --bg-size: 100% 100%, 100% 100%, 28px 28px;
+  --btn-image: linear-gradient(90deg, var(--btn-bg), var(--btn-bg2));
+}
+:root[data-page="css-3d-lab-ledger"] .story-head::before { content: ""; display: block; width: 64px; height: 4px; border-radius: 4px; margin-bottom: 18px; background: linear-gradient(90deg, #2ee6d6, #8b6cff 55%, #ff4d9d); }
+:root[data-page="css-3d-lab-ledger"] .story { box-shadow: 0 30px 80px -40px rgb(10 60 90 / 35%); }
+:root[data-page="css-3d-lab-ledger"] .prose h2::before { content: ""; display: block; width: 28px; height: 2px; margin-bottom: 14px; background: var(--accent); }
+
 /* --- base ------------------------------------------------------------------------------------ */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
@@ -310,6 +328,7 @@ details.alt p.lbl { padding: 0; background: none; margin: 10px 0 -4px; font-size
 .card[data-accent="jarvis"] { --card-accent: var(--acc-jarvis); }
 .card[data-accent="self-aware-writing"] { --card-accent: var(--acc-saw); }
 .card[data-accent="css-3d-lab"] { --card-accent: var(--acc-css); }
+.card[data-accent="css-3d-lab-ledger"] { --card-accent: var(--acc-ledger); }
 .card::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: var(--card-accent); z-index: 1; }
 .card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px -28px rgb(0 0 0 / 45%); border-color: var(--card-accent); }
 .card .frame { border-radius: 0; border: 0; box-shadow: none; }

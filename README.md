@@ -1,6 +1,7 @@
 # Articles site
 
-A small static site for three articles: J.A.R.V.I.S., Self-Aware Writing and CSS 3D Lab. Each
+A small static site for four articles: J.A.R.V.I.S., Self-Aware Writing, CSS 3D Lab and the CSS 3D
+Lab ledger. Each
 article page has a public share kit with copy buttons for the title, subtitle, whole article (rich
 text or Markdown), every image's caption and alt text, and the available share posts.
 
@@ -14,10 +15,11 @@ node build.mjs
 
 Needs Node 18 or newer. There are no dependencies and nothing to install.
 
-The build reads the three article folders that sit next to this one on the Desktop:
+The build reads the four article folders that sit next to this one on the Desktop:
 
 | Folder | Read from it |
 | --- | --- |
+| `../css-3d-lab-ledger-article/` | `article.md`, the three PNGs, `linkedin-post.txt`, `facebook-post.txt`, `x-post.txt`, and alt text, captions and notes from `css-3d-lab-ledger-article.html` |
 | `../jarvis-article/` | `article.md`, the three PNGs, `linkedin-post.txt`, and alt text, captions and notes from `five-days-jarvis.html` |
 | `../selfawarewriting-article/` | `article.md`, the three PNGs, alt text, captions and notes from `self-aware-writing-article.html`, and the fonts in `src/` |
 | `../css-3d-lab-article/` | `article.md`, the three PNGs, `linkedin-post.txt`, `facebook-post.txt`, `x-post.txt`, and alt text, captions and notes from `css-3d-lab-article.html` |
@@ -34,7 +36,8 @@ node build.mjs --sync-projects
 
 That writes `/article/` into CSS 3D Lab's `public/`, Self-Aware Writing's `public/`, and
 J.A.R.V.I.S.'s `src/client/public/`. Their normal production builds then publish the pages with the
-projects. The central article URL stays canonical; each project copy uses its own `/article/` URL
+projects. The ledger story has no project copy — a project can only host one `/article/`, and
+CSS 3D Lab's is the first story — so it lives here only. The central article URL stays canonical; each project copy uses its own `/article/` URL
 for social previews and sends cross-article links back to this hub.
 
 - `build.mjs`: the article list (slug, external links and project link), colour tokens, the Markdown converter and the page templates. It stops with an error if any text colour pair drops below 4.5:1 contrast, if an image has no alt text, or if alt text goes over Medium's 500-character limit.

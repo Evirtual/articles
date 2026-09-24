@@ -31,6 +31,20 @@ const ANALYTICS = 'https://articles.goatcounter.com/count';
 // medium / linkedin: the story's other copies. project: the thing the story is about.
 const ARTICLES = [
   {
+    slug: 'css-3d-lab-ledger',
+    dir: path.join(desktop, 'css-3d-lab-ledger-article'),
+    sourceHtml: 'css-3d-lab-ledger-article.html',
+    medium: '',
+    linkedin: '',
+    project: 'https://css3dlab.edgarasneverdauskas.com',
+    // No project copy: /article/ on the lab is the first CSS 3D Lab story, and one project can
+    // only host one /article/. This one lives here only.
+    mirrorDir: null,
+    kicker: 'Four days · 613 commits',
+    coverInCopy: true,
+    fontsLink: '',
+  },
+  {
     slug: 'css-3d-lab',
     dir: path.join(desktop, 'css-3d-lab-article'),
     sourceHtml: 'css-3d-lab-article.html',
@@ -96,9 +110,9 @@ const SHARE_FILES = [
 const TOKENS = {
   index: {
     light: { bg: '#f5f4f0', surface: '#ffffff', surface2: '#ecebe5', text: '#2b2b31', strong: '#111114', muted: '#5c5c66', line: '#dddcd4', link: '#3b37b0', accent: '#3b37b0', accent2: '#5c5c66', btnBg: '#1c1c22', btnText: '#ffffff', focus: '#3b37b0', frame: '#0c0d11',
-      accJarvis: '#00687a', accSaw: '#85601f', accCss: '#5b36e8' },
+      accJarvis: '#00687a', accSaw: '#85601f', accCss: '#5b36e8', accLedger: '#0a6076' },
     dark: { bg: '#0e0f13', surface: '#16171d', surface2: '#1f2129', text: '#c9cad3', strong: '#f1f1f5', muted: '#9a9ca9', line: '#2a2c35', link: '#aeabff', accent: '#aeabff', accent2: '#9a9ca9', btnBg: '#ecebf5', btnText: '#111114', focus: '#aeabff', frame: '#000000',
-      accJarvis: '#6ff0ff', accSaw: '#d6a24a', accCss: '#a58eff' },
+      accJarvis: '#6ff0ff', accSaw: '#d6a24a', accCss: '#a58eff', accLedger: '#2ee6d6' },
   },
   jarvis: {
     light: { bg: '#eaf1f4', surface: '#ffffff', surface2: '#e0ebf0', text: '#22343d', strong: '#0b1a21', muted: '#4a6270', line: '#c5d8e0', link: '#00687a', accent: '#00687a', accent2: '#8f4f00', btnBg: '#00687a', btnText: '#ffffff', focus: '#00687a', frame: '#04080d', grid: 'rgb(0 104 122 / 7%)' },
@@ -107,6 +121,11 @@ const TOKENS = {
   'self-aware-writing': {
     light: { bg: '#f7f2e7', surface: '#fffdf7', surface2: '#efe7d4', text: '#2b2924', strong: '#1a1a17', muted: '#67625a', line: '#e0d7c3', link: '#7f5b1c', accent: '#8a6220', accent2: '#7f5b1c', btnBg: '#c8922e', btnText: '#1a1a17', focus: '#8a6220', frame: '#0c0c0d' },
     dark: { bg: '#0c0c0d', surface: '#151517', surface2: '#1d1d20', text: '#d9d3c7', strong: '#f3ede1', muted: '#9a958b', line: '#2c2b28', link: '#dcaa52', accent: '#c8922e', accent2: '#d6a24a', btnBg: '#c8922e', btnText: '#0c0c0d', focus: '#d6a24a', frame: '#0c0c0d' },
+  },
+  // The ledger article: the same lab, seen from the checks. Teal takes the lead, violet answers it.
+  'css-3d-lab-ledger': {
+    light: { bg: '#f1f6f8', surface: '#ffffff', surface2: '#e4eef1', text: '#23313b', strong: '#0f1c25', muted: '#4d6270', line: '#d4e2e7', link: '#0a6076', accent: '#0a6076', accent2: '#5632e6', btnBg: '#0a6076', btnBg2: '#5632e6', btnText: '#ffffff', focus: '#0a6076', frame: '#0b0d18', dot: 'rgb(15 28 37 / 13%)', glowA: 'rgb(46 230 214 / 16%)', glowB: 'rgb(139 108 255 / 10%)' },
+    dark: { bg: '#0b0d18', surface: '#121528', surface2: '#1a1e38', text: '#c9cce6', strong: '#eceefb', muted: '#9296bb', line: '#272b48', link: '#5ee3d6', accent: '#2ee6d6', accent2: '#ab97ff', btnBg: '#0f7a8f', btnBg2: '#6a45f5', btnText: '#ffffff', focus: '#2ee6d6', frame: '#0b0d18', dot: 'rgb(255 255 255 / 9%)', glowA: 'rgb(46 230 214 / 16%)', glowB: 'rgb(139 108 255 / 16%)' },
   },
   'css-3d-lab': {
     light: { bg: '#f3f4fc', surface: '#ffffff', surface2: '#e9ebfa', text: '#2a2e48', strong: '#14172b', muted: '#575c7d', line: '#dcdff2', link: '#5632e6', accent: '#6a45f5', accent2: '#0a7a71', btnBg: '#6a45f5', btnBg2: '#c42a76', btnText: '#ffffff', focus: '#5632e6', frame: '#0b0d18', dot: 'rgb(20 23 43 / 13%)', glowA: 'rgb(139 108 255 / 14%)', glowB: 'rgb(255 77 157 / 9%)' },
@@ -118,7 +137,7 @@ const PAIRS = [
   ['text', 'bg'], ['text', 'surface'], ['text', 'surface2'], ['strong', 'bg'], ['strong', 'surface'], ['strong', 'surface2'],
   ['muted', 'bg'], ['muted', 'surface'], ['muted', 'surface2'], ['link', 'bg'], ['link', 'surface'],
   ['accent2', 'bg'], ['accent2', 'surface'], ['btnText', 'btnBg'], ['btnText', 'btnBg2'], ['bg', 'strong'],
-  ['accJarvis', 'surface'], ['accSaw', 'surface'], ['accCss', 'surface'],
+  ['accJarvis', 'surface'], ['accSaw', 'surface'], ['accCss', 'surface'], ['accLedger', 'surface'],
 ];
 const lum = (hex) => {
   const n = hex.replace('#', '');
@@ -304,7 +323,7 @@ for (const a of ARTICLES) {
 
   const kitData = JSON.stringify({ richHtml: copy.join('\n') }).replace(/</g, '\\u003c');
   fs.writeFileSync(path.join(out, 'index.html'), articlePage(info, page.join('\n'), mdCopy, kitData));
-  if (SYNC_PROJECTS) syncProjectArticle(info, mirror.join('\n'), mdCopy, kitData);
+  if (SYNC_PROJECTS && a.mirrorDir) syncProjectArticle(info, mirror.join('\n'), mdCopy, kitData);
 }
 
 fs.writeFileSync(path.join(DOCS, 'index.html'), indexPage(built));
@@ -509,7 +528,7 @@ function indexPage(list) {
         <p class="sub">${esc(a.subtitle)}</p>
         <p class="meta">${a.minutes} min read</p>
         <p class="links"><a href="${a.slug}/">Read the article<span aria-hidden="true"> →</span></a></p>
-        <p class="elsewhere"><span class="grp"><span class="also-label">Also on</span>${a.medium ? ext(a.medium, 'Medium') : ''}${a.linkedin ? ext(a.linkedin, 'LinkedIn') : ''}</span>${a.project ? `<span class="grp"><span class="also-label">Project</span>${ext(a.project, esc(hostOf(a.project)))}</span>` : ''}</p>
+        <p class="elsewhere">${a.medium || a.linkedin ? `<span class="grp"><span class="also-label">Also on</span>${a.medium ? ext(a.medium, 'Medium') : ''}${a.linkedin ? ext(a.linkedin, 'LinkedIn') : ''}</span>` : ''}${a.project ? `<span class="grp"><span class="also-label">Project</span>${ext(a.project, esc(hostOf(a.project)))}</span>` : ''}</p>
       </div>
     </article>`).join('\n    ');
   const first = list[0];
