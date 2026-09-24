@@ -274,7 +274,7 @@ for (const a of ARTICLES) {
   if (!blocks[0].startsWith('# ') || !/^\*.*\*$/.test(blocks[1])) throw new Error(`${a.slug}: article.md must start with "# Title" and an *italic subtitle*`);
   const title = plain(blocks[0].slice(2));
   const subtitle = plain(blocks[1].slice(1, -1));
-  const words = md.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ').replace(/[#*`\[\]]|\(http[^)]*\)/g, ' ').split(/\s+/).filter(Boolean).length;
+  const words = md.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ').replace(/^>\s?/gm, ' ').replace(/[#*`\[\]]|\(http[^)]*\)/g, ' ').split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(1, Math.round(words / 230));
 
   // The page gets figures; the copy for other editors gets a bold line with the image's address,
@@ -292,7 +292,16 @@ for (const a of ARTICLES) {
     else if (b.startsWith('![')) {
       if (!b.includes('numbers-1400.png')) throw new Error(`${a.slug}: unknown image line ${b}`);
       pushNumbers();
-    } else if (b.startsWith('- ')) both((m) => `<ul>\n${b.split('\n').map((l) => `<li>${inline(l.replace(/^- /, ''), a, m)}</li>`).join('\n')}\n</ul>`);
+    } else if (b.startsWith('> ')) both((m) => {
+      // A quoted message: every line starts with >, and a final line opening with an em dash says
+      // who said it and when. Medium, LinkedIn and Substack all turn a pasted blockquote into
+      // their own quote block, so the copy carries the same element the page does.
+      const lines = b.split('\n').map((l) => l.replace(/^>\s?/, ''));
+      const who = lines.at(-1).startsWith('— ') ? lines.pop().slice(2) : null;
+      const said = `<p>${inline(lines.join(' '), a, m)}</p>`;
+      return `<blockquote class="say">\n${said}${who ? `\n<p class="who">${inline(who, a, m)}</p>` : ''}\n</blockquote>`;
+    });
+    else if (b.startsWith('- ')) both((m) => `<ul>\n${b.split('\n').map((l) => `<li>${inline(l.replace(/^- /, ''), a, m)}</li>`).join('\n')}\n</ul>`);
     else if (j === rest.length - 1) both((m) => `<p class="close">${a.closeEm ? `<em>${inline(b, a, m)}</em>` : inline(b, a, m)}</p>`);
     else both((m) => `<p>${inline(b, a, m)}</p>`);
     if (a.numbersAfter?.test(b)) pushNumbers();
