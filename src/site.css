@@ -246,6 +246,38 @@ details.alt p.lbl { padding: 0; background: none; margin: 10px 0 -4px; font-size
 .prose li { margin: 0 0 0.55em; padding-left: 0.2em; }
 .prose li::marker { color: var(--accent); }
 .prose code { font: 0.84em var(--f-mono); background: var(--surface2); padding: 0.1em 0.35em; border-radius: 4px; }
+/* --- a picture, opened ----------------------------------------------------------------------
+   The column is about 68 characters wide, which is right for reading and too narrow for a chart or
+   a diagram: on a phone or a laptop alike, the labels end up smaller than the text around them.
+   A picture therefore opens over the page, fitted to the window, and a second click shows it at its
+   own size in a box that scrolls. Nothing is hidden behind a hover, so it works by touch. */
+.fig .frame img, .kit-img img { cursor: zoom-in; }
+.fig .frame img:focus-visible, .kit-img img:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+html.has-box { overflow: hidden; }
+.shot {
+  position: fixed; inset: 0; z-index: 90; display: grid; grid-template-rows: 1fr auto;
+  background: color-mix(in srgb, #06070c 88%, transparent); padding: 24px 24px 0;
+  animation: shotin 0.16s ease-out;
+}
+@keyframes shotin { from { opacity: 0; } to { opacity: 1; } }
+.shot__pane { overflow: auto; display: grid; place-items: center; }
+.shot__pane img {
+  max-width: 100%; max-height: calc(100vh - 92px); width: auto; height: auto;
+  border-radius: 10px; box-shadow: 0 24px 70px rgb(0 0 0 / 55%); cursor: zoom-in;
+}
+.shot.is-full .shot__pane { place-items: start; }
+.shot.is-full .shot__pane img { max-width: none; max-height: none; width: auto; cursor: zoom-out; }
+.shot__x {
+  position: absolute; top: 14px; right: 16px; z-index: 1; width: 38px; height: 38px; display: grid;
+  place-items: center; border: 1px solid rgb(255 255 255 / 22%); border-radius: 50%;
+  background: rgb(255 255 255 / 10%); color: #fff; font-size: 15px; cursor: pointer;
+}
+.shot__x:hover { background: rgb(255 255 255 / 18%); }
+.shot__x:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.shot__hint { margin: 0; padding: 12px 0 16px; text-align: center; color: rgb(255 255 255 / 66%); font: 400 13px/1.4 var(--f-ui); }
+@media (max-width: 600px) { .shot { padding: 16px 10px 0; } .shot__pane img { max-height: calc(100vh - 80px); } }
+@media (prefers-reduced-motion: reduce) { .shot { animation: none; } }
+
 /* Figures pulled out of the prose, so a reader skimming has something to land on. */
 .prose ul.figs {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px;

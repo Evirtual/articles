@@ -416,7 +416,7 @@ function themeSwitchHtml() { return `<div class="theme-switch" role="group" aria
 
 function figure(i, { hero = false } = {}) {
   return `<figure class="fig${hero ? ' fig-cover' : ''}" id="fig-${i.key}">
-  <div class="frame"><img src="${i.file}" alt="${attr(i.alt)}" width="${i.w}" height="${i.h}" decoding="async"${hero ? ' fetchpriority="high"' : ' loading="lazy"'}></div>
+  <div class="frame"><img src="${i.file}" alt="${attr(i.alt)}" width="${i.w}" height="${i.h}" decoding="async" tabindex="0" role="button" aria-label="Open this picture"${hero ? ' fetchpriority="high"' : ' loading="lazy"'}></div>
   <figcaption>
     <p class="cap" id="cap-${i.key}">${esc(i.caption)}</p>
     <div class="fig-tools">

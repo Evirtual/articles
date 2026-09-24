@@ -130,4 +130,56 @@
     if (!btn) return;
     if (btn.hasAttribute('data-copy-rich')) copyRich(btn); else copyPlain(btn);
   });
+
+  // --- a picture, opened ---------------------------------------------------------------------
+  // A chart or a diagram at the width of a column on a phone is a picture of a chart, not a chart.
+  // Clicking one opens it over the page, fitted to the screen; clicking it again shows it at its own
+  // size and the box scrolls, which is the only way to read small labels on a small screen.
+  // Escape closes it, the backdrop closes it, and focus comes back to the picture that opened it.
+  let box = null;
+  let opener = null;
+
+  function closeBox() {
+    if (!box) return;
+    box.remove();
+    box = null;
+    document.documentElement.classList.remove('has-box');
+    if (opener) { opener.focus({ preventScroll: true }); opener = null; }
+  }
+
+  function openBox(img) {
+    closeBox();
+    opener = img;
+    box = document.createElement('div');
+    box.className = 'shot';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', img.alt ? `Picture: ${img.alt.slice(0, 120)}` : 'Picture');
+    box.innerHTML = `<button type="button" class="shot__x" aria-label="Close the picture">✕</button>
+      <div class="shot__pane"><img src="${img.currentSrc || img.src}" alt="${img.alt.replace(/"/g, '&quot;')}"></div>
+      <p class="shot__hint">Click the picture for its full size · Esc closes</p>`;
+    document.body.appendChild(box);
+    document.documentElement.classList.add('has-box');
+    box.querySelector('.shot__x').focus({ preventScroll: true });
+    box.addEventListener('click', (e) => {
+      if (e.target.closest('.shot__x')) return closeBox();
+      const shown = e.target.closest('.shot__pane img');
+      if (shown) { box.classList.toggle('is-full'); return; }
+      closeBox();
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('.fig .frame img, .kit-img img');
+    if (!img || box) return;
+    openBox(img);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && box) closeBox();
+    // a picture is reachable from the keyboard: Enter or Space on a focused one opens it
+    if ((e.key === 'Enter' || e.key === ' ') && !box && e.target.matches?.('.fig .frame img, .kit-img img')) {
+      e.preventDefault();
+      openBox(e.target);
+    }
+  });
 })();
