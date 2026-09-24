@@ -99,6 +99,9 @@ const IMAGE_LABELS = {
   'cover-medium-1500x750.png': 'Medium cover',
   'cover-linkedin-1920x1080.png': 'LinkedIn cover',
   'numbers-1400.png': 'Numbers card',
+  'arrows-1400.png': 'Ledger strip',
+  'cost-1400.png': 'Cost chart',
+  'pipeline-1400.png': 'Approval diagram',
 };
 const SHARE_FILES = [
   ['linkedin-post.txt', 'LinkedIn post'],
@@ -262,7 +265,11 @@ for (const a of ARTICLES) {
     if (!caption) throw new Error(`${a.slug}: no caption for ${file}`);
     if (from.alt.length > 500) throw new Error(`${a.slug}: ${file} alt text is over Medium's 500 characters`);
     const { w, h } = pngSize(path.join(a.dir, file));
-    return { file, key: file.split('-')[0] === 'cover' ? file.replace(/-\d.*$/, '') : 'numbers', label: IMAGE_LABELS[file], alt: from.alt, caption, w, h };
+    // the key is what the copy buttons and the kit address an image by, so it is the file's own
+    // name; `numbers` keeps its old key, which older pages and their anchors already use
+    const key = file.split('-')[0] === 'cover' ? file.replace(/-\d.*$/, '')
+      : file === 'numbers-1400.png' ? 'numbers' : file.replace(/-\d+\.png$/, '');
+    return { file, key, label: IMAGE_LABELS[file], alt: from.alt, caption, w, h };
   });
   const img = Object.fromEntries(images.map((i) => [i.file, i]));
   const cover = img['cover-medium-1500x750.png'];
@@ -286,13 +293,20 @@ for (const a of ARTICLES) {
   const copy = [`<h1>${inline(blocks[0].slice(2), a, 'copy')}</h1>`, `<p><em>${inline(blocks[1].slice(1, -1), a, 'copy')}</em></p>`];
   if (a.coverInCopy && cover) copy.push(marker(cover));
   let numbersPlaced = false;
+  const placed = new Set(); // every picture that is not a cover has to be placed somewhere
   const both = (render) => { page.push(render('page')); mirror.push(render('mirror')); copy.push(render('copy')); };
   const pushNumbers = () => { if (!numbers || numbersPlaced) return; page.push(figure(numbers)); mirror.push(figure(numbers)); copy.push(marker(numbers)); numbersPlaced = true; };
   blocks.slice(2).forEach((b, j, rest) => {
     if (b.startsWith('## ')) both((m) => `<h2>${inline(b.slice(3), a, m)}</h2>`);
     else if (b.startsWith('![')) {
-      if (!b.includes('numbers-1400.png')) throw new Error(`${a.slug}: unknown image line ${b}`);
-      pushNumbers();
+      // ![alt](file.png): any picture the folder has for this story, placed where the line is
+      const file = /\(([^)]+)\)/.exec(b)?.[1];
+      const im = file && img[file];
+      if (!im) throw new Error(`${a.slug}: unknown image line ${b}`);
+      if (im === numbers) { pushNumbers(); return; }
+      if (placed.has(im.file)) throw new Error(`${a.slug}: ${im.file} is placed twice`);
+      placed.add(im.file);
+      page.push(figure(im)); mirror.push(figure(im)); copy.push(marker(im));
     } else if (b.startsWith('[numbers]')) both((m) => {
       // A row of figures to land on: "614 | commits, none pushed" per line. The page draws cards;
       // the paste copy is a plain list, since a grid does not survive being pasted anywhere.
@@ -324,11 +338,13 @@ for (const a of ARTICLES) {
     if (a.numbersAfter?.test(b)) pushNumbers();
   });
   if (numbers && !numbersPlaced) throw new Error(`${a.slug}: the numbers card has no place in the article`);
+  const unplaced = images.filter((i) => !i.file.startsWith('cover-') && i !== numbers && !placed.has(i.file));
+  if (unplaced.length) throw new Error(`${a.slug}: no place in the article for ${unplaced.map((i) => i.file).join(', ')}`);
 
   // The Markdown copy: sibling-article links and the image point at this site, absolutely.
   const mdCopy = md
     .replace(/\]\((https?:[^)\s]+)\)/g, (m, url) => `](${linkFor(url, 'copy')})`)
-    .replace(/\]\((numbers-1400\.png)\)/g, `](${pageUrl(a.slug)}$1)`);
+    .replace(/\]\(([a-z0-9-]+\.png)\)/g, `](${pageUrl(a.slug)}$1)`);
 
   // share texts: only the files that exist; a file may hold a short and a longer version
   const shares = [];
