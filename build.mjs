@@ -40,7 +40,7 @@ const ARTICLES = [
     // No project copy: /article/ on the lab is the first CSS 3D Lab story, and one project can
     // only host one /article/. This one lives here only.
     mirrorDir: null,
-    kicker: 'Four days · 613 commits',
+    kicker: 'Four days · 614 commits',
     coverInCopy: true,
     fontsLink: '',
   },
