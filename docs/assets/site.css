@@ -265,6 +265,38 @@ details.alt p.lbl { padding: 0; background: none; margin: 10px 0 -4px; font-size
 .prose li { margin: 0 0 0.55em; padding-left: 0.2em; }
 .prose li::marker { color: var(--accent); }
 .prose code { font: 0.84em var(--f-mono); background: var(--surface2); padding: 0.1em 0.35em; border-radius: 4px; }
+/* Figures pulled out of the prose, so a reader skimming has something to land on. */
+.prose ul.figs {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px;
+  margin: 1.8em 0; padding: 0; list-style: none;
+}
+.prose ul.figs li {
+  margin: 0; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-ui); display: grid; gap: 2px;
+}
+.prose ul.figs b {
+  color: var(--strong); font: var(--h2-weight) clamp(22px, 2.3vw, 27px) / 1.1 var(--f-display);
+  letter-spacing: var(--h-track);
+}
+.prose ul.figs span { color: var(--muted); font: 400 13px/1.35 var(--f-ui); }
+
+/* A run of times: the clock on the left, what happened on the right. */
+.prose ul.tl { margin: 1.6em 0; padding: 0; list-style: none; border-left: 2px solid var(--line); }
+.prose ul.tl li {
+  display: grid; grid-template-columns: 5.6em 1fr; gap: 0 14px; align-items: baseline;
+  margin: 0; padding: 0.42em 0 0.42em 1.05em;
+}
+.prose ul.tl li + li { border-top: 1px solid var(--line); }
+.prose ul.tl time { color: var(--accent); font: 600 0.82em/1.5 var(--f-mono); letter-spacing: 0.01em; }
+.prose ul.tl span { color: var(--text); }
+.prose ul.tl .tl-day {
+  display: block; padding-bottom: 0.3em; color: var(--muted);
+  font: 700 0.74em/1.4 var(--f-ui); letter-spacing: 0.08em; text-transform: uppercase;
+}
+@media (max-width: 520px) {
+  .prose ul.tl li { grid-template-columns: 1fr; gap: 2px; }
+}
+
 /* A message quoted from the project's own history: set apart, with who said it and when. */
 .prose blockquote.say {
   margin: 1.7em 0; padding: 0.1em 0 0.1em 1.15em; border-left: 3px solid var(--accent);

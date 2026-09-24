@@ -274,7 +274,8 @@ for (const a of ARTICLES) {
   if (!blocks[0].startsWith('# ') || !/^\*.*\*$/.test(blocks[1])) throw new Error(`${a.slug}: article.md must start with "# Title" and an *italic subtitle*`);
   const title = plain(blocks[0].slice(2));
   const subtitle = plain(blocks[1].slice(1, -1));
-  const words = md.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ').replace(/^>\s?/gm, ' ').replace(/[#*`\[\]]|\(http[^)]*\)/g, ' ').split(/\s+/).filter(Boolean).length;
+  const words = md.replace(/!\[[^\]]*\]\([^)]*\)/g, ' ').replace(/^(>\s?|\[(numbers|time[^\]]*)\]\s*$)/gm, ' ')
+    .replace(/[#*`\[\]|]|\(http[^)]*\)/g, ' ').split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(1, Math.round(words / 230));
 
   // The page gets figures; the copy for other editors gets a bold line with the image's address,
@@ -292,7 +293,23 @@ for (const a of ARTICLES) {
     else if (b.startsWith('![')) {
       if (!b.includes('numbers-1400.png')) throw new Error(`${a.slug}: unknown image line ${b}`);
       pushNumbers();
-    } else if (b.startsWith('> ')) both((m) => {
+    } else if (b.startsWith('[numbers]')) both((m) => {
+      // A row of figures to land on: "614 | commits, none pushed" per line. The page draws cards;
+      // the paste copy is a plain list, since a grid does not survive being pasted anywhere.
+      const rows = b.split('\n').slice(1).map((l) => l.split('|').map((s) => s.trim()));
+      if (m === 'copy') return `<ul>\n${rows.map(([n, w]) => `<li><strong>${inline(n, a, m)}</strong> — ${inline(w, a, m)}</li>`).join('\n')}\n</ul>`;
+      return `<ul class="figs">\n${rows.map(([n, w]) => `<li><b>${inline(n, a, m)}</b><span>${inline(w, a, m)}</span></li>`).join('\n')}\n</ul>`;
+    });
+    else if (b.startsWith('[time')) both((m) => {
+      // A run of times that would otherwise be a paragraph nobody reads: "10:23 | what happened".
+      // The first line may name the day, as [time Monday morning].
+      const [head, ...rows] = b.split('\n');
+      const when = /^\[time\s+([^\]]+)\]/.exec(head)?.[1] ?? null;
+      const items = rows.map((l) => l.split('|').map((s) => s.trim()));
+      if (m === 'copy') return `${when ? `<p><strong>${esc(when)}</strong></p>\n` : ''}<ul>\n${items.map(([t, w]) => `<li><strong>${inline(t, a, m)}</strong> — ${inline(w, a, m)}</li>`).join('\n')}\n</ul>`;
+      return `<ul class="tl">\n${when ? `<li class="tl-day">${esc(when)}</li>\n` : ''}${items.map(([t, w]) => `<li><time>${inline(t, a, m)}</time><span>${inline(w, a, m)}</span></li>`).join('\n')}\n</ul>`;
+    });
+    else if (b.startsWith('> ')) both((m) => {
       // A quoted message: every line starts with >, and a final line opening with an em dash says
       // who said it and when. Medium, LinkedIn and Substack all turn a pasted blockquote into
       // their own quote block, so the copy carries the same element the page does.
