@@ -261,6 +261,16 @@ details.alt p.lbl { padding: 0; background: none; margin: 10px 0 -4px; font-size
   font: var(--h2-weight) clamp(24px, 2.8vw, 30px) / 1.2 var(--f-display); letter-spacing: var(--h-track);
 }
 .prose strong { color: var(--strong); font-weight: var(--strong-weight); }
+
+/* A part (h2) opens with a rule above it, so the reader can see a long story is in segments
+   without a table of contents; a section (h3) inside it is quieter and closer to its text. */
+.prose h2 { padding-top: 1.1em; border-top: 1px solid var(--line); }
+.prose h2:first-of-type { padding-top: 0; border-top: 0; }
+.prose h3 {
+  margin: 1.8em 0 0.5em; color: var(--strong); text-wrap: balance;
+  font: 600 clamp(19px, 2vw, 22px) / 1.3 var(--f-display); letter-spacing: var(--h-track);
+}
+
 .prose ul { margin: 0 0 1.25em; padding-left: 1.2em; }
 .prose li { margin: 0 0 0.55em; padding-left: 0.2em; }
 .prose li::marker { color: var(--accent); }
@@ -270,7 +280,7 @@ details.alt p.lbl { padding: 0; background: none; margin: 10px 0 -4px; font-size
    a diagram: on a phone or a laptop alike, the labels end up smaller than the text around them.
    A picture therefore opens over the page, fitted to the window, and a second click shows it at its
    own size in a box that scrolls. Nothing is hidden behind a hover, so it works by touch. */
-.fig .frame img, .kit-img img { cursor: zoom-in; }
+.fig .frame img, .img-row > img { cursor: zoom-in; }
 .fig .frame img:focus-visible, .kit-img img:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 html.has-box { overflow: hidden; }
 .shot {

@@ -170,14 +170,14 @@
   }
 
   document.addEventListener('click', (e) => {
-    const img = e.target.closest('.fig .frame img, .kit-img img');
+    const img = e.target.closest('.fig .frame img, .img-row > img');
     if (!img || box) return;
     openBox(img);
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && box) closeBox();
     // a picture is reachable from the keyboard: Enter or Space on a focused one opens it
-    if ((e.key === 'Enter' || e.key === ' ') && !box && e.target.matches?.('.fig .frame img, .kit-img img')) {
+    if ((e.key === 'Enter' || e.key === ' ') && !box && e.target.matches?.('.fig .frame img, .img-row > img')) {
       e.preventDefault();
       openBox(e.target);
     }

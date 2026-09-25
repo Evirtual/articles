@@ -40,6 +40,9 @@ const ARTICLES = [
     // No project copy: /article/ on the lab is the first CSS 3D Lab story, and one project can
     // only host one /article/. This one lives here only.
     mirrorDir: null,
+    // numbers-1400.png here is a contact sheet of one model before and after a fix, not the
+    // numbers card that filename holds in the J.A.R.V.I.S. story.
+    labels: { 'numbers-1400.png': 'Bookshelf, before and after' },
     kicker: 'Four days · 614 commits',
     coverInCopy: true,
     fontsLink: '',
@@ -102,6 +105,9 @@ const IMAGE_LABELS = {
   'arrows-1400.png': 'Ledger strip',
   'cost-1400.png': 'Cost chart',
   'pipeline-1400.png': 'Approval diagram',
+  'week-1400.png': 'The week, day by day',
+  'agents-1400.png': 'Agents per day',
+  'machine-1400.png': 'What it cost the machine',
 };
 const SHARE_FILES = [
   ['linkedin-post.txt', 'LinkedIn post'],
@@ -269,7 +275,12 @@ for (const a of ARTICLES) {
     // name; `numbers` keeps its old key, which older pages and their anchors already use
     const key = file.split('-')[0] === 'cover' ? file.replace(/-\d.*$/, '')
       : file === 'numbers-1400.png' ? 'numbers' : file.replace(/-\d+\.png$/, '');
-    return { file, key, label: IMAGE_LABELS[file], alt: from.alt, caption, w, h };
+    // IMAGE_LABELS is shared by every article, and one filename can mean different pictures in
+    // two of them: numbers-1400.png is a numbers card in the J.A.R.V.I.S. story and a contact
+    // sheet of a bookshelf in the ledger one. An article may name its own, the same way it may
+    // give its own caption.
+    const label = a.labels?.[file] ?? IMAGE_LABELS[file];
+    return { file, key, label, alt: from.alt, caption, w, h };
   });
   const img = Object.fromEntries(images.map((i) => [i.file, i]));
   const cover = img['cover-medium-1500x750.png'];
@@ -297,7 +308,11 @@ for (const a of ARTICLES) {
   const both = (render) => { page.push(render('page')); mirror.push(render('mirror')); copy.push(render('copy')); };
   const pushNumbers = () => { if (!numbers || numbersPlaced) return; page.push(figure(numbers)); mirror.push(figure(numbers)); copy.push(marker(numbers)); numbersPlaced = true; };
   blocks.slice(2).forEach((b, j, rest) => {
-    if (b.startsWith('## ')) both((m) => `<h2>${inline(b.slice(3), a, m)}</h2>`);
+    // Two heading levels, because one stopped being enough once a story went past about
+    // eight thousand words: ## is a part, ### is a section inside it. Order matters -- ###
+    // has to be tested first, since '### x'.startsWith('## ') is also true.
+    if (b.startsWith('### ')) both((m) => `<h3>${inline(b.slice(4), a, m)}</h3>`);
+    else if (b.startsWith('## ')) both((m) => `<h2>${inline(b.slice(3), a, m)}</h2>`);
     else if (b.startsWith('![')) {
       // ![alt](file.png): any picture the folder has for this story, placed where the line is
       const file = /\(([^)]+)\)/.exec(b)?.[1];
@@ -454,7 +469,7 @@ function alsoEnd(a, list, mirror = false) {
 
 function kit(a, md) {
   const imageRows = a.images.map((i) => `<li class="img-row">
-          <img src="${i.file}" alt="" width="${i.w}" height="${i.h}" loading="lazy" decoding="async">
+          <img src="${i.file}" alt="" width="${i.w}" height="${i.h}" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open ${attr(i.label.toLowerCase())} full size">
           <p class="img-name">${esc(i.label)}<span>${esc(i.file)} · ${i.w}&nbsp;×&nbsp;${i.h}</span></p>
           <div class="img-more">
             <div class="fig-tools">
