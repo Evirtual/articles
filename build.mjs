@@ -690,8 +690,11 @@ function syncProjectArticle(a, body, md, kitData) {
 }
 
 function indexPage(list) {
-  const cards = list.map((a) => `<article class="card" data-accent="${a.slug}">
-      <div class="frame"><img src="${a.slug}/${a.cover.file}" alt="${attr(a.cover.alt)}" width="${a.cover.w}" height="${a.cover.h}" decoding="async"></div>
+  /* Eleven covers at about 420 KB each is four and a half megabytes, and every one of them was
+     asked for at once: the page showed eleven black rectangles for several seconds and looked
+     broken. Only the first is wanted before you scroll, so the rest wait until they are near. */
+  const cards = list.map((a, i) => `<article class="card" data-accent="${a.slug}">
+      <div class="frame"><img src="${a.slug}/${a.cover.file}" alt="${attr(a.cover.alt)}" width="${a.cover.w}" height="${a.cover.h}" decoding="async"${i === 0 ? " fetchpriority=\"high\"" : " loading=\"lazy\""}></div>
       <div class="card-body">
         <p class="kicker">${esc(a.kicker)}</p>
         <h2><a class="card-link" href="${a.slug}/">${esc(a.title)}</a></h2>
@@ -709,7 +712,10 @@ function indexPage(list) {
   <!-- The name goes to the portfolio, not to this page: you are already on this page, and the
        name was printed twice -- once here and once as the heading's eyebrow, which now counts the
        articles instead. One name, and it leads somewhere. -->
-  <nav aria-label="Site"><a class="home" href="${HOME_URL}">${markSvg()}<span>${AUTHOR}</span></a></nav>
+  <!-- The mark alone. The name is the first thing under it in letters four times the size, so
+       printing it again beside a logo that already says it was the third time on one screen. The
+       accessible name carries it, because a logo is a picture to anything that cannot see it. -->
+  <nav aria-label="Site"><a class="home" href="${HOME_URL}" aria-label="${attr(AUTHOR)} — the portfolio">${markSvg()}</a></nav>
   ${themeSwitchHtml()}
 </header>
 <main class="index" id="main" tabindex="-1">
