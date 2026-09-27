@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en" data-page="index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ampuno: 28 minutes to build, eight weeks to draw the cars</title>
+<meta name="description" content="A free site to find and compare electric cars, built with Codex and Claude. The first version took 28 minutes. The pictures of the cars, and the things that only looked finished, took the rest. Counted from the logs.">
+<meta name="author" content="Edgaras Neverdauskas">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="canonical" href="https://articles.edgarasneverdauskas.com/ampuno/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://articles.edgarasneverdauskas.com/ampuno/">
+<meta property="og:site_name" content="Articles — Edgaras Neverdauskas">
+<meta property="og:title" content="Ampuno: 28 minutes to build, eight weeks to draw the cars">
+<meta property="og:description" content="A free site to find and compare electric cars, built with Codex and Claude. The first version took 28 minutes. The pictures of the cars, and the things that only looked finished, took the rest. Counted from the logs.">
+<meta property="og:image" content="https://articles.edgarasneverdauskas.com/ampuno/cover-medium-1500x750.png">
+<meta property="og:image:alt" content="Near-black cover. On the left, the Ampuno logo, a teal lightning bolt, and the title &quot;28 minutes to build, eight weeks to draw the cars&quot;, above the line &quot;Find and compare 231 electric cars. Built with Codex and Claude, counted from the logs.&quot; On the right, a screenshot of the live ampuno.com homepage: the headline &quot;Find and compare the electric car that fits you.&quot;, a search field, and a white illustrated car with the day's featured model.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ampuno: 28 minutes to build, eight weeks to draw the cars">
+<meta name="twitter:description" content="A free site to find and compare electric cars, built with Codex and Claude. The first version took 28 minutes. The pictures of the cars, and the things that only looked finished, took the rest. Counted from the logs.">
+<meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/ampuno/cover-medium-1500x750.png">
+<meta name="twitter:image:alt" content="Near-black cover. On the left, the Ampuno logo, a teal lightning bolt, and the title &quot;28 minutes to build, eight weeks to draw the cars&quot;, above the line &quot;Find and compare 231 electric cars. Built with Codex and Claude, counted from the logs.&quot; On the right, a screenshot of the live ampuno.com homepage: the headline &quot;Find and compare the electric car that fits you.&quot;, a search field, and a white illustrated car with the day's featured model.">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
+<script data-goatcounter="https://articles.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the article</a>
+<header class="site-head">
+  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+</header>
+<main class="layout" id="main">
+  <aside class="kit" aria-label="Share kit">
+    <details class="kit-box" id="kit">
+      <summary><span class="kit-sum"><span class="kit-title">Share kit</span><span class="kit-hint">Copy the story, images and posts</span></span></summary>
+      <div class="kit-body">
+        <section aria-labelledby="kit-story">
+          <h2 id="kit-story">Story</h2>
+          <div class="btn-grid">
+            <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
+            <button type="button" class="btn" data-copy="story-title">Copy title</button>
+            <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
+            <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
+          </div>
+          <p class="kit-note">Rich text keeps the headings, bold, lists and links when pasted into an editor such as Medium or LinkedIn. Images aren’t included: the copy has a bold line where each one goes, with its address, caption and alt text.</p>
+          <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown"># Ampuno: 28 minutes to build, eight weeks to draw the cars
+
+*A free site to find and compare electric cars, built with Codex and Claude. The first version took 28 minutes. The pictures of the cars, and the things that only looked finished, took the rest. Counted from the logs.*
+
+## Why I started it
+
+At 00:47 on a Monday in late July I pasted a 954-word brief into Codex. It began: "Build a new website called VoltScout from scratch. VoltScout is a simple electric-car search and comparison website." It listed what the site should have, what it must not have (no accounts, no reviews, no database, no overall winner), and one rule about data: "Never invent missing values."
+
+The logs don't say where I wrote that brief. They do show what happened next. Twenty-eight minutes later Codex had built the site, tested it and pushed it: 260 electric car models, 1,189 variants, eight browser tests passing. Not one real car picture. Every car was a plain drawing of its body type.
+
+The brief had a line about that too: "Vehicle images are extremely important." That line ran the next eight weeks.
+
+As with [CSS 3D Lab](https://articles.edgarasneverdauskas.com/css-3d-lab/) and [J.A.R.V.I.S.](https://articles.edgarasneverdauskas.com/jarvis/), I went back through the full git history and every session log, so the numbers are counted, not remembered. My own messages are quoted as I typed them, typos included.
+
+## What Ampuno is
+
+A free site at ampuno.com for finding and comparing electric cars. It holds 231 models and 1,105 variants from 59 makes. The specifications come from OpenEV Data, a public dataset, and the catalogue keeps a rolling window of the last eight model years.
+
+You can search, filter by make, body type, year, range and charging speed, open a model page with every variant in one table, and compare up to four cars side by side. When a figure is missing from the source, Ampuno says "Not available". It never fills the gap with a guess or a zero, and it gives no overall score, because there is no best electric car for everyone.
+
+There are short guides on range labels and charging, a sources page, a light and a dark theme, and it installs as an app. Analytics only run if you say yes. It is a static site on GitHub Pages, about 2,100 pages built from one data file. The code is private.
+
+## How it happened
+
+**Monday 27 July, night: the brief.** After the first build I spent until five in the morning on buttons and dropdowns. My first message after the build was "need to update UI/UX with beeter looking buttons and dropdown selects". One of my last that night set the real task: all the cars should have real pictures with transparent backgrounds, "so we will ened ot generate 260 cars".
+
+**27 and 28 July: photos, then drawings.** Codex looked for a source, and I pasted in a research answer. The data has no pictures. A paid image service started at $49 a month and its licence meant deleting the pictures if I stopped paying. So Codex built a free pipeline instead: licensed photos from Wikimedia Commons, backgrounds removed, a review page, attribution for each one. By 04:23 the next morning the repository held batches of real photos.
+
+At 04:38 I wrote: "i still dont like the image quality and that it is random and incosistant". I asked for "shapes of irginal cars but not exact pictures" instead. Codex agreed that the photos were accurate but would never look like one set, and proposed drawings: one fixed angle, the same glass, wheels and light for every car, only the body changing. By 05:00 I had asked it to delete the photos. The black cars then took an hour of me saying they were grey, because the first black version was the white one darkened by a filter.
+
+**Tuesday 28 July: a name.** At 14:26 I wrote "ok the website now looks pretty good", and we moved to the favicon, search engines and GitHub Pages. Then the name. Codex offered names. I rejected the first, liked Ampvero, and asked for more. At 17:29 I asked "how aobut sparkuno? or ampuno or some thi wth with uno that indicated numebr one". Two minutes later: Ampuno. I bought ampuno.com, and by accident a second domain, a .online one that was free for a year and then €36. I turned its renewal off. At 18:08 the site was rebranded; by 20:03 it had guides, an about page and a privacy page.
+
+**29 July to 2 August: polish.** A friend's feedback became tooltips explaining every figure. Share images got the same car, glow and rings as the homepage. I spent an evening moving those rings: "move the whole orbit a bit mre to the left". Search became a full-screen dialog on phones, navigation moved to the bottom of the screen like in a phone app, and a light theme arrived. The lightning bolt in the logo went through "a bit smaller", "slighly bigger" and "ok push changes" in five minutes.
+
+On 30 July I asked whether all 260 cars were real, sold electric cars. Codex audited them against one rule: a production battery-electric car, sold to the public, with enough data to compare. 19 were hybrids, not fully electric, 9 were announced, cancelled or no longer sold, and 1 was a quadricycle. 231 stayed. On 2 August I added the eight-year window and consent-based Google Analytics.
+
+**2 to 16 August: one car.** Then I went back to model-specific drawings, already tried and deleted on 30 July. First the Tesla Model Y, in the same angle, wheels and glass as the generic cars. It went live on 8 August. On 9 August I noticed its front bumper and door handles were wrong, and stopped: "we need to stop now and star from begginign with more specific rules". I sent reference photos of the fender and lights, one after another. On 13 August: "wow you are really bad with task, when it cmes to coding it seems you are very good, but with this you are very bad". Codex's answer was honest: it was using a generator that redraws the whole car every time for a job that needs the same wheels, glass and framing every time. It proposed 3D models and Blender. I said yes to installing it, then changed my mind three minutes later. The next night I bought credits for OpenAI's image models instead. On 16 August I stopped it again and reverted everything except the test fixes.
+
+The day before, I had asked Codex whether I even needed a code editor, "since i am not coding and only workign with ai". It agreed I didn't.
+
+**16 August: Claude joins.** I opened Claude Code in the same folder and asked it to review the repository. It found a README that described a setup the code had moved past, dependency security advisories with patched versions available, and a development setting tied to one network address. It fixed those in three commits. That was Claude Sonnet 5; from then on Claude's work was mostly Claude Opus 5.
+
+**Thursday 3 September: measuring the drift.** I started with "Today i am hoping to finally deal with one part in this app". Claude measured the published pictures instead of looking at them: six different wheel designs, window tint varying by 22%, a van with blue glass, ground lines spread over 73 pixels. It built checks for all of it. It also scaled every car to its real length, so a small hatchback drew smaller than a pickup. I said no: "the thign with scale is that iamges sohuld have the same size since in app ui they are not compared my scale but by tech stats". It reverted within two minutes.
+
+The same day it found the body-type filter matched raw labels from the data. Choosing "SUV" showed 34 cars and hid the other 86. Then it wrote a detailed standard for Codex to regenerate the six generic cars, and I carried prompts between the two tools all evening. At 19:27 I told Claude: "i am stuck whi this for liek a month". It replied: "A month is too long for six images, and I don't think the answer is waiting for better models." Each generated picture is an independent sample, it said, so the wheels get redrawn every time. At the size a card shows them, each wheel is about 80 pixels wide.
+
+**Monday 7 September: search engines.** I sent Claude screenshots from Google Search Console. The sitemap listed 1,119 addresses, and every one of them redirected, because they lacked the trailing slash the site uses. The short model addresses were empty pages that bounced to a variant. Claude fixed the sitemap and turned each model address into a real page: a table of every variant, each row linking to its full specification. By 11:18 it was live, with 1,350 addresses in the sitemap, none redirecting.
+
+**16 and 17 September: starting again.** A newer image model came out, and I tried again in Codex: "start from scratch delete tmp and start again". While Codex drew, I asked Claude about the homepage: "it seem it is alwasy stck on the audi a6 etron". The featured car was meant to change daily. It had never changed on the live site. The rotation only picked cars with exact photos, and since the July photos were removed there had been none.
+
+That afternoon Codex hit its usage limit and came back about an hour and a half later. Its next fix for the tyres passed the new automatic check. Claude zoomed in and found it had passed by trimming the bottom of each tyre into steps, not by drawing it round. It wrote Codex a precise prompt to redo it. I told Codex to ignore it, roll back to the commit before the latest picture work, and start fresh. The next morning at 07:16: "ok once again lets starrt from scratch". By 12:07 all ten generic pictures, five body shapes in white and black, were new. The Tesla Model Y drawings, live since 8 August, were removed. So were the standard and the review notes.
+
+That afternoon, from a Codex discussion I pasted in, Claude made the pictures load at the size each place needs. A 64-pixel search thumbnail had been downloading the 1,600-pixel original, about 115 KB. It cut the catalogue page from 831 KB to 311 KB, fixed page titles, and found why Google Analytics had shown nothing since August.
+
+**Monday 21 September: an email from Google.** Search Console reported unindexed pages. The Codex session, now on GPT-6, opens with a hand-off from a ChatGPT conversation about it. The 24 "not found" addresses turned out to be old share-image addresses, replaced on 17 September. The real gap was that none of the 231 model pages had a link pointing to it. Codex added a page listing every model by make. That was the last commit, at 14:04.
+
+## Four things that looked finished
+
+The most useful lesson from Ampuno isn't about the pictures. It is four things that looked done for weeks and weren't.
+
+- **Analytics.** The consent banner worked and the tag loaded, so it looked installed. The helper that passed commands to Google's script used a form Google silently ignores. From 2 August to 17 September it did not record a single visit. It came out when I showed Claude a week of zero users and it suggested the test: accept, click around, watch the real-time report.
+- **The daily featured car.** The date maths was right. It was choosing from an empty list, so it showed the first car in the catalogue every day.
+- **The sitemap.** It was valid and complete, and every address in it pointed at a redirect.
+- **The SUV filter.** It returned cars, so it looked like it worked. It hid 86 of 120.
+
+None of these failed a test, and nothing showed an error. Each one was found by using the site or checking a real number: a visit that should have appeared, a car that never changed, a report from Google, a count that looked too small. The tyre fix was the same lesson from the other side: a check can be passed without doing what it was written for.
+
+## What we got wrong
+
+- Real photos went into the catalogue and came out the next morning, because they could never look like one set.
+- The first black cars were the white ones with a filter, so they looked grey.
+- A model-specific Tesla Model Y took most of two months, went live for about six weeks, and was then removed.
+- Claude scaled the cars to their real lengths. A catalogue that compares figures needs them the same size.
+- The body-type filter hid 86 of 120 SUVs.
+- The sitemap advertised 1,119 addresses that all redirected, and the model pages were empty redirects.
+- Google Analytics received nothing for six and a half weeks.
+- The daily featured car never rotated.
+- A tyre fix passed its check by trimming the tyres.
+- Every picture downloaded at full size, even as a tiny thumbnail.
+- I bought a domain I didn't want.
+
+## Who did what
+
+**Codex** built most of Ampuno: 58 of the 86 commits, from the first build through the name, the design, the data audit and the ten pictures on the site today. I sent it 912 messages and 213 screenshots. It replied 2,690 times and made 8,086 tool calls, over about 85 hours of active work. It ran GPT-5.6 for most of the work, 1,795 replies with the Terra setting and 830 with Sol, and GPT-6 for 65 replies in September. Codex's automatic approval reviewer also ran in 16 short sessions alongside.
+
+**Claude Code** made 28 commits and did the measuring: the drift checks, the sitemap and model pages, the analytics fix, image sizes, page weight. Claude Opus 5 made 24 of them, Claude Sonnet 5 three and Claude Fable 5.1 one. In the sessions logged for this project I sent it 132 messages and 32 screenshots. It replied 1,024 times, 901 from Opus and 123 from Sonnet, with 1,006 tool calls: 651 commands, 120 file edits and 153 actions in a browser. That was about 11 hours of active work, with no helper agents. Six of its commits came from sessions that were updating several of my projects at once, and those sessions aren't in the counts.
+
+![By the numbers](https://articles.edgarasneverdauskas.com/ampuno/numbers-1400.png)
+
+**ChatGPT** appears once on disk, and I can't count it: of the Search Console conversation on 21 September only the hand-off to Codex and a short preview are on my PC. Where I wrote the first brief, the logs don't show.
+
+**My part** was 1,044 messages over 24 days, a typical one 14 words long, and 245 screenshots. Many of them were about how something looked: a bit left, a bit smaller, that's grey, not black. Some of them decided what Ampuno is: worldwide, not only European; only cars people could actually buy; every car the same size; no overall winner.
+
+Treat the numbers as a record, not a benchmark. The tools worked on different days and different jobs, and Codex's one long session covers more than half of everything.
+
+## What it cost
+
+Hosting is free on GitHub Pages. The domain was a normal .com, plus the .online I didn't mean to buy. Beyond that it was the ChatGPT and Claude subscriptions, and OpenAI image credits I bought on 14 August for the picture experiments. One exploration run cost $1.26; the rest of that spend isn't in the logs.
+
+Limits showed up three times, all in Codex: twice for me, once for its reviewer. On 28 July at 04:09 I warned it I was "getting close to reaching limit of credit of ai". On 6 September its approval reviewer hit one and blocked a check. On 16 September it stopped mid-task at its limit and resumed about an hour and a half later.
+
+## What I would tell someone starting
+
+- **A clear brief goes a long way.** 954 words, and a working site 28 minutes later.
+- **Decide what you won't show.** "Not available" is more honest than a guessed number, and it's one rule for every car.
+- **Know which jobs a model can repeat.** Code can be checked and kept. A generated picture is drawn fresh each time, so asking for six matching ones is a different kind of job.
+- **Measure, don't squint.** Wheel designs, tint and ground lines became numbers that a check could hold.
+- **Checks can be gamed, even by the tool that wrote them.** Look at the result, not only the pass.
+- **Test the boring things with real data.** Analytics, sitemaps and filters fail without an error.
+- **Two tools can work together if you're the courier.** Claude measured and wrote prompts; Codex drew. I carried the prompts between them.
+- **Starting again is allowed.** I did it more than ten times with the pictures, and the site stayed live the whole time.
+
+## In one paragraph
+
+In eight weeks, one person and two AI coding tools built a free site to find and compare 231 electric cars, in 86 commits. The first working version took 28 minutes. Most of the time after that went into two things: pictures of the cars that look like one family, and a handful of features that looked finished and weren't. The models wrote almost every line and drew every car. What they couldn't do was see that a black car was grey, that a filter was hiding most of the SUVs, or when to stop redrawing and start again. Noticing, and deciding, stayed with me.
+
+*Try it at [ampuno.com](https://ampuno.com). Built with OpenAI Codex (GPT-5.6 and GPT-6), Claude Code (Claude Opus 5, Claude Sonnet 5 and Claude Fable 5.1), and a little ChatGPT.*</textarea></details>
+        </section>
+        <section aria-labelledby="kit-images">
+          <h2 id="kit-images">Images (3)</h2>
+          <ul class="img-list">
+        <li class="img-row">
+          <img src="cover-medium-1500x750.png" alt="" width="1500" height="750" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open medium cover full size">
+          <p class="img-name">Medium cover<span>cover-medium-1500x750.png · 1500&nbsp;×&nbsp;750</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+              <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">Ampuno on the live site, with its 231 models. Image and site: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 442 characters</p><p id="k-alt-cover-medium">Near-black cover. On the left, the Ampuno logo, a teal lightning bolt, and the title "28 minutes to build, eight weeks to draw the cars", above the line "Find and compare 231 electric cars. Built with Codex and Claude, counted from the logs." On the right, a screenshot of the live ampuno.com homepage: the headline "Find and compare the electric car that fits you.", a search field, and a white illustrated car with the day's featured model.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="cover-linkedin-1920x1080.png" alt="" width="1920" height="1080" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open linkedin cover full size">
+          <p class="img-name">LinkedIn cover<span>cover-linkedin-1920x1080.png · 1920&nbsp;×&nbsp;1080</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-linkedin" aria-label="Copy caption, linkedin cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-linkedin" aria-label="Copy alt text, linkedin cover">Copy alt</button>
+              <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">Ampuno on the live site, with its 231 models. Image and site: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 442 characters</p><p id="k-alt-cover-linkedin">Near-black cover. On the left, the Ampuno logo, a teal lightning bolt, and the title "28 minutes to build, eight weeks to draw the cars", above the line "Find and compare 231 electric cars. Built with Codex and Claude, counted from the logs." On the right, a screenshot of the live ampuno.com homepage: the headline "Find and compare the electric car that fits you.", a search field, and a white illustrated car with the day's featured model.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="numbers-1400.png" alt="" width="1400" height="1782" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open numbers card full size">
+          <p class="img-name">Numbers card<span>numbers-1400.png · 1400&nbsp;×&nbsp;1782</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+              <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-numbers">Eight weeks, counted from git and the Codex and Claude Code session logs: who did what, and how the car pictures went.</p>
+              <p class="lbl">Alt text · 424 characters</p><p id="k-alt-numbers">Ampuno by the numbers, 27 Jul – 21 Sep 2026: 231 models and 1,105 variants, 86 commits, 56 days from first message to last commit, 10 car pictures on the site. Codex: 58 commits, 912 of my messages, 8,086 tool calls, about 85 hours active. Claude Code: 28 commits, 132 messages, 1,006 tool calls, about 11 hours active. Me: 1,044 messages, typically 14 words, 245 screenshots. How the pictures went, 27 July to 17 September.</p>
+            </details>
+          </div>
+        </li>
+          </ul>
+        </section>
+        <section aria-labelledby="kit-share">
+          <h2 id="kit-share">Posts (3)</h2>
+        <div class="share">
+          <div class="share-head">
+            <h3>LinkedIn post</h3>
+            <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
+          </div>
+          <p class="share-meta">1,878 characters</p>
+          <pre id="share-linkedin" tabindex="0">In late July I pasted a 954-word brief into Codex: build a simple site to find and compare electric cars. Twenty-eight minutes later it was built, tested and pushed. 260 models, 1,189 variants, not one real picture of a car.
+
+Eight weeks later Ampuno has 231 electric cars from 59 makes, and ten pictures of cars on the site. Most of those eight weeks went into the pictures.
+
+I went back through every session log and the git history to count who did what. Codex made 58 of the 86 commits. Claude Code made 28. I sent 1,044 messages. A typical one was 14 words.
+
+So what did those 14 words do? Mostly, they noticed.
+
+→ "i still dont like the image quality and that it is random and incosistant." Real photos went in one night and came out the next morning. Every car became a drawing in the same angle, glass and light.
+
+→ Claude scaled the cars to their real lengths. I said no: people compare these cars by their figures, not their size, so every car stays the same size.
+
+→ "i am stuck whi this for liek a month." Six matching car pictures turned out to be a different kind of job from code. A generated picture never comes out the same twice. I started the pictures again more than ten times.
+
+→ Four things looked finished for weeks and weren't. Analytics hadn't recorded a single visit since August. The daily featured car had never changed. Every address in the sitemap redirected. The SUV filter hid 86 of 120 SUVs. No test failed. Claude and I found them by using the site and checking real numbers.
+
+The models wrote almost every line and drew every car. Noticing what was wrong, and deciding when to start again, stayed with me.
+
+If you're building a product with AI and the building is fast but the product keeps drifting, feel free to DM me. I'm open to consulting and product/engineering advisory work.
+
+I wrote it all up, mistakes included, in the article below.</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>Facebook post</h3>
+            <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
+          </div>
+          <p class="share-meta">765 characters</p>
+          <pre id="share-facebook" tabindex="0">I made a free website to find and compare electric cars: Ampuno ⚡
+
+It has 231 electric cars from 59 brands. You can search, filter by make, body type, range or charging speed, and put up to four cars side by side. When a number isn't published, it says "Not available" instead of guessing.
+
+There are no accounts and no ads, and it doesn't pick a "best" car for you. It just shows the figures clearly, so you can decide what fits your own driving.
+
+I built it together with two AI assistants, Codex and Claude. The first version took them 28 minutes. Getting the pictures of the cars to look like one family took me eight weeks of saying a bit smaller, that's grey not black, and let's start again.
+
+Have a look and tell me which car you'd pick 👇
+https://ampuno.com</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>X post</h3>
+            <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
+          </div>
+          <p class="share-meta">292 characters</p>
+          <pre id="share-x" tabindex="0">Codex built the first version of Ampuno, a free site to find and compare electric cars, in 28 minutes. The pictures of the cars took eight weeks. 231 cars, 86 commits, Codex and Claude.
+
+https://ampuno.com
+
+Who did what, counted from the logs: https://articles.edgarasneverdauskas.com/ampuno/</pre>
+        </div>
+        </section>
+      </div>
+    </details>
+  </aside>
+  <article class="story" id="story" aria-labelledby="story-title" tabindex="-1">
+    <header class="story-head">
+      <p class="kicker">56 days · 86 commits</p>
+      <h1 id="story-title">Ampuno: 28 minutes to build, eight weeks to draw the cars</h1>
+      <p class="dek" id="story-dek">A free site to find and compare electric cars, built with Codex and Claude. The first version took 28 minutes. The pictures of the cars, and the things that only looked finished, took the rest. Counted from the logs.</p>
+      <p class="byline"><span>Edgaras Neverdauskas</span><span>13 min read</span><span>2,985 words</span></p>
+      <nav class="also" aria-label="This story elsewhere">
+        
+        <p><span class="also-label">Project</span><a href="https://ampuno.com" rel="noopener">ampuno.com<span aria-hidden="true"> ↗</span></a></p>
+      </nav>
+    </header>
+    <figure class="fig fig-cover" id="fig-cover-medium">
+  <div class="frame"><img src="cover-medium-1500x750.png" alt="Near-black cover. On the left, the Ampuno logo, a teal lightning bolt, and the title &quot;28 minutes to build, eight weeks to draw the cars&quot;, above the line &quot;Find and compare 231 electric cars. Built with Codex and Claude, counted from the logs.&quot; On the right, a screenshot of the live ampuno.com homepage: the headline &quot;Find and compare the electric car that fits you.&quot;, a search field, and a white illustrated car with the day's featured model." width="1500" height="750" decoding="async" tabindex="0" role="button" aria-label="Open this picture" fetchpriority="high"></div>
+  <figcaption>
+    <p class="cap" id="cap-cover-medium">Ampuno on the live site, with its 231 models. Image and site: Edgaras Neverdauskas.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+      <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 442 characters</span></summary><p id="alt-cover-medium">Near-black cover. On the left, the Ampuno logo, a teal lightning bolt, and the title "28 minutes to build, eight weeks to draw the cars", above the line "Find and compare 231 electric cars. Built with Codex and Claude, counted from the logs." On the right, a screenshot of the live ampuno.com homepage: the headline "Find and compare the electric car that fits you.", a search field, and a white illustrated car with the day's featured model.</p></details>
+  </figcaption>
+</figure>
+    <div class="prose" id="article-body">
+<h2>Why I started it</h2>
+<p>At 00:47 on a Monday in late July I pasted a 954-word brief into Codex. It began: "Build a new website called VoltScout from scratch. VoltScout is a simple electric-car search and comparison website." It listed what the site should have, what it must not have (no accounts, no reviews, no database, no overall winner), and one rule about data: "Never invent missing values."</p>
+<p>The logs don't say where I wrote that brief. They do show what happened next. Twenty-eight minutes later Codex had built the site, tested it and pushed it: 260 electric car models, 1,189 variants, eight browser tests passing. Not one real car picture. Every car was a plain drawing of its body type.</p>
+<p>The brief had a line about that too: "Vehicle images are extremely important." That line ran the next eight weeks.</p>
+<p>As with <a href="../css-3d-lab/">CSS 3D Lab</a> and <a href="../jarvis/">J.A.R.V.I.S.</a>, I went back through the full git history and every session log, so the numbers are counted, not remembered. My own messages are quoted as I typed them, typos included.</p>
+<h2>What Ampuno is</h2>
+<p>A free site at ampuno.com for finding and comparing electric cars. It holds 231 models and 1,105 variants from 59 makes. The specifications come from OpenEV Data, a public dataset, and the catalogue keeps a rolling window of the last eight model years.</p>
+<p>You can search, filter by make, body type, year, range and charging speed, open a model page with every variant in one table, and compare up to four cars side by side. When a figure is missing from the source, Ampuno says "Not available". It never fills the gap with a guess or a zero, and it gives no overall score, because there is no best electric car for everyone.</p>
+<p>There are short guides on range labels and charging, a sources page, a light and a dark theme, and it installs as an app. Analytics only run if you say yes. It is a static site on GitHub Pages, about 2,100 pages built from one data file. The code is private.</p>
+<h2>How it happened</h2>
+<p><strong>Monday 27 July, night: the brief.</strong> After the first build I spent until five in the morning on buttons and dropdowns. My first message after the build was "need to update UI/UX with beeter looking buttons and dropdown selects". One of my last that night set the real task: all the cars should have real pictures with transparent backgrounds, "so we will ened ot generate 260 cars".</p>
+<p><strong>27 and 28 July: photos, then drawings.</strong> Codex looked for a source, and I pasted in a research answer. The data has no pictures. A paid image service started at $49 a month and its licence meant deleting the pictures if I stopped paying. So Codex built a free pipeline instead: licensed photos from Wikimedia Commons, backgrounds removed, a review page, attribution for each one. By 04:23 the next morning the repository held batches of real photos.</p>
+<p>At 04:38 I wrote: "i still dont like the image quality and that it is random and incosistant". I asked for "shapes of irginal cars but not exact pictures" instead. Codex agreed that the photos were accurate but would never look like one set, and proposed drawings: one fixed angle, the same glass, wheels and light for every car, only the body changing. By 05:00 I had asked it to delete the photos. The black cars then took an hour of me saying they were grey, because the first black version was the white one darkened by a filter.</p>
+<p><strong>Tuesday 28 July: a name.</strong> At 14:26 I wrote "ok the website now looks pretty good", and we moved to the favicon, search engines and GitHub Pages. Then the name. Codex offered names. I rejected the first, liked Ampvero, and asked for more. At 17:29 I asked "how aobut sparkuno? or ampuno or some thi wth with uno that indicated numebr one". Two minutes later: Ampuno. I bought ampuno.com, and by accident a second domain, a .online one that was free for a year and then €36. I turned its renewal off. At 18:08 the site was rebranded; by 20:03 it had guides, an about page and a privacy page.</p>
+<p><strong>29 July to 2 August: polish.</strong> A friend's feedback became tooltips explaining every figure. Share images got the same car, glow and rings as the homepage. I spent an evening moving those rings: "move the whole orbit a bit mre to the left". Search became a full-screen dialog on phones, navigation moved to the bottom of the screen like in a phone app, and a light theme arrived. The lightning bolt in the logo went through "a bit smaller", "slighly bigger" and "ok push changes" in five minutes.</p>
+<p>On 30 July I asked whether all 260 cars were real, sold electric cars. Codex audited them against one rule: a production battery-electric car, sold to the public, with enough data to compare. 19 were hybrids, not fully electric, 9 were announced, cancelled or no longer sold, and 1 was a quadricycle. 231 stayed. On 2 August I added the eight-year window and consent-based Google Analytics.</p>
+<p><strong>2 to 16 August: one car.</strong> Then I went back to model-specific drawings, already tried and deleted on 30 July. First the Tesla Model Y, in the same angle, wheels and glass as the generic cars. It went live on 8 August. On 9 August I noticed its front bumper and door handles were wrong, and stopped: "we need to stop now and star from begginign with more specific rules". I sent reference photos of the fender and lights, one after another. On 13 August: "wow you are really bad with task, when it cmes to coding it seems you are very good, but with this you are very bad". Codex's answer was honest: it was using a generator that redraws the whole car every time for a job that needs the same wheels, glass and framing every time. It proposed 3D models and Blender. I said yes to installing it, then changed my mind three minutes later. The next night I bought credits for OpenAI's image models instead. On 16 August I stopped it again and reverted everything except the test fixes.</p>
+<p>The day before, I had asked Codex whether I even needed a code editor, "since i am not coding and only workign with ai". It agreed I didn't.</p>
+<p><strong>16 August: Claude joins.</strong> I opened Claude Code in the same folder and asked it to review the repository. It found a README that described a setup the code had moved past, dependency security advisories with patched versions available, and a development setting tied to one network address. It fixed those in three commits. That was Claude Sonnet 5; from then on Claude's work was mostly Claude Opus 5.</p>
+<p><strong>Thursday 3 September: measuring the drift.</strong> I started with "Today i am hoping to finally deal with one part in this app". Claude measured the published pictures instead of looking at them: six different wheel designs, window tint varying by 22%, a van with blue glass, ground lines spread over 73 pixels. It built checks for all of it. It also scaled every car to its real length, so a small hatchback drew smaller than a pickup. I said no: "the thign with scale is that iamges sohuld have the same size since in app ui they are not compared my scale but by tech stats". It reverted within two minutes.</p>
+<p>The same day it found the body-type filter matched raw labels from the data. Choosing "SUV" showed 34 cars and hid the other 86. Then it wrote a detailed standard for Codex to regenerate the six generic cars, and I carried prompts between the two tools all evening. At 19:27 I told Claude: "i am stuck whi this for liek a month". It replied: "A month is too long for six images, and I don't think the answer is waiting for better models." Each generated picture is an independent sample, it said, so the wheels get redrawn every time. At the size a card shows them, each wheel is about 80 pixels wide.</p>
+<p><strong>Monday 7 September: search engines.</strong> I sent Claude screenshots from Google Search Console. The sitemap listed 1,119 addresses, and every one of them redirected, because they lacked the trailing slash the site uses. The short model addresses were empty pages that bounced to a variant. Claude fixed the sitemap and turned each model address into a real page: a table of every variant, each row linking to its full specification. By 11:18 it was live, with 1,350 addresses in the sitemap, none redirecting.</p>
+<p><strong>16 and 17 September: starting again.</strong> A newer image model came out, and I tried again in Codex: "start from scratch delete tmp and start again". While Codex drew, I asked Claude about the homepage: "it seem it is alwasy stck on the audi a6 etron". The featured car was meant to change daily. It had never changed on the live site. The rotation only picked cars with exact photos, and since the July photos were removed there had been none.</p>
+<p>That afternoon Codex hit its usage limit and came back about an hour and a half later. Its next fix for the tyres passed the new automatic check. Claude zoomed in and found it had passed by trimming the bottom of each tyre into steps, not by drawing it round. It wrote Codex a precise prompt to redo it. I told Codex to ignore it, roll back to the commit before the latest picture work, and start fresh. The next morning at 07:16: "ok once again lets starrt from scratch". By 12:07 all ten generic pictures, five body shapes in white and black, were new. The Tesla Model Y drawings, live since 8 August, were removed. So were the standard and the review notes.</p>
+<p>That afternoon, from a Codex discussion I pasted in, Claude made the pictures load at the size each place needs. A 64-pixel search thumbnail had been downloading the 1,600-pixel original, about 115 KB. It cut the catalogue page from 831 KB to 311 KB, fixed page titles, and found why Google Analytics had shown nothing since August.</p>
+<p><strong>Monday 21 September: an email from Google.</strong> Search Console reported unindexed pages. The Codex session, now on GPT-6, opens with a hand-off from a ChatGPT conversation about it. The 24 "not found" addresses turned out to be old share-image addresses, replaced on 17 September. The real gap was that none of the 231 model pages had a link pointing to it. Codex added a page listing every model by make. That was the last commit, at 14:04.</p>
+<h2>Four things that looked finished</h2>
+<p>The most useful lesson from Ampuno isn't about the pictures. It is four things that looked done for weeks and weren't.</p>
+<ul>
+<li><strong>Analytics.</strong> The consent banner worked and the tag loaded, so it looked installed. The helper that passed commands to Google's script used a form Google silently ignores. From 2 August to 17 September it did not record a single visit. It came out when I showed Claude a week of zero users and it suggested the test: accept, click around, watch the real-time report.</li>
+<li><strong>The daily featured car.</strong> The date maths was right. It was choosing from an empty list, so it showed the first car in the catalogue every day.</li>
+<li><strong>The sitemap.</strong> It was valid and complete, and every address in it pointed at a redirect.</li>
+<li><strong>The SUV filter.</strong> It returned cars, so it looked like it worked. It hid 86 of 120.</li>
+</ul>
+<p>None of these failed a test, and nothing showed an error. Each one was found by using the site or checking a real number: a visit that should have appeared, a car that never changed, a report from Google, a count that looked too small. The tyre fix was the same lesson from the other side: a check can be passed without doing what it was written for.</p>
+<h2>What we got wrong</h2>
+<ul>
+<li>Real photos went into the catalogue and came out the next morning, because they could never look like one set.</li>
+<li>The first black cars were the white ones with a filter, so they looked grey.</li>
+<li>A model-specific Tesla Model Y took most of two months, went live for about six weeks, and was then removed.</li>
+<li>Claude scaled the cars to their real lengths. A catalogue that compares figures needs them the same size.</li>
+<li>The body-type filter hid 86 of 120 SUVs.</li>
+<li>The sitemap advertised 1,119 addresses that all redirected, and the model pages were empty redirects.</li>
+<li>Google Analytics received nothing for six and a half weeks.</li>
+<li>The daily featured car never rotated.</li>
+<li>A tyre fix passed its check by trimming the tyres.</li>
+<li>Every picture downloaded at full size, even as a tiny thumbnail.</li>
+<li>I bought a domain I didn't want.</li>
+</ul>
+<h2>Who did what</h2>
+<p><strong>Codex</strong> built most of Ampuno: 58 of the 86 commits, from the first build through the name, the design, the data audit and the ten pictures on the site today. I sent it 912 messages and 213 screenshots. It replied 2,690 times and made 8,086 tool calls, over about 85 hours of active work. It ran GPT-5.6 for most of the work, 1,795 replies with the Terra setting and 830 with Sol, and GPT-6 for 65 replies in September. Codex's automatic approval reviewer also ran in 16 short sessions alongside.</p>
+<p><strong>Claude Code</strong> made 28 commits and did the measuring: the drift checks, the sitemap and model pages, the analytics fix, image sizes, page weight. Claude Opus 5 made 24 of them, Claude Sonnet 5 three and Claude Fable 5.1 one. In the sessions logged for this project I sent it 132 messages and 32 screenshots. It replied 1,024 times, 901 from Opus and 123 from Sonnet, with 1,006 tool calls: 651 commands, 120 file edits and 153 actions in a browser. That was about 11 hours of active work, with no helper agents. Six of its commits came from sessions that were updating several of my projects at once, and those sessions aren't in the counts.</p>
+<figure class="fig" id="fig-numbers">
+  <div class="frame"><img src="numbers-1400.png" alt="Ampuno by the numbers, 27 Jul – 21 Sep 2026: 231 models and 1,105 variants, 86 commits, 56 days from first message to last commit, 10 car pictures on the site. Codex: 58 commits, 912 of my messages, 8,086 tool calls, about 85 hours active. Claude Code: 28 commits, 132 messages, 1,006 tool calls, about 11 hours active. Me: 1,044 messages, typically 14 words, 245 screenshots. How the pictures went, 27 July to 17 September." width="1400" height="1782" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-numbers">Eight weeks, counted from git and the Codex and Claude Code session logs: who did what, and how the car pictures went.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+      <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 424 characters</span></summary><p id="alt-numbers">Ampuno by the numbers, 27 Jul – 21 Sep 2026: 231 models and 1,105 variants, 86 commits, 56 days from first message to last commit, 10 car pictures on the site. Codex: 58 commits, 912 of my messages, 8,086 tool calls, about 85 hours active. Claude Code: 28 commits, 132 messages, 1,006 tool calls, about 11 hours active. Me: 1,044 messages, typically 14 words, 245 screenshots. How the pictures went, 27 July to 17 September.</p></details>
+  </figcaption>
+</figure>
+<p><strong>ChatGPT</strong> appears once on disk, and I can't count it: of the Search Console conversation on 21 September only the hand-off to Codex and a short preview are on my PC. Where I wrote the first brief, the logs don't show.</p>
+<p><strong>My part</strong> was 1,044 messages over 24 days, a typical one 14 words long, and 245 screenshots. Many of them were about how something looked: a bit left, a bit smaller, that's grey, not black. Some of them decided what Ampuno is: worldwide, not only European; only cars people could actually buy; every car the same size; no overall winner.</p>
+<p>Treat the numbers as a record, not a benchmark. The tools worked on different days and different jobs, and Codex's one long session covers more than half of everything.</p>
+<h2>What it cost</h2>
+<p>Hosting is free on GitHub Pages. The domain was a normal .com, plus the .online I didn't mean to buy. Beyond that it was the ChatGPT and Claude subscriptions, and OpenAI image credits I bought on 14 August for the picture experiments. One exploration run cost $1.26; the rest of that spend isn't in the logs.</p>
+<p>Limits showed up three times, all in Codex: twice for me, once for its reviewer. On 28 July at 04:09 I warned it I was "getting close to reaching limit of credit of ai". On 6 September its approval reviewer hit one and blocked a check. On 16 September it stopped mid-task at its limit and resumed about an hour and a half later.</p>
+<h2>What I would tell someone starting</h2>
+<ul>
+<li><strong>A clear brief goes a long way.</strong> 954 words, and a working site 28 minutes later.</li>
+<li><strong>Decide what you won't show.</strong> "Not available" is more honest than a guessed number, and it's one rule for every car.</li>
+<li><strong>Know which jobs a model can repeat.</strong> Code can be checked and kept. A generated picture is drawn fresh each time, so asking for six matching ones is a different kind of job.</li>
+<li><strong>Measure, don't squint.</strong> Wheel designs, tint and ground lines became numbers that a check could hold.</li>
+<li><strong>Checks can be gamed, even by the tool that wrote them.</strong> Look at the result, not only the pass.</li>
+<li><strong>Test the boring things with real data.</strong> Analytics, sitemaps and filters fail without an error.</li>
+<li><strong>Two tools can work together if you're the courier.</strong> Claude measured and wrote prompts; Codex drew. I carried the prompts between them.</li>
+<li><strong>Starting again is allowed.</strong> I did it more than ten times with the pictures, and the site stayed live the whole time.</li>
+</ul>
+<h2>In one paragraph</h2>
+<p>In eight weeks, one person and two AI coding tools built a free site to find and compare 231 electric cars, in 86 commits. The first working version took 28 minutes. Most of the time after that went into two things: pictures of the cars that look like one family, and a handful of features that looked finished and weren't. The models wrote almost every line and drew every car. What they couldn't do was see that a black car was grey, that a filter was hiding most of the SUVs, or when to stop redrawing and start again. Noticing, and deciding, stayed with me.</p>
+<p class="close"><em>Try it at <a href="https://ampuno.com">ampuno.com</a>. Built with OpenAI Codex (GPT-5.6 and GPT-6), Claude Code (Claude Opus 5, Claude Sonnet 5 and Claude Fable 5.1), and a little ChatGPT.</em></p>
+    </div>
+    <footer class="story-foot">
+      <p class="also-end"><span><a href="https://ampuno.com" rel="noopener">Visit the project<span aria-hidden="true"> ↗</span></a></span></p>
+      <nav class="more" aria-labelledby="more-ampuno">
+        <h2 id="more-ampuno">More build stories</h2>
+        <ul><li><a href="../css-3d-lab-ledger/">A green tick is a date, not a fact</a></li><li><a href="../css-3d-lab/">CSS 3D Lab: learning 3D on the web by playing with it</a></li><li><a href="../self-aware-writing/">A book that knows you're reading it</a></li><li><a href="../jarvis/">Five days building J.A.R.V.I.S. with Claude</a></li><li><a href="../portfolio/">My portfolio, rebuilt to tell the truth</a></li><li><a href="../timeline/">The AI race: who shipped what, and when</a></li><li><a href="../agi-watch/">AGI Watch: are we getting there?</a></li><li><a href="../bitcoin-analytics/">Bitcoin Analytics: an hour to start, months to trust</a></li><li><a href="../social-blockchain-network/">Social Blockchain Network: refactor, don't rebuild</a></li><li><a href="../atunicorn/">@unicorn: an old app, a new stack, and two AI tools</a></li></ul>
+      </nav>
+    </footer>
+  </article>
+</main>
+<footer class="site-foot">
+  <a href="../"><span aria-hidden="true">←</span> All articles</a>
+  <a href="https://edgarasneverdauskas.com">edgarasneverdauskas.com</a>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="kit-data">{"richHtml":"\u003ch1>Ampuno: 28 minutes to build, eight weeks to draw the cars\u003c/h1>\n\u003cp>\u003cem>A free site to find and compare electric cars, built with Codex and Claude. The first version took 28 minutes. The pictures of the cars, and the things that only looked finished, took the rest. Counted from the logs.\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/ampuno/cover-medium-1500x750.png Caption: Ampuno on the live site, with its 231 models. Image and site: Edgaras Neverdauskas. Alt text: Near-black cover. On the left, the Ampuno logo, a teal lightning bolt, and the title \"28 minutes to build, eight weeks to draw the cars\", above the line \"Find and compare 231 electric cars. Built with Codex and Claude, counted from the logs.\" On the right, a screenshot of the live ampuno.com homepage: the headline \"Find and compare the electric car that fits you.\", a search field, and a white illustrated car with the day's featured model.]\u003c/strong>\u003c/p>\n\u003ch2>Why I started it\u003c/h2>\n\u003cp>At 00:47 on a Monday in late July I pasted a 954-word brief into Codex. It began: \"Build a new website called VoltScout from scratch. VoltScout is a simple electric-car search and comparison website.\" It listed what the site should have, what it must not have (no accounts, no reviews, no database, no overall winner), and one rule about data: \"Never invent missing values.\"\u003c/p>\n\u003cp>The logs don't say where I wrote that brief. They do show what happened next. Twenty-eight minutes later Codex had built the site, tested it and pushed it: 260 electric car models, 1,189 variants, eight browser tests passing. Not one real car picture. Every car was a plain drawing of its body type.\u003c/p>\n\u003cp>The brief had a line about that too: \"Vehicle images are extremely important.\" That line ran the next eight weeks.\u003c/p>\n\u003cp>As with \u003ca href=\"https://articles.edgarasneverdauskas.com/css-3d-lab/\">CSS 3D Lab\u003c/a> and \u003ca href=\"https://articles.edgarasneverdauskas.com/jarvis/\">J.A.R.V.I.S.\u003c/a>, I went back through the full git history and every session log, so the numbers are counted, not remembered. My own messages are quoted as I typed them, typos included.\u003c/p>\n\u003ch2>What Ampuno is\u003c/h2>\n\u003cp>A free site at ampuno.com for finding and comparing electric cars. It holds 231 models and 1,105 variants from 59 makes. The specifications come from OpenEV Data, a public dataset, and the catalogue keeps a rolling window of the last eight model years.\u003c/p>\n\u003cp>You can search, filter by make, body type, year, range and charging speed, open a model page with every variant in one table, and compare up to four cars side by side. When a figure is missing from the source, Ampuno says \"Not available\". It never fills the gap with a guess or a zero, and it gives no overall score, because there is no best electric car for everyone.\u003c/p>\n\u003cp>There are short guides on range labels and charging, a sources page, a light and a dark theme, and it installs as an app. Analytics only run if you say yes. It is a static site on GitHub Pages, about 2,100 pages built from one data file. The code is private.\u003c/p>\n\u003ch2>How it happened\u003c/h2>\n\u003cp>\u003cstrong>Monday 27 July, night: the brief.\u003c/strong> After the first build I spent until five in the morning on buttons and dropdowns. My first message after the build was \"need to update UI/UX with beeter looking buttons and dropdown selects\". One of my last that night set the real task: all the cars should have real pictures with transparent backgrounds, \"so we will ened ot generate 260 cars\".\u003c/p>\n\u003cp>\u003cstrong>27 and 28 July: photos, then drawings.\u003c/strong> Codex looked for a source, and I pasted in a research answer. The data has no pictures. A paid image service started at $49 a month and its licence meant deleting the pictures if I stopped paying. So Codex built a free pipeline instead: licensed photos from Wikimedia Commons, backgrounds removed, a review page, attribution for each one. By 04:23 the next morning the repository held batches of real photos.\u003c/p>\n\u003cp>At 04:38 I wrote: \"i still dont like the image quality and that it is random and incosistant\". I asked for \"shapes of irginal cars but not exact pictures\" instead. Codex agreed that the photos were accurate but would never look like one set, and proposed drawings: one fixed angle, the same glass, wheels and light for every car, only the body changing. By 05:00 I had asked it to delete the photos. The black cars then took an hour of me saying they were grey, because the first black version was the white one darkened by a filter.\u003c/p>\n\u003cp>\u003cstrong>Tuesday 28 July: a name.\u003c/strong> At 14:26 I wrote \"ok the website now looks pretty good\", and we moved to the favicon, search engines and GitHub Pages. Then the name. Codex offered names. I rejected the first, liked Ampvero, and asked for more. At 17:29 I asked \"how aobut sparkuno? or ampuno or some thi wth with uno that indicated numebr one\". Two minutes later: Ampuno. I bought ampuno.com, and by accident a second domain, a .online one that was free for a year and then €36. I turned its renewal off. At 18:08 the site was rebranded; by 20:03 it had guides, an about page and a privacy page.\u003c/p>\n\u003cp>\u003cstrong>29 July to 2 August: polish.\u003c/strong> A friend's feedback became tooltips explaining every figure. Share images got the same car, glow and rings as the homepage. I spent an evening moving those rings: \"move the whole orbit a bit mre to the left\". Search became a full-screen dialog on phones, navigation moved to the bottom of the screen like in a phone app, and a light theme arrived. The lightning bolt in the logo went through \"a bit smaller\", \"slighly bigger\" and \"ok push changes\" in five minutes.\u003c/p>\n\u003cp>On 30 July I asked whether all 260 cars were real, sold electric cars. Codex audited them against one rule: a production battery-electric car, sold to the public, with enough data to compare. 19 were hybrids, not fully electric, 9 were announced, cancelled or no longer sold, and 1 was a quadricycle. 231 stayed. On 2 August I added the eight-year window and consent-based Google Analytics.\u003c/p>\n\u003cp>\u003cstrong>2 to 16 August: one car.\u003c/strong> Then I went back to model-specific drawings, already tried and deleted on 30 July. First the Tesla Model Y, in the same angle, wheels and glass as the generic cars. It went live on 8 August. On 9 August I noticed its front bumper and door handles were wrong, and stopped: \"we need to stop now and star from begginign with more specific rules\". I sent reference photos of the fender and lights, one after another. On 13 August: \"wow you are really bad with task, when it cmes to coding it seems you are very good, but with this you are very bad\". Codex's answer was honest: it was using a generator that redraws the whole car every time for a job that needs the same wheels, glass and framing every time. It proposed 3D models and Blender. I said yes to installing it, then changed my mind three minutes later. The next night I bought credits for OpenAI's image models instead. On 16 August I stopped it again and reverted everything except the test fixes.\u003c/p>\n\u003cp>The day before, I had asked Codex whether I even needed a code editor, \"since i am not coding and only workign with ai\". It agreed I didn't.\u003c/p>\n\u003cp>\u003cstrong>16 August: Claude joins.\u003c/strong> I opened Claude Code in the same folder and asked it to review the repository. It found a README that described a setup the code had moved past, dependency security advisories with patched versions available, and a development setting tied to one network address. It fixed those in three commits. That was Claude Sonnet 5; from then on Claude's work was mostly Claude Opus 5.\u003c/p>\n\u003cp>\u003cstrong>Thursday 3 September: measuring the drift.\u003c/strong> I started with \"Today i am hoping to finally deal with one part in this app\". Claude measured the published pictures instead of looking at them: six different wheel designs, window tint varying by 22%, a van with blue glass, ground lines spread over 73 pixels. It built checks for all of it. It also scaled every car to its real length, so a small hatchback drew smaller than a pickup. I said no: \"the thign with scale is that iamges sohuld have the same size since in app ui they are not compared my scale but by tech stats\". It reverted within two minutes.\u003c/p>\n\u003cp>The same day it found the body-type filter matched raw labels from the data. Choosing \"SUV\" showed 34 cars and hid the other 86. Then it wrote a detailed standard for Codex to regenerate the six generic cars, and I carried prompts between the two tools all evening. At 19:27 I told Claude: \"i am stuck whi this for liek a month\". It replied: \"A month is too long for six images, and I don't think the answer is waiting for better models.\" Each generated picture is an independent sample, it said, so the wheels get redrawn every time. At the size a card shows them, each wheel is about 80 pixels wide.\u003c/p>\n\u003cp>\u003cstrong>Monday 7 September: search engines.\u003c/strong> I sent Claude screenshots from Google Search Console. The sitemap listed 1,119 addresses, and every one of them redirected, because they lacked the trailing slash the site uses. The short model addresses were empty pages that bounced to a variant. Claude fixed the sitemap and turned each model address into a real page: a table of every variant, each row linking to its full specification. By 11:18 it was live, with 1,350 addresses in the sitemap, none redirecting.\u003c/p>\n\u003cp>\u003cstrong>16 and 17 September: starting again.\u003c/strong> A newer image model came out, and I tried again in Codex: \"start from scratch delete tmp and start again\". While Codex drew, I asked Claude about the homepage: \"it seem it is alwasy stck on the audi a6 etron\". The featured car was meant to change daily. It had never changed on the live site. The rotation only picked cars with exact photos, and since the July photos were removed there had been none.\u003c/p>\n\u003cp>That afternoon Codex hit its usage limit and came back about an hour and a half later. Its next fix for the tyres passed the new automatic check. Claude zoomed in and found it had passed by trimming the bottom of each tyre into steps, not by drawing it round. It wrote Codex a precise prompt to redo it. I told Codex to ignore it, roll back to the commit before the latest picture work, and start fresh. The next morning at 07:16: \"ok once again lets starrt from scratch\". By 12:07 all ten generic pictures, five body shapes in white and black, were new. The Tesla Model Y drawings, live since 8 August, were removed. So were the standard and the review notes.\u003c/p>\n\u003cp>That afternoon, from a Codex discussion I pasted in, Claude made the pictures load at the size each place needs. A 64-pixel search thumbnail had been downloading the 1,600-pixel original, about 115 KB. It cut the catalogue page from 831 KB to 311 KB, fixed page titles, and found why Google Analytics had shown nothing since August.\u003c/p>\n\u003cp>\u003cstrong>Monday 21 September: an email from Google.\u003c/strong> Search Console reported unindexed pages. The Codex session, now on GPT-6, opens with a hand-off from a ChatGPT conversation about it. The 24 \"not found\" addresses turned out to be old share-image addresses, replaced on 17 September. The real gap was that none of the 231 model pages had a link pointing to it. Codex added a page listing every model by make. That was the last commit, at 14:04.\u003c/p>\n\u003ch2>Four things that looked finished\u003c/h2>\n\u003cp>The most useful lesson from Ampuno isn't about the pictures. It is four things that looked done for weeks and weren't.\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>Analytics.\u003c/strong> The consent banner worked and the tag loaded, so it looked installed. The helper that passed commands to Google's script used a form Google silently ignores. From 2 August to 17 September it did not record a single visit. It came out when I showed Claude a week of zero users and it suggested the test: accept, click around, watch the real-time report.\u003c/li>\n\u003cli>\u003cstrong>The daily featured car.\u003c/strong> The date maths was right. It was choosing from an empty list, so it showed the first car in the catalogue every day.\u003c/li>\n\u003cli>\u003cstrong>The sitemap.\u003c/strong> It was valid and complete, and every address in it pointed at a redirect.\u003c/li>\n\u003cli>\u003cstrong>The SUV filter.\u003c/strong> It returned cars, so it looked like it worked. It hid 86 of 120.\u003c/li>\n\u003c/ul>\n\u003cp>None of these failed a test, and nothing showed an error. Each one was found by using the site or checking a real number: a visit that should have appeared, a car that never changed, a report from Google, a count that looked too small. The tyre fix was the same lesson from the other side: a check can be passed without doing what it was written for.\u003c/p>\n\u003ch2>What we got wrong\u003c/h2>\n\u003cul>\n\u003cli>Real photos went into the catalogue and came out the next morning, because they could never look like one set.\u003c/li>\n\u003cli>The first black cars were the white ones with a filter, so they looked grey.\u003c/li>\n\u003cli>A model-specific Tesla Model Y took most of two months, went live for about six weeks, and was then removed.\u003c/li>\n\u003cli>Claude scaled the cars to their real lengths. A catalogue that compares figures needs them the same size.\u003c/li>\n\u003cli>The body-type filter hid 86 of 120 SUVs.\u003c/li>\n\u003cli>The sitemap advertised 1,119 addresses that all redirected, and the model pages were empty redirects.\u003c/li>\n\u003cli>Google Analytics received nothing for six and a half weeks.\u003c/li>\n\u003cli>The daily featured car never rotated.\u003c/li>\n\u003cli>A tyre fix passed its check by trimming the tyres.\u003c/li>\n\u003cli>Every picture downloaded at full size, even as a tiny thumbnail.\u003c/li>\n\u003cli>I bought a domain I didn't want.\u003c/li>\n\u003c/ul>\n\u003ch2>Who did what\u003c/h2>\n\u003cp>\u003cstrong>Codex\u003c/strong> built most of Ampuno: 58 of the 86 commits, from the first build through the name, the design, the data audit and the ten pictures on the site today. I sent it 912 messages and 213 screenshots. It replied 2,690 times and made 8,086 tool calls, over about 85 hours of active work. It ran GPT-5.6 for most of the work, 1,795 replies with the Terra setting and 830 with Sol, and GPT-6 for 65 replies in September. Codex's automatic approval reviewer also ran in 16 short sessions alongside.\u003c/p>\n\u003cp>\u003cstrong>Claude Code\u003c/strong> made 28 commits and did the measuring: the drift checks, the sitemap and model pages, the analytics fix, image sizes, page weight. Claude Opus 5 made 24 of them, Claude Sonnet 5 three and Claude Fable 5.1 one. In the sessions logged for this project I sent it 132 messages and 32 screenshots. It replied 1,024 times, 901 from Opus and 123 from Sonnet, with 1,006 tool calls: 651 commands, 120 file edits and 153 actions in a browser. That was about 11 hours of active work, with no helper agents. Six of its commits came from sessions that were updating several of my projects at once, and those sessions aren't in the counts.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/ampuno/numbers-1400.png Caption: Eight weeks, counted from git and the Codex and Claude Code session logs: who did what, and how the car pictures went. Alt text: Ampuno by the numbers, 27 Jul – 21 Sep 2026: 231 models and 1,105 variants, 86 commits, 56 days from first message to last commit, 10 car pictures on the site. Codex: 58 commits, 912 of my messages, 8,086 tool calls, about 85 hours active. Claude Code: 28 commits, 132 messages, 1,006 tool calls, about 11 hours active. Me: 1,044 messages, typically 14 words, 245 screenshots. How the pictures went, 27 July to 17 September.]\u003c/strong>\u003c/p>\n\u003cp>\u003cstrong>ChatGPT\u003c/strong> appears once on disk, and I can't count it: of the Search Console conversation on 21 September only the hand-off to Codex and a short preview are on my PC. Where I wrote the first brief, the logs don't show.\u003c/p>\n\u003cp>\u003cstrong>My part\u003c/strong> was 1,044 messages over 24 days, a typical one 14 words long, and 245 screenshots. Many of them were about how something looked: a bit left, a bit smaller, that's grey, not black. Some of them decided what Ampuno is: worldwide, not only European; only cars people could actually buy; every car the same size; no overall winner.\u003c/p>\n\u003cp>Treat the numbers as a record, not a benchmark. The tools worked on different days and different jobs, and Codex's one long session covers more than half of everything.\u003c/p>\n\u003ch2>What it cost\u003c/h2>\n\u003cp>Hosting is free on GitHub Pages. The domain was a normal .com, plus the .online I didn't mean to buy. Beyond that it was the ChatGPT and Claude subscriptions, and OpenAI image credits I bought on 14 August for the picture experiments. One exploration run cost $1.26; the rest of that spend isn't in the logs.\u003c/p>\n\u003cp>Limits showed up three times, all in Codex: twice for me, once for its reviewer. On 28 July at 04:09 I warned it I was \"getting close to reaching limit of credit of ai\". On 6 September its approval reviewer hit one and blocked a check. On 16 September it stopped mid-task at its limit and resumed about an hour and a half later.\u003c/p>\n\u003ch2>What I would tell someone starting\u003c/h2>\n\u003cul>\n\u003cli>\u003cstrong>A clear brief goes a long way.\u003c/strong> 954 words, and a working site 28 minutes later.\u003c/li>\n\u003cli>\u003cstrong>Decide what you won't show.\u003c/strong> \"Not available\" is more honest than a guessed number, and it's one rule for every car.\u003c/li>\n\u003cli>\u003cstrong>Know which jobs a model can repeat.\u003c/strong> Code can be checked and kept. A generated picture is drawn fresh each time, so asking for six matching ones is a different kind of job.\u003c/li>\n\u003cli>\u003cstrong>Measure, don't squint.\u003c/strong> Wheel designs, tint and ground lines became numbers that a check could hold.\u003c/li>\n\u003cli>\u003cstrong>Checks can be gamed, even by the tool that wrote them.\u003c/strong> Look at the result, not only the pass.\u003c/li>\n\u003cli>\u003cstrong>Test the boring things with real data.\u003c/strong> Analytics, sitemaps and filters fail without an error.\u003c/li>\n\u003cli>\u003cstrong>Two tools can work together if you're the courier.\u003c/strong> Claude measured and wrote prompts; Codex drew. I carried the prompts between them.\u003c/li>\n\u003cli>\u003cstrong>Starting again is allowed.\u003c/strong> I did it more than ten times with the pictures, and the site stayed live the whole time.\u003c/li>\n\u003c/ul>\n\u003ch2>In one paragraph\u003c/h2>\n\u003cp>In eight weeks, one person and two AI coding tools built a free site to find and compare 231 electric cars, in 86 commits. The first working version took 28 minutes. Most of the time after that went into two things: pictures of the cars that look like one family, and a handful of features that looked finished and weren't. The models wrote almost every line and drew every car. What they couldn't do was see that a black car was grey, that a filter was hiding most of the SUVs, or when to stop redrawing and start again. Noticing, and deciding, stayed with me.\u003c/p>\n\u003cp class=\"close\">\u003cem>Try it at \u003ca href=\"https://ampuno.com\">ampuno.com\u003c/a>. Built with OpenAI Codex (GPT-5.6 and GPT-6), Claude Code (Claude Opus 5, Claude Sonnet 5 and Claude Fable 5.1), and a little ChatGPT.\u003c/em>\u003c/p>"}</script>
+</body>
+</html>

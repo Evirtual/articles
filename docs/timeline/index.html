@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en" data-page="index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI race: who shipped what, and when</title>
+<meta name="description" content="A comparative timeline of the AI race: the first version built in an evening with Claude, finished over the next days, and checked by a second model. Counted from the logs.">
+<meta name="author" content="Edgaras Neverdauskas">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="canonical" href="https://articles.edgarasneverdauskas.com/timeline/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://articles.edgarasneverdauskas.com/timeline/">
+<meta property="og:site_name" content="Articles — Edgaras Neverdauskas">
+<meta property="og:title" content="The AI race: who shipped what, and when">
+<meta property="og:description" content="A comparative timeline of the AI race: the first version built in an evening with Claude, finished over the next days, and checked by a second model. Counted from the logs.">
+<meta property="og:image" content="https://articles.edgarasneverdauskas.com/timeline/cover-medium-1500x750.png">
+<meta property="og:image:alt" content="Near-black cover with faint quarter lines. On the left, the Timeline mark, four coloured bars against one axis, and the title &quot;Who shipped what, and when&quot;, above the line &quot;The AI race on one axis, built with Claude and counted from the logs.&quot; On the right, a screenshot of the live site: the heading &quot;The AI race&quot;, the switch to AGI Watch, and the race grid: eight organisations as rows, each quarter a column of event cards from 2024 into 2025, such as GPT-4o, Claude 3.5 Sonnet and GPT-5.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The AI race: who shipped what, and when">
+<meta name="twitter:description" content="A comparative timeline of the AI race: the first version built in an evening with Claude, finished over the next days, and checked by a second model. Counted from the logs.">
+<meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/timeline/cover-medium-1500x750.png">
+<meta name="twitter:image:alt" content="Near-black cover with faint quarter lines. On the left, the Timeline mark, four coloured bars against one axis, and the title &quot;Who shipped what, and when&quot;, above the line &quot;The AI race on one axis, built with Claude and counted from the logs.&quot; On the right, a screenshot of the live site: the heading &quot;The AI race&quot;, the switch to AGI Watch, and the race grid: eight organisations as rows, each quarter a column of event cards from 2024 into 2025, such as GPT-4o, Claude 3.5 Sonnet and GPT-5.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
+<script data-goatcounter="https://articles.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the article</a>
+<header class="site-head">
+  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+</header>
+<main class="layout" id="main">
+  <aside class="kit" aria-label="Share kit">
+    <details class="kit-box" id="kit">
+      <summary><span class="kit-sum"><span class="kit-title">Share kit</span><span class="kit-hint">Copy the story, images and posts</span></span></summary>
+      <div class="kit-body">
+        <section aria-labelledby="kit-story">
+          <h2 id="kit-story">Story</h2>
+          <div class="btn-grid">
+            <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
+            <button type="button" class="btn" data-copy="story-title">Copy title</button>
+            <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
+            <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
+          </div>
+          <p class="kit-note">Rich text keeps the headings, bold, lists and links when pasted into an editor such as Medium or LinkedIn. Images aren’t included: the copy has a bold line where each one goes, with its address, caption and alt text.</p>
+          <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown"># The AI race: who shipped what, and when
+
+*A comparative timeline of the AI race: the first version built in an evening with Claude, finished over the next days, and checked by a second model. Counted from the logs.*
+
+## Why I built it
+
+On the afternoon of 1 September I was cleaning up my portfolio with Claude, deciding which repositories to make public. One of them was an old timeline from 2021: a page of retail and consumer brand histories, one brand at a time. I kept it, and noted what I wanted instead: a new version on its own subdomain, "new project not the refactor", with the old one only as inspiration, and "amybe isntead amazon or google we will go with AI companies".
+
+At 19:35 that evening I came back to it. Claude read the old repository first. It had one commit from May 2021 and five files: jQuery, 12 brands, 163 events from 1917 to 2017. Every logo was broken, because the folder the data pointed at had never been committed.
+
+So the new one started from a question, not from the old code. I asked Claude how it imagined the product. Its answer was the one the product still runs on. A chronology of one company is a Wikipedia article. The question nobody can answer in one view is the comparative one: when GPT-4 shipped, what did Anthropic have in market, and how long did the others take to respond?
+
+As with [CSS 3D Lab](https://articles.edgarasneverdauskas.com/css-3d-lab/) and [J.A.R.V.I.S.](https://articles.edgarasneverdauskas.com/jarvis/), I went back through the session logs and the full git history, so the numbers are counted, not remembered. My messages are quoted as I typed them, typos included.
+
+## What Timeline is
+
+A free website at timeline.edgarasneverdauskas.com with two views of the AI race.
+
+The first is the race itself. Eight organisations run as rows against one shared axis of quarters: OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral AI, xAI, Nvidia and Hugging Face. Read down a column and you see who was shipping in the same three months. It holds 53 events, from CUDA in June 2007 to GPT-6 Astra on 3 September 2026. Every event is dated to the day and links to a first-party source: the organisation's own page, or for two research papers the authors' own posting. Each has a weight from one to three, so the default view shows the turning points and a control reveals the rest. Runs of empty quarters fold into one hatched column that says how many years it swallowed. You pan and zoom it like a video editor. On a phone it becomes one organisation at a time, running down the page.
+
+The second is AGI Watch: twenty moments from 1950 to now that changed the answer to "are we getting there?", and the claims people made along the way.
+
+It is built with Next.js, React, TypeScript and Tailwind, with zod checking the data, Vitest and Playwright testing it, and GitHub Pages serving it. It installs as an app. The code is open source under AGPL-3.0.
+
+## How it happened
+
+**Tuesday 19:35: the plan.** In fifteen minutes of messages we settled the name, freed it by renaming the old repository, and agreed the scope. Claude proposed three views over one dataset: the race, a view of who shipped each capability first, and one merged feed. It asked whether the race alone was the product. I said it was: "yea race with time line alrasy the product we dont nee dto overcoplicated". At 19:50 I told it to go all in and not stop until it was ready for testing, "i am now off for some time".
+
+**Tuesday 19:53: the data first.** Claude warned that its own knowledge ran to May 2026, so it checked the recent years against primary sources. It wrote a script that fetches every source link, and the script caught two dead ones before anything shipped. The first commit landed at 20:33: 57 events, 48 sources, all eight organisations, 58 minutes after my first message. Two minutes later it was live on GitHub's own address, with every check in the deploy green.
+
+**Tuesday 20:35: on its side.** I opened it and wrote: "i checke ui/ux it doesnt seems friendly for user". Claude had made each organisation a column with time running down the page, so events could carry sentences and a phone would only scroll one way. I asked whether the organisations should be rows and the years run across. Claude agreed and gave the reason: eight columns meant five or six on screen, and one on a phone, and you cannot compare what you cannot see together. Seven minutes after my message the grid was on its side. The same commit fixed a quieter bug: no event had been given the lowest weight, so two settings of the detail control showed the same 57 events.
+
+**Tuesday 20:42 to 21:06: making it usable.** A mouse wheel did nothing to a sideways grid, so the only way across nineteen years was a thin scrollbar. I asked for scroll and pinch zoom "like it would be music/video editor like". Claude argued against a library and wrote its own: the wheel pans, Ctrl and the wheel zoom around the pointer, you can drag from anywhere, and the keyboard works too. Then I asked what the hatched columns were, because "i didnt uderstand". They now carry a label, and a short key sits above the grid. I also suggested the phone should show one company at a time, and it does. At 21:05 I asked for a hint line under the grid to go: it repeated the key word for word.
+
+**Tuesday 22:59 to 23:36: the look.** For half an hour I sent small remarks and Claude committed each one. The pinned names needed an edge, because cards slid under them and seemed to start inside a company's name. The edge needed its own colour, because it matched the year lines. Each row got a faint wash of its organisation's colour, which in dark mode turned to what the commit calls "mud" until it was made theme-aware. Then a shadow on one side only, a gutter at each end, names centred in their rows, and cards kept off the column lines. That was nine commits in 32 minutes. At 23:36 I had added the DNS record, and the site was live on its own address.
+
+**Wednesday: the icon, and the empty boxes.** After midnight Claude drew the mark: four coloured bars against one axis. I asked for the browser icon without its dark plate, which only an installed app icon needs, and for the mark to be exactly square. In the morning I installed it on my phone and the icon was cut off. Android crops these icons and only promises the centre 80% survives, so the mark now sits smaller inside the plate. Then I zoomed all the way out and every card was empty. Below a certain width titles were hidden on purpose, leaving the view the product exists for full of blank boxes. At that moment Claude's session limit ran out, for more than four hours. At 15:16 the titles scaled down with the zoom instead of disappearing.
+
+**Friday 4 September, morning: whose word counts.** OpenAI had released GPT-6 Astra the day before, and I asked whether it could go in. Claude added it, and when I asked if the details were correct, it found its own mistake in the model's input types. Then I made a rule: only entries the companies officially published, each linking to their own page. Claude audited all 58 events and found 28 sourced to Wikipedia or to a news index whose contents change. It moved 23 of them to the organisations' own pages and asked about the other five. They were things with no first-party page we could link, such as an acquisition and a funding round. Claude suggested keeping four of them on Wikipedia; I said remove them. 53 events were left, and the change was merged at 11:55.
+
+**Friday 12:49: AGI Watch.** Earlier, after hearing that with Astra OpenAI said we were now in the AGI era, I had asked a Claude chat what tool we could build to watch AGI arrive, from the beginning of AI. It made a one-page prototype. I brought it into Claude Code, which put it in its own public repository ten minutes later. At Claude's suggestion it went from 29 entries to 20, keeping only the moments that changed the answer and leaving releases to the race view.
+
+Then I asked whether it should have been part of Timeline all along. Claude argued, about 60/40, that it should stay separate: nine of its twenty entries belong to no company, and a page about long time horizons gained something from being one file with no build. I wrote: "i feel that AGI watch is like part of timline so i woudl nto need anoterh subdomain unless you have stgrong argument fro this". Its reply was "No, I don't have a stronger argument". Sixteen minutes later AGI Watch was a second view inside Timeline, with its own data file and rules, waiting for my review. It was merged at 14:21. Claude suggested archiving the standalone version three times; I chose to delete it.
+
+## Checking the checker
+
+Timeline's data is the product, so the most useful work on the last day was not building. It was checking.
+
+When I asked Claude to make sure AGI Watch said only what the record supports, it found four wrong claims in the twenty entries. Two had come over from the Claude chat's prototype. The other two Claude Code had added itself while reworking the page: the bar-exam figure, and GPT-3's date. The worst was about GPT-4 and the bar exam. The entry quoted a re-analysis of GPT-4's famous 90th-percentile score and got its figure wrong. As the commit put it, on a view whose subject is claims being read carelessly, that is the worst kind of error to ship. DeepSeek R1's release was mixed up with the market selloff a week later. ChatGPT's famous "100 million users in two months" turned out to be a bank's estimate, not OpenAI's, and no link to it got past the repository's link checker, so the number came out. GPT-3 was dated to its API launch while its entry was about the paper. After I questioned it, Claude had also checked the headline entry and found it overstated what OpenAI's president said: his sign-off was stronger than his answer when he was asked directly.
+
+Then Claude hit its limit, and I opened Codex. I asked it to check the data, so I would not be relying on one tool. Codex read the page Claude had already corrected and found three more problems. A phrase in the Astra entry could not be found in the sources it checked. The bar-exam figure was more precise than the paper allows, because the paper gives two different numbers. And the chart counted 2026 as a full year in September. Codex fixed all three and pushed at 15:25.
+
+It was not flawless either. It first reported an entry with no source as a mistake. Then it read the repository's rules, which allow exactly that one exception, a multi-year AI winter with no single event to cite, and withdrew the point.
+
+The lesson I took: a model checking its own claims finds real problems, and a second model finds different ones. Neither makes a claim true. What made the checking work was that every claim had a source link a person could open, and a script that proves each link still resolves.
+
+## What we got wrong
+
+- The first layout put each organisation in a column, so you could never see them all at once. It took me one look.
+- No event had the lowest weight, so two settings of the detail control showed the same 57 events.
+- A mouse wheel did nothing to the grid. The only way across was the scrollbar.
+- Dragging refused to start on cards, and the grid is mostly cards. Then the drag handler fought the phone's own scrolling.
+- The tests that set the scroll position raced the grid's own opening scroll, so they passed locally and failed on GitHub.
+- The hatched gap columns were a visual language nobody had explained, me included.
+- On a 360px phone the toolbar was 390px wide.
+- Row colours turned muddy in dark mode, and the browser icon wore a dark plate it didn't need.
+- The installed app icon was cut off on Android.
+- Zoomed right out, every card was an empty box.
+- 28 of 58 events cited Wikipedia or a changing index page. Five had no first-party source at all.
+- AGI Watch went live with four wrong claims (two from the prototype, two added by Claude Code), an overstated headline quote, and a label that overlapped the paragraph above it at every screen width.
+- Claude's first attempt to delete the old AGI Watch folder emptied it and then failed. I stopped it and asked it to make sure it had the right folder. It had; Timeline was untouched.
+
+Almost all of these were found the same way: I used the site and said what looked wrong, or asked for a check. Claude's own tests and measurements caught the rest.
+
+## Who did what
+
+**Claude Code** did the building, and every reply in the counted sessions came from Claude Opus 5. It replied 657 times and made 636 tool calls: 322 commands, 125 file edits and 107 actions in a browser, plus 33 web searches. That was about 5 hours 45 minutes of active work, with no helper agents. In git, 29 of the 30 commits came from it: 28 it wrote, plus the merge of AGI Watch, made by a command it ran.
+
+**Codex** had under an hour on the Friday afternoon, on GPT-5.6. I sent it 28 messages, and it replied 40 times with 43 tool calls in about 50 minutes. Most of that went on writing; it also rechecked the AGI Watch data and made one commit with three fixes.
+
+![By the numbers](https://articles.edgarasneverdauskas.com/timeline/numbers-1400.png)
+
+**A Claude chat** made the first AGI Watch prototype. That conversation is not in the logs on my PC, so I can't count it. What it left behind was a page and a README, which Claude Code rebuilt from what I pasted.
+
+**My part** was deciding. I sent 96 messages, 68 to Claude and 28 to Codex, and a typical one was about 25 words. 25 of them went in while Claude was still working, and I sent 19 screenshots. I decided what the product was, and I kept cutting what it wasn't. The biggest calls were mine: turn the grid on its side, make it move like an editor, one company at a time on a phone, only first-party sources, AGI Watch inside Timeline. Claude argued against the last one, and said so when it had no better argument.
+
+The last three commits, on 12 September, came from sessions in another project that these counts don't include: a coffee link, a README header and the AGPL licence. One of them was made by Claude Fable 5.1.
+
+Treat the numbers as a record, not a benchmark. The two tools worked on different days, on different jobs.
+
+## What it cost
+
+The site costs nothing to run. GitHub Pages hosts it, and the address is a subdomain of a domain I already had.
+
+The cost was the subscriptions, and the limits shaped the week. Claude's session limit hit three times during the Timeline work (and once more during portfolio work, not counted): at 23:38 on the first night, while it was adding Timeline to my portfolio; at 10:53 the next morning, in the middle of the zoom fix, which then waited more than four hours; and at 14:43 on Friday, which is when I opened Codex.
+
+## What I would tell someone starting
+
+- **Start from the question, not the old code.** The 2021 version was useful as a memory of what I liked. The new one began with what it should answer.
+- **Look at it within the hour.** The layout that defeated the product shipped with every test green. Seven minutes after I looked, it was fixed.
+- **When you don't understand your own screen, nobody will.** My confusion about the hatched columns became the key above the grid.
+- **Make the data prove itself.** A schema that requires a source on every event, and a script that fetches every source, caught dead links on day one.
+- **Decide whose word counts.** "Only what the company published" turned out to be a rule the data could follow, and it removed five events with no first-party page to link.
+- **Ask a second model, then check both.** Claude found four problems in AGI Watch, two of them its own. Codex found three more, and one false alarm of its own.
+- **Push back, and let it push back.** Claude argued against merging AGI Watch. When I disagreed, it said it had no stronger argument, and we merged.
+
+## In one paragraph
+
+In one evening, one person and Claude went from an old jQuery page to a comparative timeline of the AI race, live on its own address, in 16 commits. Three days later it had a second view, AGI Watch, and every event pointed at a first-party source. Claude wrote almost every line, and Codex checked the facts behind it. The shape came from short human calls: turn it on its side, let it zoom like an editor, I don't understand this, only official sources, keep it in one place. The models made building fast. Deciding what was true, and what was worth showing, stayed with me.
+
+*Try it at [timeline.edgarasneverdauskas.com](https://timeline.edgarasneverdauskas.com). The code is open source under AGPL-3.0 at [github.com/Evirtual/timeline](https://github.com/Evirtual/timeline). Built with Claude Code and Claude Opus 5, with an afternoon of OpenAI Codex on GPT-5.6.*</textarea></details>
+        </section>
+        <section aria-labelledby="kit-images">
+          <h2 id="kit-images">Images (3)</h2>
+          <ul class="img-list">
+        <li class="img-row">
+          <img src="cover-medium-1500x750.png" alt="" width="1500" height="750" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open medium cover full size">
+          <p class="img-name">Medium cover<span>cover-medium-1500x750.png · 1500&nbsp;×&nbsp;750</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+              <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">Timeline on the live site: eight organisations as rows, one quarter per column. Image and site: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 490 characters</p><p id="k-alt-cover-medium">Near-black cover with faint quarter lines. On the left, the Timeline mark, four coloured bars against one axis, and the title "Who shipped what, and when", above the line "The AI race on one axis, built with Claude and counted from the logs." On the right, a screenshot of the live site: the heading "The AI race", the switch to AGI Watch, and the race grid: eight organisations as rows, each quarter a column of event cards from 2024 into 2025, such as GPT-4o, Claude 3.5 Sonnet and GPT-5.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="cover-linkedin-1920x1080.png" alt="" width="1920" height="1080" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open linkedin cover full size">
+          <p class="img-name">LinkedIn cover<span>cover-linkedin-1920x1080.png · 1920&nbsp;×&nbsp;1080</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-linkedin" aria-label="Copy caption, linkedin cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-linkedin" aria-label="Copy alt text, linkedin cover">Copy alt</button>
+              <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">Timeline on the live site: eight organisations as rows, one quarter per column. Image and site: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 490 characters</p><p id="k-alt-cover-linkedin">Near-black cover with faint quarter lines. On the left, the Timeline mark, four coloured bars against one axis, and the title "Who shipped what, and when", above the line "The AI race on one axis, built with Claude and counted from the logs." On the right, a screenshot of the live site: the heading "The AI race", the switch to AGI Watch, and the race grid: eight organisations as rows, each quarter a column of event cards from 2024 into 2025, such as GPT-4o, Claude 3.5 Sonnet and GPT-5.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="numbers-1400.png" alt="" width="1400" height="1913" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open numbers card full size">
+          <p class="img-name">Numbers card<span>numbers-1400.png · 1400&nbsp;×&nbsp;1913</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+              <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-numbers">Four days, counted from git and the session logs: Claude Code, Codex and me, and how it went.</p>
+              <p class="lbl">Alt text · 493 characters</p><p id="k-alt-numbers">Timeline by the numbers, 1 – 4 Sep 2026: 30 commits, +5,869 / −622 lines excluding the npm lockfile and licence text; 58 min from first message to first commit; 7 min from "not friendly" to the grid turned on its side; on AGI Watch's first day, Claude's fact-check fixed 4 claims and Codex's fixed 3 more. Claude Code, Opus 5: 657 replies, 636 tool calls, about 5 h 45 min active. Codex, GPT-5.6: 28 messages, 43 tool calls, 1 commit. Me: 96 messages, typically about 25 words, 19 screenshots.</p>
+            </details>
+          </div>
+        </li>
+          </ul>
+        </section>
+        <section aria-labelledby="kit-share">
+          <h2 id="kit-share">Posts (3)</h2>
+        <div class="share">
+          <div class="share-head">
+            <h3>LinkedIn post</h3>
+            <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
+          </div>
+          <p class="share-meta">1,934 characters</p>
+          <pre id="share-linkedin" tabindex="0">When GPT-4 shipped, what did Anthropic have in market? On 1 September I set out to rebuild an old timeline of mine around AI companies. When I asked Claude how it saw the product, that was the question it put to me, so that is what we built.
+
+Timeline puts the AI race on a single axis: eight organisations as rows, one quarter per column. Read down a column and you see who was shipping in the same three months. Every event links to the page the company itself published about it.
+
+I built it with Claude, and afterwards I went through the session logs and git history to count who did what. Claude Opus 5 replied 657 times and made 636 tool calls. Codex, on GPT-5.6, had one afternoon. I sent 96 messages. A typical one was about 25 words.
+
+So what did those 25 words do?
+
+→ "i checke ui/ux it doesnt seems friendly for user". The first version gave every company a column, so you could only see five or six at once. Seven minutes later the grid was on its side.
+
+→ Only what the companies officially published. 28 of 58 events cited Wikipedia or an index page that keeps changing. 23 moved to the companies' own pages, and five with no first-party page to link came out.
+
+→ AGI Watch belongs inside Timeline. Claude argued for keeping it separate. When I pushed back, it said it had no stronger argument, and sixteen minutes later it was a second view.
+
+→ Check the data with more than one tool. Claude's fact-check found four wrong claims in the AGI Watch entries: two from the first prototype, two of its own. Codex, checking after it, found three more.
+
+The models wrote almost every line, and checked each other's facts. What counts as a source, and what is worth showing, stayed with me.
+
+If you're building a product with AI and the building is fast but the product keeps drifting, feel free to DM me. I'm open to consulting and product/engineering advisory work.
+
+I wrote it all up, mistakes included, in the article below.</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>Facebook post</h3>
+            <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
+          </div>
+          <p class="share-meta">938 characters</p>
+          <pre id="share-facebook" tabindex="0">I made a timeline of the AI race 🏁
+
+Ever wondered what Google or Anthropic had out at the moment ChatGPT or GPT-4 arrived? Timeline puts the big AI companies side by side, one row each, on one shared calendar. Look straight down any column and you see who released what in the same three months.
+
+You can drag it, scroll it and zoom in and out like a video editor. On a phone it shows one company at a time. Every entry links to the company's own announcement, so you can check it yourself.
+
+There's also a second page, AGI Watch: the moments since 1950 that changed the answer to "are we getting close to AGI?", and the big claims people made along the way.
+
+It's free, with no sign-up and no ads. I built it together with an AI assistant, Claude: I said what I wanted and what looked wrong, it wrote the code, and a second AI helped check the facts.
+
+Have a look and tell me what surprised you 👇
+https://timeline.edgarasneverdauskas.com</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>X post</h3>
+            <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
+          </div>
+          <p class="share-meta">369 characters</p>
+          <pre id="share-x" tabindex="0">I built Timeline's first version with Claude in an evening: the AI race on one axis, eight organisations as rows, a quarter per column, each event linked to its company's page. Then Codex checked Claude's facts and found three more fixes.
+
+https://timeline.edgarasneverdauskas.com
+
+Who did what, counted from the logs: https://articles.edgarasneverdauskas.com/timeline/</pre>
+        </div>
+        </section>
+      </div>
+    </details>
+  </aside>
+  <article class="story" id="story" aria-labelledby="story-title" tabindex="-1">
+    <header class="story-head">
+      <p class="kicker">30 commits · 8 organisations</p>
+      <h1 id="story-title">The AI race: who shipped what, and when</h1>
+      <p class="dek" id="story-dek">A comparative timeline of the AI race: the first version built in an evening with Claude, finished over the next days, and checked by a second model. Counted from the logs.</p>
+      <p class="byline"><span>Edgaras Neverdauskas</span><span>13 min read</span><span>3,000 words</span></p>
+      <nav class="also" aria-label="This story elsewhere">
+        
+        <p><span class="also-label">Project</span><a href="https://timeline.edgarasneverdauskas.com" rel="noopener">timeline.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></p>
+      </nav>
+    </header>
+    <figure class="fig fig-cover" id="fig-cover-medium">
+  <div class="frame"><img src="cover-medium-1500x750.png" alt="Near-black cover with faint quarter lines. On the left, the Timeline mark, four coloured bars against one axis, and the title &quot;Who shipped what, and when&quot;, above the line &quot;The AI race on one axis, built with Claude and counted from the logs.&quot; On the right, a screenshot of the live site: the heading &quot;The AI race&quot;, the switch to AGI Watch, and the race grid: eight organisations as rows, each quarter a column of event cards from 2024 into 2025, such as GPT-4o, Claude 3.5 Sonnet and GPT-5." width="1500" height="750" decoding="async" tabindex="0" role="button" aria-label="Open this picture" fetchpriority="high"></div>
+  <figcaption>
+    <p class="cap" id="cap-cover-medium">Timeline on the live site: eight organisations as rows, one quarter per column. Image and site: Edgaras Neverdauskas.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+      <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 490 characters</span></summary><p id="alt-cover-medium">Near-black cover with faint quarter lines. On the left, the Timeline mark, four coloured bars against one axis, and the title "Who shipped what, and when", above the line "The AI race on one axis, built with Claude and counted from the logs." On the right, a screenshot of the live site: the heading "The AI race", the switch to AGI Watch, and the race grid: eight organisations as rows, each quarter a column of event cards from 2024 into 2025, such as GPT-4o, Claude 3.5 Sonnet and GPT-5.</p></details>
+  </figcaption>
+</figure>
+    <div class="prose" id="article-body">
+<h2>Why I built it</h2>
+<p>On the afternoon of 1 September I was cleaning up my portfolio with Claude, deciding which repositories to make public. One of them was an old timeline from 2021: a page of retail and consumer brand histories, one brand at a time. I kept it, and noted what I wanted instead: a new version on its own subdomain, "new project not the refactor", with the old one only as inspiration, and "amybe isntead amazon or google we will go with AI companies".</p>
+<p>At 19:35 that evening I came back to it. Claude read the old repository first. It had one commit from May 2021 and five files: jQuery, 12 brands, 163 events from 1917 to 2017. Every logo was broken, because the folder the data pointed at had never been committed.</p>
+<p>So the new one started from a question, not from the old code. I asked Claude how it imagined the product. Its answer was the one the product still runs on. A chronology of one company is a Wikipedia article. The question nobody can answer in one view is the comparative one: when GPT-4 shipped, what did Anthropic have in market, and how long did the others take to respond?</p>
+<p>As with <a href="../css-3d-lab/">CSS 3D Lab</a> and <a href="../jarvis/">J.A.R.V.I.S.</a>, I went back through the session logs and the full git history, so the numbers are counted, not remembered. My messages are quoted as I typed them, typos included.</p>
+<h2>What Timeline is</h2>
+<p>A free website at timeline.edgarasneverdauskas.com with two views of the AI race.</p>
+<p>The first is the race itself. Eight organisations run as rows against one shared axis of quarters: OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral AI, xAI, Nvidia and Hugging Face. Read down a column and you see who was shipping in the same three months. It holds 53 events, from CUDA in June 2007 to GPT-6 Astra on 3 September 2026. Every event is dated to the day and links to a first-party source: the organisation's own page, or for two research papers the authors' own posting. Each has a weight from one to three, so the default view shows the turning points and a control reveals the rest. Runs of empty quarters fold into one hatched column that says how many years it swallowed. You pan and zoom it like a video editor. On a phone it becomes one organisation at a time, running down the page.</p>
+<p>The second is AGI Watch: twenty moments from 1950 to now that changed the answer to "are we getting there?", and the claims people made along the way.</p>
+<p>It is built with Next.js, React, TypeScript and Tailwind, with zod checking the data, Vitest and Playwright testing it, and GitHub Pages serving it. It installs as an app. The code is open source under AGPL-3.0.</p>
+<h2>How it happened</h2>
+<p><strong>Tuesday 19:35: the plan.</strong> In fifteen minutes of messages we settled the name, freed it by renaming the old repository, and agreed the scope. Claude proposed three views over one dataset: the race, a view of who shipped each capability first, and one merged feed. It asked whether the race alone was the product. I said it was: "yea race with time line alrasy the product we dont nee dto overcoplicated". At 19:50 I told it to go all in and not stop until it was ready for testing, "i am now off for some time".</p>
+<p><strong>Tuesday 19:53: the data first.</strong> Claude warned that its own knowledge ran to May 2026, so it checked the recent years against primary sources. It wrote a script that fetches every source link, and the script caught two dead ones before anything shipped. The first commit landed at 20:33: 57 events, 48 sources, all eight organisations, 58 minutes after my first message. Two minutes later it was live on GitHub's own address, with every check in the deploy green.</p>
+<p><strong>Tuesday 20:35: on its side.</strong> I opened it and wrote: "i checke ui/ux it doesnt seems friendly for user". Claude had made each organisation a column with time running down the page, so events could carry sentences and a phone would only scroll one way. I asked whether the organisations should be rows and the years run across. Claude agreed and gave the reason: eight columns meant five or six on screen, and one on a phone, and you cannot compare what you cannot see together. Seven minutes after my message the grid was on its side. The same commit fixed a quieter bug: no event had been given the lowest weight, so two settings of the detail control showed the same 57 events.</p>
+<p><strong>Tuesday 20:42 to 21:06: making it usable.</strong> A mouse wheel did nothing to a sideways grid, so the only way across nineteen years was a thin scrollbar. I asked for scroll and pinch zoom "like it would be music/video editor like". Claude argued against a library and wrote its own: the wheel pans, Ctrl and the wheel zoom around the pointer, you can drag from anywhere, and the keyboard works too. Then I asked what the hatched columns were, because "i didnt uderstand". They now carry a label, and a short key sits above the grid. I also suggested the phone should show one company at a time, and it does. At 21:05 I asked for a hint line under the grid to go: it repeated the key word for word.</p>
+<p><strong>Tuesday 22:59 to 23:36: the look.</strong> For half an hour I sent small remarks and Claude committed each one. The pinned names needed an edge, because cards slid under them and seemed to start inside a company's name. The edge needed its own colour, because it matched the year lines. Each row got a faint wash of its organisation's colour, which in dark mode turned to what the commit calls "mud" until it was made theme-aware. Then a shadow on one side only, a gutter at each end, names centred in their rows, and cards kept off the column lines. That was nine commits in 32 minutes. At 23:36 I had added the DNS record, and the site was live on its own address.</p>
+<p><strong>Wednesday: the icon, and the empty boxes.</strong> After midnight Claude drew the mark: four coloured bars against one axis. I asked for the browser icon without its dark plate, which only an installed app icon needs, and for the mark to be exactly square. In the morning I installed it on my phone and the icon was cut off. Android crops these icons and only promises the centre 80% survives, so the mark now sits smaller inside the plate. Then I zoomed all the way out and every card was empty. Below a certain width titles were hidden on purpose, leaving the view the product exists for full of blank boxes. At that moment Claude's session limit ran out, for more than four hours. At 15:16 the titles scaled down with the zoom instead of disappearing.</p>
+<p><strong>Friday 4 September, morning: whose word counts.</strong> OpenAI had released GPT-6 Astra the day before, and I asked whether it could go in. Claude added it, and when I asked if the details were correct, it found its own mistake in the model's input types. Then I made a rule: only entries the companies officially published, each linking to their own page. Claude audited all 58 events and found 28 sourced to Wikipedia or to a news index whose contents change. It moved 23 of them to the organisations' own pages and asked about the other five. They were things with no first-party page we could link, such as an acquisition and a funding round. Claude suggested keeping four of them on Wikipedia; I said remove them. 53 events were left, and the change was merged at 11:55.</p>
+<p><strong>Friday 12:49: AGI Watch.</strong> Earlier, after hearing that with Astra OpenAI said we were now in the AGI era, I had asked a Claude chat what tool we could build to watch AGI arrive, from the beginning of AI. It made a one-page prototype. I brought it into Claude Code, which put it in its own public repository ten minutes later. At Claude's suggestion it went from 29 entries to 20, keeping only the moments that changed the answer and leaving releases to the race view.</p>
+<p>Then I asked whether it should have been part of Timeline all along. Claude argued, about 60/40, that it should stay separate: nine of its twenty entries belong to no company, and a page about long time horizons gained something from being one file with no build. I wrote: "i feel that AGI watch is like part of timline so i woudl nto need anoterh subdomain unless you have stgrong argument fro this". Its reply was "No, I don't have a stronger argument". Sixteen minutes later AGI Watch was a second view inside Timeline, with its own data file and rules, waiting for my review. It was merged at 14:21. Claude suggested archiving the standalone version three times; I chose to delete it.</p>
+<h2>Checking the checker</h2>
+<p>Timeline's data is the product, so the most useful work on the last day was not building. It was checking.</p>
+<p>When I asked Claude to make sure AGI Watch said only what the record supports, it found four wrong claims in the twenty entries. Two had come over from the Claude chat's prototype. The other two Claude Code had added itself while reworking the page: the bar-exam figure, and GPT-3's date. The worst was about GPT-4 and the bar exam. The entry quoted a re-analysis of GPT-4's famous 90th-percentile score and got its figure wrong. As the commit put it, on a view whose subject is claims being read carelessly, that is the worst kind of error to ship. DeepSeek R1's release was mixed up with the market selloff a week later. ChatGPT's famous "100 million users in two months" turned out to be a bank's estimate, not OpenAI's, and no link to it got past the repository's link checker, so the number came out. GPT-3 was dated to its API launch while its entry was about the paper. After I questioned it, Claude had also checked the headline entry and found it overstated what OpenAI's president said: his sign-off was stronger than his answer when he was asked directly.</p>
+<p>Then Claude hit its limit, and I opened Codex. I asked it to check the data, so I would not be relying on one tool. Codex read the page Claude had already corrected and found three more problems. A phrase in the Astra entry could not be found in the sources it checked. The bar-exam figure was more precise than the paper allows, because the paper gives two different numbers. And the chart counted 2026 as a full year in September. Codex fixed all three and pushed at 15:25.</p>
+<p>It was not flawless either. It first reported an entry with no source as a mistake. Then it read the repository's rules, which allow exactly that one exception, a multi-year AI winter with no single event to cite, and withdrew the point.</p>
+<p>The lesson I took: a model checking its own claims finds real problems, and a second model finds different ones. Neither makes a claim true. What made the checking work was that every claim had a source link a person could open, and a script that proves each link still resolves.</p>
+<h2>What we got wrong</h2>
+<ul>
+<li>The first layout put each organisation in a column, so you could never see them all at once. It took me one look.</li>
+<li>No event had the lowest weight, so two settings of the detail control showed the same 57 events.</li>
+<li>A mouse wheel did nothing to the grid. The only way across was the scrollbar.</li>
+<li>Dragging refused to start on cards, and the grid is mostly cards. Then the drag handler fought the phone's own scrolling.</li>
+<li>The tests that set the scroll position raced the grid's own opening scroll, so they passed locally and failed on GitHub.</li>
+<li>The hatched gap columns were a visual language nobody had explained, me included.</li>
+<li>On a 360px phone the toolbar was 390px wide.</li>
+<li>Row colours turned muddy in dark mode, and the browser icon wore a dark plate it didn't need.</li>
+<li>The installed app icon was cut off on Android.</li>
+<li>Zoomed right out, every card was an empty box.</li>
+<li>28 of 58 events cited Wikipedia or a changing index page. Five had no first-party source at all.</li>
+<li>AGI Watch went live with four wrong claims (two from the prototype, two added by Claude Code), an overstated headline quote, and a label that overlapped the paragraph above it at every screen width.</li>
+<li>Claude's first attempt to delete the old AGI Watch folder emptied it and then failed. I stopped it and asked it to make sure it had the right folder. It had; Timeline was untouched.</li>
+</ul>
+<p>Almost all of these were found the same way: I used the site and said what looked wrong, or asked for a check. Claude's own tests and measurements caught the rest.</p>
+<h2>Who did what</h2>
+<p><strong>Claude Code</strong> did the building, and every reply in the counted sessions came from Claude Opus 5. It replied 657 times and made 636 tool calls: 322 commands, 125 file edits and 107 actions in a browser, plus 33 web searches. That was about 5 hours 45 minutes of active work, with no helper agents. In git, 29 of the 30 commits came from it: 28 it wrote, plus the merge of AGI Watch, made by a command it ran.</p>
+<p><strong>Codex</strong> had under an hour on the Friday afternoon, on GPT-5.6. I sent it 28 messages, and it replied 40 times with 43 tool calls in about 50 minutes. Most of that went on writing; it also rechecked the AGI Watch data and made one commit with three fixes.</p>
+<figure class="fig" id="fig-numbers">
+  <div class="frame"><img src="numbers-1400.png" alt="Timeline by the numbers, 1 – 4 Sep 2026: 30 commits, +5,869 / −622 lines excluding the npm lockfile and licence text; 58 min from first message to first commit; 7 min from &quot;not friendly&quot; to the grid turned on its side; on AGI Watch's first day, Claude's fact-check fixed 4 claims and Codex's fixed 3 more. Claude Code, Opus 5: 657 replies, 636 tool calls, about 5 h 45 min active. Codex, GPT-5.6: 28 messages, 43 tool calls, 1 commit. Me: 96 messages, typically about 25 words, 19 screenshots." width="1400" height="1913" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-numbers">Four days, counted from git and the session logs: Claude Code, Codex and me, and how it went.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+      <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 493 characters</span></summary><p id="alt-numbers">Timeline by the numbers, 1 – 4 Sep 2026: 30 commits, +5,869 / −622 lines excluding the npm lockfile and licence text; 58 min from first message to first commit; 7 min from "not friendly" to the grid turned on its side; on AGI Watch's first day, Claude's fact-check fixed 4 claims and Codex's fixed 3 more. Claude Code, Opus 5: 657 replies, 636 tool calls, about 5 h 45 min active. Codex, GPT-5.6: 28 messages, 43 tool calls, 1 commit. Me: 96 messages, typically about 25 words, 19 screenshots.</p></details>
+  </figcaption>
+</figure>
+<p><strong>A Claude chat</strong> made the first AGI Watch prototype. That conversation is not in the logs on my PC, so I can't count it. What it left behind was a page and a README, which Claude Code rebuilt from what I pasted.</p>
+<p><strong>My part</strong> was deciding. I sent 96 messages, 68 to Claude and 28 to Codex, and a typical one was about 25 words. 25 of them went in while Claude was still working, and I sent 19 screenshots. I decided what the product was, and I kept cutting what it wasn't. The biggest calls were mine: turn the grid on its side, make it move like an editor, one company at a time on a phone, only first-party sources, AGI Watch inside Timeline. Claude argued against the last one, and said so when it had no better argument.</p>
+<p>The last three commits, on 12 September, came from sessions in another project that these counts don't include: a coffee link, a README header and the AGPL licence. One of them was made by Claude Fable 5.1.</p>
+<p>Treat the numbers as a record, not a benchmark. The two tools worked on different days, on different jobs.</p>
+<h2>What it cost</h2>
+<p>The site costs nothing to run. GitHub Pages hosts it, and the address is a subdomain of a domain I already had.</p>
+<p>The cost was the subscriptions, and the limits shaped the week. Claude's session limit hit three times during the Timeline work (and once more during portfolio work, not counted): at 23:38 on the first night, while it was adding Timeline to my portfolio; at 10:53 the next morning, in the middle of the zoom fix, which then waited more than four hours; and at 14:43 on Friday, which is when I opened Codex.</p>
+<h2>What I would tell someone starting</h2>
+<ul>
+<li><strong>Start from the question, not the old code.</strong> The 2021 version was useful as a memory of what I liked. The new one began with what it should answer.</li>
+<li><strong>Look at it within the hour.</strong> The layout that defeated the product shipped with every test green. Seven minutes after I looked, it was fixed.</li>
+<li><strong>When you don't understand your own screen, nobody will.</strong> My confusion about the hatched columns became the key above the grid.</li>
+<li><strong>Make the data prove itself.</strong> A schema that requires a source on every event, and a script that fetches every source, caught dead links on day one.</li>
+<li><strong>Decide whose word counts.</strong> "Only what the company published" turned out to be a rule the data could follow, and it removed five events with no first-party page to link.</li>
+<li><strong>Ask a second model, then check both.</strong> Claude found four problems in AGI Watch, two of them its own. Codex found three more, and one false alarm of its own.</li>
+<li><strong>Push back, and let it push back.</strong> Claude argued against merging AGI Watch. When I disagreed, it said it had no stronger argument, and we merged.</li>
+</ul>
+<h2>In one paragraph</h2>
+<p>In one evening, one person and Claude went from an old jQuery page to a comparative timeline of the AI race, live on its own address, in 16 commits. Three days later it had a second view, AGI Watch, and every event pointed at a first-party source. Claude wrote almost every line, and Codex checked the facts behind it. The shape came from short human calls: turn it on its side, let it zoom like an editor, I don't understand this, only official sources, keep it in one place. The models made building fast. Deciding what was true, and what was worth showing, stayed with me.</p>
+<p class="close"><em>Try it at <a href="https://timeline.edgarasneverdauskas.com">timeline.edgarasneverdauskas.com</a>. The code is open source under AGPL-3.0 at <a href="https://github.com/Evirtual/timeline">github.com/Evirtual/timeline</a>. Built with Claude Code and Claude Opus 5, with an afternoon of OpenAI Codex on GPT-5.6.</em></p>
+    </div>
+    <footer class="story-foot">
+      <p class="also-end"><span><a href="https://timeline.edgarasneverdauskas.com" rel="noopener">Visit the project<span aria-hidden="true"> ↗</span></a></span></p>
+      <nav class="more" aria-labelledby="more-timeline">
+        <h2 id="more-timeline">More build stories</h2>
+        <ul><li><a href="../css-3d-lab-ledger/">A green tick is a date, not a fact</a></li><li><a href="../css-3d-lab/">CSS 3D Lab: learning 3D on the web by playing with it</a></li><li><a href="../self-aware-writing/">A book that knows you're reading it</a></li><li><a href="../jarvis/">Five days building J.A.R.V.I.S. with Claude</a></li><li><a href="../portfolio/">My portfolio, rebuilt to tell the truth</a></li><li><a href="../agi-watch/">AGI Watch: are we getting there?</a></li><li><a href="../ampuno/">Ampuno: 28 minutes to build, eight weeks to draw the cars</a></li><li><a href="../bitcoin-analytics/">Bitcoin Analytics: an hour to start, months to trust</a></li><li><a href="../social-blockchain-network/">Social Blockchain Network: refactor, don't rebuild</a></li><li><a href="../atunicorn/">@unicorn: an old app, a new stack, and two AI tools</a></li></ul>
+      </nav>
+    </footer>
+  </article>
+</main>
+<footer class="site-foot">
+  <a href="../"><span aria-hidden="true">←</span> All articles</a>
+  <a href="https://edgarasneverdauskas.com">edgarasneverdauskas.com</a>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="kit-data">{"richHtml":"\u003ch1>The AI race: who shipped what, and when\u003c/h1>\n\u003cp>\u003cem>A comparative timeline of the AI race: the first version built in an evening with Claude, finished over the next days, and checked by a second model. Counted from the logs.\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/timeline/cover-medium-1500x750.png Caption: Timeline on the live site: eight organisations as rows, one quarter per column. Image and site: Edgaras Neverdauskas. Alt text: Near-black cover with faint quarter lines. On the left, the Timeline mark, four coloured bars against one axis, and the title \"Who shipped what, and when\", above the line \"The AI race on one axis, built with Claude and counted from the logs.\" On the right, a screenshot of the live site: the heading \"The AI race\", the switch to AGI Watch, and the race grid: eight organisations as rows, each quarter a column of event cards from 2024 into 2025, such as GPT-4o, Claude 3.5 Sonnet and GPT-5.]\u003c/strong>\u003c/p>\n\u003ch2>Why I built it\u003c/h2>\n\u003cp>On the afternoon of 1 September I was cleaning up my portfolio with Claude, deciding which repositories to make public. One of them was an old timeline from 2021: a page of retail and consumer brand histories, one brand at a time. I kept it, and noted what I wanted instead: a new version on its own subdomain, \"new project not the refactor\", with the old one only as inspiration, and \"amybe isntead amazon or google we will go with AI companies\".\u003c/p>\n\u003cp>At 19:35 that evening I came back to it. Claude read the old repository first. It had one commit from May 2021 and five files: jQuery, 12 brands, 163 events from 1917 to 2017. Every logo was broken, because the folder the data pointed at had never been committed.\u003c/p>\n\u003cp>So the new one started from a question, not from the old code. I asked Claude how it imagined the product. Its answer was the one the product still runs on. A chronology of one company is a Wikipedia article. The question nobody can answer in one view is the comparative one: when GPT-4 shipped, what did Anthropic have in market, and how long did the others take to respond?\u003c/p>\n\u003cp>As with \u003ca href=\"https://articles.edgarasneverdauskas.com/css-3d-lab/\">CSS 3D Lab\u003c/a> and \u003ca href=\"https://articles.edgarasneverdauskas.com/jarvis/\">J.A.R.V.I.S.\u003c/a>, I went back through the session logs and the full git history, so the numbers are counted, not remembered. My messages are quoted as I typed them, typos included.\u003c/p>\n\u003ch2>What Timeline is\u003c/h2>\n\u003cp>A free website at timeline.edgarasneverdauskas.com with two views of the AI race.\u003c/p>\n\u003cp>The first is the race itself. Eight organisations run as rows against one shared axis of quarters: OpenAI, Anthropic, Google DeepMind, Meta AI, Mistral AI, xAI, Nvidia and Hugging Face. Read down a column and you see who was shipping in the same three months. It holds 53 events, from CUDA in June 2007 to GPT-6 Astra on 3 September 2026. Every event is dated to the day and links to a first-party source: the organisation's own page, or for two research papers the authors' own posting. Each has a weight from one to three, so the default view shows the turning points and a control reveals the rest. Runs of empty quarters fold into one hatched column that says how many years it swallowed. You pan and zoom it like a video editor. On a phone it becomes one organisation at a time, running down the page.\u003c/p>\n\u003cp>The second is AGI Watch: twenty moments from 1950 to now that changed the answer to \"are we getting there?\", and the claims people made along the way.\u003c/p>\n\u003cp>It is built with Next.js, React, TypeScript and Tailwind, with zod checking the data, Vitest and Playwright testing it, and GitHub Pages serving it. It installs as an app. The code is open source under AGPL-3.0.\u003c/p>\n\u003ch2>How it happened\u003c/h2>\n\u003cp>\u003cstrong>Tuesday 19:35: the plan.\u003c/strong> In fifteen minutes of messages we settled the name, freed it by renaming the old repository, and agreed the scope. Claude proposed three views over one dataset: the race, a view of who shipped each capability first, and one merged feed. It asked whether the race alone was the product. I said it was: \"yea race with time line alrasy the product we dont nee dto overcoplicated\". At 19:50 I told it to go all in and not stop until it was ready for testing, \"i am now off for some time\".\u003c/p>\n\u003cp>\u003cstrong>Tuesday 19:53: the data first.\u003c/strong> Claude warned that its own knowledge ran to May 2026, so it checked the recent years against primary sources. It wrote a script that fetches every source link, and the script caught two dead ones before anything shipped. The first commit landed at 20:33: 57 events, 48 sources, all eight organisations, 58 minutes after my first message. Two minutes later it was live on GitHub's own address, with every check in the deploy green.\u003c/p>\n\u003cp>\u003cstrong>Tuesday 20:35: on its side.\u003c/strong> I opened it and wrote: \"i checke ui/ux it doesnt seems friendly for user\". Claude had made each organisation a column with time running down the page, so events could carry sentences and a phone would only scroll one way. I asked whether the organisations should be rows and the years run across. Claude agreed and gave the reason: eight columns meant five or six on screen, and one on a phone, and you cannot compare what you cannot see together. Seven minutes after my message the grid was on its side. The same commit fixed a quieter bug: no event had been given the lowest weight, so two settings of the detail control showed the same 57 events.\u003c/p>\n\u003cp>\u003cstrong>Tuesday 20:42 to 21:06: making it usable.\u003c/strong> A mouse wheel did nothing to a sideways grid, so the only way across nineteen years was a thin scrollbar. I asked for scroll and pinch zoom \"like it would be music/video editor like\". Claude argued against a library and wrote its own: the wheel pans, Ctrl and the wheel zoom around the pointer, you can drag from anywhere, and the keyboard works too. Then I asked what the hatched columns were, because \"i didnt uderstand\". They now carry a label, and a short key sits above the grid. I also suggested the phone should show one company at a time, and it does. At 21:05 I asked for a hint line under the grid to go: it repeated the key word for word.\u003c/p>\n\u003cp>\u003cstrong>Tuesday 22:59 to 23:36: the look.\u003c/strong> For half an hour I sent small remarks and Claude committed each one. The pinned names needed an edge, because cards slid under them and seemed to start inside a company's name. The edge needed its own colour, because it matched the year lines. Each row got a faint wash of its organisation's colour, which in dark mode turned to what the commit calls \"mud\" until it was made theme-aware. Then a shadow on one side only, a gutter at each end, names centred in their rows, and cards kept off the column lines. That was nine commits in 32 minutes. At 23:36 I had added the DNS record, and the site was live on its own address.\u003c/p>\n\u003cp>\u003cstrong>Wednesday: the icon, and the empty boxes.\u003c/strong> After midnight Claude drew the mark: four coloured bars against one axis. I asked for the browser icon without its dark plate, which only an installed app icon needs, and for the mark to be exactly square. In the morning I installed it on my phone and the icon was cut off. Android crops these icons and only promises the centre 80% survives, so the mark now sits smaller inside the plate. Then I zoomed all the way out and every card was empty. Below a certain width titles were hidden on purpose, leaving the view the product exists for full of blank boxes. At that moment Claude's session limit ran out, for more than four hours. At 15:16 the titles scaled down with the zoom instead of disappearing.\u003c/p>\n\u003cp>\u003cstrong>Friday 4 September, morning: whose word counts.\u003c/strong> OpenAI had released GPT-6 Astra the day before, and I asked whether it could go in. Claude added it, and when I asked if the details were correct, it found its own mistake in the model's input types. Then I made a rule: only entries the companies officially published, each linking to their own page. Claude audited all 58 events and found 28 sourced to Wikipedia or to a news index whose contents change. It moved 23 of them to the organisations' own pages and asked about the other five. They were things with no first-party page we could link, such as an acquisition and a funding round. Claude suggested keeping four of them on Wikipedia; I said remove them. 53 events were left, and the change was merged at 11:55.\u003c/p>\n\u003cp>\u003cstrong>Friday 12:49: AGI Watch.\u003c/strong> Earlier, after hearing that with Astra OpenAI said we were now in the AGI era, I had asked a Claude chat what tool we could build to watch AGI arrive, from the beginning of AI. It made a one-page prototype. I brought it into Claude Code, which put it in its own public repository ten minutes later. At Claude's suggestion it went from 29 entries to 20, keeping only the moments that changed the answer and leaving releases to the race view.\u003c/p>\n\u003cp>Then I asked whether it should have been part of Timeline all along. Claude argued, about 60/40, that it should stay separate: nine of its twenty entries belong to no company, and a page about long time horizons gained something from being one file with no build. I wrote: \"i feel that AGI watch is like part of timline so i woudl nto need anoterh subdomain unless you have stgrong argument fro this\". Its reply was \"No, I don't have a stronger argument\". Sixteen minutes later AGI Watch was a second view inside Timeline, with its own data file and rules, waiting for my review. It was merged at 14:21. Claude suggested archiving the standalone version three times; I chose to delete it.\u003c/p>\n\u003ch2>Checking the checker\u003c/h2>\n\u003cp>Timeline's data is the product, so the most useful work on the last day was not building. It was checking.\u003c/p>\n\u003cp>When I asked Claude to make sure AGI Watch said only what the record supports, it found four wrong claims in the twenty entries. Two had come over from the Claude chat's prototype. The other two Claude Code had added itself while reworking the page: the bar-exam figure, and GPT-3's date. The worst was about GPT-4 and the bar exam. The entry quoted a re-analysis of GPT-4's famous 90th-percentile score and got its figure wrong. As the commit put it, on a view whose subject is claims being read carelessly, that is the worst kind of error to ship. DeepSeek R1's release was mixed up with the market selloff a week later. ChatGPT's famous \"100 million users in two months\" turned out to be a bank's estimate, not OpenAI's, and no link to it got past the repository's link checker, so the number came out. GPT-3 was dated to its API launch while its entry was about the paper. After I questioned it, Claude had also checked the headline entry and found it overstated what OpenAI's president said: his sign-off was stronger than his answer when he was asked directly.\u003c/p>\n\u003cp>Then Claude hit its limit, and I opened Codex. I asked it to check the data, so I would not be relying on one tool. Codex read the page Claude had already corrected and found three more problems. A phrase in the Astra entry could not be found in the sources it checked. The bar-exam figure was more precise than the paper allows, because the paper gives two different numbers. And the chart counted 2026 as a full year in September. Codex fixed all three and pushed at 15:25.\u003c/p>\n\u003cp>It was not flawless either. It first reported an entry with no source as a mistake. Then it read the repository's rules, which allow exactly that one exception, a multi-year AI winter with no single event to cite, and withdrew the point.\u003c/p>\n\u003cp>The lesson I took: a model checking its own claims finds real problems, and a second model finds different ones. Neither makes a claim true. What made the checking work was that every claim had a source link a person could open, and a script that proves each link still resolves.\u003c/p>\n\u003ch2>What we got wrong\u003c/h2>\n\u003cul>\n\u003cli>The first layout put each organisation in a column, so you could never see them all at once. It took me one look.\u003c/li>\n\u003cli>No event had the lowest weight, so two settings of the detail control showed the same 57 events.\u003c/li>\n\u003cli>A mouse wheel did nothing to the grid. The only way across was the scrollbar.\u003c/li>\n\u003cli>Dragging refused to start on cards, and the grid is mostly cards. Then the drag handler fought the phone's own scrolling.\u003c/li>\n\u003cli>The tests that set the scroll position raced the grid's own opening scroll, so they passed locally and failed on GitHub.\u003c/li>\n\u003cli>The hatched gap columns were a visual language nobody had explained, me included.\u003c/li>\n\u003cli>On a 360px phone the toolbar was 390px wide.\u003c/li>\n\u003cli>Row colours turned muddy in dark mode, and the browser icon wore a dark plate it didn't need.\u003c/li>\n\u003cli>The installed app icon was cut off on Android.\u003c/li>\n\u003cli>Zoomed right out, every card was an empty box.\u003c/li>\n\u003cli>28 of 58 events cited Wikipedia or a changing index page. Five had no first-party source at all.\u003c/li>\n\u003cli>AGI Watch went live with four wrong claims (two from the prototype, two added by Claude Code), an overstated headline quote, and a label that overlapped the paragraph above it at every screen width.\u003c/li>\n\u003cli>Claude's first attempt to delete the old AGI Watch folder emptied it and then failed. I stopped it and asked it to make sure it had the right folder. It had; Timeline was untouched.\u003c/li>\n\u003c/ul>\n\u003cp>Almost all of these were found the same way: I used the site and said what looked wrong, or asked for a check. Claude's own tests and measurements caught the rest.\u003c/p>\n\u003ch2>Who did what\u003c/h2>\n\u003cp>\u003cstrong>Claude Code\u003c/strong> did the building, and every reply in the counted sessions came from Claude Opus 5. It replied 657 times and made 636 tool calls: 322 commands, 125 file edits and 107 actions in a browser, plus 33 web searches. That was about 5 hours 45 minutes of active work, with no helper agents. In git, 29 of the 30 commits came from it: 28 it wrote, plus the merge of AGI Watch, made by a command it ran.\u003c/p>\n\u003cp>\u003cstrong>Codex\u003c/strong> had under an hour on the Friday afternoon, on GPT-5.6. I sent it 28 messages, and it replied 40 times with 43 tool calls in about 50 minutes. Most of that went on writing; it also rechecked the AGI Watch data and made one commit with three fixes.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/timeline/numbers-1400.png Caption: Four days, counted from git and the session logs: Claude Code, Codex and me, and how it went. Alt text: Timeline by the numbers, 1 – 4 Sep 2026: 30 commits, +5,869 / −622 lines excluding the npm lockfile and licence text; 58 min from first message to first commit; 7 min from \"not friendly\" to the grid turned on its side; on AGI Watch's first day, Claude's fact-check fixed 4 claims and Codex's fixed 3 more. Claude Code, Opus 5: 657 replies, 636 tool calls, about 5 h 45 min active. Codex, GPT-5.6: 28 messages, 43 tool calls, 1 commit. Me: 96 messages, typically about 25 words, 19 screenshots.]\u003c/strong>\u003c/p>\n\u003cp>\u003cstrong>A Claude chat\u003c/strong> made the first AGI Watch prototype. That conversation is not in the logs on my PC, so I can't count it. What it left behind was a page and a README, which Claude Code rebuilt from what I pasted.\u003c/p>\n\u003cp>\u003cstrong>My part\u003c/strong> was deciding. I sent 96 messages, 68 to Claude and 28 to Codex, and a typical one was about 25 words. 25 of them went in while Claude was still working, and I sent 19 screenshots. I decided what the product was, and I kept cutting what it wasn't. The biggest calls were mine: turn the grid on its side, make it move like an editor, one company at a time on a phone, only first-party sources, AGI Watch inside Timeline. Claude argued against the last one, and said so when it had no better argument.\u003c/p>\n\u003cp>The last three commits, on 12 September, came from sessions in another project that these counts don't include: a coffee link, a README header and the AGPL licence. One of them was made by Claude Fable 5.1.\u003c/p>\n\u003cp>Treat the numbers as a record, not a benchmark. The two tools worked on different days, on different jobs.\u003c/p>\n\u003ch2>What it cost\u003c/h2>\n\u003cp>The site costs nothing to run. GitHub Pages hosts it, and the address is a subdomain of a domain I already had.\u003c/p>\n\u003cp>The cost was the subscriptions, and the limits shaped the week. Claude's session limit hit three times during the Timeline work (and once more during portfolio work, not counted): at 23:38 on the first night, while it was adding Timeline to my portfolio; at 10:53 the next morning, in the middle of the zoom fix, which then waited more than four hours; and at 14:43 on Friday, which is when I opened Codex.\u003c/p>\n\u003ch2>What I would tell someone starting\u003c/h2>\n\u003cul>\n\u003cli>\u003cstrong>Start from the question, not the old code.\u003c/strong> The 2021 version was useful as a memory of what I liked. The new one began with what it should answer.\u003c/li>\n\u003cli>\u003cstrong>Look at it within the hour.\u003c/strong> The layout that defeated the product shipped with every test green. Seven minutes after I looked, it was fixed.\u003c/li>\n\u003cli>\u003cstrong>When you don't understand your own screen, nobody will.\u003c/strong> My confusion about the hatched columns became the key above the grid.\u003c/li>\n\u003cli>\u003cstrong>Make the data prove itself.\u003c/strong> A schema that requires a source on every event, and a script that fetches every source, caught dead links on day one.\u003c/li>\n\u003cli>\u003cstrong>Decide whose word counts.\u003c/strong> \"Only what the company published\" turned out to be a rule the data could follow, and it removed five events with no first-party page to link.\u003c/li>\n\u003cli>\u003cstrong>Ask a second model, then check both.\u003c/strong> Claude found four problems in AGI Watch, two of them its own. Codex found three more, and one false alarm of its own.\u003c/li>\n\u003cli>\u003cstrong>Push back, and let it push back.\u003c/strong> Claude argued against merging AGI Watch. When I disagreed, it said it had no stronger argument, and we merged.\u003c/li>\n\u003c/ul>\n\u003ch2>In one paragraph\u003c/h2>\n\u003cp>In one evening, one person and Claude went from an old jQuery page to a comparative timeline of the AI race, live on its own address, in 16 commits. Three days later it had a second view, AGI Watch, and every event pointed at a first-party source. Claude wrote almost every line, and Codex checked the facts behind it. The shape came from short human calls: turn it on its side, let it zoom like an editor, I don't understand this, only official sources, keep it in one place. The models made building fast. Deciding what was true, and what was worth showing, stayed with me.\u003c/p>\n\u003cp class=\"close\">\u003cem>Try it at \u003ca href=\"https://timeline.edgarasneverdauskas.com\">timeline.edgarasneverdauskas.com\u003c/a>. The code is open source under AGPL-3.0 at \u003ca href=\"https://github.com/Evirtual/timeline\">github.com/Evirtual/timeline\u003c/a>. Built with Claude Code and Claude Opus 5, with an afternoon of OpenAI Codex on GPT-5.6.\u003c/em>\u003c/p>"}</script>
+</body>
+</html>

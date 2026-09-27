@@ -15,13 +15,13 @@
 <meta property="og:title" content="Articles — Edgaras Neverdauskas">
 <meta property="og:description" content="Build stories, counted from the logs.">
 <meta property="og:image" content="https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/cover-medium-1500x750.png">
-<meta property="og:image:alt" content="The CSS 3D Lab ledger on a dark screen. Across the top, three gates in a synthwave strip: To check, 0; Awaiting review, 0; Approved, 135. Below, a panel headed Approved 135 names every model — phone, rubik, paycard, solar, flaptext, package, city and on through 135 chips. Under it a line reads ALL 135, PASSING, each check beside its count: contract 135, stages 135, motion 135, export 135, share 135, access 135, box 135, text 135, perf 135. Two site-wide bars follow: App 1 of 1, SEO 416 of 416.">
+<meta property="og:image:alt" content="Dark cover with a dotted grid. On the left, the CSS 3D Lab glass cube logo, the label CSS 3D Lab · the Ledger, and the title “Every 3D model checked before it goes public”, above the line “Eleven automated checks, then my own eyes.” On the right, a screenshot of the ledger: a synthwave strip counting each check across the 135 models, and below it the list of models, each with its row of ticks and its status, Approved or To check.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Articles — Edgaras Neverdauskas">
 <meta name="twitter:description" content="Build stories, counted from the logs.">
 <meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/cover-medium-1500x750.png">
-<meta name="twitter:image:alt" content="The CSS 3D Lab ledger on a dark screen. Across the top, three gates in a synthwave strip: To check, 0; Awaiting review, 0; Approved, 135. Below, a panel headed Approved 135 names every model — phone, rubik, paycard, solar, flaptext, package, city and on through 135 chips. Under it a line reads ALL 135, PASSING, each check beside its count: contract 135, stages 135, motion 135, export 135, share 135, access 135, box 135, text 135, perf 135. Two site-wide bars follow: App 1 of 1, SEO 416 of 416.">
-<link rel="icon" href="data:,">
+<meta name="twitter:image:alt" content="Dark cover with a dotted grid. On the left, the CSS 3D Lab glass cube logo, the label CSS 3D Lab · the Ledger, and the title “Every 3D model checked before it goes public”, above the line “Eleven automated checks, then my own eyes.” On the right, a screenshot of the ledger: a synthwave strip counting each check across the 135 models, and below it the list of models, each with its row of ticks and its status, Approved or To check.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/site.js" defer></script>
 <script data-goatcounter="https://articles.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -29,27 +29,30 @@
 <body>
 <a class="skip" href="#main">Skip to the articles</a>
 <header class="site-head">
-  <nav aria-label="Site"><a class="home" href="./">Edgaras Neverdauskas</a></nav>
-  <div class="theme-switch" role="group" aria-label="Colour theme" hidden>
-      <button type="button" data-theme-value="system" aria-pressed="true">Auto</button>
-      <button type="button" data-theme-value="light" aria-pressed="false">Light</button>
-      <button type="button" data-theme-value="dark" aria-pressed="false">Dark</button>
-    </div>
+  <!-- The name goes to the portfolio, not to this page: you are already on this page, and the
+       name was printed twice -- once here and once as the heading's eyebrow, which now counts the
+       articles instead. One name, and it leads somewhere. -->
+  <nav aria-label="Site"><a class="home" href="https://edgarasneverdauskas.com"><svg class="mark" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill="currentColor"><rect x="3" y="4.1" width="10" height="1.9" rx=".95"/><rect x="3" y="7.05" width="10" height="1.9" rx=".95"/><rect x="3" y="10" width="10" height="1.9" rx=".95"/></g><rect x="3" y="12.95" width="5.6" height="1.9" rx=".95" fill="currentColor" opacity=".55"/></svg><span>Edgaras Neverdauskas</span></a></nav>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
 </header>
 <main class="index" id="main" tabindex="-1">
   <header class="index-head">
-    <p class="kicker">Edgaras Neverdauskas</p>
+    <p class="kicker">11 build stories</p>
     <h1>Articles</h1>
     <p class="dek">Build stories, counted from the logs.</p>
   </header>
   <div class="cards">
     <article class="card" data-accent="css-3d-lab-ledger">
-      <div class="frame"><img src="css-3d-lab-ledger/cover-medium-1500x750.png" alt="The CSS 3D Lab ledger on a dark screen. Across the top, three gates in a synthwave strip: To check, 0; Awaiting review, 0; Approved, 135. Below, a panel headed Approved 135 names every model — phone, rubik, paycard, solar, flaptext, package, city and on through 135 chips. Under it a line reads ALL 135, PASSING, each check beside its count: contract 135, stages 135, motion 135, export 135, share 135, access 135, box 135, text 135, perf 135. Two site-wide bars follow: App 1 of 1, SEO 416 of 416." width="1500" height="750" decoding="async"></div>
+      <div class="frame"><img src="css-3d-lab-ledger/cover-medium-1500x750.png" alt="Dark cover with a dotted grid. On the left, the CSS 3D Lab glass cube logo, the label CSS 3D Lab · the Ledger, and the title “Every 3D model checked before it goes public”, above the line “Eleven automated checks, then my own eyes.” On the right, a screenshot of the ledger: a synthwave strip counting each check across the 135 models, and below it the list of models, each with its row of ticks and its status, Approved or To check." width="1500" height="750" decoding="async"></div>
       <div class="card-body">
-        <p class="kicker">Four days · 614 commits</p>
-        <h2><a class="card-link" href="css-3d-lab-ledger/">The ledger: six days of AI agents on one codebase</a></h2>
-        <p class="sub">Several Claude agents rewriting 135 models at once, and the one page that had to answer "is it done?" without asking me to take anyone's word for it. Counted from git, the checks and the session logs.</p>
-        <p class="meta">53 min read</p>
+        <p class="kicker">Six days · 694 commits</p>
+        <h2><a class="card-link" href="css-3d-lab-ledger/">A green tick is a date, not a fact</a></h2>
+        <p class="sub">The Ledger behind CSS 3D Lab: eleven automated checks each of its 135 models has to pass, because I couldn’t check the technical side by hand, and then my own visual review. Six days of Claude agents, and what I learned about the canvas on the way. Counted from git, the checks and the session logs.</p>
+        <p class="meta">21 min read</p>
         <p class="links"><a href="css-3d-lab-ledger/">Read the article<span aria-hidden="true"> →</span></a></p>
         <p class="elsewhere"><span class="grp"><span class="also-label">Project</span><a href="https://css3dlab.edgarasneverdauskas.com" rel="noopener">css3dlab.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></span></p>
       </div>
@@ -85,6 +88,83 @@
         <p class="meta">11 min read</p>
         <p class="links"><a href="jarvis/">Read the article<span aria-hidden="true"> →</span></a></p>
         <p class="elsewhere"><span class="grp"><span class="also-label">Also on</span><a href="https://medium.com/@edgarasneverdauskas/five-days-building-j-a-r-v-i-s-with-claude-0533b1953060" rel="noopener">Medium<span aria-hidden="true"> ↗</span></a><a href="https://www.linkedin.com/pulse/five-days-building-jarvis-claude-edgaras-neverdauskas-kqxjc/" rel="noopener">LinkedIn<span aria-hidden="true"> ↗</span></a></span><span class="grp"><span class="also-label">Project</span><a href="https://jarvis.edgarasneverdauskas.com" rel="noopener">jarvis.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></span></p>
+      </div>
+    </article>
+    <article class="card" data-accent="portfolio">
+      <div class="frame"><img src="portfolio/cover-medium-1500x750.png" alt="Dark wide cover. On the left, the EN. logo with its teal square, the kicker &quot;edgarasneverdauskas.com · the story&quot;, and the title &quot;My portfolio, rebuilt to tell the truth&quot; above the line &quot;A 2021 photo site became a portfolio and a CV generated from the same facts. 55 commits, 52 of them by Claude, counted from the logs.&quot; On the right, a screenshot of the live home page in its dark theme: the name Edgaras Neverdauskas, the title Product Engineer, three buttons, and the edge of a dotted globe." width="1500" height="750" decoding="async"></div>
+      <div class="card-body">
+        <p class="kicker">11 days · 55 commits</p>
+        <h2><a class="card-link" href="portfolio/">My portfolio, rebuilt to tell the truth</a></h2>
+        <p class="sub">A 2021 photography site became a product engineer's portfolio, an advisory page and a CV generated from the same facts. How it was built with Claude, counted from the logs.</p>
+        <p class="meta">12 min read</p>
+        <p class="links"><a href="portfolio/">Read the article<span aria-hidden="true"> →</span></a></p>
+        <p class="elsewhere"><span class="grp"><span class="also-label">Project</span><a href="https://edgarasneverdauskas.com" rel="noopener">edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></span></p>
+      </div>
+    </article>
+    <article class="card" data-accent="timeline">
+      <div class="frame"><img src="timeline/cover-medium-1500x750.png" alt="Near-black cover with faint quarter lines. On the left, the Timeline mark, four coloured bars against one axis, and the title &quot;Who shipped what, and when&quot;, above the line &quot;The AI race on one axis, built with Claude and counted from the logs.&quot; On the right, a screenshot of the live site: the heading &quot;The AI race&quot;, the switch to AGI Watch, and the race grid: eight organisations as rows, each quarter a column of event cards from 2024 into 2025, such as GPT-4o, Claude 3.5 Sonnet and GPT-5." width="1500" height="750" decoding="async"></div>
+      <div class="card-body">
+        <p class="kicker">30 commits · 8 organisations</p>
+        <h2><a class="card-link" href="timeline/">The AI race: who shipped what, and when</a></h2>
+        <p class="sub">A comparative timeline of the AI race: the first version built in an evening with Claude, finished over the next days, and checked by a second model. Counted from the logs.</p>
+        <p class="meta">13 min read</p>
+        <p class="links"><a href="timeline/">Read the article<span aria-hidden="true"> →</span></a></p>
+        <p class="elsewhere"><span class="grp"><span class="also-label">Project</span><a href="https://timeline.edgarasneverdauskas.com" rel="noopener">timeline.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></span></p>
+      </div>
+    </article>
+    <article class="card" data-accent="agi-watch">
+      <div class="frame"><img src="agi-watch/cover-medium-1500x750.png" alt="Near-black cover. On the left, the Timeline mark, four coloured bars against one axis, above the title &quot;AGI Watch: are we getting there?&quot; and the line &quot;Seventy-six years of a field promising the same destination, built with Claude and checked with Codex.&quot; On the right, a screenshot of the live page: the AGI Watch heading, three elapsed-time counters, a bar chart of entries per half-decade from 1950 that rises at the right edge, and OpenAI's five-level ladder with a marker." width="1500" height="750" decoding="async"></div>
+      <div class="card-body">
+        <p class="kicker">One afternoon · 92 minutes</p>
+        <h2><a class="card-link" href="agi-watch/">AGI Watch: are we getting there?</a></h2>
+        <p class="sub">Seventy-six years of a field promising the same destination: the capability thresholds, the setbacks that broke the last two schedules, and the claims that we have arrived. How AGI Watch went from a Claude chat to a second view of Timeline in one afternoon, and what checking it found. Counted from the logs.</p>
+        <p class="meta">12 min read</p>
+        <p class="links"><a href="agi-watch/">Read the article<span aria-hidden="true"> →</span></a></p>
+        <p class="elsewhere"><span class="grp"><span class="also-label">Project</span><a href="https://timeline.edgarasneverdauskas.com/agi-watch/" rel="noopener">timeline.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></span></p>
+      </div>
+    </article>
+    <article class="card" data-accent="ampuno">
+      <div class="frame"><img src="ampuno/cover-medium-1500x750.png" alt="Near-black cover. On the left, the Ampuno logo, a teal lightning bolt, and the title &quot;28 minutes to build, eight weeks to draw the cars&quot;, above the line &quot;Find and compare 231 electric cars. Built with Codex and Claude, counted from the logs.&quot; On the right, a screenshot of the live ampuno.com homepage: the headline &quot;Find and compare the electric car that fits you.&quot;, a search field, and a white illustrated car with the day's featured model." width="1500" height="750" decoding="async"></div>
+      <div class="card-body">
+        <p class="kicker">56 days · 86 commits</p>
+        <h2><a class="card-link" href="ampuno/">Ampuno: 28 minutes to build, eight weeks to draw the cars</a></h2>
+        <p class="sub">A free site to find and compare electric cars, built with Codex and Claude. The first version took 28 minutes. The pictures of the cars, and the things that only looked finished, took the rest. Counted from the logs.</p>
+        <p class="meta">13 min read</p>
+        <p class="links"><a href="ampuno/">Read the article<span aria-hidden="true"> →</span></a></p>
+        <p class="elsewhere"><span class="grp"><span class="also-label">Project</span><a href="https://ampuno.com" rel="noopener">ampuno.com<span aria-hidden="true"> ↗</span></a></span></p>
+      </div>
+    </article>
+    <article class="card" data-accent="bitcoin-analytics">
+      <div class="frame"><img src="bitcoin-analytics/cover-medium-1500x750.png" alt="Near-black cover. On the left, the orange Bitcoin mark and the title &quot;An hour to start, months to trust&quot;, above the line &quot;Bitcoin Analytics, built with Codex and Claude, counted from the logs.&quot; On the right, a screenshot of the live dashboard with no wallet connected: the asset tabs, a market mood gauge, price, momentum and return cards, and the Bitcoin price and volume charts for one week." width="1500" height="750" decoding="async"></div>
+      <div class="card-body">
+        <p class="kicker">12 days · 116 commits</p>
+        <h2><a class="card-link" href="bitcoin-analytics/">Bitcoin Analytics: an hour to start, months to trust</a></h2>
+        <p class="sub">A Bitcoin dashboard that began as a test of building from chat alone. By my account, Codex built the first version in a weekend. Most of what came after was finding the things that were wrong without an error.</p>
+        <p class="meta">12 min read</p>
+        <p class="links"><a href="bitcoin-analytics/">Read the article<span aria-hidden="true"> →</span></a></p>
+        <p class="elsewhere"><span class="grp"><span class="also-label">Project</span><a href="https://bitcoin.edgarasneverdauskas.com" rel="noopener">bitcoin.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></span></p>
+      </div>
+    </article>
+    <article class="card" data-accent="social-blockchain-network">
+      <div class="frame"><img src="social-blockchain-network/cover-medium-1500x750.png" alt="Dark navy cover. On the left, the Social Blockchain Network mark, two linked nodes in blue and teal, and the title &quot;Refactor, don't rebuild&quot;, above the line &quot;A social network on three testnets, and 39 pull requests in two days with Claude.&quot; On the right, a screenshot of the live feed with no wallet connected: the header with a Connect button, cards explaining that posts are NFTs, the three supported testnets, and the first posts." width="1500" height="750" decoding="async"></div>
+      <div class="card-body">
+        <p class="kicker">42 days · 352 commits</p>
+        <h2><a class="card-link" href="social-blockchain-network/">Social Blockchain Network: refactor, don't rebuild</a></h2>
+        <p class="sub">A social network where every post is an NFT and every like is a signed transaction, on three testnets. It was built last winter. Two days with Claude in August made it tested and reviewed, without starting again. Counted from git and the session logs.</p>
+        <p class="meta">13 min read</p>
+        <p class="links"><a href="social-blockchain-network/">Read the article<span aria-hidden="true"> →</span></a></p>
+        <p class="elsewhere"><span class="grp"><span class="also-label">Project</span><a href="https://social.edgarasneverdauskas.com" rel="noopener">social.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></span></p>
+      </div>
+    </article>
+    <article class="card" data-accent="atunicorn">
+      <div class="frame"><img src="atunicorn/cover-medium-1500x750.png" alt="Light grey cover with soft rainbow glows in the corners. On the left, the @unicorn logo, a white unicorn leaping over a rainbow, and the title &quot;An old app, a new stack&quot;, above the line &quot;@unicorn since 2021, rebuilt in 2026 with Codex and Claude.&quot; On the right, a screenshot of the live About page: the unicorn avatar, the line &quot;A place to express your uniqueness&quot;, and &quot;Developed using Next.js, React, TypeScript, Tailwind, Firebase&quot;." width="1500" height="750" decoding="async"></div>
+      <div class="card-body">
+        <p class="kicker">Since 2021 · 369 commits</p>
+        <h2><a class="card-link" href="atunicorn/">@unicorn: an old app, a new stack, and two AI tools</a></h2>
+        <p class="sub">@unicorn calls itself “a place to express your uniqueness”. I started it in 2021. In 2026 Codex and Claude moved its images, tightened it and rewrote it in TypeScript. Counted from the logs, which only cover this year.</p>
+        <p class="meta">13 min read</p>
+        <p class="links"><a href="atunicorn/">Read the article<span aria-hidden="true"> →</span></a></p>
+        <p class="elsewhere"><span class="grp"><span class="also-label">Project</span><a href="https://atunicorn.io" rel="noopener">atunicorn.io<span aria-hidden="true"> ↗</span></a></span></p>
       </div>
     </article>
   </div>

@@ -28,21 +28,30 @@
     if (value === 'light' || value === 'dark') root.setAttribute('data-theme', value);
     else root.removeAttribute('data-theme');
   };
+  // One button that cycles, rather than three that mostly say what you did not pick. The state is
+  // carried on the button (data-mode) for the CSS to show one icon, and in its accessible name,
+  // which says where you are AND what pressing it does -- an icon alone says neither.
+  const ORDER = ['system', 'light', 'dark'];
+  const SAYS = { system: 'following the system', light: 'light', dark: 'dark' };
   const switcher = document.querySelector('.theme-switch');
   if (switcher) {
     const sync = () => {
       const current = root.getAttribute('data-theme') || 'system';
-      for (const b of switcher.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.themeValue === current));
+      const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length];
+      const label = `Colour theme: ${SAYS[current]}. Click for ${SAYS[next]}.`;
+      switcher.dataset.mode = current;
+      switcher.setAttribute('aria-label', label);
+      switcher.title = label;
     };
     applyTheme(readTheme());
     switcher.hidden = false;
     sync();
-    switcher.addEventListener('click', (e) => {
-      const b = e.target.closest('button[data-theme-value]');
-      if (!b) return;
-      applyTheme(b.dataset.themeValue);
+    switcher.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'system';
+      const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length];
+      applyTheme(next);
       sync();
-      if (!saveTheme(b.dataset.themeValue)) toast('Theme changed for this page only: this browser blocks saving it.');
+      if (!saveTheme(next)) toast('Theme changed for this page only: this browser blocks saving it.');
     });
   }
 

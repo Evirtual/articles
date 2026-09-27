@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="What it took, what broke, and who did what, counted from 476 messages, 4,295 replies and 132 commits.">
 <meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/jarvis/cover-medium-1500x750.png">
 <meta name="twitter:image:alt" content="Medium cover: Five days building J.A.R.V.I.S., beside a screenshot of the console">
-<link rel="icon" href="data:,">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&amp;display=swap">
@@ -33,11 +33,11 @@
 <a class="skip" href="#story">Skip to the article</a>
 <header class="site-head">
   <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
-  <div class="theme-switch" role="group" aria-label="Colour theme" hidden>
-      <button type="button" data-theme-value="system" aria-pressed="true">Auto</button>
-      <button type="button" data-theme-value="light" aria-pressed="false">Light</button>
-      <button type="button" data-theme-value="dark" aria-pressed="false">Dark</button>
-    </div>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
 </header>
 <main class="layout" id="main">
   <aside class="kit" aria-label="Share kit">
@@ -204,7 +204,7 @@ Five days, 39 hours of active work, one person and two AI models produced a work
               <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
             </div>
             <details class="alt"><summary>Caption and alt text</summary>
-              <p class="lbl">Caption</p><p id="k-cap-cover-medium">J.A.R.V.I.S. on the PC, with example threads on the board. Image and app: Edgaras Neverdauskas.</p>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">J.A.R.V.I.S. on the web, with example threads on the board. Image and app: Edgaras Neverdauskas.</p>
               <p class="lbl">Alt text · 81 characters</p><p id="k-alt-cover-medium">Medium cover: Five days building J.A.R.V.I.S., beside a screenshot of the console</p>
             </details>
           </div>
@@ -219,7 +219,7 @@ Five days, 39 hours of active work, one person and two AI models produced a work
               <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
             </div>
             <details class="alt"><summary>Caption and alt text</summary>
-              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">J.A.R.V.I.S. on the PC, with example threads on the board. Image and app: Edgaras Neverdauskas.</p>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">J.A.R.V.I.S. on the web, with example threads on the board. Image and app: Edgaras Neverdauskas.</p>
               <p class="lbl">Alt text · 83 characters</p><p id="k-alt-cover-linkedin">LinkedIn cover: Five days building J.A.R.V.I.S., beside a screenshot of the console</p>
             </details>
           </div>
@@ -242,7 +242,7 @@ Five days, 39 hours of active work, one person and two AI models produced a work
           </ul>
         </section>
         <section aria-labelledby="kit-share">
-          <h2 id="kit-share">Posts (1)</h2>
+          <h2 id="kit-share">Posts (3)</h2>
         <div class="share">
           <div class="share-head">
             <h3>LinkedIn post</h3>
@@ -269,6 +269,37 @@ If you're building a product with AI and the building is fast but the product ke
 
 I wrote it all up, the 127 logged fixes included, in the article below.</pre>
         </div>
+<div class="share">
+          <div class="share-head">
+            <h3>Facebook post</h3>
+            <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
+          </div>
+          <p class="share-meta">840 characters</p>
+          <pre id="share-facebook" tabindex="0">I built my own J.A.R.V.I.S. 🤖
+
+You know the computer in Iron Man that talks back? I wanted one. So five days ago I typed "need jarvis voice" into an AI assistant, and kept going.
+
+Now it's a glowing console that answers out loud. Every subject you bring up gets its own little window, so the weather in Lisbon doesn't get buried under a question about coffee grinders. On a computer it even shows what the machine is doing: how hard the processor and graphics card are working, and how busy the network is.
+
+You can try it in your browser for free. It uses your own Google Gemini or ChatGPT key, which stays on your device. No sign-up, no ads.
+
+The AI, Claude, wrote almost all of the code. My job was saying what felt wrong, and quite often saying no.
+
+Have a go and tell me what you asked it first 👇
+https://jarvis.edgarasneverdauskas.com</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>X post</h3>
+            <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
+          </div>
+          <p class="share-meta">331 characters</p>
+          <pre id="share-x" tabindex="0">Five days ago I typed "need jarvis voice" into Claude. Now it's an Iron Man style console that talks back, keeps every subject as a thread and reads the machine. 39 hours, 132 commits. Free, your own key.
+
+https://jarvis.edgarasneverdauskas.com
+
+Who did what, counted from the logs: https://articles.edgarasneverdauskas.com/jarvis/</pre>
+        </div>
         </section>
       </div>
     </details>
@@ -287,7 +318,7 @@ I wrote it all up, the 127 logged fixes included, in the article below.</pre>
     <figure class="fig fig-cover" id="fig-cover-medium">
   <div class="frame"><img src="cover-medium-1500x750.png" alt="Medium cover: Five days building J.A.R.V.I.S., beside a screenshot of the console" width="1500" height="750" decoding="async" tabindex="0" role="button" aria-label="Open this picture" fetchpriority="high"></div>
   <figcaption>
-    <p class="cap" id="cap-cover-medium">J.A.R.V.I.S. on the PC, with example threads on the board. Image and app: Edgaras Neverdauskas.</p>
+    <p class="cap" id="cap-cover-medium">J.A.R.V.I.S. on the web, with example threads on the board. Image and app: Edgaras Neverdauskas.</p>
     <div class="fig-tools">
       <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
       <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
@@ -404,7 +435,7 @@ I wrote it all up, the 127 logged fixes included, in the article below.</pre>
       <p class="also-end"><span>Read it on <a href="https://medium.com/@edgarasneverdauskas/five-days-building-j-a-r-v-i-s-with-claude-0533b1953060" rel="noopener">Medium<span aria-hidden="true"> ↗</span></a> / <a href="https://www.linkedin.com/pulse/five-days-building-jarvis-claude-edgaras-neverdauskas-kqxjc/" rel="noopener">LinkedIn<span aria-hidden="true"> ↗</span></a></span><span><a href="https://jarvis.edgarasneverdauskas.com" rel="noopener">Visit the project<span aria-hidden="true"> ↗</span></a></span></p>
       <nav class="more" aria-labelledby="more-jarvis">
         <h2 id="more-jarvis">More build stories</h2>
-        <ul><li><a href="../css-3d-lab-ledger/">The ledger: six days of AI agents on one codebase</a></li><li><a href="../css-3d-lab/">CSS 3D Lab: learning 3D on the web by playing with it</a></li><li><a href="../self-aware-writing/">A book that knows you're reading it</a></li></ul>
+        <ul><li><a href="../css-3d-lab-ledger/">A green tick is a date, not a fact</a></li><li><a href="../css-3d-lab/">CSS 3D Lab: learning 3D on the web by playing with it</a></li><li><a href="../self-aware-writing/">A book that knows you're reading it</a></li><li><a href="../portfolio/">My portfolio, rebuilt to tell the truth</a></li><li><a href="../timeline/">The AI race: who shipped what, and when</a></li><li><a href="../agi-watch/">AGI Watch: are we getting there?</a></li><li><a href="../ampuno/">Ampuno: 28 minutes to build, eight weeks to draw the cars</a></li><li><a href="../bitcoin-analytics/">Bitcoin Analytics: an hour to start, months to trust</a></li><li><a href="../social-blockchain-network/">Social Blockchain Network: refactor, don't rebuild</a></li><li><a href="../atunicorn/">@unicorn: an old app, a new stack, and two AI tools</a></li></ul>
       </nav>
     </footer>
   </article>

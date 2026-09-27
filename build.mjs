@@ -29,7 +29,7 @@ const ANALYTICS = 'https://articles.goatcounter.com/count';
 
 // --- the articles (newest first, the order of the home page) ----------------------------------
 // medium / linkedin: the story's other copies. project: the thing the story is about.
-const ARTICLES = [
+const ALL_ARTICLES = [
   {
     slug: 'css-3d-lab-ledger',
     dir: path.join(desktop, 'css-3d-lab-ledger-article'),
@@ -43,7 +43,7 @@ const ARTICLES = [
     // numbers-1400.png here is a contact sheet of one model before and after a fix, not the
     // numbers card that filename holds in the J.A.R.V.I.S. story.
     labels: { 'numbers-1400.png': 'Bookshelf, before and after' },
-    kicker: 'Four days · 614 commits',
+    kicker: 'Six days · 694 commits',
     coverInCopy: true,
     fontsLink: '',
   },
@@ -90,13 +90,42 @@ const ARTICLES = [
     // The source page's captions here are working labels ("Upload it here…"), not reader captions,
     // so these two are written for the site. Alt texts stay verbatim from the source page.
     captions: {
-      'cover-medium-1500x750.png': 'J.A.R.V.I.S. on the PC, with example threads on the board. Image and app: Edgaras Neverdauskas.',
-      'cover-linkedin-1920x1080.png': 'J.A.R.V.I.S. on the PC, with example threads on the board. Image and app: Edgaras Neverdauskas.',
+      'cover-medium-1500x750.png': 'J.A.R.V.I.S. on the web, with example threads on the board. Image and app: Edgaras Neverdauskas.',
+      'cover-linkedin-1920x1080.png': 'J.A.R.V.I.S. on the web, with example threads on the board. Image and app: Edgaras Neverdauskas.',
       'numbers-1400.png': 'Five days, counted from the session logs and git history: what I put in, and what the models did with it.',
     },
     fontsLink: 'https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap',
   },
+  // The six written from the portfolio's remaining cases. Each borrows the index page's colours
+  // (`theme`) until it has a token set of its own, and none has a project copy yet.
+  ...[
+    ['portfolio', 'portfolio-article', 'https://edgarasneverdauskas.com', '11 days · 55 commits'],
+    ['timeline', 'timeline-article', 'https://timeline.edgarasneverdauskas.com', '30 commits · 8 organisations'],
+    ['agi-watch', 'agi-watch-article', 'https://timeline.edgarasneverdauskas.com/agi-watch/', 'One afternoon · 92 minutes'],
+    ['ampuno', 'ampuno-article', 'https://ampuno.com', '56 days · 86 commits'],
+    ['bitcoin-analytics', 'bitcoin-analytics-article', 'https://bitcoin.edgarasneverdauskas.com', '12 days · 116 commits'],
+    ['social-blockchain-network', 'social-blockchain-network-article', 'https://social.edgarasneverdauskas.com', '42 days · 352 commits'],
+    ['atunicorn', 'atunicorn-article', 'https://atunicorn.io', 'Since 2021 · 369 commits'],
+  ].map(([slug, dir, project, kicker = 'Counted from the logs']) => ({
+    slug,
+    dir: path.join(desktop, dir),
+    sourceHtml: `${dir}.html`,
+    medium: '',
+    linkedin: '',
+    project,
+    mirrorDir: null,
+    kicker,
+    coverInCopy: true,
+    theme: 'index',
+    fontsLink: '',
+  })),
 ];
+// An article is built only once its package is complete: the text, the copy page that holds the
+// alt text, and both covers. The rest are named below, so a missing one is never silent.
+const isReady = (a) => ['article.md', a.sourceHtml, 'cover-medium-1500x750.png', 'cover-linkedin-1920x1080.png']
+  .every((f) => fs.existsSync(path.join(a.dir, f)));
+const ARTICLES = ALL_ARTICLES.filter(isReady);
+const NOT_READY = ALL_ARTICLES.filter((a) => !isReady(a));
 const AUTHOR = 'Edgaras Neverdauskas';
 const IMAGE_LABELS = {
   'cover-medium-1500x750.png': 'Medium cover',
@@ -108,6 +137,7 @@ const IMAGE_LABELS = {
   'week-1400.png': 'The week, day by day',
   'agents-1400.png': 'Agents per day',
   'machine-1400.png': 'What it cost the machine',
+  'fonts-1400.png': 'What the export embedded',
 };
 const SHARE_FILES = [
   ['linkedin-post.txt', 'LinkedIn post'],
@@ -232,6 +262,69 @@ fs.rmSync(DOCS, { recursive: true, force: true });
 fs.mkdirSync(path.join(DOCS, 'assets', 'fonts'), { recursive: true });
 fs.writeFileSync(path.join(DOCS, '.nojekyll'), '');
 fs.writeFileSync(path.join(DOCS, 'CNAME'), `${SITE_HOST}\n`);
+
+/*
+ * A tab icon per page, in that page's own colours.
+ *
+ * Lines of writing: three full and one short, which is what the end of a paragraph looks like from
+ * far enough away to be a shape rather than words. Every article already has a token set, so the
+ * icon is drawn from the same two colours the page itself uses in the dark -- its accent on its
+ * background -- and an article nobody has themed yet gets the site's indigo.
+ *
+ * One icon for the whole site was the first try, and it made every tab identical, which is the one
+ * job a favicon has. It is written beside each page instead of into assets/, so the link is a bare
+ * "icon.svg" that is right at the root and one folder down without knowing which it is.
+ */
+function iconSvg(key) {
+  const t = (TOKENS[key] ?? TOKENS.index).dark;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="Articles">
+  <rect width="16" height="16" rx="3.5" fill="${t.bg}"/>
+  <g fill="${t.accent}">
+    <rect x="3" y="4.1" width="10" height="1.9" rx="0.95"/>
+    <rect x="3" y="7.05" width="10" height="1.9" rx="0.95"/>
+    <rect x="3" y="10" width="10" height="1.9" rx="0.95"/>
+  </g>
+  <rect x="3" y="12.95" width="5.6" height="1.9" rx="0.95" fill="${t.accent}" opacity="0.55"/>
+</svg>
+`;
+}
+/*
+ * An article's own logo when it has one, the tinted lines when it does not.
+ *
+ * Colour alone was not enough: the point of a tab icon is that a glance tells you WHICH article,
+ * and four indigo paragraphs in four tabs do not. The projects have marks already -- the lab's
+ * cube, the ledger's board -- but they live in those projects, and the covers here only have them
+ * painted into a PNG. src/icons/<slug>.svg is where one is dropped for this site to use; anything
+ * without one keeps the lines in its own accent, which still beats every tab looking the same.
+ */
+/*
+ * The article's own project logo when there is one, the tinted lines when there is not.
+ *
+ * The logos are the portfolio's set (its public/logos/), which is where a project's mark already
+ * lives -- so these are the real ones rather than anything drawn here. Two of them are PNG, so the
+ * file name is not always icon.svg and the <link> has to say which; both sides read it from here,
+ * which is why this returns the name instead of hard-coding it in two places.
+ */
+function iconFor(slug) {
+  for (const [ext, type] of [['svg', 'image/svg+xml'], ['png', 'image/png']]) {
+    const src = path.join(here, 'src', 'icons', `${slug}.${ext}`);
+    if (fs.existsSync(src)) return { src, file: `icon.${ext}`, type };
+  }
+  return null;
+}
+const iconLinkFor = (slug) => {
+  const own = iconFor(slug);
+  return own ? { file: own.file, type: own.type } : { file: 'icon.svg', type: 'image/svg+xml' };
+};
+const writeIcon = (dir, key, slug = key) => {
+  const own = iconFor(slug);
+  if (own) { fs.copyFileSync(own.src, path.join(dir, own.file)); return; }
+  fs.writeFileSync(path.join(dir, 'icon.svg'), iconSvg(key));
+};
+
+/** The same lines, inline and in currentColor, for the page itself rather than the tab. */
+const markSvg = (cls = 'mark') => `<svg class="${cls}" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill="currentColor"><rect x="3" y="4.1" width="10" height="1.9" rx=".95"/><rect x="3" y="7.05" width="10" height="1.9" rx=".95"/><rect x="3" y="10" width="10" height="1.9" rx=".95"/></g><rect x="3" y="12.95" width="5.6" height="1.9" rx=".95" fill="currentColor" opacity=".55"/></svg>`;
+writeIcon(DOCS, 'index');
 
 const fontSrc = path.join(desktop, 'selfawarewriting-article', 'src');
 for (const f of ['dm-sans-latin.woff2', 'eb-garamond-latin.woff2', 'eb-garamond-latin-italic.woff2']) {
@@ -380,6 +473,7 @@ for (const a of ARTICLES) {
 
   const kitData = JSON.stringify({ richHtml: copy.join('\n') }).replace(/</g, '\\u003c');
   fs.writeFileSync(path.join(out, 'index.html'), articlePage(info, page.join('\n'), mdCopy, kitData));
+  writeIcon(out, info.theme ?? info.slug, info.slug);
   if (SYNC_PROJECTS && a.mirrorDir) syncProjectArticle(info, mirror.join('\n'), mdCopy, kitData);
 }
 
@@ -392,7 +486,7 @@ ${[`${SITE_URL}/`, ...built.map((a) => pageUrl(a.slug))].map((u) => `  <url><loc
 fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 // --- templates --------------------------------------------------------------------------------
-function head({ pageKey, title, description, image, imageAlt, url, canonical = url, type, fontsLink, base, counted = false }) {
+function head({ pageKey, slug = pageKey, title, description, image, imageAlt, url, canonical = url, type, fontsLink, base, counted = false }) {
   return `<!doctype html>
 <html lang="en" data-page="${pageKey}">
 <head>
@@ -416,18 +510,27 @@ function head({ pageKey, title, description, image, imageAlt, url, canonical = u
 <meta name="twitter:description" content="${attr(description)}">
 <meta name="twitter:image" content="${attr(image)}">
 <meta name="twitter:image:alt" content="${attr(imageAlt)}">
-<link rel="icon" href="data:,">
+<link rel="icon" href="${iconLinkFor(slug).file}" type="${iconLinkFor(slug).type}">
 ${fontsLink ? `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="${attr(fontsLink)}">\n` : ''}<link rel="stylesheet" href="${base}assets/site.css">
 <script src="${base}assets/site.js" defer></script>
 ${counted ? `<script data-goatcounter="${ANALYTICS}" async src="https://gc.zgo.at/count.js"></script>
 ` : ''}</head>`;
 }
 
-function themeSwitchHtml() { return `<div class="theme-switch" role="group" aria-label="Colour theme" hidden>
-      <button type="button" data-theme-value="system" aria-pressed="true">Auto</button>
-      <button type="button" data-theme-value="light" aria-pressed="false">Light</button>
-      <button type="button" data-theme-value="dark" aria-pressed="false">Dark</button>
-    </div>`; }
+/*
+ * One button, not three.
+ *
+ * Auto / Light / Dark took a pill the width of the name beside it and spent it saying two things
+ * you are not choosing. This cycles Auto -> Light -> Dark and shows only where you are; the words
+ * stay in the accessible name and the tooltip, where a screen reader still reads them and a
+ * pointer still finds them. JavaScript unhides it, as before: with none, the page follows the
+ * system and there is no control promising otherwise.
+ */
+function themeSwitchHtml() { return `<button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>`; }
 
 function figure(i, { hero = false } = {}) {
   return `<figure class="fig${hero ? ' fig-cover' : ''}" id="fig-${i.key}">
@@ -530,7 +633,7 @@ function siteFoot(back, mirror = false) {
 
 function articlePage(a, body, md, kitData, { mirror = false } = {}) {
   const url = mirror ? `${a.project}/article/` : pageUrl(a.slug);
-  return `${head({ pageKey: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../', counted: !mirror })}
+  return `${head({ pageKey: a.theme ?? a.slug, slug: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../', counted: !mirror })}
 <body>
 <a class="skip" href="#story">Skip to the article</a>
 <header class="site-head">
@@ -573,6 +676,7 @@ function syncProjectArticle(a, body, md, kitData) {
   }
   for (const image of a.images) fs.copyFileSync(path.join(a.dir, image.file), path.join(out, image.file));
   fs.writeFileSync(path.join(out, 'index.html'), articlePage(a, body, md, kitData, { mirror: true }));
+  writeIcon(out, a.theme ?? a.slug, a.slug);
   console.log(`synced ${a.project}/article/ -> ${out}`);
 }
 
@@ -593,12 +697,15 @@ function indexPage(list) {
 <body>
 <a class="skip" href="#main">Skip to the articles</a>
 <header class="site-head">
-  <nav aria-label="Site"><a class="home" href="./">${AUTHOR}</a></nav>
+  <!-- The name goes to the portfolio, not to this page: you are already on this page, and the
+       name was printed twice -- once here and once as the heading's eyebrow, which now counts the
+       articles instead. One name, and it leads somewhere. -->
+  <nav aria-label="Site"><a class="home" href="${HOME_URL}">${markSvg()}<span>${AUTHOR}</span></a></nav>
   ${themeSwitchHtml()}
 </header>
 <main class="index" id="main" tabindex="-1">
   <header class="index-head">
-    <p class="kicker">${AUTHOR}</p>
+    <p class="kicker">${list.length} build stories</p>
     <h1>Articles</h1>
     <p class="dek">Build stories, counted from the logs.</p>
   </header>
@@ -618,4 +725,5 @@ for (const a of built) {
   console.log(`${a.slug}: ${num(a.words)} words, ${a.minutes} min, ${a.images.length} images, ${a.shares.length} posts`);
 }
 console.log(`contrast: ${contrastReport.length} text pairs checked, lowest ${minRatio.ratio}:1 (${minRatio.page} ${minRatio.mode} ${minRatio.pair})`);
+if (NOT_READY.length) console.log(`not built yet (package incomplete): ${NOT_READY.map((a) => a.slug).join(", ")}`);
 console.log(`wrote ${path.relative(here, DOCS)}${path.sep}`);

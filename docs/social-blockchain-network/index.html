@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en" data-page="index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Blockchain Network: refactor, don't rebuild</title>
+<meta name="description" content="A social network where every post is an NFT and every like is a signed transaction, on three testnets. It was built last winter. Two days with Claude in August made it tested and reviewed, without starting again. Counted from git and the session logs.">
+<meta name="author" content="Edgaras Neverdauskas">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="canonical" href="https://articles.edgarasneverdauskas.com/social-blockchain-network/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://articles.edgarasneverdauskas.com/social-blockchain-network/">
+<meta property="og:site_name" content="Articles — Edgaras Neverdauskas">
+<meta property="og:title" content="Social Blockchain Network: refactor, don't rebuild">
+<meta property="og:description" content="A social network where every post is an NFT and every like is a signed transaction, on three testnets. It was built last winter. Two days with Claude in August made it tested and reviewed, without starting again. Counted from git and the session logs.">
+<meta property="og:image" content="https://articles.edgarasneverdauskas.com/social-blockchain-network/cover-medium-1500x750.png">
+<meta property="og:image:alt" content="Dark navy cover. On the left, the Social Blockchain Network mark, two linked nodes in blue and teal, and the title &quot;Refactor, don't rebuild&quot;, above the line &quot;A social network on three testnets, and 39 pull requests in two days with Claude.&quot; On the right, a screenshot of the live feed with no wallet connected: the header with a Connect button, cards explaining that posts are NFTs, the three supported testnets, and the first posts.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Social Blockchain Network: refactor, don't rebuild">
+<meta name="twitter:description" content="A social network where every post is an NFT and every like is a signed transaction, on three testnets. It was built last winter. Two days with Claude in August made it tested and reviewed, without starting again. Counted from git and the session logs.">
+<meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/social-blockchain-network/cover-medium-1500x750.png">
+<meta name="twitter:image:alt" content="Dark navy cover. On the left, the Social Blockchain Network mark, two linked nodes in blue and teal, and the title &quot;Refactor, don't rebuild&quot;, above the line &quot;A social network on three testnets, and 39 pull requests in two days with Claude.&quot; On the right, a screenshot of the live feed with no wallet connected: the header with a Connect button, cards explaining that posts are NFTs, the three supported testnets, and the first posts.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
+<script data-goatcounter="https://articles.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the article</a>
+<header class="site-head">
+  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+</header>
+<main class="layout" id="main">
+  <aside class="kit" aria-label="Share kit">
+    <details class="kit-box" id="kit">
+      <summary><span class="kit-sum"><span class="kit-title">Share kit</span><span class="kit-hint">Copy the story, images and posts</span></span></summary>
+      <div class="kit-body">
+        <section aria-labelledby="kit-story">
+          <h2 id="kit-story">Story</h2>
+          <div class="btn-grid">
+            <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
+            <button type="button" class="btn" data-copy="story-title">Copy title</button>
+            <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
+            <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
+          </div>
+          <p class="kit-note">Rich text keeps the headings, bold, lists and links when pasted into an editor such as Medium or LinkedIn. Images aren’t included: the copy has a bold line where each one goes, with its address, caption and alt text.</p>
+          <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown"># Social Blockchain Network: refactor, don't rebuild
+
+*A social network where every post is an NFT and every like is a signed transaction, on three testnets. It was built last winter. Two days with Claude in August made it tested and reviewed, without starting again. Counted from git and the session logs.*
+
+## It started with a bug report from my phone
+
+At 14:14 on Sunday 30 August I reported a few issues I had found testing my own app on a phone. The notification list returned 429 errors and the windows went "stuck on loading and stuck in between 2 states". When I tried to tip a post without enough balance, the app told me my image might be too large. There was no image. There were probably more.
+
+My first idea was end-to-end tests with real wallets. Twelve minutes later I had a better one. Before any changes, read the whole thing, contract, workers, subgraph and frontend, because "isntead or write mroe code, maybe we need ot refactor sometihng".
+
+That question, fix it or rebuild it, ran through the next two days.
+
+As with [CSS 3D Lab](https://articles.edgarasneverdauskas.com/css-3d-lab/) and [J.A.R.V.I.S.](https://articles.edgarasneverdauskas.com/jarvis/), I went back through the session logs and the full git history, so the numbers are counted, not remembered. One difference this time: the project is nine months old, and the AI logs on my computer cover only part of it. I say where the record stops.
+
+## What Social Blockchain Network is
+
+A social feed where every write is a transaction you sign in your wallet. A post is minted as an NFT, with its picture or video on IPFS. Likes, comments, saves, follows and tips all happen on chain. Tips are split between the author and the protocol, and the split is shown before you sign, not after.
+
+It runs on three testnets at once: Base Sepolia, Ethereum Sepolia and BSC Testnet. The feed reads from all three together. The same wallet has a separate profile on each network, because each network runs its own copy of the contract.
+
+Underneath: a Solidity contract of 966 lines, a subgraph per network that turns its events into data the app can query, three small Cloudflare workers, and a React app of about 30,000 lines. You can read the feed without a wallet. To post or react, you need one.
+
+## How it happened
+
+**December and January: before the logs.** The first commit landed at 18:52 on 22 December 2025: 54 files and 15,260 lines, the app already standing. By 19:31 it had deploy settings for Base and BSC. In all, 244 commits over 34 days, until 29 January. They added image cropping and video trimming on 18 January, and the Cloudflare workers between 12 and 23 January. In August I described that period to Claude as "this app was bilt with prevous codex4". Git is all that is left, and it says little: 198 of the 244 commits are called "updated", "push" or a typo of those.
+
+Git does keep one story. Between 24 and 27 December, six commit messages celebrate reaching 100% test coverage. On 28 December at 13:29, a commit called "updated" deleted 44 test files, 18,779 lines. By August one frontend test file was left, with three tests in it.
+
+**7 and 8 June: Codex.** The app sat untouched for four months. Then images and videos stopped loading from IPFS. I opened OpenAI's Codex, on GPT-5.5, and over two evenings (my local time then, UTC+3) we fixed the media path, cleared 13 security warnings in the dependencies, and made the app refuse to post when your wallet is on an unsupported network. On the second evening followers showed 0 when I clearly followed someone. The app was fine. The subgraph behind it had stopped answering. "i havent used the graph for like 5 months since i first deployed, can that be an issue". Codex thought that was probably why. We redeployed it on all three networks, and pointed the worker at the latest version so next time a redeploy is enough.
+
+**16 and 17 August: a real address.** I gave the app its own domain, social.edgarasneverdauskas.com. Claude, on Sonnet 5, changed the base path in two minutes. The next day Codex made the workers accept the new domain.
+
+**Saturday 29 August, evening.** On the post page, comments never stopped loading. The page waited for a wallet that a visitor doesn't have. Claude on Opus 5 removed the wait, and at my request made every dialog frosted glass instead of see-through. That afternoon, in a session outside these logs, Claude had moved the app to TypeScript 7 and React 19.
+
+**Sunday 30 August, afternoon: three bugs, each several.** A hint meant only for the post composer had ended up in the shared error translator, above the check for insufficient funds, so every failed transaction in the app blamed the picture. Behind that sat three more faults: no balance check before sending a tip, the error written to a panel the feed never shows, and a formatting slip of Claude's own that turned a tip of 1 into "&lt;0.000001". The 429s came from our own worker, which rate-limited requests before checking its cache, so even cached answers used up the allowance. And a notification cache had never stored a single entry. `JSON.stringify` throws on the big numbers that tip amounts use, and the write sat in a `try` that swallowed the error.
+
+At 14:55 I wanted to throw away all the changes and start clean. Claude pushed back. The fixes were real, and the problem was one unreadable heap of changes, so it split them into three commits instead. At 15:41 I raised the bigger question. It is a 30,000-line app, so should we refactor all of it? Claude's answer at 15:52 was no, not yet. It had touched 40 of 420 files. 16 of 18 features had no tests at all. And in that tenth of the code it had already caused three regressions of its own that day. "ok buidl the safty net then refactor good call."
+
+**Sunday, 16:00 to 18:39: testing with a real wallet.** Claude drove the app in my own browser, with my wallet extension connected. It tipped more than my balance, and the check now stopped it before the wallet opened. It minted posts with an image, with a video and with plain text, and trimmed a video to check the trim really re-encodes. When I asked if it could see the wallet's confirm button, it said no, and that it wouldn't press it anyway: "Approving a wallet transaction is yours to do — that's the one step I deliberately don't take on your behalf." I clicked every confirm button. At 16:52 the first pull request merged: 15 commits, 9 bugs fixed, 137 tests where there had been 3, and a CI that runs on every push. By 18:39 nine pull requests were in. The last one added a confirmation step before burning a post.
+
+**Sunday evening: taking things out.** "so nwo the app is stable riught? amybe ther efactringis not even needed?" For what had been exercised, Claude agreed. A demo mode that replaced the real feed with generated fake posts came out, 1,165 lines. Then I asked about the tests. Claude had written a lot of them as a safety net for a refactor we had just decided against. It went through them and deleted 71 of them, 253 down to 182, keeping the ones tied to a real bug or a deliberate decision. The commit message says it plainly: "drop coverage that was written for a refactor we did not do".
+
+At 21:43 I wondered whether saving likes in browser storage would make the counters feel faster. Two minutes later I talked myself out of it: "i dont lie kacutally local storage for this reason". A counter saved at click time claims success for a transaction that may never confirm. Claude then found the same call already made in a commit on 1 January, across 44 files. It had left four modules whose functions did nothing any more, under comments still describing what they used to do. They went, and by 23:22 the dead-code sweep had removed 1,333 lines in all.
+
+At 22:14 Claude hit its session limit, which reset at 22:40. After that we fixed CI, which was running every check twice, and turned on branch protection. "yeah we have o make sure that red is acountable not skipped". Claude proved it by pushing straight to main and getting rejected.
+
+**Monday 31 August, 00:00: the rebuild question.** "sicne this app was bilt with prevous codex4 i wander if it is good apreach ot chalange the architecture with caluse opus 5 and usign htis app as an exampel rebuilt with new architecture as as new project". I asked for a full review, and it came back at 00:10. The code was healthier than it looked, with one real defect: 46 import cycles, 45 of them caused by barrel files. Importing one component through a barrel pulled in a whole feature, and those features reached back into each other. By 00:38 all five steps of the plan had merged and the cycles were at 0, with a check in CI to keep them there. At 01:20 the post card was down from 49 props to 14. At 01:21: "5 hour limit always most consumed, i think we are done for today".
+
+**Monday morning: the paths nobody had tried.** From 09:24 Claude tested the write paths still marked untested: replying to a comment, tipping a comment, deleting one, following and unfollowing with a second account, and withdrawing tips. All worked. When it logged my balance display as a rounding bug, I corrected it: "we have trucnatino for a reason in crypto it makes more sense". Showing more than you hold is the wrong direction for money, so the reason now sits in a comment next to the code.
+
+At 11:18 the follow counts on the public site were stuck loading, and then they weren't. Neither of us could reproduce it, so Claude read the code instead. Every "loading" flag was set without a guard and cleared with one, so a request made stale by a network switch could never clear its own spinner. The same fault turned up in the feed. By 12:10, four pull requests had fixed both, made the guard own the flags so the mistake can't be repeated, and collapsed seven copies of the same loading logic into one.
+
+At 12:13 I asked what state the app was in compared to two days before. 39 pull requests merged. Frontend tests from 3 to 224. Import cycles from 46 to 0. 248 files changed. The contract and the subgraph were not touched at all.
+
+## Refactor, don't rebuild
+
+Twice I asked whether to tear it up: at 15:51 on Sunday, a new architecture; at midnight, a rebuild as a new project. Both times the answer was no, and the reasons are the useful part.
+
+The hard parts of this project are not the React app. They are the contract, deployed on three networks, the subgraphs and the workers. All of them were proven on real chains. A rebuild would have carried them over unchanged, so "rebuild" meant rewriting the cheapest layer and keeping the expensive ones.
+
+A rebuild would also have thrown away what we only knew because the app had been used. Of the thirteen bugs fixed by Sunday evening, by Claude's count, almost none could have been found by reading. A cache that never wrote. A gate that hid every profile picture from anyone without a wallet. Each one showed up because I, or Claude in my browser, used the thing and something looked wrong.
+
+The review that settled it lives in the repository as a short document. It says when a rebuild would be the right call. If adding a feature routinely means touching ten or more files, that is testable: pick a real feature and count. Or the rebuild is itself the point. Or a buyer or employer wants a specific stack. None of those were true.
+
+## What we got wrong
+
+- Six commits in December celebrated 100% coverage. Then one called "updated" deleted 44 test files, and by August one test file was left.
+- The subgraph stopped answering, Codex thought probably from five months of no use, and the app showed 0 followers instead of an error.
+- One error message blamed image size for every failed transaction in the app, including tips.
+- Our own worker rate-limited answers it already had in its cache.
+- A cache hadn't written a single entry since tip amounts became big numbers. The error was caught and ignored.
+- Claude caused three regressions on the first afternoon. One, a follow button stuck loading, came from searching two files and stopping.
+- Testing comments, Claude clicked what it guessed was a close button. It was delete. I cancelled the wallet prompt.
+- Claude wrote 71 tests for a refactor we then decided not to do. They came out the same evening.
+- For stacked dialogs, Claude tried three CSS fixes in a row. I asked whether it was over-engineering, and one of them was reverted.
+- The import clean-up turned 132 imports across features into long relative paths. I noticed, and they were put back.
+- Recording a demo, Claude reloaded the page 28 seconds into a 120-second wait for a transaction, and lost the evidence of what was slow. We dropped the video.
+- The profile card counted my posts across all three networks while showing one: 9 where it should say 3.
+
+## Who did what
+
+**Claude Code** did the August work. Across three sessions it made 63 commits and merged 39 pull requests. It replied 2,003 times: 1,991 from Claude Opus 5 and 12 from Claude Sonnet 5, the two-minute domain change. It made 1,897 tool calls: 1,177 commands, 162 file edits and 514 actions in a browser, more than half of them in my own browser with my wallet connected. There were no helper agents. That was about 13 hours of active work.
+
+**Codex** had five short sessions, in June and August. I sent it 39 messages and 14 screenshots, and it made 411 tool calls and 4 commits over about three hours and twenty minutes. It ran GPT-5.5 in June and GPT-5.6-terra in August.
+
+**Before the logs**, from December to January, 244 commits built the app itself. By my own account they were written with what I then called ChatGPT's Codex; git records no tool and no logs from then are on this computer.
+
+![By the numbers](https://articles.edgarasneverdauskas.com/social-blockchain-network/numbers-1400.png)
+
+**My part** was deciding, and signing. I sent 209 messages, 170 to Claude and 39 to Codex, and a typical one was 10 words. 26 of them went in while Claude was still working, and I stopped it mid-task three times. "sorry i keep itnerapting your tests :D". I decided the project stays on testnets: "mainnet is right now out of hand". Browser storage for chain data was turned down twice, in January in the code and in August by me. And I lost an argument I had started. I wanted to drop the warning before burning a post, since the wallet asks anyway. Claude pointed out that the wallet confirms a transaction, not an intent. "ok fair chalange, i accept". The warning stayed, and comments got one too. And every transaction in these tests was approved by my hand, in my wallet.
+
+Treat the numbers as a record, not a benchmark.
+
+## What it cost
+
+The chain side costs nothing. Every transaction uses testnet coins from faucets, which have no value. The subgraphs run on The Graph's free development endpoints, on purpose with no API key, because I don't want to be billed for an experiment.
+
+The cost was the subscriptions, and the limits shaped the days. Claude's session limit stopped us once, at 22:14 on Sunday, for 26 minutes. At 01:21 on Monday it was my five-hour allowance again: "5 hour limit always most consumed".
+
+## What I would tell someone starting
+
+- **Ask "rebuild or refactor?" with numbers, not feelings.** Count cycles, props, files per feature. The review took minutes and settled the question.
+- **Rebuilding rewrites the cheap layer.** The expensive parts, like a deployed contract and its indexer, come along unchanged.
+- **Use it before you judge it.** Almost every bug here was found by using the app, not by reading it.
+- **Tests you write for a plan you drop are debt.** Keep the ones tied to a bug or a decision. Delete the rest.
+- **Write the reason next to the code.** A January decision survived as one comment in one file, and the empty functions around it nearly got rebuilt.
+- **Make red mean stop.** CI that can be merged past is a suggestion.
+- **Keep the signing yourself.** The assistant drove the browser; the wallet stayed mine.
+
+## In one paragraph
+
+A social network where every post is an NFT and every reaction a signed transaction was built over the winter, then left alone for months. In June Codex got it loading again. In two days at the end of August, Claude and I fixed more than a dozen bugs, took out nearly 2,500 lines of dead weight, took tests from 3 to 224 and import cycles from 46 to 0, in 39 pull requests, without touching the contract. Twice I asked whether to throw it all away and start again. Both times the answer came from counting, not from taste. The models wrote the code. What to keep, what to sign and when to stop stayed with me.
+
+*Try it at [social.edgarasneverdauskas.com](https://social.edgarasneverdauskas.com). It runs on public testnets only, with no real funds. The code is open source under MIT at [github.com/Evirtual/social-blockchain-network](https://github.com/Evirtual/social-blockchain-network). The August work was done with Claude Code, Claude Opus 5 and Claude Sonnet 5; the June and August fixes with OpenAI Codex on GPT-5.5 and GPT-5.6-terra.*</textarea></details>
+        </section>
+        <section aria-labelledby="kit-images">
+          <h2 id="kit-images">Images (3)</h2>
+          <ul class="img-list">
+        <li class="img-row">
+          <img src="cover-medium-1500x750.png" alt="" width="1500" height="750" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open medium cover full size">
+          <p class="img-name">Medium cover<span>cover-medium-1500x750.png · 1500&nbsp;×&nbsp;750</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+              <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">Social Blockchain Network on the live site, reading three testnets at once. Image and app: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 433 characters</p><p id="k-alt-cover-medium">Dark navy cover. On the left, the Social Blockchain Network mark, two linked nodes in blue and teal, and the title "Refactor, don't rebuild", above the line "A social network on three testnets, and 39 pull requests in two days with Claude." On the right, a screenshot of the live feed with no wallet connected: the header with a Connect button, cards explaining that posts are NFTs, the three supported testnets, and the first posts.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="cover-linkedin-1920x1080.png" alt="" width="1920" height="1080" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open linkedin cover full size">
+          <p class="img-name">LinkedIn cover<span>cover-linkedin-1920x1080.png · 1920&nbsp;×&nbsp;1080</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-linkedin" aria-label="Copy caption, linkedin cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-linkedin" aria-label="Copy alt text, linkedin cover">Copy alt</button>
+              <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">Social Blockchain Network on the live site, reading three testnets at once. Image and app: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 433 characters</p><p id="k-alt-cover-linkedin">Dark navy cover. On the left, the Social Blockchain Network mark, two linked nodes in blue and teal, and the title "Refactor, don't rebuild", above the line "A social network on three testnets, and 39 pull requests in two days with Claude." On the right, a screenshot of the live feed with no wallet connected: the header with a Connect button, cards explaining that posts are NFTs, the three supported testnets, and the first posts.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="numbers-1400.png" alt="" width="1400" height="1794" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open numbers card full size">
+          <p class="img-name">Numbers card<span>numbers-1400.png · 1400&nbsp;×&nbsp;1794</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+              <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-numbers">Nine months in git, and the part the session logs cover: Claude Code, Codex, me, and the winter nobody logged.</p>
+              <p class="lbl">Alt text · 411 characters</p><p id="k-alt-numbers">Social Blockchain Network by the numbers, Dec 2025 – Sep 2026: 352 commits, 39 pull requests merged in two days, frontend tests from 3 to 224, import cycles from 46 to 0. Claude Code: 63 commits, 2,003 replies, 1,897 tool calls, about 13 hours 20 minutes active. Codex: 39 messages, 411 tool calls, 4 commits. Me: 209 messages, typically 10 words. Before the logs: 244 commits that could not be counted by tool.</p>
+            </details>
+          </div>
+        </li>
+          </ul>
+        </section>
+        <section aria-labelledby="kit-share">
+          <h2 id="kit-share">Posts (3)</h2>
+        <div class="share">
+          <div class="share-head">
+            <h3>LinkedIn post</h3>
+            <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
+          </div>
+          <p class="share-meta">1,873 characters</p>
+          <pre id="share-linkedin" tabindex="0">At midnight on a Sunday night I asked Claude whether I should throw my own app away and rebuild it from scratch.
+
+The app is Social Blockchain Network: a social feed where every post is an NFT and every like, comment, follow and tip is a transaction you sign in your wallet. It runs on three testnets at once, with no real money involved. It was built last winter, the frontend alone about 30,000 lines, and testing it on my phone had just turned up a handful of bugs.
+
+I went back through the session logs and the git history to count those two days, 30 and 31 August: 39 pull requests merged, frontend tests from 3 to 224, import cycles from 46 to 0. Across the logged sessions Claude replied 2,003 times and made 1,897 tool calls. I sent 209 messages to Claude and Codex. A typical one was 10 words.
+
+The answer to my question was no, and the reasons were counted, not felt.
+
+→ The hard parts were never the frontend. The contract, the indexers and the workers already worked on three chains. A rebuild would have rewritten the cheapest layer and kept the expensive ones.
+
+→ Almost none of the bugs we fixed could be found by reading. A cache that had never saved a single entry. An error that blamed image size when a tip had too little balance. They showed up because the app was used.
+
+→ Claude wrote 71 tests as a safety net for a refactor we then decided not to do. They came out the same evening. Tests for a plan you drop are debt.
+
+→ Claude drove my browser, but it would not approve a transaction. Every one was signed in my own wallet.
+
+The model wrote the code. What to keep, what to sign and when to stop stayed with me.
+
+If you're building a product with AI and the building is fast but the product keeps drifting, feel free to DM me. I'm open to consulting and product/engineering advisory work.
+
+I wrote it all up, mistakes included, in the article below.</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>Facebook post</h3>
+            <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
+          </div>
+          <p class="share-meta">892 characters</p>
+          <pre id="share-facebook" tabindex="0">I made a little social network where every post is an NFT 🔗
+
+You write a post and it's minted on a blockchain. Likes, comments, saves, follows and tips are all things you sign with a crypto wallet, like signing a tiny receipt. It runs on three test networks at the same time, which use free test coins, so no real money is involved at all.
+
+You can scroll the feed without a wallet. To post or react, you need one, plus some free test coins from a faucet.
+
+I first built it last winter. This summer I came back to it with an AI assistant, Claude, and asked a big question: should I throw it all away and start again? We counted instead of guessing, and the answer was no. In two days we fixed more than a dozen bugs and made it much sturdier. The AI wrote the code; I tested it, approved every transaction myself, and decided what stayed.
+
+Have a look 👇
+https://social.edgarasneverdauskas.com</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>X post</h3>
+            <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
+          </div>
+          <p class="share-meta">371 characters</p>
+          <pre id="share-x" tabindex="0">I asked Claude whether to rebuild my on-chain social network from scratch. Posts are NFTs, likes are signed transactions, three testnets. We counted instead: refactor. 39 PRs in two days, tests 3 → 224, import cycles 46 → 0.
+
+https://social.edgarasneverdauskas.com
+
+What happened, counted from the logs: https://articles.edgarasneverdauskas.com/social-blockchain-network/</pre>
+        </div>
+        </section>
+      </div>
+    </details>
+  </aside>
+  <article class="story" id="story" aria-labelledby="story-title" tabindex="-1">
+    <header class="story-head">
+      <p class="kicker">42 days · 352 commits</p>
+      <h1 id="story-title">Social Blockchain Network: refactor, don't rebuild</h1>
+      <p class="dek" id="story-dek">A social network where every post is an NFT and every like is a signed transaction, on three testnets. It was built last winter. Two days with Claude in August made it tested and reviewed, without starting again. Counted from git and the session logs.</p>
+      <p class="byline"><span>Edgaras Neverdauskas</span><span>13 min read</span><span>2,995 words</span></p>
+      <nav class="also" aria-label="This story elsewhere">
+        
+        <p><span class="also-label">Project</span><a href="https://social.edgarasneverdauskas.com" rel="noopener">social.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></p>
+      </nav>
+    </header>
+    <figure class="fig fig-cover" id="fig-cover-medium">
+  <div class="frame"><img src="cover-medium-1500x750.png" alt="Dark navy cover. On the left, the Social Blockchain Network mark, two linked nodes in blue and teal, and the title &quot;Refactor, don't rebuild&quot;, above the line &quot;A social network on three testnets, and 39 pull requests in two days with Claude.&quot; On the right, a screenshot of the live feed with no wallet connected: the header with a Connect button, cards explaining that posts are NFTs, the three supported testnets, and the first posts." width="1500" height="750" decoding="async" tabindex="0" role="button" aria-label="Open this picture" fetchpriority="high"></div>
+  <figcaption>
+    <p class="cap" id="cap-cover-medium">Social Blockchain Network on the live site, reading three testnets at once. Image and app: Edgaras Neverdauskas.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+      <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 433 characters</span></summary><p id="alt-cover-medium">Dark navy cover. On the left, the Social Blockchain Network mark, two linked nodes in blue and teal, and the title "Refactor, don't rebuild", above the line "A social network on three testnets, and 39 pull requests in two days with Claude." On the right, a screenshot of the live feed with no wallet connected: the header with a Connect button, cards explaining that posts are NFTs, the three supported testnets, and the first posts.</p></details>
+  </figcaption>
+</figure>
+    <div class="prose" id="article-body">
+<h2>It started with a bug report from my phone</h2>
+<p>At 14:14 on Sunday 30 August I reported a few issues I had found testing my own app on a phone. The notification list returned 429 errors and the windows went "stuck on loading and stuck in between 2 states". When I tried to tip a post without enough balance, the app told me my image might be too large. There was no image. There were probably more.</p>
+<p>My first idea was end-to-end tests with real wallets. Twelve minutes later I had a better one. Before any changes, read the whole thing, contract, workers, subgraph and frontend, because "isntead or write mroe code, maybe we need ot refactor sometihng".</p>
+<p>That question, fix it or rebuild it, ran through the next two days.</p>
+<p>As with <a href="../css-3d-lab/">CSS 3D Lab</a> and <a href="../jarvis/">J.A.R.V.I.S.</a>, I went back through the session logs and the full git history, so the numbers are counted, not remembered. One difference this time: the project is nine months old, and the AI logs on my computer cover only part of it. I say where the record stops.</p>
+<h2>What Social Blockchain Network is</h2>
+<p>A social feed where every write is a transaction you sign in your wallet. A post is minted as an NFT, with its picture or video on IPFS. Likes, comments, saves, follows and tips all happen on chain. Tips are split between the author and the protocol, and the split is shown before you sign, not after.</p>
+<p>It runs on three testnets at once: Base Sepolia, Ethereum Sepolia and BSC Testnet. The feed reads from all three together. The same wallet has a separate profile on each network, because each network runs its own copy of the contract.</p>
+<p>Underneath: a Solidity contract of 966 lines, a subgraph per network that turns its events into data the app can query, three small Cloudflare workers, and a React app of about 30,000 lines. You can read the feed without a wallet. To post or react, you need one.</p>
+<h2>How it happened</h2>
+<p><strong>December and January: before the logs.</strong> The first commit landed at 18:52 on 22 December 2025: 54 files and 15,260 lines, the app already standing. By 19:31 it had deploy settings for Base and BSC. In all, 244 commits over 34 days, until 29 January. They added image cropping and video trimming on 18 January, and the Cloudflare workers between 12 and 23 January. In August I described that period to Claude as "this app was bilt with prevous codex4". Git is all that is left, and it says little: 198 of the 244 commits are called "updated", "push" or a typo of those.</p>
+<p>Git does keep one story. Between 24 and 27 December, six commit messages celebrate reaching 100% test coverage. On 28 December at 13:29, a commit called "updated" deleted 44 test files, 18,779 lines. By August one frontend test file was left, with three tests in it.</p>
+<p><strong>7 and 8 June: Codex.</strong> The app sat untouched for four months. Then images and videos stopped loading from IPFS. I opened OpenAI's Codex, on GPT-5.5, and over two evenings (my local time then, UTC+3) we fixed the media path, cleared 13 security warnings in the dependencies, and made the app refuse to post when your wallet is on an unsupported network. On the second evening followers showed 0 when I clearly followed someone. The app was fine. The subgraph behind it had stopped answering. "i havent used the graph for like 5 months since i first deployed, can that be an issue". Codex thought that was probably why. We redeployed it on all three networks, and pointed the worker at the latest version so next time a redeploy is enough.</p>
+<p><strong>16 and 17 August: a real address.</strong> I gave the app its own domain, social.edgarasneverdauskas.com. Claude, on Sonnet 5, changed the base path in two minutes. The next day Codex made the workers accept the new domain.</p>
+<p><strong>Saturday 29 August, evening.</strong> On the post page, comments never stopped loading. The page waited for a wallet that a visitor doesn't have. Claude on Opus 5 removed the wait, and at my request made every dialog frosted glass instead of see-through. That afternoon, in a session outside these logs, Claude had moved the app to TypeScript 7 and React 19.</p>
+<p><strong>Sunday 30 August, afternoon: three bugs, each several.</strong> A hint meant only for the post composer had ended up in the shared error translator, above the check for insufficient funds, so every failed transaction in the app blamed the picture. Behind that sat three more faults: no balance check before sending a tip, the error written to a panel the feed never shows, and a formatting slip of Claude's own that turned a tip of 1 into "&lt;0.000001". The 429s came from our own worker, which rate-limited requests before checking its cache, so even cached answers used up the allowance. And a notification cache had never stored a single entry. <code>JSON.stringify</code> throws on the big numbers that tip amounts use, and the write sat in a <code>try</code> that swallowed the error.</p>
+<p>At 14:55 I wanted to throw away all the changes and start clean. Claude pushed back. The fixes were real, and the problem was one unreadable heap of changes, so it split them into three commits instead. At 15:41 I raised the bigger question. It is a 30,000-line app, so should we refactor all of it? Claude's answer at 15:52 was no, not yet. It had touched 40 of 420 files. 16 of 18 features had no tests at all. And in that tenth of the code it had already caused three regressions of its own that day. "ok buidl the safty net then refactor good call."</p>
+<p><strong>Sunday, 16:00 to 18:39: testing with a real wallet.</strong> Claude drove the app in my own browser, with my wallet extension connected. It tipped more than my balance, and the check now stopped it before the wallet opened. It minted posts with an image, with a video and with plain text, and trimmed a video to check the trim really re-encodes. When I asked if it could see the wallet's confirm button, it said no, and that it wouldn't press it anyway: "Approving a wallet transaction is yours to do — that's the one step I deliberately don't take on your behalf." I clicked every confirm button. At 16:52 the first pull request merged: 15 commits, 9 bugs fixed, 137 tests where there had been 3, and a CI that runs on every push. By 18:39 nine pull requests were in. The last one added a confirmation step before burning a post.</p>
+<p><strong>Sunday evening: taking things out.</strong> "so nwo the app is stable riught? amybe ther efactringis not even needed?" For what had been exercised, Claude agreed. A demo mode that replaced the real feed with generated fake posts came out, 1,165 lines. Then I asked about the tests. Claude had written a lot of them as a safety net for a refactor we had just decided against. It went through them and deleted 71 of them, 253 down to 182, keeping the ones tied to a real bug or a deliberate decision. The commit message says it plainly: "drop coverage that was written for a refactor we did not do".</p>
+<p>At 21:43 I wondered whether saving likes in browser storage would make the counters feel faster. Two minutes later I talked myself out of it: "i dont lie kacutally local storage for this reason". A counter saved at click time claims success for a transaction that may never confirm. Claude then found the same call already made in a commit on 1 January, across 44 files. It had left four modules whose functions did nothing any more, under comments still describing what they used to do. They went, and by 23:22 the dead-code sweep had removed 1,333 lines in all.</p>
+<p>At 22:14 Claude hit its session limit, which reset at 22:40. After that we fixed CI, which was running every check twice, and turned on branch protection. "yeah we have o make sure that red is acountable not skipped". Claude proved it by pushing straight to main and getting rejected.</p>
+<p><strong>Monday 31 August, 00:00: the rebuild question.</strong> "sicne this app was bilt with prevous codex4 i wander if it is good apreach ot chalange the architecture with caluse opus 5 and usign htis app as an exampel rebuilt with new architecture as as new project". I asked for a full review, and it came back at 00:10. The code was healthier than it looked, with one real defect: 46 import cycles, 45 of them caused by barrel files. Importing one component through a barrel pulled in a whole feature, and those features reached back into each other. By 00:38 all five steps of the plan had merged and the cycles were at 0, with a check in CI to keep them there. At 01:20 the post card was down from 49 props to 14. At 01:21: "5 hour limit always most consumed, i think we are done for today".</p>
+<p><strong>Monday morning: the paths nobody had tried.</strong> From 09:24 Claude tested the write paths still marked untested: replying to a comment, tipping a comment, deleting one, following and unfollowing with a second account, and withdrawing tips. All worked. When it logged my balance display as a rounding bug, I corrected it: "we have trucnatino for a reason in crypto it makes more sense". Showing more than you hold is the wrong direction for money, so the reason now sits in a comment next to the code.</p>
+<p>At 11:18 the follow counts on the public site were stuck loading, and then they weren't. Neither of us could reproduce it, so Claude read the code instead. Every "loading" flag was set without a guard and cleared with one, so a request made stale by a network switch could never clear its own spinner. The same fault turned up in the feed. By 12:10, four pull requests had fixed both, made the guard own the flags so the mistake can't be repeated, and collapsed seven copies of the same loading logic into one.</p>
+<p>At 12:13 I asked what state the app was in compared to two days before. 39 pull requests merged. Frontend tests from 3 to 224. Import cycles from 46 to 0. 248 files changed. The contract and the subgraph were not touched at all.</p>
+<h2>Refactor, don't rebuild</h2>
+<p>Twice I asked whether to tear it up: at 15:51 on Sunday, a new architecture; at midnight, a rebuild as a new project. Both times the answer was no, and the reasons are the useful part.</p>
+<p>The hard parts of this project are not the React app. They are the contract, deployed on three networks, the subgraphs and the workers. All of them were proven on real chains. A rebuild would have carried them over unchanged, so "rebuild" meant rewriting the cheapest layer and keeping the expensive ones.</p>
+<p>A rebuild would also have thrown away what we only knew because the app had been used. Of the thirteen bugs fixed by Sunday evening, by Claude's count, almost none could have been found by reading. A cache that never wrote. A gate that hid every profile picture from anyone without a wallet. Each one showed up because I, or Claude in my browser, used the thing and something looked wrong.</p>
+<p>The review that settled it lives in the repository as a short document. It says when a rebuild would be the right call. If adding a feature routinely means touching ten or more files, that is testable: pick a real feature and count. Or the rebuild is itself the point. Or a buyer or employer wants a specific stack. None of those were true.</p>
+<h2>What we got wrong</h2>
+<ul>
+<li>Six commits in December celebrated 100% coverage. Then one called "updated" deleted 44 test files, and by August one test file was left.</li>
+<li>The subgraph stopped answering, Codex thought probably from five months of no use, and the app showed 0 followers instead of an error.</li>
+<li>One error message blamed image size for every failed transaction in the app, including tips.</li>
+<li>Our own worker rate-limited answers it already had in its cache.</li>
+<li>A cache hadn't written a single entry since tip amounts became big numbers. The error was caught and ignored.</li>
+<li>Claude caused three regressions on the first afternoon. One, a follow button stuck loading, came from searching two files and stopping.</li>
+<li>Testing comments, Claude clicked what it guessed was a close button. It was delete. I cancelled the wallet prompt.</li>
+<li>Claude wrote 71 tests for a refactor we then decided not to do. They came out the same evening.</li>
+<li>For stacked dialogs, Claude tried three CSS fixes in a row. I asked whether it was over-engineering, and one of them was reverted.</li>
+<li>The import clean-up turned 132 imports across features into long relative paths. I noticed, and they were put back.</li>
+<li>Recording a demo, Claude reloaded the page 28 seconds into a 120-second wait for a transaction, and lost the evidence of what was slow. We dropped the video.</li>
+<li>The profile card counted my posts across all three networks while showing one: 9 where it should say 3.</li>
+</ul>
+<h2>Who did what</h2>
+<p><strong>Claude Code</strong> did the August work. Across three sessions it made 63 commits and merged 39 pull requests. It replied 2,003 times: 1,991 from Claude Opus 5 and 12 from Claude Sonnet 5, the two-minute domain change. It made 1,897 tool calls: 1,177 commands, 162 file edits and 514 actions in a browser, more than half of them in my own browser with my wallet connected. There were no helper agents. That was about 13 hours of active work.</p>
+<p><strong>Codex</strong> had five short sessions, in June and August. I sent it 39 messages and 14 screenshots, and it made 411 tool calls and 4 commits over about three hours and twenty minutes. It ran GPT-5.5 in June and GPT-5.6-terra in August.</p>
+<p><strong>Before the logs</strong>, from December to January, 244 commits built the app itself. By my own account they were written with what I then called ChatGPT's Codex; git records no tool and no logs from then are on this computer.</p>
+<figure class="fig" id="fig-numbers">
+  <div class="frame"><img src="numbers-1400.png" alt="Social Blockchain Network by the numbers, Dec 2025 – Sep 2026: 352 commits, 39 pull requests merged in two days, frontend tests from 3 to 224, import cycles from 46 to 0. Claude Code: 63 commits, 2,003 replies, 1,897 tool calls, about 13 hours 20 minutes active. Codex: 39 messages, 411 tool calls, 4 commits. Me: 209 messages, typically 10 words. Before the logs: 244 commits that could not be counted by tool." width="1400" height="1794" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-numbers">Nine months in git, and the part the session logs cover: Claude Code, Codex, me, and the winter nobody logged.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+      <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 411 characters</span></summary><p id="alt-numbers">Social Blockchain Network by the numbers, Dec 2025 – Sep 2026: 352 commits, 39 pull requests merged in two days, frontend tests from 3 to 224, import cycles from 46 to 0. Claude Code: 63 commits, 2,003 replies, 1,897 tool calls, about 13 hours 20 minutes active. Codex: 39 messages, 411 tool calls, 4 commits. Me: 209 messages, typically 10 words. Before the logs: 244 commits that could not be counted by tool.</p></details>
+  </figcaption>
+</figure>
+<p><strong>My part</strong> was deciding, and signing. I sent 209 messages, 170 to Claude and 39 to Codex, and a typical one was 10 words. 26 of them went in while Claude was still working, and I stopped it mid-task three times. "sorry i keep itnerapting your tests :D". I decided the project stays on testnets: "mainnet is right now out of hand". Browser storage for chain data was turned down twice, in January in the code and in August by me. And I lost an argument I had started. I wanted to drop the warning before burning a post, since the wallet asks anyway. Claude pointed out that the wallet confirms a transaction, not an intent. "ok fair chalange, i accept". The warning stayed, and comments got one too. And every transaction in these tests was approved by my hand, in my wallet.</p>
+<p>Treat the numbers as a record, not a benchmark.</p>
+<h2>What it cost</h2>
+<p>The chain side costs nothing. Every transaction uses testnet coins from faucets, which have no value. The subgraphs run on The Graph's free development endpoints, on purpose with no API key, because I don't want to be billed for an experiment.</p>
+<p>The cost was the subscriptions, and the limits shaped the days. Claude's session limit stopped us once, at 22:14 on Sunday, for 26 minutes. At 01:21 on Monday it was my five-hour allowance again: "5 hour limit always most consumed".</p>
+<h2>What I would tell someone starting</h2>
+<ul>
+<li><strong>Ask "rebuild or refactor?" with numbers, not feelings.</strong> Count cycles, props, files per feature. The review took minutes and settled the question.</li>
+<li><strong>Rebuilding rewrites the cheap layer.</strong> The expensive parts, like a deployed contract and its indexer, come along unchanged.</li>
+<li><strong>Use it before you judge it.</strong> Almost every bug here was found by using the app, not by reading it.</li>
+<li><strong>Tests you write for a plan you drop are debt.</strong> Keep the ones tied to a bug or a decision. Delete the rest.</li>
+<li><strong>Write the reason next to the code.</strong> A January decision survived as one comment in one file, and the empty functions around it nearly got rebuilt.</li>
+<li><strong>Make red mean stop.</strong> CI that can be merged past is a suggestion.</li>
+<li><strong>Keep the signing yourself.</strong> The assistant drove the browser; the wallet stayed mine.</li>
+</ul>
+<h2>In one paragraph</h2>
+<p>A social network where every post is an NFT and every reaction a signed transaction was built over the winter, then left alone for months. In June Codex got it loading again. In two days at the end of August, Claude and I fixed more than a dozen bugs, took out nearly 2,500 lines of dead weight, took tests from 3 to 224 and import cycles from 46 to 0, in 39 pull requests, without touching the contract. Twice I asked whether to throw it all away and start again. Both times the answer came from counting, not from taste. The models wrote the code. What to keep, what to sign and when to stop stayed with me.</p>
+<p class="close"><em>Try it at <a href="https://social.edgarasneverdauskas.com">social.edgarasneverdauskas.com</a>. It runs on public testnets only, with no real funds. The code is open source under MIT at <a href="https://github.com/Evirtual/social-blockchain-network">github.com/Evirtual/social-blockchain-network</a>. The August work was done with Claude Code, Claude Opus 5 and Claude Sonnet 5; the June and August fixes with OpenAI Codex on GPT-5.5 and GPT-5.6-terra.</em></p>
+    </div>
+    <footer class="story-foot">
+      <p class="also-end"><span><a href="https://social.edgarasneverdauskas.com" rel="noopener">Visit the project<span aria-hidden="true"> ↗</span></a></span></p>
+      <nav class="more" aria-labelledby="more-social-blockchain-network">
+        <h2 id="more-social-blockchain-network">More build stories</h2>
+        <ul><li><a href="../css-3d-lab-ledger/">A green tick is a date, not a fact</a></li><li><a href="../css-3d-lab/">CSS 3D Lab: learning 3D on the web by playing with it</a></li><li><a href="../self-aware-writing/">A book that knows you're reading it</a></li><li><a href="../jarvis/">Five days building J.A.R.V.I.S. with Claude</a></li><li><a href="../portfolio/">My portfolio, rebuilt to tell the truth</a></li><li><a href="../timeline/">The AI race: who shipped what, and when</a></li><li><a href="../agi-watch/">AGI Watch: are we getting there?</a></li><li><a href="../ampuno/">Ampuno: 28 minutes to build, eight weeks to draw the cars</a></li><li><a href="../bitcoin-analytics/">Bitcoin Analytics: an hour to start, months to trust</a></li><li><a href="../atunicorn/">@unicorn: an old app, a new stack, and two AI tools</a></li></ul>
+      </nav>
+    </footer>
+  </article>
+</main>
+<footer class="site-foot">
+  <a href="../"><span aria-hidden="true">←</span> All articles</a>
+  <a href="https://edgarasneverdauskas.com">edgarasneverdauskas.com</a>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="kit-data">{"richHtml":"\u003ch1>Social Blockchain Network: refactor, don't rebuild\u003c/h1>\n\u003cp>\u003cem>A social network where every post is an NFT and every like is a signed transaction, on three testnets. It was built last winter. Two days with Claude in August made it tested and reviewed, without starting again. Counted from git and the session logs.\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/social-blockchain-network/cover-medium-1500x750.png Caption: Social Blockchain Network on the live site, reading three testnets at once. Image and app: Edgaras Neverdauskas. Alt text: Dark navy cover. On the left, the Social Blockchain Network mark, two linked nodes in blue and teal, and the title \"Refactor, don't rebuild\", above the line \"A social network on three testnets, and 39 pull requests in two days with Claude.\" On the right, a screenshot of the live feed with no wallet connected: the header with a Connect button, cards explaining that posts are NFTs, the three supported testnets, and the first posts.]\u003c/strong>\u003c/p>\n\u003ch2>It started with a bug report from my phone\u003c/h2>\n\u003cp>At 14:14 on Sunday 30 August I reported a few issues I had found testing my own app on a phone. The notification list returned 429 errors and the windows went \"stuck on loading and stuck in between 2 states\". When I tried to tip a post without enough balance, the app told me my image might be too large. There was no image. There were probably more.\u003c/p>\n\u003cp>My first idea was end-to-end tests with real wallets. Twelve minutes later I had a better one. Before any changes, read the whole thing, contract, workers, subgraph and frontend, because \"isntead or write mroe code, maybe we need ot refactor sometihng\".\u003c/p>\n\u003cp>That question, fix it or rebuild it, ran through the next two days.\u003c/p>\n\u003cp>As with \u003ca href=\"https://articles.edgarasneverdauskas.com/css-3d-lab/\">CSS 3D Lab\u003c/a> and \u003ca href=\"https://articles.edgarasneverdauskas.com/jarvis/\">J.A.R.V.I.S.\u003c/a>, I went back through the session logs and the full git history, so the numbers are counted, not remembered. One difference this time: the project is nine months old, and the AI logs on my computer cover only part of it. I say where the record stops.\u003c/p>\n\u003ch2>What Social Blockchain Network is\u003c/h2>\n\u003cp>A social feed where every write is a transaction you sign in your wallet. A post is minted as an NFT, with its picture or video on IPFS. Likes, comments, saves, follows and tips all happen on chain. Tips are split between the author and the protocol, and the split is shown before you sign, not after.\u003c/p>\n\u003cp>It runs on three testnets at once: Base Sepolia, Ethereum Sepolia and BSC Testnet. The feed reads from all three together. The same wallet has a separate profile on each network, because each network runs its own copy of the contract.\u003c/p>\n\u003cp>Underneath: a Solidity contract of 966 lines, a subgraph per network that turns its events into data the app can query, three small Cloudflare workers, and a React app of about 30,000 lines. You can read the feed without a wallet. To post or react, you need one.\u003c/p>\n\u003ch2>How it happened\u003c/h2>\n\u003cp>\u003cstrong>December and January: before the logs.\u003c/strong> The first commit landed at 18:52 on 22 December 2025: 54 files and 15,260 lines, the app already standing. By 19:31 it had deploy settings for Base and BSC. In all, 244 commits over 34 days, until 29 January. They added image cropping and video trimming on 18 January, and the Cloudflare workers between 12 and 23 January. In August I described that period to Claude as \"this app was bilt with prevous codex4\". Git is all that is left, and it says little: 198 of the 244 commits are called \"updated\", \"push\" or a typo of those.\u003c/p>\n\u003cp>Git does keep one story. Between 24 and 27 December, six commit messages celebrate reaching 100% test coverage. On 28 December at 13:29, a commit called \"updated\" deleted 44 test files, 18,779 lines. By August one frontend test file was left, with three tests in it.\u003c/p>\n\u003cp>\u003cstrong>7 and 8 June: Codex.\u003c/strong> The app sat untouched for four months. Then images and videos stopped loading from IPFS. I opened OpenAI's Codex, on GPT-5.5, and over two evenings (my local time then, UTC+3) we fixed the media path, cleared 13 security warnings in the dependencies, and made the app refuse to post when your wallet is on an unsupported network. On the second evening followers showed 0 when I clearly followed someone. The app was fine. The subgraph behind it had stopped answering. \"i havent used the graph for like 5 months since i first deployed, can that be an issue\". Codex thought that was probably why. We redeployed it on all three networks, and pointed the worker at the latest version so next time a redeploy is enough.\u003c/p>\n\u003cp>\u003cstrong>16 and 17 August: a real address.\u003c/strong> I gave the app its own domain, social.edgarasneverdauskas.com. Claude, on Sonnet 5, changed the base path in two minutes. The next day Codex made the workers accept the new domain.\u003c/p>\n\u003cp>\u003cstrong>Saturday 29 August, evening.\u003c/strong> On the post page, comments never stopped loading. The page waited for a wallet that a visitor doesn't have. Claude on Opus 5 removed the wait, and at my request made every dialog frosted glass instead of see-through. That afternoon, in a session outside these logs, Claude had moved the app to TypeScript 7 and React 19.\u003c/p>\n\u003cp>\u003cstrong>Sunday 30 August, afternoon: three bugs, each several.\u003c/strong> A hint meant only for the post composer had ended up in the shared error translator, above the check for insufficient funds, so every failed transaction in the app blamed the picture. Behind that sat three more faults: no balance check before sending a tip, the error written to a panel the feed never shows, and a formatting slip of Claude's own that turned a tip of 1 into \"&lt;0.000001\". The 429s came from our own worker, which rate-limited requests before checking its cache, so even cached answers used up the allowance. And a notification cache had never stored a single entry. \u003ccode>JSON.stringify\u003c/code> throws on the big numbers that tip amounts use, and the write sat in a \u003ccode>try\u003c/code> that swallowed the error.\u003c/p>\n\u003cp>At 14:55 I wanted to throw away all the changes and start clean. Claude pushed back. The fixes were real, and the problem was one unreadable heap of changes, so it split them into three commits instead. At 15:41 I raised the bigger question. It is a 30,000-line app, so should we refactor all of it? Claude's answer at 15:52 was no, not yet. It had touched 40 of 420 files. 16 of 18 features had no tests at all. And in that tenth of the code it had already caused three regressions of its own that day. \"ok buidl the safty net then refactor good call.\"\u003c/p>\n\u003cp>\u003cstrong>Sunday, 16:00 to 18:39: testing with a real wallet.\u003c/strong> Claude drove the app in my own browser, with my wallet extension connected. It tipped more than my balance, and the check now stopped it before the wallet opened. It minted posts with an image, with a video and with plain text, and trimmed a video to check the trim really re-encodes. When I asked if it could see the wallet's confirm button, it said no, and that it wouldn't press it anyway: \"Approving a wallet transaction is yours to do — that's the one step I deliberately don't take on your behalf.\" I clicked every confirm button. At 16:52 the first pull request merged: 15 commits, 9 bugs fixed, 137 tests where there had been 3, and a CI that runs on every push. By 18:39 nine pull requests were in. The last one added a confirmation step before burning a post.\u003c/p>\n\u003cp>\u003cstrong>Sunday evening: taking things out.\u003c/strong> \"so nwo the app is stable riught? amybe ther efactringis not even needed?\" For what had been exercised, Claude agreed. A demo mode that replaced the real feed with generated fake posts came out, 1,165 lines. Then I asked about the tests. Claude had written a lot of them as a safety net for a refactor we had just decided against. It went through them and deleted 71 of them, 253 down to 182, keeping the ones tied to a real bug or a deliberate decision. The commit message says it plainly: \"drop coverage that was written for a refactor we did not do\".\u003c/p>\n\u003cp>At 21:43 I wondered whether saving likes in browser storage would make the counters feel faster. Two minutes later I talked myself out of it: \"i dont lie kacutally local storage for this reason\". A counter saved at click time claims success for a transaction that may never confirm. Claude then found the same call already made in a commit on 1 January, across 44 files. It had left four modules whose functions did nothing any more, under comments still describing what they used to do. They went, and by 23:22 the dead-code sweep had removed 1,333 lines in all.\u003c/p>\n\u003cp>At 22:14 Claude hit its session limit, which reset at 22:40. After that we fixed CI, which was running every check twice, and turned on branch protection. \"yeah we have o make sure that red is acountable not skipped\". Claude proved it by pushing straight to main and getting rejected.\u003c/p>\n\u003cp>\u003cstrong>Monday 31 August, 00:00: the rebuild question.\u003c/strong> \"sicne this app was bilt with prevous codex4 i wander if it is good apreach ot chalange the architecture with caluse opus 5 and usign htis app as an exampel rebuilt with new architecture as as new project\". I asked for a full review, and it came back at 00:10. The code was healthier than it looked, with one real defect: 46 import cycles, 45 of them caused by barrel files. Importing one component through a barrel pulled in a whole feature, and those features reached back into each other. By 00:38 all five steps of the plan had merged and the cycles were at 0, with a check in CI to keep them there. At 01:20 the post card was down from 49 props to 14. At 01:21: \"5 hour limit always most consumed, i think we are done for today\".\u003c/p>\n\u003cp>\u003cstrong>Monday morning: the paths nobody had tried.\u003c/strong> From 09:24 Claude tested the write paths still marked untested: replying to a comment, tipping a comment, deleting one, following and unfollowing with a second account, and withdrawing tips. All worked. When it logged my balance display as a rounding bug, I corrected it: \"we have trucnatino for a reason in crypto it makes more sense\". Showing more than you hold is the wrong direction for money, so the reason now sits in a comment next to the code.\u003c/p>\n\u003cp>At 11:18 the follow counts on the public site were stuck loading, and then they weren't. Neither of us could reproduce it, so Claude read the code instead. Every \"loading\" flag was set without a guard and cleared with one, so a request made stale by a network switch could never clear its own spinner. The same fault turned up in the feed. By 12:10, four pull requests had fixed both, made the guard own the flags so the mistake can't be repeated, and collapsed seven copies of the same loading logic into one.\u003c/p>\n\u003cp>At 12:13 I asked what state the app was in compared to two days before. 39 pull requests merged. Frontend tests from 3 to 224. Import cycles from 46 to 0. 248 files changed. The contract and the subgraph were not touched at all.\u003c/p>\n\u003ch2>Refactor, don't rebuild\u003c/h2>\n\u003cp>Twice I asked whether to tear it up: at 15:51 on Sunday, a new architecture; at midnight, a rebuild as a new project. Both times the answer was no, and the reasons are the useful part.\u003c/p>\n\u003cp>The hard parts of this project are not the React app. They are the contract, deployed on three networks, the subgraphs and the workers. All of them were proven on real chains. A rebuild would have carried them over unchanged, so \"rebuild\" meant rewriting the cheapest layer and keeping the expensive ones.\u003c/p>\n\u003cp>A rebuild would also have thrown away what we only knew because the app had been used. Of the thirteen bugs fixed by Sunday evening, by Claude's count, almost none could have been found by reading. A cache that never wrote. A gate that hid every profile picture from anyone without a wallet. Each one showed up because I, or Claude in my browser, used the thing and something looked wrong.\u003c/p>\n\u003cp>The review that settled it lives in the repository as a short document. It says when a rebuild would be the right call. If adding a feature routinely means touching ten or more files, that is testable: pick a real feature and count. Or the rebuild is itself the point. Or a buyer or employer wants a specific stack. None of those were true.\u003c/p>\n\u003ch2>What we got wrong\u003c/h2>\n\u003cul>\n\u003cli>Six commits in December celebrated 100% coverage. Then one called \"updated\" deleted 44 test files, and by August one test file was left.\u003c/li>\n\u003cli>The subgraph stopped answering, Codex thought probably from five months of no use, and the app showed 0 followers instead of an error.\u003c/li>\n\u003cli>One error message blamed image size for every failed transaction in the app, including tips.\u003c/li>\n\u003cli>Our own worker rate-limited answers it already had in its cache.\u003c/li>\n\u003cli>A cache hadn't written a single entry since tip amounts became big numbers. The error was caught and ignored.\u003c/li>\n\u003cli>Claude caused three regressions on the first afternoon. One, a follow button stuck loading, came from searching two files and stopping.\u003c/li>\n\u003cli>Testing comments, Claude clicked what it guessed was a close button. It was delete. I cancelled the wallet prompt.\u003c/li>\n\u003cli>Claude wrote 71 tests for a refactor we then decided not to do. They came out the same evening.\u003c/li>\n\u003cli>For stacked dialogs, Claude tried three CSS fixes in a row. I asked whether it was over-engineering, and one of them was reverted.\u003c/li>\n\u003cli>The import clean-up turned 132 imports across features into long relative paths. I noticed, and they were put back.\u003c/li>\n\u003cli>Recording a demo, Claude reloaded the page 28 seconds into a 120-second wait for a transaction, and lost the evidence of what was slow. We dropped the video.\u003c/li>\n\u003cli>The profile card counted my posts across all three networks while showing one: 9 where it should say 3.\u003c/li>\n\u003c/ul>\n\u003ch2>Who did what\u003c/h2>\n\u003cp>\u003cstrong>Claude Code\u003c/strong> did the August work. Across three sessions it made 63 commits and merged 39 pull requests. It replied 2,003 times: 1,991 from Claude Opus 5 and 12 from Claude Sonnet 5, the two-minute domain change. It made 1,897 tool calls: 1,177 commands, 162 file edits and 514 actions in a browser, more than half of them in my own browser with my wallet connected. There were no helper agents. That was about 13 hours of active work.\u003c/p>\n\u003cp>\u003cstrong>Codex\u003c/strong> had five short sessions, in June and August. I sent it 39 messages and 14 screenshots, and it made 411 tool calls and 4 commits over about three hours and twenty minutes. It ran GPT-5.5 in June and GPT-5.6-terra in August.\u003c/p>\n\u003cp>\u003cstrong>Before the logs\u003c/strong>, from December to January, 244 commits built the app itself. By my own account they were written with what I then called ChatGPT's Codex; git records no tool and no logs from then are on this computer.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/social-blockchain-network/numbers-1400.png Caption: Nine months in git, and the part the session logs cover: Claude Code, Codex, me, and the winter nobody logged. Alt text: Social Blockchain Network by the numbers, Dec 2025 – Sep 2026: 352 commits, 39 pull requests merged in two days, frontend tests from 3 to 224, import cycles from 46 to 0. Claude Code: 63 commits, 2,003 replies, 1,897 tool calls, about 13 hours 20 minutes active. Codex: 39 messages, 411 tool calls, 4 commits. Me: 209 messages, typically 10 words. Before the logs: 244 commits that could not be counted by tool.]\u003c/strong>\u003c/p>\n\u003cp>\u003cstrong>My part\u003c/strong> was deciding, and signing. I sent 209 messages, 170 to Claude and 39 to Codex, and a typical one was 10 words. 26 of them went in while Claude was still working, and I stopped it mid-task three times. \"sorry i keep itnerapting your tests :D\". I decided the project stays on testnets: \"mainnet is right now out of hand\". Browser storage for chain data was turned down twice, in January in the code and in August by me. And I lost an argument I had started. I wanted to drop the warning before burning a post, since the wallet asks anyway. Claude pointed out that the wallet confirms a transaction, not an intent. \"ok fair chalange, i accept\". The warning stayed, and comments got one too. And every transaction in these tests was approved by my hand, in my wallet.\u003c/p>\n\u003cp>Treat the numbers as a record, not a benchmark.\u003c/p>\n\u003ch2>What it cost\u003c/h2>\n\u003cp>The chain side costs nothing. Every transaction uses testnet coins from faucets, which have no value. The subgraphs run on The Graph's free development endpoints, on purpose with no API key, because I don't want to be billed for an experiment.\u003c/p>\n\u003cp>The cost was the subscriptions, and the limits shaped the days. Claude's session limit stopped us once, at 22:14 on Sunday, for 26 minutes. At 01:21 on Monday it was my five-hour allowance again: \"5 hour limit always most consumed\".\u003c/p>\n\u003ch2>What I would tell someone starting\u003c/h2>\n\u003cul>\n\u003cli>\u003cstrong>Ask \"rebuild or refactor?\" with numbers, not feelings.\u003c/strong> Count cycles, props, files per feature. The review took minutes and settled the question.\u003c/li>\n\u003cli>\u003cstrong>Rebuilding rewrites the cheap layer.\u003c/strong> The expensive parts, like a deployed contract and its indexer, come along unchanged.\u003c/li>\n\u003cli>\u003cstrong>Use it before you judge it.\u003c/strong> Almost every bug here was found by using the app, not by reading it.\u003c/li>\n\u003cli>\u003cstrong>Tests you write for a plan you drop are debt.\u003c/strong> Keep the ones tied to a bug or a decision. Delete the rest.\u003c/li>\n\u003cli>\u003cstrong>Write the reason next to the code.\u003c/strong> A January decision survived as one comment in one file, and the empty functions around it nearly got rebuilt.\u003c/li>\n\u003cli>\u003cstrong>Make red mean stop.\u003c/strong> CI that can be merged past is a suggestion.\u003c/li>\n\u003cli>\u003cstrong>Keep the signing yourself.\u003c/strong> The assistant drove the browser; the wallet stayed mine.\u003c/li>\n\u003c/ul>\n\u003ch2>In one paragraph\u003c/h2>\n\u003cp>A social network where every post is an NFT and every reaction a signed transaction was built over the winter, then left alone for months. In June Codex got it loading again. In two days at the end of August, Claude and I fixed more than a dozen bugs, took out nearly 2,500 lines of dead weight, took tests from 3 to 224 and import cycles from 46 to 0, in 39 pull requests, without touching the contract. Twice I asked whether to throw it all away and start again. Both times the answer came from counting, not from taste. The models wrote the code. What to keep, what to sign and when to stop stayed with me.\u003c/p>\n\u003cp class=\"close\">\u003cem>Try it at \u003ca href=\"https://social.edgarasneverdauskas.com\">social.edgarasneverdauskas.com\u003c/a>. It runs on public testnets only, with no real funds. The code is open source under MIT at \u003ca href=\"https://github.com/Evirtual/social-blockchain-network\">github.com/Evirtual/social-blockchain-network\u003c/a>. The August work was done with Claude Code, Claude Opus 5 and Claude Sonnet 5; the June and August fixes with OpenAI Codex on GPT-5.5 and GPT-5.6-terra.\u003c/em>\u003c/p>"}</script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en" data-page="index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@unicorn: an old app, a new stack, and two AI tools</title>
+<meta name="description" content="@unicorn calls itself “a place to express your uniqueness”. I started it in 2021. In 2026 Codex and Claude moved its images, tightened it and rewrote it in TypeScript. Counted from the logs, which only cover this year.">
+<meta name="author" content="Edgaras Neverdauskas">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="canonical" href="https://articles.edgarasneverdauskas.com/atunicorn/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://articles.edgarasneverdauskas.com/atunicorn/">
+<meta property="og:site_name" content="Articles — Edgaras Neverdauskas">
+<meta property="og:title" content="@unicorn: an old app, a new stack, and two AI tools">
+<meta property="og:description" content="@unicorn calls itself “a place to express your uniqueness”. I started it in 2021. In 2026 Codex and Claude moved its images, tightened it and rewrote it in TypeScript. Counted from the logs, which only cover this year.">
+<meta property="og:image" content="https://articles.edgarasneverdauskas.com/atunicorn/cover-medium-1500x750.png">
+<meta property="og:image:alt" content="Light grey cover with soft rainbow glows in the corners. On the left, the @unicorn logo, a white unicorn leaping over a rainbow, and the title &quot;An old app, a new stack&quot;, above the line &quot;@unicorn since 2021, rebuilt in 2026 with Codex and Claude.&quot; On the right, a screenshot of the live About page: the unicorn avatar, the line &quot;A place to express your uniqueness&quot;, and &quot;Developed using Next.js, React, TypeScript, Tailwind, Firebase&quot;.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="@unicorn: an old app, a new stack, and two AI tools">
+<meta name="twitter:description" content="@unicorn calls itself “a place to express your uniqueness”. I started it in 2021. In 2026 Codex and Claude moved its images, tightened it and rewrote it in TypeScript. Counted from the logs, which only cover this year.">
+<meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/atunicorn/cover-medium-1500x750.png">
+<meta name="twitter:image:alt" content="Light grey cover with soft rainbow glows in the corners. On the left, the @unicorn logo, a white unicorn leaping over a rainbow, and the title &quot;An old app, a new stack&quot;, above the line &quot;@unicorn since 2021, rebuilt in 2026 with Codex and Claude.&quot; On the right, a screenshot of the live About page: the unicorn avatar, the line &quot;A place to express your uniqueness&quot;, and &quot;Developed using Next.js, React, TypeScript, Tailwind, Firebase&quot;.">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
+<script data-goatcounter="https://articles.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the article</a>
+<header class="site-head">
+  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+</header>
+<main class="layout" id="main">
+  <aside class="kit" aria-label="Share kit">
+    <details class="kit-box" id="kit">
+      <summary><span class="kit-sum"><span class="kit-title">Share kit</span><span class="kit-hint">Copy the story, images and posts</span></span></summary>
+      <div class="kit-body">
+        <section aria-labelledby="kit-story">
+          <h2 id="kit-story">Story</h2>
+          <div class="btn-grid">
+            <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
+            <button type="button" class="btn" data-copy="story-title">Copy title</button>
+            <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
+            <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
+          </div>
+          <p class="kit-note">Rich text keeps the headings, bold, lists and links when pasted into an editor such as Medium or LinkedIn. Images aren’t included: the copy has a bold line where each one goes, with its address, caption and alt text.</p>
+          <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown"># @unicorn: an old app, a new stack, and two AI tools
+
+*@unicorn calls itself “a place to express your uniqueness”. I started it in 2021. In 2026 Codex and Claude moved its images, tightened it and rewrote it in TypeScript. Counted from the logs, which only cover this year.*
+
+On a Saturday afternoon in June I sent Codex a screenshot of an error and four words: "need to fix this". Twenty minutes later I asked it to check the packages for security issues. Then came the bigger job: move the images off Firebase to "somethign that is free and witohut pay to go".
+
+A few messages later I wrote down the one rule that shaped the rest of the evening: "i need storage wehre i know that it will not charge but will rather stop working".
+
+That was the first logged conversation about @unicorn. The site itself is much older. This is the account of what happened to it in 2026, with a short look at the five years before. As with my other build stories, I went back through the session logs and the full git history, so the numbers are counted, not remembered. One limit up front: the AI logs start in June 2026. For 2021 to 2025, git is the only record.
+
+## What @unicorn is
+
+A small image-sharing site at atunicorn.io. Its own about page calls it "a place to express your uniqueness". You sign up, pick a username, write an about page, and post pictures. Everyone's posts land in one shared feed. Posts marked NSFW stay covered until you tap them. New accounts are approved before they can post.
+
+It runs on Next.js as a static site, with Firebase for accounts and data. Images live on Cloudinary, behind a small Cloudflare Worker. Since September it is TypeScript with Tailwind.
+
+## Before the logs: 2021 to 2025
+
+The first commit landed at 12:34 on 6 March 2021, in a repository then called "unicorn". Two of us started it. Another developer set up the base: the project structure, loading users and posts, file upload, and later email sign-in. That was 17 commits. I did the screens and the look, and most of what came after.
+
+The busiest month by far was March 2022, with 172 commits, most of them with "update" in the name, like "updated post", "updated radio button" or "small update". It began that month on Next.js 10 and React 16 (Next.js 12 and React 17 by the end), with react-native-web and two small styling and state libraries built for that setup. When I dropped react-native-web in 2026, I said what I had used it for: "i ued that for automatiucally loading the post on the scroll". It went quiet after a last fix on 1 May 2022.
+
+In October 2025 I came back and flattened the project. In December I moved it to Next.js 16, React 19 and a current Firebase. Eight of those nine commits are called "updated", the ninth is a merge, and no AI logs survive from then, so I can't say who or what helped.
+
+## How it happened in 2026
+
+Times below are the local time on the machine that did the work: UTC+3 in June and July, UTC+7 from August.
+
+**6 June: the images move.** The session began with an audit of the packages and a page error left over from the framework update. Then came the storage. Codex first built the move to Cloudflare R2, which has a generous free tier. When I read the fine print on the sign-up screen, I saw that R2 bills if you go over. I asked for something that stops instead. Codex suggested Cloudinary's free plan, which needs no card, and rebuilt the change for it within minutes. A small Worker keeps the Cloudinary key off the browser, and the app keeps Firebase for accounts and data.
+
+Moving the old pictures hit a wall. The first copy failed with "402 Payment Required": the old store would not serve a single file without a billing plan. So I switched billing on, copied all 233 images across, and at 18:48 wrote "OK EVERYTHINNG LOADS". Four minutes later: "ok disabled". The change was committed at 19:15.
+
+Along the way I pressed "y" at a terminal prompt I didn't mean to answer: "shit i pres y, how to revert". Codex asked me to paste the git status, read it, and told me nothing needed reverting.
+
+**7 June: small things.** The header icons weren't centred. I wanted to watch the fixes happen, and when Codex kept closing its browser I asked it to stop: "i want to se chagnes live". In the afternoon I asked for simpler routing, "remove the modal based routing an have only pGE ROUTING". Every post and profile is now its own page. Of the ten commits over the two days, only two came from a logged Codex session.
+
+**17 July: everything at once.** I asked Codex to check the whole app and find anything worth optimising. The report listed about 1.4 MB of compressed JavaScript on the home page, the whole icon library bundled, and the whole database downloaded at start. I asked: "can you fix everything at once?" It did, in one large pass, and measured the JavaScript down to 306 KB. None of it was ever committed. When I came back three days later, the working copy was clean.
+
+**20 July: one step at a time.** This time I asked for a plan first. Codex finished its first phase in about 50 minutes, and I threw it away: "i dont liek that there was som any fils changes and added that i dont udnerstand why". We started again with the dependencies alone, in two files. Fifteen pinned package overrides came down to one that was still needed.
+
+After that the day was a loop. Codex finished a small phase, reported what it had checked in a real browser, and I answered. 32 of my 70 messages that day were some version of "continue" or "whats next". The phases covered cleaner loading states, feed images down from about 7.4 MB to 2.2 MB on load, a keyboard and screen-reader pass that took the Lighthouse accessibility score from 90 to 100, and a round of security tightening, tested locally before it went live.
+
+Two of my messages mattered more than the rest. When a tidy-up touched the logo animation: "hey hey gif id improtant w i need that nimation it is the main point". And when the feed began loading every post at once instead of as you scroll, I guessed where it broke: "ithink something happened when we wrapped component in side main". Codex had been working around it. It agreed, dropped the workaround and fixed the wrapper instead. At 17:09 Codex's own meter showed its weekly allowance at 100%. Three minutes later it showed a new week starting from 0%, and the work carried on. At 19:53 the changes were pushed and live.
+
+On 26 July I reported the scroll problem again. That message has no reply in the log. The last meter reading, on 20 July, showed 60% of the new week used.
+
+**12 August: the audit that went too far.** "seemsl ike we havw security vurnaliblieties in this repo pelase audit". Codex found real gaps and fixed them all in one pass. It took the evening to test, and once it went live, the live site showed an error. At 22:58: "ok oyu know what rever all the changes ew made today and only fix the dependbot issues and redeploy everytihng". Then I asked what risk was left, and we put back only the protections that mattered most, one at a time, testing each.
+
+I also made a product call that night. Codex walked me through what would happen if I removed the approval step and let anyone post. My answer: "yeahi am afraid of illigeal content". Approval stays. One more change went in and came out: a cleanup for images from posts you start and then abandon ended up keeping them in storage instead. I reverted it, and the final fix was simpler: an image is only uploaded when you publish the post.
+
+**8 September: the late-night cleanup.** At 22:29 I asked Claude to give all my repositories proper descriptions. @unicorn's read "make stuff happen". Its README described an app that no longer existed, so Claude rewrote it from the source. It deleted a release workflow that could never have run, and fixed a dependency alert whose cause was one of my own version pins.
+
+It also noticed that dark mode was fully built and nobody could reach it. I asked for a switch. Turning it on showed four bugs within the hour: icons painted dark on dark, a white box around the loading animation, profile text you couldn't read, and an author name stuck in black. I sent screenshots, Claude fixed them one by one, and each fix went live within minutes. At 00:21 I simplified it: "is use is nto connect we don disaply the theme mode switch at all". Just before that, I had left a note for the morning: @unicorn was "only one prejctn ow that is not i nsnc" with my other active repositories, which are TypeScript.
+
+**9 September: the rewrite.** At 11:15 I laid out what I had in mind: TypeScript, Next.js, Vitest and Tailwind, dropping react-native-web, maybe GitHub Pages instead of Firebase hosting, maybe the database on Cloudflare too. Claude agreed with two ideas and argued against the other two. Dropping react-native-web was right, and the old styling library should go with it. GitHub Pages would add a host without removing one, and the thing tying the app to Firebase is the accounts, not the data.
+
+At 12:35 the rewrite was merged, 80 minutes after my message. 93 files changed, and react-native-web was gone. Then I used it, and found three bugs in 20 minutes: the page crashed when you scrolled past the point where the header shrinks, the unicorn logo was squashed, and a refresh showed an empty feed before the loading animation. All three came from the rewrite, and all three were fixed and live by 12:57.
+
+At 13:01 I asked: "shoudlwe have moretest to amke sure eveyrtihng works well". Claude wrote tests around the bugs that had actually shipped, and proved each one by putting its bug back and watching the test fail. The project went from 3 tests to 38 unit tests and 11 browser tests. The search field got fixed next, then the tests started running on GitHub on every push. The last commit of the day landed at 13:45.
+
+## The bug class, not the bug
+
+The four dark-mode bugs of 8 September looked like four problems. Three of them were one. The old styling library worked out each colour in JavaScript, and in several places it did so without knowing which theme was on, so it fell back to the light one. The fourth, the author name, had never been given a colour at all. Each fix patched one more place. The next morning I found a link in the login box you could click but not see. It was the same bug again, in a place nobody had found yet.
+
+The rewrite made that bug impossible instead of fixing it again. Colours are now plain CSS: one set of names, defined twice, and a class on the page picks which set applies. A component asks for "the surface colour" and never knows which theme is on. Claude put it this way: "That failure mode no longer exists."
+
+Two things made that the right call rather than just a bigger change. The job was small enough to check: a few dozen files and a site I could click through in minutes. And I checked it by using it, not by reading the diff. The rewrite brought its own new bugs, and I found all three that way.
+
+## What we got wrong
+
+- The old image store had stopped serving files without a billing plan. The logs first show it when the migration's first copy failed.
+- Codex said early on that R2 can bill beyond its free tier, and built on it anyway. I only took that in when the sign-up screen said so.
+- "Fix everything at once" produced a large change I never committed. The next attempt's first phase added files I couldn't explain, and I reverted that too.
+- I asked about missing borders on every card. It was mostly my screen: "oh dont mid it was the screen hat i used". We made the borders stronger anyway, and that change shipped the same day.
+- A tidy-up squashed the logo animation, and wrapping the page in a new container made the feed load every post at once.
+- A security pass done in one go broke the live site, so everything from that evening was reverted.
+- An image cleanup kept unposted images instead of removing them. Reverted.
+- Dark mode shipped with invisible icons, unreadable profiles and a white box on a dark page.
+- The TypeScript rewrite crashed on scroll, squashed the logo, and flashed an empty feed before loading.
+- Claude's own new focus style drew a box inside the search field, the thing its previous fix had just removed.
+
+## Who did what
+
+**Codex** did most of the year's work: 7 sessions from June to August, and 19 commits made inside them. Eight more commits from June have no session on record, so I don't count them for either tool. I sent it 203 messages and 33 screenshots. It replied 786 times: 291 from GPT-5.5 in June, 378 from GPT-5.6 Sol in July and 117 from GPT-5.6 Terra in August. It made 1,996 tool calls, not counting 1,142 waits on commands that were still running, and worked for about 15 hours and 45 minutes. Codex's automatic reviewer also checked its riskier actions 107 times. It moved the images, did the July modernisation, and the August security work.
+
+**Claude Code** had one session over two days in September, all on Claude Opus 5. I sent it 25 messages and 11 screenshots. It replied 509 times and made 484 tool calls: 284 commands, 76 file edits and 118 actions in a browser, in about 3 hours and 45 minutes. That includes the first 25 minutes, spent on the other repositories' descriptions. It made 16 commits: the README, dark mode, the TypeScript rewrite, the tests and CI. Three more commits carry Claude's name, on 29 August and 12 September, from sessions this count doesn't include.
+
+![By the numbers](https://articles.edgarasneverdauskas.com/atunicorn/numbers-1400.png)
+
+**My part** was deciding and looking. 228 messages across both tools, a typical one 9 words long, and 44 screenshots. I chose storage that stops over storage that bills, kept the approval step, and threw away work I didn't understand. I also asked for tests and noticed what looked wrong. Most of the bugs in the list above were found by me using the site.
+
+Treat the numbers as a record, not a benchmark. The two tools worked in different months, on different jobs, and log their work differently.
+
+## What it cost
+
+Money was the reason the storage moved, so it is the one cost I watched. The images now sit on Cloudinary's free plan. As Codex read the terms, it asks you to upgrade rather than charging, and a free Cloudflare Worker stops at its daily limit instead of billing. Billing on the old image store was on for 13 minutes on 6 June, long enough to copy 233 files, and then switched off.
+
+The tools ran on subscriptions. Codex's meter showed 95% of its five-hour allowance on 6 June, and 100% of its weekly allowance at 17:09 on 20 July, before a new week started three minutes later. The Claude session shows no limit being reached.
+
+## What I would tell someone starting
+
+- **Decide what failure you can live with.** "Stop working" instead of "charge me" picked the storage in one sentence.
+- **Ask for a plan, then take it in small steps.** One large pass gave me a change I couldn't review. Small phases gave me one I could.
+- **Throw away work you don't understand, or that breaks.** Three times I reverted AI work the same day: once because I couldn't follow it, once because the live site broke, once because a fix backfired. Each redo was smaller.
+- **When the same bug keeps coming back, fix the cause.** Four dark-mode fixes in one night showed why the old styling library had to go.
+- **Use it after every change.** The crash, the squashed logo and the empty-feed flash were all found by clicking around, not by the checks.
+- **Make tests prove they work.** Put the bug back and watch the test fail.
+- **Old projects are good for this work.** A small, real app with real history is an honest test of what these tools can and can't do.
+
+## In one paragraph
+
+@unicorn started in March 2021 with two developers and a lot of commits called "updated". In 2026 two AI tools picked it up. Codex moved its images to a free plan that, as we read the terms, stops rather than bills. It modernised the app step by step, and did a security pass that I reverted and redid one change at a time. Claude found dark mode hidden in the code, switched it on, and the next day rewrote the app in TypeScript in 80 minutes, with tests built around the bugs I found. That was 46 commits on nine days (UTC+7), about 19 and a half hours of counted AI work, and 228 messages from me. The tools wrote the code. What it should cost, who may post, and which changes to throw away were my calls.
+
+*See it at [atunicorn.io](https://atunicorn.io). The code is private. Built with OpenAI Codex (GPT-5.5, GPT-5.6 Sol and GPT-5.6 Terra) and Claude Code with Claude Opus 5.*</textarea></details>
+        </section>
+        <section aria-labelledby="kit-images">
+          <h2 id="kit-images">Images (3)</h2>
+          <ul class="img-list">
+        <li class="img-row">
+          <img src="cover-medium-1500x750.png" alt="" width="1500" height="750" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open medium cover full size">
+          <p class="img-name">Medium cover<span>cover-medium-1500x750.png · 1500&nbsp;×&nbsp;750</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+              <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">@unicorn’s About page on the live site, after the TypeScript rewrite. Image and site: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 434 characters</p><p id="k-alt-cover-medium">Light grey cover with soft rainbow glows in the corners. On the left, the @unicorn logo, a white unicorn leaping over a rainbow, and the title "An old app, a new stack", above the line "@unicorn since 2021, rebuilt in 2026 with Codex and Claude." On the right, a screenshot of the live About page: the unicorn avatar, the line "A place to express your uniqueness", and "Developed using Next.js, React, TypeScript, Tailwind, Firebase".</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="cover-linkedin-1920x1080.png" alt="" width="1920" height="1080" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open linkedin cover full size">
+          <p class="img-name">LinkedIn cover<span>cover-linkedin-1920x1080.png · 1920&nbsp;×&nbsp;1080</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-linkedin" aria-label="Copy caption, linkedin cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-linkedin" aria-label="Copy alt text, linkedin cover">Copy alt</button>
+              <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">The LinkedIn cover: @unicorn’s About page on the live site. Image and site: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 240 characters</p><p id="k-alt-cover-linkedin">The same design as the Medium cover in a wider shape: on the left the @unicorn unicorn logo and the title "An old app, a new stack", on the right a screenshot of the live About page listing Next.js, React, TypeScript, Tailwind and Firebase.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="numbers-1400.png" alt="" width="1400" height="1837" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open numbers card full size">
+          <p class="img-name">Numbers card<span>numbers-1400.png · 1400&nbsp;×&nbsp;1837</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+              <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-numbers">Counted from git and the 2026 Codex and Claude Code session logs. 2021 to 2025 has git only.</p>
+              <p class="lbl">Alt text · 498 characters</p><p id="k-alt-numbers">@unicorn by the numbers. Since March 2021: 369 commits on 81 days. In 2026, the only part with AI logs: 46 commits on 9 days (UTC+7). The TypeScript rewrite was merged 80 minutes after I asked, and tests went from 3 to 38 unit and 11 browser tests. Codex: 203 messages, 786 replies, 1,996 tool calls, 19 commits in logged sessions, plus 8 June commits with no session on record. Claude Code: 25 messages, 509 replies, 484 tool calls, 16 commits. Me: 228 messages, typically 9 words, 44 screenshots.</p>
+            </details>
+          </div>
+        </li>
+          </ul>
+        </section>
+        <section aria-labelledby="kit-share">
+          <h2 id="kit-share">Posts (3)</h2>
+        <div class="share">
+          <div class="share-head">
+            <h3>LinkedIn post</h3>
+            <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
+          </div>
+          <p class="share-meta">2,008 characters</p>
+          <pre id="share-linkedin" tabindex="0">In 2021 I started @unicorn, "a place to express your uniqueness", as its about page puts it. It went quiet in 2022, and by this year it was the only one of my active projects still in plain JavaScript. This year I worked on it with two AI tools, and afterwards I went through every session log to count who did what.
+
+Codex had seven sessions between June and August: 786 replies, 1,996 tool calls, 19 commits inside those sessions (8 more June commits have no session on record). Claude Code had one session in September: 509 replies, 484 tool calls, 16 commits, including a full rewrite to TypeScript merged 80 minutes after I asked for it. I sent 228 messages. A typical one was 9 words.
+
+So what did those 9 words do? Mostly, they said no.
+
+→ "i need storage wehre i know that it will not charge but will rather stop working". That one sentence moved 233 images to a free plan that, as far as we could read the terms, stops rather than bills.
+
+→ I asked Codex to fix "everything at once". It did, in one big pass, and none of it was ever committed. The next try went in small steps, and I still threw the first one away because too many files had changed for reasons I didn't understand.
+
+→ A security pass done in one go broke the live site. I reverted the whole evening, one of three reverts that year, then put back only what mattered, one change at a time.
+
+→ Dark mode brought four bugs in one night, three from the same cause. The next day's rewrite made that cause impossible. It brought its own bugs, and I found them by using the site, not reading the diff.
+
+The models wrote most of this year's code: 38 of the 46 commits come from a logged AI session or carry an AI trailer. What it may cost, who gets to post, and which work to throw away stayed with me.
+
+If you're building a product with AI and the building is fast but the product keeps drifting, feel free to DM me. I'm open to consulting and product/engineering advisory work.
+
+I wrote it all up, mistakes included, in the article below.</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>Facebook post</h3>
+            <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
+          </div>
+          <p class="share-meta">784 characters</p>
+          <pre id="share-facebook" tabindex="0">Some of you might remember @unicorn 🦄, the little picture-sharing site I started back in 2021.
+
+It sat mostly untouched for a few years. This summer I gave it a proper refresh with the help of two AI assistants, Codex and Claude. The pictures moved to a new home on a free plan, the feed loads lighter images, the site is easier to use with a keyboard or a screen reader, and it now has a dark mode for signed-in users.
+
+The code underneath was rebuilt too. That part took under an hour and a half, and then I spent twenty minutes clicking around and finding what it had broken. The assistants wrote the code. My job was saying what looked wrong and deciding what to keep.
+
+It's still small, and new accounts are still approved before they can post. Have a look 👇
+https://atunicorn.io</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>X post</h3>
+            <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
+          </div>
+          <p class="share-meta">313 characters</p>
+          <pre id="share-x" tabindex="0">@unicorn is "a place to express your uniqueness", started in 2021. This year Codex moved its images and modernised it, and Claude rewrote it in TypeScript in 80 minutes. 46 commits, 228 messages from me, three reverts.
+
+https://atunicorn.io
+
+What the logs show: https://articles.edgarasneverdauskas.com/atunicorn/</pre>
+        </div>
+        </section>
+      </div>
+    </details>
+  </aside>
+  <article class="story" id="story" aria-labelledby="story-title" tabindex="-1">
+    <header class="story-head">
+      <p class="kicker">Since 2021 · 369 commits</p>
+      <h1 id="story-title">@unicorn: an old app, a new stack, and two AI tools</h1>
+      <p class="dek" id="story-dek">@unicorn calls itself “a place to express your uniqueness”. I started it in 2021. In 2026 Codex and Claude moved its images, tightened it and rewrote it in TypeScript. Counted from the logs, which only cover this year.</p>
+      <p class="byline"><span>Edgaras Neverdauskas</span><span>13 min read</span><span>2,995 words</span></p>
+      <nav class="also" aria-label="This story elsewhere">
+        
+        <p><span class="also-label">Project</span><a href="https://atunicorn.io" rel="noopener">atunicorn.io<span aria-hidden="true"> ↗</span></a></p>
+      </nav>
+    </header>
+    <figure class="fig fig-cover" id="fig-cover-medium">
+  <div class="frame"><img src="cover-medium-1500x750.png" alt="Light grey cover with soft rainbow glows in the corners. On the left, the @unicorn logo, a white unicorn leaping over a rainbow, and the title &quot;An old app, a new stack&quot;, above the line &quot;@unicorn since 2021, rebuilt in 2026 with Codex and Claude.&quot; On the right, a screenshot of the live About page: the unicorn avatar, the line &quot;A place to express your uniqueness&quot;, and &quot;Developed using Next.js, React, TypeScript, Tailwind, Firebase&quot;." width="1500" height="750" decoding="async" tabindex="0" role="button" aria-label="Open this picture" fetchpriority="high"></div>
+  <figcaption>
+    <p class="cap" id="cap-cover-medium">@unicorn’s About page on the live site, after the TypeScript rewrite. Image and site: Edgaras Neverdauskas.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+      <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 434 characters</span></summary><p id="alt-cover-medium">Light grey cover with soft rainbow glows in the corners. On the left, the @unicorn logo, a white unicorn leaping over a rainbow, and the title "An old app, a new stack", above the line "@unicorn since 2021, rebuilt in 2026 with Codex and Claude." On the right, a screenshot of the live About page: the unicorn avatar, the line "A place to express your uniqueness", and "Developed using Next.js, React, TypeScript, Tailwind, Firebase".</p></details>
+  </figcaption>
+</figure>
+    <div class="prose" id="article-body">
+<p>On a Saturday afternoon in June I sent Codex a screenshot of an error and four words: "need to fix this". Twenty minutes later I asked it to check the packages for security issues. Then came the bigger job: move the images off Firebase to "somethign that is free and witohut pay to go".</p>
+<p>A few messages later I wrote down the one rule that shaped the rest of the evening: "i need storage wehre i know that it will not charge but will rather stop working".</p>
+<p>That was the first logged conversation about @unicorn. The site itself is much older. This is the account of what happened to it in 2026, with a short look at the five years before. As with my other build stories, I went back through the session logs and the full git history, so the numbers are counted, not remembered. One limit up front: the AI logs start in June 2026. For 2021 to 2025, git is the only record.</p>
+<h2>What @unicorn is</h2>
+<p>A small image-sharing site at atunicorn.io. Its own about page calls it "a place to express your uniqueness". You sign up, pick a username, write an about page, and post pictures. Everyone's posts land in one shared feed. Posts marked NSFW stay covered until you tap them. New accounts are approved before they can post.</p>
+<p>It runs on Next.js as a static site, with Firebase for accounts and data. Images live on Cloudinary, behind a small Cloudflare Worker. Since September it is TypeScript with Tailwind.</p>
+<h2>Before the logs: 2021 to 2025</h2>
+<p>The first commit landed at 12:34 on 6 March 2021, in a repository then called "unicorn". Two of us started it. Another developer set up the base: the project structure, loading users and posts, file upload, and later email sign-in. That was 17 commits. I did the screens and the look, and most of what came after.</p>
+<p>The busiest month by far was March 2022, with 172 commits, most of them with "update" in the name, like "updated post", "updated radio button" or "small update". It began that month on Next.js 10 and React 16 (Next.js 12 and React 17 by the end), with react-native-web and two small styling and state libraries built for that setup. When I dropped react-native-web in 2026, I said what I had used it for: "i ued that for automatiucally loading the post on the scroll". It went quiet after a last fix on 1 May 2022.</p>
+<p>In October 2025 I came back and flattened the project. In December I moved it to Next.js 16, React 19 and a current Firebase. Eight of those nine commits are called "updated", the ninth is a merge, and no AI logs survive from then, so I can't say who or what helped.</p>
+<h2>How it happened in 2026</h2>
+<p>Times below are the local time on the machine that did the work: UTC+3 in June and July, UTC+7 from August.</p>
+<p><strong>6 June: the images move.</strong> The session began with an audit of the packages and a page error left over from the framework update. Then came the storage. Codex first built the move to Cloudflare R2, which has a generous free tier. When I read the fine print on the sign-up screen, I saw that R2 bills if you go over. I asked for something that stops instead. Codex suggested Cloudinary's free plan, which needs no card, and rebuilt the change for it within minutes. A small Worker keeps the Cloudinary key off the browser, and the app keeps Firebase for accounts and data.</p>
+<p>Moving the old pictures hit a wall. The first copy failed with "402 Payment Required": the old store would not serve a single file without a billing plan. So I switched billing on, copied all 233 images across, and at 18:48 wrote "OK EVERYTHINNG LOADS". Four minutes later: "ok disabled". The change was committed at 19:15.</p>
+<p>Along the way I pressed "y" at a terminal prompt I didn't mean to answer: "shit i pres y, how to revert". Codex asked me to paste the git status, read it, and told me nothing needed reverting.</p>
+<p><strong>7 June: small things.</strong> The header icons weren't centred. I wanted to watch the fixes happen, and when Codex kept closing its browser I asked it to stop: "i want to se chagnes live". In the afternoon I asked for simpler routing, "remove the modal based routing an have only pGE ROUTING". Every post and profile is now its own page. Of the ten commits over the two days, only two came from a logged Codex session.</p>
+<p><strong>17 July: everything at once.</strong> I asked Codex to check the whole app and find anything worth optimising. The report listed about 1.4 MB of compressed JavaScript on the home page, the whole icon library bundled, and the whole database downloaded at start. I asked: "can you fix everything at once?" It did, in one large pass, and measured the JavaScript down to 306 KB. None of it was ever committed. When I came back three days later, the working copy was clean.</p>
+<p><strong>20 July: one step at a time.</strong> This time I asked for a plan first. Codex finished its first phase in about 50 minutes, and I threw it away: "i dont liek that there was som any fils changes and added that i dont udnerstand why". We started again with the dependencies alone, in two files. Fifteen pinned package overrides came down to one that was still needed.</p>
+<p>After that the day was a loop. Codex finished a small phase, reported what it had checked in a real browser, and I answered. 32 of my 70 messages that day were some version of "continue" or "whats next". The phases covered cleaner loading states, feed images down from about 7.4 MB to 2.2 MB on load, a keyboard and screen-reader pass that took the Lighthouse accessibility score from 90 to 100, and a round of security tightening, tested locally before it went live.</p>
+<p>Two of my messages mattered more than the rest. When a tidy-up touched the logo animation: "hey hey gif id improtant w i need that nimation it is the main point". And when the feed began loading every post at once instead of as you scroll, I guessed where it broke: "ithink something happened when we wrapped component in side main". Codex had been working around it. It agreed, dropped the workaround and fixed the wrapper instead. At 17:09 Codex's own meter showed its weekly allowance at 100%. Three minutes later it showed a new week starting from 0%, and the work carried on. At 19:53 the changes were pushed and live.</p>
+<p>On 26 July I reported the scroll problem again. That message has no reply in the log. The last meter reading, on 20 July, showed 60% of the new week used.</p>
+<p><strong>12 August: the audit that went too far.</strong> "seemsl ike we havw security vurnaliblieties in this repo pelase audit". Codex found real gaps and fixed them all in one pass. It took the evening to test, and once it went live, the live site showed an error. At 22:58: "ok oyu know what rever all the changes ew made today and only fix the dependbot issues and redeploy everytihng". Then I asked what risk was left, and we put back only the protections that mattered most, one at a time, testing each.</p>
+<p>I also made a product call that night. Codex walked me through what would happen if I removed the approval step and let anyone post. My answer: "yeahi am afraid of illigeal content". Approval stays. One more change went in and came out: a cleanup for images from posts you start and then abandon ended up keeping them in storage instead. I reverted it, and the final fix was simpler: an image is only uploaded when you publish the post.</p>
+<p><strong>8 September: the late-night cleanup.</strong> At 22:29 I asked Claude to give all my repositories proper descriptions. @unicorn's read "make stuff happen". Its README described an app that no longer existed, so Claude rewrote it from the source. It deleted a release workflow that could never have run, and fixed a dependency alert whose cause was one of my own version pins.</p>
+<p>It also noticed that dark mode was fully built and nobody could reach it. I asked for a switch. Turning it on showed four bugs within the hour: icons painted dark on dark, a white box around the loading animation, profile text you couldn't read, and an author name stuck in black. I sent screenshots, Claude fixed them one by one, and each fix went live within minutes. At 00:21 I simplified it: "is use is nto connect we don disaply the theme mode switch at all". Just before that, I had left a note for the morning: @unicorn was "only one prejctn ow that is not i nsnc" with my other active repositories, which are TypeScript.</p>
+<p><strong>9 September: the rewrite.</strong> At 11:15 I laid out what I had in mind: TypeScript, Next.js, Vitest and Tailwind, dropping react-native-web, maybe GitHub Pages instead of Firebase hosting, maybe the database on Cloudflare too. Claude agreed with two ideas and argued against the other two. Dropping react-native-web was right, and the old styling library should go with it. GitHub Pages would add a host without removing one, and the thing tying the app to Firebase is the accounts, not the data.</p>
+<p>At 12:35 the rewrite was merged, 80 minutes after my message. 93 files changed, and react-native-web was gone. Then I used it, and found three bugs in 20 minutes: the page crashed when you scrolled past the point where the header shrinks, the unicorn logo was squashed, and a refresh showed an empty feed before the loading animation. All three came from the rewrite, and all three were fixed and live by 12:57.</p>
+<p>At 13:01 I asked: "shoudlwe have moretest to amke sure eveyrtihng works well". Claude wrote tests around the bugs that had actually shipped, and proved each one by putting its bug back and watching the test fail. The project went from 3 tests to 38 unit tests and 11 browser tests. The search field got fixed next, then the tests started running on GitHub on every push. The last commit of the day landed at 13:45.</p>
+<h2>The bug class, not the bug</h2>
+<p>The four dark-mode bugs of 8 September looked like four problems. Three of them were one. The old styling library worked out each colour in JavaScript, and in several places it did so without knowing which theme was on, so it fell back to the light one. The fourth, the author name, had never been given a colour at all. Each fix patched one more place. The next morning I found a link in the login box you could click but not see. It was the same bug again, in a place nobody had found yet.</p>
+<p>The rewrite made that bug impossible instead of fixing it again. Colours are now plain CSS: one set of names, defined twice, and a class on the page picks which set applies. A component asks for "the surface colour" and never knows which theme is on. Claude put it this way: "That failure mode no longer exists."</p>
+<p>Two things made that the right call rather than just a bigger change. The job was small enough to check: a few dozen files and a site I could click through in minutes. And I checked it by using it, not by reading the diff. The rewrite brought its own new bugs, and I found all three that way.</p>
+<h2>What we got wrong</h2>
+<ul>
+<li>The old image store had stopped serving files without a billing plan. The logs first show it when the migration's first copy failed.</li>
+<li>Codex said early on that R2 can bill beyond its free tier, and built on it anyway. I only took that in when the sign-up screen said so.</li>
+<li>"Fix everything at once" produced a large change I never committed. The next attempt's first phase added files I couldn't explain, and I reverted that too.</li>
+<li>I asked about missing borders on every card. It was mostly my screen: "oh dont mid it was the screen hat i used". We made the borders stronger anyway, and that change shipped the same day.</li>
+<li>A tidy-up squashed the logo animation, and wrapping the page in a new container made the feed load every post at once.</li>
+<li>A security pass done in one go broke the live site, so everything from that evening was reverted.</li>
+<li>An image cleanup kept unposted images instead of removing them. Reverted.</li>
+<li>Dark mode shipped with invisible icons, unreadable profiles and a white box on a dark page.</li>
+<li>The TypeScript rewrite crashed on scroll, squashed the logo, and flashed an empty feed before loading.</li>
+<li>Claude's own new focus style drew a box inside the search field, the thing its previous fix had just removed.</li>
+</ul>
+<h2>Who did what</h2>
+<p><strong>Codex</strong> did most of the year's work: 7 sessions from June to August, and 19 commits made inside them. Eight more commits from June have no session on record, so I don't count them for either tool. I sent it 203 messages and 33 screenshots. It replied 786 times: 291 from GPT-5.5 in June, 378 from GPT-5.6 Sol in July and 117 from GPT-5.6 Terra in August. It made 1,996 tool calls, not counting 1,142 waits on commands that were still running, and worked for about 15 hours and 45 minutes. Codex's automatic reviewer also checked its riskier actions 107 times. It moved the images, did the July modernisation, and the August security work.</p>
+<p><strong>Claude Code</strong> had one session over two days in September, all on Claude Opus 5. I sent it 25 messages and 11 screenshots. It replied 509 times and made 484 tool calls: 284 commands, 76 file edits and 118 actions in a browser, in about 3 hours and 45 minutes. That includes the first 25 minutes, spent on the other repositories' descriptions. It made 16 commits: the README, dark mode, the TypeScript rewrite, the tests and CI. Three more commits carry Claude's name, on 29 August and 12 September, from sessions this count doesn't include.</p>
+<figure class="fig" id="fig-numbers">
+  <div class="frame"><img src="numbers-1400.png" alt="@unicorn by the numbers. Since March 2021: 369 commits on 81 days. In 2026, the only part with AI logs: 46 commits on 9 days (UTC+7). The TypeScript rewrite was merged 80 minutes after I asked, and tests went from 3 to 38 unit and 11 browser tests. Codex: 203 messages, 786 replies, 1,996 tool calls, 19 commits in logged sessions, plus 8 June commits with no session on record. Claude Code: 25 messages, 509 replies, 484 tool calls, 16 commits. Me: 228 messages, typically 9 words, 44 screenshots." width="1400" height="1837" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-numbers">Counted from git and the 2026 Codex and Claude Code session logs. 2021 to 2025 has git only.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+      <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 498 characters</span></summary><p id="alt-numbers">@unicorn by the numbers. Since March 2021: 369 commits on 81 days. In 2026, the only part with AI logs: 46 commits on 9 days (UTC+7). The TypeScript rewrite was merged 80 minutes after I asked, and tests went from 3 to 38 unit and 11 browser tests. Codex: 203 messages, 786 replies, 1,996 tool calls, 19 commits in logged sessions, plus 8 June commits with no session on record. Claude Code: 25 messages, 509 replies, 484 tool calls, 16 commits. Me: 228 messages, typically 9 words, 44 screenshots.</p></details>
+  </figcaption>
+</figure>
+<p><strong>My part</strong> was deciding and looking. 228 messages across both tools, a typical one 9 words long, and 44 screenshots. I chose storage that stops over storage that bills, kept the approval step, and threw away work I didn't understand. I also asked for tests and noticed what looked wrong. Most of the bugs in the list above were found by me using the site.</p>
+<p>Treat the numbers as a record, not a benchmark. The two tools worked in different months, on different jobs, and log their work differently.</p>
+<h2>What it cost</h2>
+<p>Money was the reason the storage moved, so it is the one cost I watched. The images now sit on Cloudinary's free plan. As Codex read the terms, it asks you to upgrade rather than charging, and a free Cloudflare Worker stops at its daily limit instead of billing. Billing on the old image store was on for 13 minutes on 6 June, long enough to copy 233 files, and then switched off.</p>
+<p>The tools ran on subscriptions. Codex's meter showed 95% of its five-hour allowance on 6 June, and 100% of its weekly allowance at 17:09 on 20 July, before a new week started three minutes later. The Claude session shows no limit being reached.</p>
+<h2>What I would tell someone starting</h2>
+<ul>
+<li><strong>Decide what failure you can live with.</strong> "Stop working" instead of "charge me" picked the storage in one sentence.</li>
+<li><strong>Ask for a plan, then take it in small steps.</strong> One large pass gave me a change I couldn't review. Small phases gave me one I could.</li>
+<li><strong>Throw away work you don't understand, or that breaks.</strong> Three times I reverted AI work the same day: once because I couldn't follow it, once because the live site broke, once because a fix backfired. Each redo was smaller.</li>
+<li><strong>When the same bug keeps coming back, fix the cause.</strong> Four dark-mode fixes in one night showed why the old styling library had to go.</li>
+<li><strong>Use it after every change.</strong> The crash, the squashed logo and the empty-feed flash were all found by clicking around, not by the checks.</li>
+<li><strong>Make tests prove they work.</strong> Put the bug back and watch the test fail.</li>
+<li><strong>Old projects are good for this work.</strong> A small, real app with real history is an honest test of what these tools can and can't do.</li>
+</ul>
+<h2>In one paragraph</h2>
+<p>@unicorn started in March 2021 with two developers and a lot of commits called "updated". In 2026 two AI tools picked it up. Codex moved its images to a free plan that, as we read the terms, stops rather than bills. It modernised the app step by step, and did a security pass that I reverted and redid one change at a time. Claude found dark mode hidden in the code, switched it on, and the next day rewrote the app in TypeScript in 80 minutes, with tests built around the bugs I found. That was 46 commits on nine days (UTC+7), about 19 and a half hours of counted AI work, and 228 messages from me. The tools wrote the code. What it should cost, who may post, and which changes to throw away were my calls.</p>
+<p class="close"><em>See it at <a href="https://atunicorn.io">atunicorn.io</a>. The code is private. Built with OpenAI Codex (GPT-5.5, GPT-5.6 Sol and GPT-5.6 Terra) and Claude Code with Claude Opus 5.</em></p>
+    </div>
+    <footer class="story-foot">
+      <p class="also-end"><span><a href="https://atunicorn.io" rel="noopener">Visit the project<span aria-hidden="true"> ↗</span></a></span></p>
+      <nav class="more" aria-labelledby="more-atunicorn">
+        <h2 id="more-atunicorn">More build stories</h2>
+        <ul><li><a href="../css-3d-lab-ledger/">A green tick is a date, not a fact</a></li><li><a href="../css-3d-lab/">CSS 3D Lab: learning 3D on the web by playing with it</a></li><li><a href="../self-aware-writing/">A book that knows you're reading it</a></li><li><a href="../jarvis/">Five days building J.A.R.V.I.S. with Claude</a></li><li><a href="../portfolio/">My portfolio, rebuilt to tell the truth</a></li><li><a href="../timeline/">The AI race: who shipped what, and when</a></li><li><a href="../agi-watch/">AGI Watch: are we getting there?</a></li><li><a href="../ampuno/">Ampuno: 28 minutes to build, eight weeks to draw the cars</a></li><li><a href="../bitcoin-analytics/">Bitcoin Analytics: an hour to start, months to trust</a></li><li><a href="../social-blockchain-network/">Social Blockchain Network: refactor, don't rebuild</a></li></ul>
+      </nav>
+    </footer>
+  </article>
+</main>
+<footer class="site-foot">
+  <a href="../"><span aria-hidden="true">←</span> All articles</a>
+  <a href="https://edgarasneverdauskas.com">edgarasneverdauskas.com</a>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="kit-data">{"richHtml":"\u003ch1>@unicorn: an old app, a new stack, and two AI tools\u003c/h1>\n\u003cp>\u003cem>@unicorn calls itself “a place to express your uniqueness”. I started it in 2021. In 2026 Codex and Claude moved its images, tightened it and rewrote it in TypeScript. Counted from the logs, which only cover this year.\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/atunicorn/cover-medium-1500x750.png Caption: @unicorn’s About page on the live site, after the TypeScript rewrite. Image and site: Edgaras Neverdauskas. Alt text: Light grey cover with soft rainbow glows in the corners. On the left, the @unicorn logo, a white unicorn leaping over a rainbow, and the title \"An old app, a new stack\", above the line \"@unicorn since 2021, rebuilt in 2026 with Codex and Claude.\" On the right, a screenshot of the live About page: the unicorn avatar, the line \"A place to express your uniqueness\", and \"Developed using Next.js, React, TypeScript, Tailwind, Firebase\".]\u003c/strong>\u003c/p>\n\u003cp>On a Saturday afternoon in June I sent Codex a screenshot of an error and four words: \"need to fix this\". Twenty minutes later I asked it to check the packages for security issues. Then came the bigger job: move the images off Firebase to \"somethign that is free and witohut pay to go\".\u003c/p>\n\u003cp>A few messages later I wrote down the one rule that shaped the rest of the evening: \"i need storage wehre i know that it will not charge but will rather stop working\".\u003c/p>\n\u003cp>That was the first logged conversation about @unicorn. The site itself is much older. This is the account of what happened to it in 2026, with a short look at the five years before. As with my other build stories, I went back through the session logs and the full git history, so the numbers are counted, not remembered. One limit up front: the AI logs start in June 2026. For 2021 to 2025, git is the only record.\u003c/p>\n\u003ch2>What @unicorn is\u003c/h2>\n\u003cp>A small image-sharing site at atunicorn.io. Its own about page calls it \"a place to express your uniqueness\". You sign up, pick a username, write an about page, and post pictures. Everyone's posts land in one shared feed. Posts marked NSFW stay covered until you tap them. New accounts are approved before they can post.\u003c/p>\n\u003cp>It runs on Next.js as a static site, with Firebase for accounts and data. Images live on Cloudinary, behind a small Cloudflare Worker. Since September it is TypeScript with Tailwind.\u003c/p>\n\u003ch2>Before the logs: 2021 to 2025\u003c/h2>\n\u003cp>The first commit landed at 12:34 on 6 March 2021, in a repository then called \"unicorn\". Two of us started it. Another developer set up the base: the project structure, loading users and posts, file upload, and later email sign-in. That was 17 commits. I did the screens and the look, and most of what came after.\u003c/p>\n\u003cp>The busiest month by far was March 2022, with 172 commits, most of them with \"update\" in the name, like \"updated post\", \"updated radio button\" or \"small update\". It began that month on Next.js 10 and React 16 (Next.js 12 and React 17 by the end), with react-native-web and two small styling and state libraries built for that setup. When I dropped react-native-web in 2026, I said what I had used it for: \"i ued that for automatiucally loading the post on the scroll\". It went quiet after a last fix on 1 May 2022.\u003c/p>\n\u003cp>In October 2025 I came back and flattened the project. In December I moved it to Next.js 16, React 19 and a current Firebase. Eight of those nine commits are called \"updated\", the ninth is a merge, and no AI logs survive from then, so I can't say who or what helped.\u003c/p>\n\u003ch2>How it happened in 2026\u003c/h2>\n\u003cp>Times below are the local time on the machine that did the work: UTC+3 in June and July, UTC+7 from August.\u003c/p>\n\u003cp>\u003cstrong>6 June: the images move.\u003c/strong> The session began with an audit of the packages and a page error left over from the framework update. Then came the storage. Codex first built the move to Cloudflare R2, which has a generous free tier. When I read the fine print on the sign-up screen, I saw that R2 bills if you go over. I asked for something that stops instead. Codex suggested Cloudinary's free plan, which needs no card, and rebuilt the change for it within minutes. A small Worker keeps the Cloudinary key off the browser, and the app keeps Firebase for accounts and data.\u003c/p>\n\u003cp>Moving the old pictures hit a wall. The first copy failed with \"402 Payment Required\": the old store would not serve a single file without a billing plan. So I switched billing on, copied all 233 images across, and at 18:48 wrote \"OK EVERYTHINNG LOADS\". Four minutes later: \"ok disabled\". The change was committed at 19:15.\u003c/p>\n\u003cp>Along the way I pressed \"y\" at a terminal prompt I didn't mean to answer: \"shit i pres y, how to revert\". Codex asked me to paste the git status, read it, and told me nothing needed reverting.\u003c/p>\n\u003cp>\u003cstrong>7 June: small things.\u003c/strong> The header icons weren't centred. I wanted to watch the fixes happen, and when Codex kept closing its browser I asked it to stop: \"i want to se chagnes live\". In the afternoon I asked for simpler routing, \"remove the modal based routing an have only pGE ROUTING\". Every post and profile is now its own page. Of the ten commits over the two days, only two came from a logged Codex session.\u003c/p>\n\u003cp>\u003cstrong>17 July: everything at once.\u003c/strong> I asked Codex to check the whole app and find anything worth optimising. The report listed about 1.4 MB of compressed JavaScript on the home page, the whole icon library bundled, and the whole database downloaded at start. I asked: \"can you fix everything at once?\" It did, in one large pass, and measured the JavaScript down to 306 KB. None of it was ever committed. When I came back three days later, the working copy was clean.\u003c/p>\n\u003cp>\u003cstrong>20 July: one step at a time.\u003c/strong> This time I asked for a plan first. Codex finished its first phase in about 50 minutes, and I threw it away: \"i dont liek that there was som any fils changes and added that i dont udnerstand why\". We started again with the dependencies alone, in two files. Fifteen pinned package overrides came down to one that was still needed.\u003c/p>\n\u003cp>After that the day was a loop. Codex finished a small phase, reported what it had checked in a real browser, and I answered. 32 of my 70 messages that day were some version of \"continue\" or \"whats next\". The phases covered cleaner loading states, feed images down from about 7.4 MB to 2.2 MB on load, a keyboard and screen-reader pass that took the Lighthouse accessibility score from 90 to 100, and a round of security tightening, tested locally before it went live.\u003c/p>\n\u003cp>Two of my messages mattered more than the rest. When a tidy-up touched the logo animation: \"hey hey gif id improtant w i need that nimation it is the main point\". And when the feed began loading every post at once instead of as you scroll, I guessed where it broke: \"ithink something happened when we wrapped component in side main\". Codex had been working around it. It agreed, dropped the workaround and fixed the wrapper instead. At 17:09 Codex's own meter showed its weekly allowance at 100%. Three minutes later it showed a new week starting from 0%, and the work carried on. At 19:53 the changes were pushed and live.\u003c/p>\n\u003cp>On 26 July I reported the scroll problem again. That message has no reply in the log. The last meter reading, on 20 July, showed 60% of the new week used.\u003c/p>\n\u003cp>\u003cstrong>12 August: the audit that went too far.\u003c/strong> \"seemsl ike we havw security vurnaliblieties in this repo pelase audit\". Codex found real gaps and fixed them all in one pass. It took the evening to test, and once it went live, the live site showed an error. At 22:58: \"ok oyu know what rever all the changes ew made today and only fix the dependbot issues and redeploy everytihng\". Then I asked what risk was left, and we put back only the protections that mattered most, one at a time, testing each.\u003c/p>\n\u003cp>I also made a product call that night. Codex walked me through what would happen if I removed the approval step and let anyone post. My answer: \"yeahi am afraid of illigeal content\". Approval stays. One more change went in and came out: a cleanup for images from posts you start and then abandon ended up keeping them in storage instead. I reverted it, and the final fix was simpler: an image is only uploaded when you publish the post.\u003c/p>\n\u003cp>\u003cstrong>8 September: the late-night cleanup.\u003c/strong> At 22:29 I asked Claude to give all my repositories proper descriptions. @unicorn's read \"make stuff happen\". Its README described an app that no longer existed, so Claude rewrote it from the source. It deleted a release workflow that could never have run, and fixed a dependency alert whose cause was one of my own version pins.\u003c/p>\n\u003cp>It also noticed that dark mode was fully built and nobody could reach it. I asked for a switch. Turning it on showed four bugs within the hour: icons painted dark on dark, a white box around the loading animation, profile text you couldn't read, and an author name stuck in black. I sent screenshots, Claude fixed them one by one, and each fix went live within minutes. At 00:21 I simplified it: \"is use is nto connect we don disaply the theme mode switch at all\". Just before that, I had left a note for the morning: @unicorn was \"only one prejctn ow that is not i nsnc\" with my other active repositories, which are TypeScript.\u003c/p>\n\u003cp>\u003cstrong>9 September: the rewrite.\u003c/strong> At 11:15 I laid out what I had in mind: TypeScript, Next.js, Vitest and Tailwind, dropping react-native-web, maybe GitHub Pages instead of Firebase hosting, maybe the database on Cloudflare too. Claude agreed with two ideas and argued against the other two. Dropping react-native-web was right, and the old styling library should go with it. GitHub Pages would add a host without removing one, and the thing tying the app to Firebase is the accounts, not the data.\u003c/p>\n\u003cp>At 12:35 the rewrite was merged, 80 minutes after my message. 93 files changed, and react-native-web was gone. Then I used it, and found three bugs in 20 minutes: the page crashed when you scrolled past the point where the header shrinks, the unicorn logo was squashed, and a refresh showed an empty feed before the loading animation. All three came from the rewrite, and all three were fixed and live by 12:57.\u003c/p>\n\u003cp>At 13:01 I asked: \"shoudlwe have moretest to amke sure eveyrtihng works well\". Claude wrote tests around the bugs that had actually shipped, and proved each one by putting its bug back and watching the test fail. The project went from 3 tests to 38 unit tests and 11 browser tests. The search field got fixed next, then the tests started running on GitHub on every push. The last commit of the day landed at 13:45.\u003c/p>\n\u003ch2>The bug class, not the bug\u003c/h2>\n\u003cp>The four dark-mode bugs of 8 September looked like four problems. Three of them were one. The old styling library worked out each colour in JavaScript, and in several places it did so without knowing which theme was on, so it fell back to the light one. The fourth, the author name, had never been given a colour at all. Each fix patched one more place. The next morning I found a link in the login box you could click but not see. It was the same bug again, in a place nobody had found yet.\u003c/p>\n\u003cp>The rewrite made that bug impossible instead of fixing it again. Colours are now plain CSS: one set of names, defined twice, and a class on the page picks which set applies. A component asks for \"the surface colour\" and never knows which theme is on. Claude put it this way: \"That failure mode no longer exists.\"\u003c/p>\n\u003cp>Two things made that the right call rather than just a bigger change. The job was small enough to check: a few dozen files and a site I could click through in minutes. And I checked it by using it, not by reading the diff. The rewrite brought its own new bugs, and I found all three that way.\u003c/p>\n\u003ch2>What we got wrong\u003c/h2>\n\u003cul>\n\u003cli>The old image store had stopped serving files without a billing plan. The logs first show it when the migration's first copy failed.\u003c/li>\n\u003cli>Codex said early on that R2 can bill beyond its free tier, and built on it anyway. I only took that in when the sign-up screen said so.\u003c/li>\n\u003cli>\"Fix everything at once\" produced a large change I never committed. The next attempt's first phase added files I couldn't explain, and I reverted that too.\u003c/li>\n\u003cli>I asked about missing borders on every card. It was mostly my screen: \"oh dont mid it was the screen hat i used\". We made the borders stronger anyway, and that change shipped the same day.\u003c/li>\n\u003cli>A tidy-up squashed the logo animation, and wrapping the page in a new container made the feed load every post at once.\u003c/li>\n\u003cli>A security pass done in one go broke the live site, so everything from that evening was reverted.\u003c/li>\n\u003cli>An image cleanup kept unposted images instead of removing them. Reverted.\u003c/li>\n\u003cli>Dark mode shipped with invisible icons, unreadable profiles and a white box on a dark page.\u003c/li>\n\u003cli>The TypeScript rewrite crashed on scroll, squashed the logo, and flashed an empty feed before loading.\u003c/li>\n\u003cli>Claude's own new focus style drew a box inside the search field, the thing its previous fix had just removed.\u003c/li>\n\u003c/ul>\n\u003ch2>Who did what\u003c/h2>\n\u003cp>\u003cstrong>Codex\u003c/strong> did most of the year's work: 7 sessions from June to August, and 19 commits made inside them. Eight more commits from June have no session on record, so I don't count them for either tool. I sent it 203 messages and 33 screenshots. It replied 786 times: 291 from GPT-5.5 in June, 378 from GPT-5.6 Sol in July and 117 from GPT-5.6 Terra in August. It made 1,996 tool calls, not counting 1,142 waits on commands that were still running, and worked for about 15 hours and 45 minutes. Codex's automatic reviewer also checked its riskier actions 107 times. It moved the images, did the July modernisation, and the August security work.\u003c/p>\n\u003cp>\u003cstrong>Claude Code\u003c/strong> had one session over two days in September, all on Claude Opus 5. I sent it 25 messages and 11 screenshots. It replied 509 times and made 484 tool calls: 284 commands, 76 file edits and 118 actions in a browser, in about 3 hours and 45 minutes. That includes the first 25 minutes, spent on the other repositories' descriptions. It made 16 commits: the README, dark mode, the TypeScript rewrite, the tests and CI. Three more commits carry Claude's name, on 29 August and 12 September, from sessions this count doesn't include.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/atunicorn/numbers-1400.png Caption: Counted from git and the 2026 Codex and Claude Code session logs. 2021 to 2025 has git only. Alt text: @unicorn by the numbers. Since March 2021: 369 commits on 81 days. In 2026, the only part with AI logs: 46 commits on 9 days (UTC+7). The TypeScript rewrite was merged 80 minutes after I asked, and tests went from 3 to 38 unit and 11 browser tests. Codex: 203 messages, 786 replies, 1,996 tool calls, 19 commits in logged sessions, plus 8 June commits with no session on record. Claude Code: 25 messages, 509 replies, 484 tool calls, 16 commits. Me: 228 messages, typically 9 words, 44 screenshots.]\u003c/strong>\u003c/p>\n\u003cp>\u003cstrong>My part\u003c/strong> was deciding and looking. 228 messages across both tools, a typical one 9 words long, and 44 screenshots. I chose storage that stops over storage that bills, kept the approval step, and threw away work I didn't understand. I also asked for tests and noticed what looked wrong. Most of the bugs in the list above were found by me using the site.\u003c/p>\n\u003cp>Treat the numbers as a record, not a benchmark. The two tools worked in different months, on different jobs, and log their work differently.\u003c/p>\n\u003ch2>What it cost\u003c/h2>\n\u003cp>Money was the reason the storage moved, so it is the one cost I watched. The images now sit on Cloudinary's free plan. As Codex read the terms, it asks you to upgrade rather than charging, and a free Cloudflare Worker stops at its daily limit instead of billing. Billing on the old image store was on for 13 minutes on 6 June, long enough to copy 233 files, and then switched off.\u003c/p>\n\u003cp>The tools ran on subscriptions. Codex's meter showed 95% of its five-hour allowance on 6 June, and 100% of its weekly allowance at 17:09 on 20 July, before a new week started three minutes later. The Claude session shows no limit being reached.\u003c/p>\n\u003ch2>What I would tell someone starting\u003c/h2>\n\u003cul>\n\u003cli>\u003cstrong>Decide what failure you can live with.\u003c/strong> \"Stop working\" instead of \"charge me\" picked the storage in one sentence.\u003c/li>\n\u003cli>\u003cstrong>Ask for a plan, then take it in small steps.\u003c/strong> One large pass gave me a change I couldn't review. Small phases gave me one I could.\u003c/li>\n\u003cli>\u003cstrong>Throw away work you don't understand, or that breaks.\u003c/strong> Three times I reverted AI work the same day: once because I couldn't follow it, once because the live site broke, once because a fix backfired. Each redo was smaller.\u003c/li>\n\u003cli>\u003cstrong>When the same bug keeps coming back, fix the cause.\u003c/strong> Four dark-mode fixes in one night showed why the old styling library had to go.\u003c/li>\n\u003cli>\u003cstrong>Use it after every change.\u003c/strong> The crash, the squashed logo and the empty-feed flash were all found by clicking around, not by the checks.\u003c/li>\n\u003cli>\u003cstrong>Make tests prove they work.\u003c/strong> Put the bug back and watch the test fail.\u003c/li>\n\u003cli>\u003cstrong>Old projects are good for this work.\u003c/strong> A small, real app with real history is an honest test of what these tools can and can't do.\u003c/li>\n\u003c/ul>\n\u003ch2>In one paragraph\u003c/h2>\n\u003cp>@unicorn started in March 2021 with two developers and a lot of commits called \"updated\". In 2026 two AI tools picked it up. Codex moved its images to a free plan that, as we read the terms, stops rather than bills. It modernised the app step by step, and did a security pass that I reverted and redid one change at a time. Claude found dark mode hidden in the code, switched it on, and the next day rewrote the app in TypeScript in 80 minutes, with tests built around the bugs I found. That was 46 commits on nine days (UTC+7), about 19 and a half hours of counted AI work, and 228 messages from me. The tools wrote the code. What it should cost, who may post, and which changes to throw away were my calls.\u003c/p>\n\u003cp class=\"close\">\u003cem>See it at \u003ca href=\"https://atunicorn.io\">atunicorn.io\u003c/a>. The code is private. Built with OpenAI Codex (GPT-5.5, GPT-5.6 Sol and GPT-5.6 Terra) and Claude Code with Claude Opus 5.\u003c/em>\u003c/p>"}</script>
+</body>
+</html>

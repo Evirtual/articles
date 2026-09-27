@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en" data-page="index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My portfolio, rebuilt to tell the truth</title>
+<meta name="description" content="A 2021 photography site became a product engineer's portfolio, an advisory page and a CV generated from the same facts. How it was built with Claude, counted from the logs.">
+<meta name="author" content="Edgaras Neverdauskas">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="canonical" href="https://articles.edgarasneverdauskas.com/portfolio/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://articles.edgarasneverdauskas.com/portfolio/">
+<meta property="og:site_name" content="Articles — Edgaras Neverdauskas">
+<meta property="og:title" content="My portfolio, rebuilt to tell the truth">
+<meta property="og:description" content="A 2021 photography site became a product engineer's portfolio, an advisory page and a CV generated from the same facts. How it was built with Claude, counted from the logs.">
+<meta property="og:image" content="https://articles.edgarasneverdauskas.com/portfolio/cover-medium-1500x750.png">
+<meta property="og:image:alt" content="Dark wide cover. On the left, the EN. logo with its teal square, the kicker &quot;edgarasneverdauskas.com · the story&quot;, and the title &quot;My portfolio, rebuilt to tell the truth&quot; above the line &quot;A 2021 photo site became a portfolio and a CV generated from the same facts. 55 commits, 52 of them by Claude, counted from the logs.&quot; On the right, a screenshot of the live home page in its dark theme: the name Edgaras Neverdauskas, the title Product Engineer, three buttons, and the edge of a dotted globe.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="My portfolio, rebuilt to tell the truth">
+<meta name="twitter:description" content="A 2021 photography site became a product engineer's portfolio, an advisory page and a CV generated from the same facts. How it was built with Claude, counted from the logs.">
+<meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/portfolio/cover-medium-1500x750.png">
+<meta name="twitter:image:alt" content="Dark wide cover. On the left, the EN. logo with its teal square, the kicker &quot;edgarasneverdauskas.com · the story&quot;, and the title &quot;My portfolio, rebuilt to tell the truth&quot; above the line &quot;A 2021 photo site became a portfolio and a CV generated from the same facts. 55 commits, 52 of them by Claude, counted from the logs.&quot; On the right, a screenshot of the live home page in its dark theme: the name Edgaras Neverdauskas, the title Product Engineer, three buttons, and the edge of a dotted globe.">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
+<script data-goatcounter="https://articles.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the article</a>
+<header class="site-head">
+  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+</header>
+<main class="layout" id="main">
+  <aside class="kit" aria-label="Share kit">
+    <details class="kit-box" id="kit">
+      <summary><span class="kit-sum"><span class="kit-title">Share kit</span><span class="kit-hint">Copy the story, images and posts</span></span></summary>
+      <div class="kit-body">
+        <section aria-labelledby="kit-story">
+          <h2 id="kit-story">Story</h2>
+          <div class="btn-grid">
+            <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
+            <button type="button" class="btn" data-copy="story-title">Copy title</button>
+            <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
+            <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
+          </div>
+          <p class="kit-note">Rich text keeps the headings, bold, lists and links when pasted into an editor such as Medium or LinkedIn. Images aren’t included: the copy has a bold line where each one goes, with its address, caption and alt text.</p>
+          <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown"># My portfolio, rebuilt to tell the truth
+
+*A 2021 photography site became a product engineer's portfolio, an advisory page and a CV generated from the same facts. How it was built with Claude, counted from the logs.*
+
+## Why I rebuilt it
+
+The first edgarasneverdauskas.com went up in 2021. It was a small Vue 2 site with landscape galleries, a menu of icons and an About page that began "Hello World!". Its git history is 20 commits between April and August 2021, and 16 of them are called "update" or "updated". Then nobody touched it for five years.
+
+By 2026 it no longer said anything true about my work. So at 20:32 on Sunday 16 August I pasted a long brief into Claude. The first lines were plain: "This is a full rebuild, not a small redesign." The site had one job: to help me get senior engineering work. One section of the brief was headed "CONTENT ACCURACY" and began "This is critical." It listed what not to invent: revenue, traffic, users, dates, responsibilities. If something could not be verified, it should be left out or flagged.
+
+That section turned out to be the real subject of the next five weeks. Building the site took an evening. Making it say only true things took most of the rest.
+
+As with [J.A.R.V.I.S.](https://articles.edgarasneverdauskas.com/jarvis/) and [CSS 3D Lab](https://articles.edgarasneverdauskas.com/css-3d-lab/), I went back through the session logs and the full git history, so the numbers here are counted, not remembered. My own messages are quoted as I typed them, typos and all.
+
+## What the site is
+
+A portfolio for a product engineer. Eight case studies under Selected work, each with what the product is, what I owned and what was hard. An Advisory section, "How I can help", for people who want a second opinion on a product. Experience, as a rail of three chapters. About, Contact, and a CV to download.
+
+It is built with Next.js, React and TypeScript as a static export, hosted on GitHub Pages, with a light and a dark theme. It installs as an app on a phone. The desktop hero has a dotted globe with my location on it, and you can grab it and throw it.
+
+The part I care about most is invisible. The CV, the share image and my LinkedIn cover are all generated from the same content file as the site. So a fact lives in one place, and changing it there changes it everywhere once the files are regenerated. The code is open source under AGPL-3.0; the words, the CV and the images stay mine.
+
+## How it happened
+
+**Sunday 16 August, evening: the rebuild.** Claude Sonnet 5 read the old repository, scaffolded the new site and pushed the first commit at 20:56, 24 minutes after my first message. Then came my first round of small calls. I wanted navigation at the bottom on phones, like an app, and the site installable. I wanted the "EN." initials as a logo and favicon. I asked for a floating illustration in the hero, and at 22:06 asked for it to go: "it looks dumb". The dot in the logo became a square, and when it landed in the wrong place I wrote "ok you didnt udnerstand me". A light theme went in at 22:35. At 22:51 I switched the domain's DNS, and three minutes later the old Firebase hosting was gone from the repo. Eleven commits by 23:13.
+
+**Monday 17 August: logos, a globe and a second path.** The morning was icons. The case logos came from the live products, and I asked for their borders and wrappers to go, so each logo sat the same size as the others. At 08:25 I asked Sonnet whether I should switch to Opus. It said this kind of work didn't need it. I switched at 09:02 anyway, and two minutes later asked for a spinning globe of dots in the empty right side of the hero, to say I work remotely. The first map was drawn by hand and "a bit off". Claude replaced it with real coastline data. The globe was mirrored at first, then fixed, with a blinking dot where I live. On phones it became a faded backdrop behind the text, and when I said it was too faint it went up to 32%.
+
+At 10:07 I asked Claude to summarise the site so I could take it to another assistant, because I was thinking of a new direction. I came back at 10:40 with a handoff brief, and at 10:56 pasted a revised version. Its core line: evolve, do not redesign. The site would keep its look and gain a second path, advice for people building products. The Advisory section went live at 11:23. In the afternoon I sent a clarification of what it should mean. The services should come from problems worth thinking through, not from my tech stack. The rewrite also dropped a "format" field, because every value in it promised an engagement structure I had not decided on.
+
+The CV was still a PDF I edited by hand. That afternoon Codex changed its profile paragraph for me. I asked whether the new text matched the rest. It didn't: the paragraph was 8.8pt Georgia, and the text around it was 9pt Noto Serif.
+
+**19 and 20 August: a new case, and a first check against a repo.** I added the Self-Aware Writing case. The next evening I asked Claude to check it against the book's repository, which had moved on. My last note that night: the sentences in each point were now much longer than in the other cases. Then Claude's session limit hit, at 23:11.
+
+**Tuesday 1 September: the audit.** I made one repository public and asked for its Source link. While checking how the others were linked, Claude found that a case's Source button pointed at a private repository, so every visitor got a 404. GitHub shows an owner their private repositories when signed in, so from my side the link worked.
+
+That started a full audit. I asked which of my repositories should be public and got a list of twelve, with a reason for each. Then I asked for every claim on the site to be checked against the code it describes. One case claimed 120+ tests, and the repository has 75. Another listed no language at all, and never mentioned its smart contract. A third described a dashboard that had since grown an analytics layer.
+
+Then I noticed a problem with myself. The work section was titled "Products I've built and shipped", and it included a DeFi ecosystem where, in my own words, "i was jsut part of it jsut a frotnend". So those two products moved to Experience, split into the two separate products they are, with their frontend-only scope stated plainly. A case that was only a boilerplate was dropped. An unfinished product came off the list until it ships. Dates stopped rotting: a case now says "Since 2022" instead of a range ending this year, which would read as abandoned every January. I didn't remember when one engagement started, so Claude checked the commit history instead of guessing. My location moved to Kampot, globe marker included.
+
+At 18:42 the CV stopped being a hand-made PDF. `npm run cv` now renders it from the site's content file. The old PDF still said Phnom Penh, still merged two products into one, and its earliest date was 2022, under a summary claiming 10+ years. The generated one puts my earlier career back and shows eleven years on the page.
+
+That night Claude also made the globe grabbable. It shipped at 23:50 with tests that passed. At 23:55 I wrote: "i am not able to itneract with the globe". A style meant for phones blocked the pointer on every screen size. The tests passed because the globe's idle spin alone satisfied them. Claude rewrote them so they fail against the broken version, and fixed it at 00:08.
+
+**Wednesday 2 September: one word, and a card that had drifted.** I dropped "Senior" from my title. Doing it showed that the share image had its own hand-typed copy of my details, and it still said Phnom Penh. Now the share card reads my name, title and description from the content file, and says "Working globally" instead of a city. A picture file goes stale on the next move. Then I asked for a new LinkedIn cover, because the one ChatGPT had drawn had a poor globe. Claude wrote a script that renders the site's own globe at a single frame.
+
+**7 September: a page that broke the deploy.** An audit offer for founders shipping with AI agents was committed at 14:45. None of my logs record who wrote it. The deploy failed on a lint error, and I sent Codex a screenshot. It found the problem, fixed it, committed at 15:00 and checked the deploy passed.
+
+**12 to 19 September: new cases, and one more drift.** J.A.R.V.I.S. became the first case in Selected work. Its logo took four commits in eight minutes, until the triangle held on the light theme too. On 13 September Claude Fable 5.1 added it to the CV and trimmed every product to two lines, so the CV stays at two pages. I opened the CV and wrote "i dotn see the CV chagnes". Claude compared the file the site serves with the committed one. They matched byte for byte, so the old one was a cached copy in my browser. Then Experience was redesigned. Seven markers all ending in 2026 read as seven jobs at once. Now they are three chapters with the roles inside them, on the site and the CV alike.
+
+At 03:47 on 19 September, CSS 3D Lab joined Selected work while the lab was still being built that night. It had 125 models then, and the case said 125. Seven hours later the lab had 135, and the case kept saying 125 for eight days, until I corrected it on 27 September while writing this.
+
+## Truthful over friendly, applied to my own site
+
+"Truthful over friendly" is a rule I give Claude on every project now. When a number, a label or a status could either tell the truth or spare an awkward result, it tells the truth. It was easy to apply to an app. It was harder to apply to a page about myself, where every word is a small temptation.
+
+On this site it turned into a few plain rules:
+
+- **A Source link only when the repository is public.** And the check is made signed out. Signed in, my own GitHub view shows every repository, so the broken link was invisible to me.
+- **"Built and shipped" means built and shipped.** Work I did inside someone else's product sits in Experience, with the scope stated.
+- **A date that stays true.** "Since 2022" doesn't go stale. A range ending this year does.
+- **One source for every fact.** The site, the CV, the share card and the LinkedIn cover read the same content file. But three of them are committed files, so an edit only reaches them when they are regenerated. That is its own trap. And the content file itself goes stale when a product moves on, which is what happened to the CSS 3D Lab count.
+- **A test proves what it claims.** The globe tests proved only that something moved. They now fail against the broken build.
+
+None of this was hard to build. Each rule came from finding something false that I had published.
+
+## What we got wrong
+
+- The first hero illustration. It was removed 38 minutes after it went in.
+- The globe's first map was hand-drawn and inaccurate, and the globe was mirrored.
+- A Source link pointed at a private repository, so it showed a 404 to every visitor for 13 days.
+- The work section claimed products I had only worked on.
+- One case claimed 120+ tests. There are 75.
+- The CV was a hand-edited PDF, so it drifted from the site: old city, merged products, missing years.
+- The share image kept an old city in its own hand-typed copy of my details.
+- The globe was made grabbable, the tests passed, and it still couldn't be grabbed.
+- A new page was pushed with a lint error, so the deploy failed and it did not go live until the fix.
+- The CSS 3D Lab case said 125 models for eight days after the lab reached 135.
+
+Most of these were found the same way. I asked Claude to check what the site says against the thing it describes: a repository, a live product, a file on the server.
+
+## Who did what
+
+**Claude Code** did the building. Claude Sonnet 5 ran the first evening and the next morning, 14 commits. Claude Opus 5 took over on 17 August and made 35. Claude Fable 5.1 made 3. In the sessions that were about this site, Claude replied 1,801 times and made 1,808 tool calls: 890 commands, 258 file edits and 385 actions in a browser. That was about 15 and a half hours of active work. No helper agents were used. Eleven of those commits were made from sessions about other projects, J.A.R.V.I.S., CSS 3D Lab and a dependency sweep, and those sessions are counted in their own stories, not here.
+
+**Codex** had two short visits: about 21 minutes, 8 messages, 101 tool calls. It edited the CV's profile paragraph as a PDF, and fixed the lint error that broke the deploy. It made one commit.
+
+**ChatGPT** had a hand too. It wrote the new CV profile wording that Codex applied, and it drew the first LinkedIn cover, the one with the poor globe. Those chats are not on disk, so ChatGPT is not counted here.
+
+![By the numbers](https://articles.edgarasneverdauskas.com/portfolio/numbers-1400.png)
+
+**My part** was deciding. I sent 131 messages, and a typical one was 17 words. I sent 16 screenshots and stopped Claude twice. I decided what the site is for, and what it may claim. I said what looked wrong, from a mirrored globe to a sentence that ran too long. And I kept asking the question that found most of the mistakes: does this match the repository?
+
+Two commits came from no Claude or Codex session on record: a small content update on 20 August and the audit page. Treat the numbers as a record, not a benchmark. The models worked on different days and different jobs.
+
+## What it cost
+
+The site costs nothing to host beyond the domain. GitHub Pages hosts it, the domain was already mine, and I deleted the old Firebase project by hand that first night.
+
+The cost was the subscriptions. In these sessions Claude's session limit hit three times: at 23:11 on 20 August, and at 18:08 and 23:38 on 1 September. The first of those two waits was 33 minutes. The last one was two. That allowance was shared with everything else I built those weeks, so I can't put a price on this site alone.
+
+## What I would tell someone starting
+
+- **Write down what not to claim before you write anything.** My brief's accuracy section did more work than its design section.
+- **Check your site signed out.** That is what your visitors see.
+- **Put every fact in one file.** Then generate the CV, the share card and the cover from it, and regenerate them every time it changes.
+- **Say what you did, not what the team did.** Scope stated plainly reads as more senior, not less.
+- **Prefer dates that don't expire.** "Since" beats a range ending this year.
+- **Make a test fail before you trust it.** A test that passes against the broken version proves nothing.
+- **Ask for an audit, not a redesign.** Most of what was wrong was words, not layout.
+
+## In one paragraph
+
+In five weeks, one person, Claude and a little Codex turned a 2021 photography site into a portfolio, an advisory page and a CV generated from the same facts, in 55 commits. The build took one evening. The rest went into making it true: a link that 404'd, a test count that was too high, a work section that claimed too much, a CV that had drifted, a globe that couldn't be grabbed. Claude wrote almost every line. What the site may say about me stayed my decision.
+
+*See it at [edgarasneverdauskas.com](https://edgarasneverdauskas.com). The code is open source under AGPL-3.0 at [github.com/Evirtual/edgarasneverdauskas.com](https://github.com/Evirtual/edgarasneverdauskas.com). Built with Claude Code, Claude Sonnet 5, Claude Opus 5 and Claude Fable 5.1, with two short visits from OpenAI Codex and some help from ChatGPT, which is not on disk and not counted.*</textarea></details>
+        </section>
+        <section aria-labelledby="kit-images">
+          <h2 id="kit-images">Images (3)</h2>
+          <ul class="img-list">
+        <li class="img-row">
+          <img src="cover-medium-1500x750.png" alt="" width="1500" height="750" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open medium cover full size">
+          <p class="img-name">Medium cover<span>cover-medium-1500x750.png · 1500&nbsp;×&nbsp;750</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+              <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">edgarasneverdauskas.com on the live site, dark theme. Image and site: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 495 characters</p><p id="k-alt-cover-medium">Dark wide cover. On the left, the EN. logo with its teal square, the kicker "edgarasneverdauskas.com · the story", and the title "My portfolio, rebuilt to tell the truth" above the line "A 2021 photo site became a portfolio and a CV generated from the same facts. 55 commits, 52 of them by Claude, counted from the logs." On the right, a screenshot of the live home page in its dark theme: the name Edgaras Neverdauskas, the title Product Engineer, three buttons, and the edge of a dotted globe.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="cover-linkedin-1920x1080.png" alt="" width="1920" height="1080" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open linkedin cover full size">
+          <p class="img-name">LinkedIn cover<span>cover-linkedin-1920x1080.png · 1920&nbsp;×&nbsp;1080</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-linkedin" aria-label="Copy caption, linkedin cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-linkedin" aria-label="Copy alt text, linkedin cover">Copy alt</button>
+              <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">edgarasneverdauskas.com on the live site, dark theme, laid out for LinkedIn. Image and site: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 495 characters</p><p id="k-alt-cover-linkedin">Dark 16:9 cover. On the left, the EN. logo with its teal square, the kicker "edgarasneverdauskas.com · the story", and the title "My portfolio, rebuilt to tell the truth" above the line "A 2021 photo site became a portfolio and a CV generated from the same facts. 55 commits, 52 of them by Claude, counted from the logs." On the right, a screenshot of the live home page in its dark theme: the name Edgaras Neverdauskas, the title Product Engineer, three buttons, and the edge of a dotted globe.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="numbers-1400.png" alt="" width="1400" height="2006" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open numbers card full size">
+          <p class="img-name">Numbers card<span>numbers-1400.png · 1400&nbsp;×&nbsp;2006</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+              <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-numbers">Five weeks, counted from git and the session logs: Claude Code, Codex and me, and how the site got to where it is.</p>
+              <p class="lbl">Alt text · 458 characters</p><p id="k-alt-numbers">The portfolio rebuild by the numbers, 16 Aug – 19 Sep 2026: 55 commits in 2026 after 20 in 2021, 24 min from first message to first commit, 11 days with commits, and one content file behind the site, the CV, the share card and the LinkedIn cover. Claude Code: 52 commits (14 Sonnet 5, 35 Opus 5, 3 Fable 5.1), 1,801 replies, 1,808 tool calls, about 15½ hours. Codex: 8 messages, 101 tool calls, 1 commit. Me: 131 messages, typically 17 words, 16 screenshots.</p>
+            </details>
+          </div>
+        </li>
+          </ul>
+        </section>
+        <section aria-labelledby="kit-share">
+          <h2 id="kit-share">Posts (3)</h2>
+        <div class="share">
+          <div class="share-head">
+            <h3>LinkedIn post</h3>
+            <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
+          </div>
+          <p class="share-meta">1,459 characters</p>
+          <pre id="share-linkedin" tabindex="0">My old website was a 2021 photography site. In August I rebuilt it as a portfolio with Claude. The first commit landed 24 minutes after my first message.
+
+That was the easy part. The next five weeks went into making it say only true things.
+
+I went back through the session logs and git history afterwards. 55 commits. Claude replied 1,801 times and made 1,808 tool calls across Sonnet 5, Opus 5 and Fable 5.1. I sent 131 messages, and a typical one was 17 words.
+
+What those words mostly did was check the site against reality.
+
+→ A "Source" button pointed at a private repository. Every visitor got a 404 for 13 days, and from my side it worked, because GitHub shows an owner their private repos when signed in.
+
+→ One case claimed 120+ tests. The repository has 75.
+
+→ "Products I've built and shipped" included work where I was the frontend on someone else's product. It moved to Experience, with the scope stated plainly.
+
+→ The CV was a hand-edited PDF, and it had drifted: old city, merged products, missing years. Now it is generated from the same file as the site, and so are the share card and my LinkedIn cover.
+
+The models wrote almost every line. What the site is allowed to claim about me stayed my decision.
+
+If you're building a product with AI and it ships faster than anyone can check what it says, feel free to DM me. I'm open to consulting and product/engineering advisory work.
+
+I wrote it all up, mistakes included, in the article below.</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>Facebook post</h3>
+            <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
+          </div>
+          <p class="share-meta">580 characters</p>
+          <pre id="share-facebook" tabindex="0">I rebuilt my personal website 🛠️
+
+The old one was a little photography site I made in 2021. The new one shows the products I build, how I can help people with theirs, my experience, and a CV you can download.
+
+I built it together with an AI assistant, Claude. It wrote the code; I decided what goes on the page. The funny part: building it took one evening. Making sure every sentence on it is actually true took five weeks. A button that led nowhere, a number that was too big, a CV that had quietly gone out of date. All fixed now.
+
+Have a look 👇
+https://edgarasneverdauskas.com</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>X post</h3>
+            <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
+          </div>
+          <p class="share-meta">308 characters</p>
+          <pre id="share-x" tabindex="0">I rebuilt my 2021 photo site into a portfolio with Claude. Building it took an evening. Making every claim on it true took five weeks: a 404 Source link, a test count too high, a CV that had drifted.
+
+https://edgarasneverdauskas.com
+
+Counted from the logs: https://articles.edgarasneverdauskas.com/portfolio/</pre>
+        </div>
+        </section>
+      </div>
+    </details>
+  </aside>
+  <article class="story" id="story" aria-labelledby="story-title" tabindex="-1">
+    <header class="story-head">
+      <p class="kicker">11 days · 55 commits</p>
+      <h1 id="story-title">My portfolio, rebuilt to tell the truth</h1>
+      <p class="dek" id="story-dek">A 2021 photography site became a product engineer's portfolio, an advisory page and a CV generated from the same facts. How it was built with Claude, counted from the logs.</p>
+      <p class="byline"><span>Edgaras Neverdauskas</span><span>12 min read</span><span>2,787 words</span></p>
+      <nav class="also" aria-label="This story elsewhere">
+        
+        <p><span class="also-label">Project</span><a href="https://edgarasneverdauskas.com" rel="noopener">edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></p>
+      </nav>
+    </header>
+    <figure class="fig fig-cover" id="fig-cover-medium">
+  <div class="frame"><img src="cover-medium-1500x750.png" alt="Dark wide cover. On the left, the EN. logo with its teal square, the kicker &quot;edgarasneverdauskas.com · the story&quot;, and the title &quot;My portfolio, rebuilt to tell the truth&quot; above the line &quot;A 2021 photo site became a portfolio and a CV generated from the same facts. 55 commits, 52 of them by Claude, counted from the logs.&quot; On the right, a screenshot of the live home page in its dark theme: the name Edgaras Neverdauskas, the title Product Engineer, three buttons, and the edge of a dotted globe." width="1500" height="750" decoding="async" tabindex="0" role="button" aria-label="Open this picture" fetchpriority="high"></div>
+  <figcaption>
+    <p class="cap" id="cap-cover-medium">edgarasneverdauskas.com on the live site, dark theme. Image and site: Edgaras Neverdauskas.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+      <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 495 characters</span></summary><p id="alt-cover-medium">Dark wide cover. On the left, the EN. logo with its teal square, the kicker "edgarasneverdauskas.com · the story", and the title "My portfolio, rebuilt to tell the truth" above the line "A 2021 photo site became a portfolio and a CV generated from the same facts. 55 commits, 52 of them by Claude, counted from the logs." On the right, a screenshot of the live home page in its dark theme: the name Edgaras Neverdauskas, the title Product Engineer, three buttons, and the edge of a dotted globe.</p></details>
+  </figcaption>
+</figure>
+    <div class="prose" id="article-body">
+<h2>Why I rebuilt it</h2>
+<p>The first edgarasneverdauskas.com went up in 2021. It was a small Vue 2 site with landscape galleries, a menu of icons and an About page that began "Hello World!". Its git history is 20 commits between April and August 2021, and 16 of them are called "update" or "updated". Then nobody touched it for five years.</p>
+<p>By 2026 it no longer said anything true about my work. So at 20:32 on Sunday 16 August I pasted a long brief into Claude. The first lines were plain: "This is a full rebuild, not a small redesign." The site had one job: to help me get senior engineering work. One section of the brief was headed "CONTENT ACCURACY" and began "This is critical." It listed what not to invent: revenue, traffic, users, dates, responsibilities. If something could not be verified, it should be left out or flagged.</p>
+<p>That section turned out to be the real subject of the next five weeks. Building the site took an evening. Making it say only true things took most of the rest.</p>
+<p>As with <a href="../jarvis/">J.A.R.V.I.S.</a> and <a href="https://articles.edgarasneverdauskas.com/css-3d-lab/">CSS 3D Lab</a>, I went back through the session logs and the full git history, so the numbers here are counted, not remembered. My own messages are quoted as I typed them, typos and all.</p>
+<h2>What the site is</h2>
+<p>A portfolio for a product engineer. Eight case studies under Selected work, each with what the product is, what I owned and what was hard. An Advisory section, "How I can help", for people who want a second opinion on a product. Experience, as a rail of three chapters. About, Contact, and a CV to download.</p>
+<p>It is built with Next.js, React and TypeScript as a static export, hosted on GitHub Pages, with a light and a dark theme. It installs as an app on a phone. The desktop hero has a dotted globe with my location on it, and you can grab it and throw it.</p>
+<p>The part I care about most is invisible. The CV, the share image and my LinkedIn cover are all generated from the same content file as the site. So a fact lives in one place, and changing it there changes it everywhere once the files are regenerated. The code is open source under AGPL-3.0; the words, the CV and the images stay mine.</p>
+<h2>How it happened</h2>
+<p><strong>Sunday 16 August, evening: the rebuild.</strong> Claude Sonnet 5 read the old repository, scaffolded the new site and pushed the first commit at 20:56, 24 minutes after my first message. Then came my first round of small calls. I wanted navigation at the bottom on phones, like an app, and the site installable. I wanted the "EN." initials as a logo and favicon. I asked for a floating illustration in the hero, and at 22:06 asked for it to go: "it looks dumb". The dot in the logo became a square, and when it landed in the wrong place I wrote "ok you didnt udnerstand me". A light theme went in at 22:35. At 22:51 I switched the domain's DNS, and three minutes later the old Firebase hosting was gone from the repo. Eleven commits by 23:13.</p>
+<p><strong>Monday 17 August: logos, a globe and a second path.</strong> The morning was icons. The case logos came from the live products, and I asked for their borders and wrappers to go, so each logo sat the same size as the others. At 08:25 I asked Sonnet whether I should switch to Opus. It said this kind of work didn't need it. I switched at 09:02 anyway, and two minutes later asked for a spinning globe of dots in the empty right side of the hero, to say I work remotely. The first map was drawn by hand and "a bit off". Claude replaced it with real coastline data. The globe was mirrored at first, then fixed, with a blinking dot where I live. On phones it became a faded backdrop behind the text, and when I said it was too faint it went up to 32%.</p>
+<p>At 10:07 I asked Claude to summarise the site so I could take it to another assistant, because I was thinking of a new direction. I came back at 10:40 with a handoff brief, and at 10:56 pasted a revised version. Its core line: evolve, do not redesign. The site would keep its look and gain a second path, advice for people building products. The Advisory section went live at 11:23. In the afternoon I sent a clarification of what it should mean. The services should come from problems worth thinking through, not from my tech stack. The rewrite also dropped a "format" field, because every value in it promised an engagement structure I had not decided on.</p>
+<p>The CV was still a PDF I edited by hand. That afternoon Codex changed its profile paragraph for me. I asked whether the new text matched the rest. It didn't: the paragraph was 8.8pt Georgia, and the text around it was 9pt Noto Serif.</p>
+<p><strong>19 and 20 August: a new case, and a first check against a repo.</strong> I added the Self-Aware Writing case. The next evening I asked Claude to check it against the book's repository, which had moved on. My last note that night: the sentences in each point were now much longer than in the other cases. Then Claude's session limit hit, at 23:11.</p>
+<p><strong>Tuesday 1 September: the audit.</strong> I made one repository public and asked for its Source link. While checking how the others were linked, Claude found that a case's Source button pointed at a private repository, so every visitor got a 404. GitHub shows an owner their private repositories when signed in, so from my side the link worked.</p>
+<p>That started a full audit. I asked which of my repositories should be public and got a list of twelve, with a reason for each. Then I asked for every claim on the site to be checked against the code it describes. One case claimed 120+ tests, and the repository has 75. Another listed no language at all, and never mentioned its smart contract. A third described a dashboard that had since grown an analytics layer.</p>
+<p>Then I noticed a problem with myself. The work section was titled "Products I've built and shipped", and it included a DeFi ecosystem where, in my own words, "i was jsut part of it jsut a frotnend". So those two products moved to Experience, split into the two separate products they are, with their frontend-only scope stated plainly. A case that was only a boilerplate was dropped. An unfinished product came off the list until it ships. Dates stopped rotting: a case now says "Since 2022" instead of a range ending this year, which would read as abandoned every January. I didn't remember when one engagement started, so Claude checked the commit history instead of guessing. My location moved to Kampot, globe marker included.</p>
+<p>At 18:42 the CV stopped being a hand-made PDF. <code>npm run cv</code> now renders it from the site's content file. The old PDF still said Phnom Penh, still merged two products into one, and its earliest date was 2022, under a summary claiming 10+ years. The generated one puts my earlier career back and shows eleven years on the page.</p>
+<p>That night Claude also made the globe grabbable. It shipped at 23:50 with tests that passed. At 23:55 I wrote: "i am not able to itneract with the globe". A style meant for phones blocked the pointer on every screen size. The tests passed because the globe's idle spin alone satisfied them. Claude rewrote them so they fail against the broken version, and fixed it at 00:08.</p>
+<p><strong>Wednesday 2 September: one word, and a card that had drifted.</strong> I dropped "Senior" from my title. Doing it showed that the share image had its own hand-typed copy of my details, and it still said Phnom Penh. Now the share card reads my name, title and description from the content file, and says "Working globally" instead of a city. A picture file goes stale on the next move. Then I asked for a new LinkedIn cover, because the one ChatGPT had drawn had a poor globe. Claude wrote a script that renders the site's own globe at a single frame.</p>
+<p><strong>7 September: a page that broke the deploy.</strong> An audit offer for founders shipping with AI agents was committed at 14:45. None of my logs record who wrote it. The deploy failed on a lint error, and I sent Codex a screenshot. It found the problem, fixed it, committed at 15:00 and checked the deploy passed.</p>
+<p><strong>12 to 19 September: new cases, and one more drift.</strong> J.A.R.V.I.S. became the first case in Selected work. Its logo took four commits in eight minutes, until the triangle held on the light theme too. On 13 September Claude Fable 5.1 added it to the CV and trimmed every product to two lines, so the CV stays at two pages. I opened the CV and wrote "i dotn see the CV chagnes". Claude compared the file the site serves with the committed one. They matched byte for byte, so the old one was a cached copy in my browser. Then Experience was redesigned. Seven markers all ending in 2026 read as seven jobs at once. Now they are three chapters with the roles inside them, on the site and the CV alike.</p>
+<p>At 03:47 on 19 September, CSS 3D Lab joined Selected work while the lab was still being built that night. It had 125 models then, and the case said 125. Seven hours later the lab had 135, and the case kept saying 125 for eight days, until I corrected it on 27 September while writing this.</p>
+<h2>Truthful over friendly, applied to my own site</h2>
+<p>"Truthful over friendly" is a rule I give Claude on every project now. When a number, a label or a status could either tell the truth or spare an awkward result, it tells the truth. It was easy to apply to an app. It was harder to apply to a page about myself, where every word is a small temptation.</p>
+<p>On this site it turned into a few plain rules:</p>
+<ul>
+<li><strong>A Source link only when the repository is public.</strong> And the check is made signed out. Signed in, my own GitHub view shows every repository, so the broken link was invisible to me.</li>
+<li><strong>"Built and shipped" means built and shipped.</strong> Work I did inside someone else's product sits in Experience, with the scope stated.</li>
+<li><strong>A date that stays true.</strong> "Since 2022" doesn't go stale. A range ending this year does.</li>
+<li><strong>One source for every fact.</strong> The site, the CV, the share card and the LinkedIn cover read the same content file. But three of them are committed files, so an edit only reaches them when they are regenerated. That is its own trap. And the content file itself goes stale when a product moves on, which is what happened to the CSS 3D Lab count.</li>
+<li><strong>A test proves what it claims.</strong> The globe tests proved only that something moved. They now fail against the broken build.</li>
+</ul>
+<p>None of this was hard to build. Each rule came from finding something false that I had published.</p>
+<h2>What we got wrong</h2>
+<ul>
+<li>The first hero illustration. It was removed 38 minutes after it went in.</li>
+<li>The globe's first map was hand-drawn and inaccurate, and the globe was mirrored.</li>
+<li>A Source link pointed at a private repository, so it showed a 404 to every visitor for 13 days.</li>
+<li>The work section claimed products I had only worked on.</li>
+<li>One case claimed 120+ tests. There are 75.</li>
+<li>The CV was a hand-edited PDF, so it drifted from the site: old city, merged products, missing years.</li>
+<li>The share image kept an old city in its own hand-typed copy of my details.</li>
+<li>The globe was made grabbable, the tests passed, and it still couldn't be grabbed.</li>
+<li>A new page was pushed with a lint error, so the deploy failed and it did not go live until the fix.</li>
+<li>The CSS 3D Lab case said 125 models for eight days after the lab reached 135.</li>
+</ul>
+<p>Most of these were found the same way. I asked Claude to check what the site says against the thing it describes: a repository, a live product, a file on the server.</p>
+<h2>Who did what</h2>
+<p><strong>Claude Code</strong> did the building. Claude Sonnet 5 ran the first evening and the next morning, 14 commits. Claude Opus 5 took over on 17 August and made 35. Claude Fable 5.1 made 3. In the sessions that were about this site, Claude replied 1,801 times and made 1,808 tool calls: 890 commands, 258 file edits and 385 actions in a browser. That was about 15 and a half hours of active work. No helper agents were used. Eleven of those commits were made from sessions about other projects, J.A.R.V.I.S., CSS 3D Lab and a dependency sweep, and those sessions are counted in their own stories, not here.</p>
+<p><strong>Codex</strong> had two short visits: about 21 minutes, 8 messages, 101 tool calls. It edited the CV's profile paragraph as a PDF, and fixed the lint error that broke the deploy. It made one commit.</p>
+<p><strong>ChatGPT</strong> had a hand too. It wrote the new CV profile wording that Codex applied, and it drew the first LinkedIn cover, the one with the poor globe. Those chats are not on disk, so ChatGPT is not counted here.</p>
+<figure class="fig" id="fig-numbers">
+  <div class="frame"><img src="numbers-1400.png" alt="The portfolio rebuild by the numbers, 16 Aug – 19 Sep 2026: 55 commits in 2026 after 20 in 2021, 24 min from first message to first commit, 11 days with commits, and one content file behind the site, the CV, the share card and the LinkedIn cover. Claude Code: 52 commits (14 Sonnet 5, 35 Opus 5, 3 Fable 5.1), 1,801 replies, 1,808 tool calls, about 15½ hours. Codex: 8 messages, 101 tool calls, 1 commit. Me: 131 messages, typically 17 words, 16 screenshots." width="1400" height="2006" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-numbers">Five weeks, counted from git and the session logs: Claude Code, Codex and me, and how the site got to where it is.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+      <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 458 characters</span></summary><p id="alt-numbers">The portfolio rebuild by the numbers, 16 Aug – 19 Sep 2026: 55 commits in 2026 after 20 in 2021, 24 min from first message to first commit, 11 days with commits, and one content file behind the site, the CV, the share card and the LinkedIn cover. Claude Code: 52 commits (14 Sonnet 5, 35 Opus 5, 3 Fable 5.1), 1,801 replies, 1,808 tool calls, about 15½ hours. Codex: 8 messages, 101 tool calls, 1 commit. Me: 131 messages, typically 17 words, 16 screenshots.</p></details>
+  </figcaption>
+</figure>
+<p><strong>My part</strong> was deciding. I sent 131 messages, and a typical one was 17 words. I sent 16 screenshots and stopped Claude twice. I decided what the site is for, and what it may claim. I said what looked wrong, from a mirrored globe to a sentence that ran too long. And I kept asking the question that found most of the mistakes: does this match the repository?</p>
+<p>Two commits came from no Claude or Codex session on record: a small content update on 20 August and the audit page. Treat the numbers as a record, not a benchmark. The models worked on different days and different jobs.</p>
+<h2>What it cost</h2>
+<p>The site costs nothing to host beyond the domain. GitHub Pages hosts it, the domain was already mine, and I deleted the old Firebase project by hand that first night.</p>
+<p>The cost was the subscriptions. In these sessions Claude's session limit hit three times: at 23:11 on 20 August, and at 18:08 and 23:38 on 1 September. The first of those two waits was 33 minutes. The last one was two. That allowance was shared with everything else I built those weeks, so I can't put a price on this site alone.</p>
+<h2>What I would tell someone starting</h2>
+<ul>
+<li><strong>Write down what not to claim before you write anything.</strong> My brief's accuracy section did more work than its design section.</li>
+<li><strong>Check your site signed out.</strong> That is what your visitors see.</li>
+<li><strong>Put every fact in one file.</strong> Then generate the CV, the share card and the cover from it, and regenerate them every time it changes.</li>
+<li><strong>Say what you did, not what the team did.</strong> Scope stated plainly reads as more senior, not less.</li>
+<li><strong>Prefer dates that don't expire.</strong> "Since" beats a range ending this year.</li>
+<li><strong>Make a test fail before you trust it.</strong> A test that passes against the broken version proves nothing.</li>
+<li><strong>Ask for an audit, not a redesign.</strong> Most of what was wrong was words, not layout.</li>
+</ul>
+<h2>In one paragraph</h2>
+<p>In five weeks, one person, Claude and a little Codex turned a 2021 photography site into a portfolio, an advisory page and a CV generated from the same facts, in 55 commits. The build took one evening. The rest went into making it true: a link that 404'd, a test count that was too high, a work section that claimed too much, a CV that had drifted, a globe that couldn't be grabbed. Claude wrote almost every line. What the site may say about me stayed my decision.</p>
+<p class="close"><em>See it at <a href="https://edgarasneverdauskas.com">edgarasneverdauskas.com</a>. The code is open source under AGPL-3.0 at <a href="https://github.com/Evirtual/edgarasneverdauskas.com">github.com/Evirtual/edgarasneverdauskas.com</a>. Built with Claude Code, Claude Sonnet 5, Claude Opus 5 and Claude Fable 5.1, with two short visits from OpenAI Codex and some help from ChatGPT, which is not on disk and not counted.</em></p>
+    </div>
+    <footer class="story-foot">
+      <p class="also-end"><span><a href="https://edgarasneverdauskas.com" rel="noopener">Visit the project<span aria-hidden="true"> ↗</span></a></span></p>
+      <nav class="more" aria-labelledby="more-portfolio">
+        <h2 id="more-portfolio">More build stories</h2>
+        <ul><li><a href="../css-3d-lab-ledger/">A green tick is a date, not a fact</a></li><li><a href="../css-3d-lab/">CSS 3D Lab: learning 3D on the web by playing with it</a></li><li><a href="../self-aware-writing/">A book that knows you're reading it</a></li><li><a href="../jarvis/">Five days building J.A.R.V.I.S. with Claude</a></li><li><a href="../timeline/">The AI race: who shipped what, and when</a></li><li><a href="../agi-watch/">AGI Watch: are we getting there?</a></li><li><a href="../ampuno/">Ampuno: 28 minutes to build, eight weeks to draw the cars</a></li><li><a href="../bitcoin-analytics/">Bitcoin Analytics: an hour to start, months to trust</a></li><li><a href="../social-blockchain-network/">Social Blockchain Network: refactor, don't rebuild</a></li><li><a href="../atunicorn/">@unicorn: an old app, a new stack, and two AI tools</a></li></ul>
+      </nav>
+    </footer>
+  </article>
+</main>
+<footer class="site-foot">
+  <a href="../"><span aria-hidden="true">←</span> All articles</a>
+  <a href="https://edgarasneverdauskas.com">edgarasneverdauskas.com</a>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="kit-data">{"richHtml":"\u003ch1>My portfolio, rebuilt to tell the truth\u003c/h1>\n\u003cp>\u003cem>A 2021 photography site became a product engineer's portfolio, an advisory page and a CV generated from the same facts. How it was built with Claude, counted from the logs.\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/portfolio/cover-medium-1500x750.png Caption: edgarasneverdauskas.com on the live site, dark theme. Image and site: Edgaras Neverdauskas. Alt text: Dark wide cover. On the left, the EN. logo with its teal square, the kicker \"edgarasneverdauskas.com · the story\", and the title \"My portfolio, rebuilt to tell the truth\" above the line \"A 2021 photo site became a portfolio and a CV generated from the same facts. 55 commits, 52 of them by Claude, counted from the logs.\" On the right, a screenshot of the live home page in its dark theme: the name Edgaras Neverdauskas, the title Product Engineer, three buttons, and the edge of a dotted globe.]\u003c/strong>\u003c/p>\n\u003ch2>Why I rebuilt it\u003c/h2>\n\u003cp>The first edgarasneverdauskas.com went up in 2021. It was a small Vue 2 site with landscape galleries, a menu of icons and an About page that began \"Hello World!\". Its git history is 20 commits between April and August 2021, and 16 of them are called \"update\" or \"updated\". Then nobody touched it for five years.\u003c/p>\n\u003cp>By 2026 it no longer said anything true about my work. So at 20:32 on Sunday 16 August I pasted a long brief into Claude. The first lines were plain: \"This is a full rebuild, not a small redesign.\" The site had one job: to help me get senior engineering work. One section of the brief was headed \"CONTENT ACCURACY\" and began \"This is critical.\" It listed what not to invent: revenue, traffic, users, dates, responsibilities. If something could not be verified, it should be left out or flagged.\u003c/p>\n\u003cp>That section turned out to be the real subject of the next five weeks. Building the site took an evening. Making it say only true things took most of the rest.\u003c/p>\n\u003cp>As with \u003ca href=\"https://articles.edgarasneverdauskas.com/jarvis/\">J.A.R.V.I.S.\u003c/a> and \u003ca href=\"https://articles.edgarasneverdauskas.com/css-3d-lab/\">CSS 3D Lab\u003c/a>, I went back through the session logs and the full git history, so the numbers here are counted, not remembered. My own messages are quoted as I typed them, typos and all.\u003c/p>\n\u003ch2>What the site is\u003c/h2>\n\u003cp>A portfolio for a product engineer. Eight case studies under Selected work, each with what the product is, what I owned and what was hard. An Advisory section, \"How I can help\", for people who want a second opinion on a product. Experience, as a rail of three chapters. About, Contact, and a CV to download.\u003c/p>\n\u003cp>It is built with Next.js, React and TypeScript as a static export, hosted on GitHub Pages, with a light and a dark theme. It installs as an app on a phone. The desktop hero has a dotted globe with my location on it, and you can grab it and throw it.\u003c/p>\n\u003cp>The part I care about most is invisible. The CV, the share image and my LinkedIn cover are all generated from the same content file as the site. So a fact lives in one place, and changing it there changes it everywhere once the files are regenerated. The code is open source under AGPL-3.0; the words, the CV and the images stay mine.\u003c/p>\n\u003ch2>How it happened\u003c/h2>\n\u003cp>\u003cstrong>Sunday 16 August, evening: the rebuild.\u003c/strong> Claude Sonnet 5 read the old repository, scaffolded the new site and pushed the first commit at 20:56, 24 minutes after my first message. Then came my first round of small calls. I wanted navigation at the bottom on phones, like an app, and the site installable. I wanted the \"EN.\" initials as a logo and favicon. I asked for a floating illustration in the hero, and at 22:06 asked for it to go: \"it looks dumb\". The dot in the logo became a square, and when it landed in the wrong place I wrote \"ok you didnt udnerstand me\". A light theme went in at 22:35. At 22:51 I switched the domain's DNS, and three minutes later the old Firebase hosting was gone from the repo. Eleven commits by 23:13.\u003c/p>\n\u003cp>\u003cstrong>Monday 17 August: logos, a globe and a second path.\u003c/strong> The morning was icons. The case logos came from the live products, and I asked for their borders and wrappers to go, so each logo sat the same size as the others. At 08:25 I asked Sonnet whether I should switch to Opus. It said this kind of work didn't need it. I switched at 09:02 anyway, and two minutes later asked for a spinning globe of dots in the empty right side of the hero, to say I work remotely. The first map was drawn by hand and \"a bit off\". Claude replaced it with real coastline data. The globe was mirrored at first, then fixed, with a blinking dot where I live. On phones it became a faded backdrop behind the text, and when I said it was too faint it went up to 32%.\u003c/p>\n\u003cp>At 10:07 I asked Claude to summarise the site so I could take it to another assistant, because I was thinking of a new direction. I came back at 10:40 with a handoff brief, and at 10:56 pasted a revised version. Its core line: evolve, do not redesign. The site would keep its look and gain a second path, advice for people building products. The Advisory section went live at 11:23. In the afternoon I sent a clarification of what it should mean. The services should come from problems worth thinking through, not from my tech stack. The rewrite also dropped a \"format\" field, because every value in it promised an engagement structure I had not decided on.\u003c/p>\n\u003cp>The CV was still a PDF I edited by hand. That afternoon Codex changed its profile paragraph for me. I asked whether the new text matched the rest. It didn't: the paragraph was 8.8pt Georgia, and the text around it was 9pt Noto Serif.\u003c/p>\n\u003cp>\u003cstrong>19 and 20 August: a new case, and a first check against a repo.\u003c/strong> I added the Self-Aware Writing case. The next evening I asked Claude to check it against the book's repository, which had moved on. My last note that night: the sentences in each point were now much longer than in the other cases. Then Claude's session limit hit, at 23:11.\u003c/p>\n\u003cp>\u003cstrong>Tuesday 1 September: the audit.\u003c/strong> I made one repository public and asked for its Source link. While checking how the others were linked, Claude found that a case's Source button pointed at a private repository, so every visitor got a 404. GitHub shows an owner their private repositories when signed in, so from my side the link worked.\u003c/p>\n\u003cp>That started a full audit. I asked which of my repositories should be public and got a list of twelve, with a reason for each. Then I asked for every claim on the site to be checked against the code it describes. One case claimed 120+ tests, and the repository has 75. Another listed no language at all, and never mentioned its smart contract. A third described a dashboard that had since grown an analytics layer.\u003c/p>\n\u003cp>Then I noticed a problem with myself. The work section was titled \"Products I've built and shipped\", and it included a DeFi ecosystem where, in my own words, \"i was jsut part of it jsut a frotnend\". So those two products moved to Experience, split into the two separate products they are, with their frontend-only scope stated plainly. A case that was only a boilerplate was dropped. An unfinished product came off the list until it ships. Dates stopped rotting: a case now says \"Since 2022\" instead of a range ending this year, which would read as abandoned every January. I didn't remember when one engagement started, so Claude checked the commit history instead of guessing. My location moved to Kampot, globe marker included.\u003c/p>\n\u003cp>At 18:42 the CV stopped being a hand-made PDF. \u003ccode>npm run cv\u003c/code> now renders it from the site's content file. The old PDF still said Phnom Penh, still merged two products into one, and its earliest date was 2022, under a summary claiming 10+ years. The generated one puts my earlier career back and shows eleven years on the page.\u003c/p>\n\u003cp>That night Claude also made the globe grabbable. It shipped at 23:50 with tests that passed. At 23:55 I wrote: \"i am not able to itneract with the globe\". A style meant for phones blocked the pointer on every screen size. The tests passed because the globe's idle spin alone satisfied them. Claude rewrote them so they fail against the broken version, and fixed it at 00:08.\u003c/p>\n\u003cp>\u003cstrong>Wednesday 2 September: one word, and a card that had drifted.\u003c/strong> I dropped \"Senior\" from my title. Doing it showed that the share image had its own hand-typed copy of my details, and it still said Phnom Penh. Now the share card reads my name, title and description from the content file, and says \"Working globally\" instead of a city. A picture file goes stale on the next move. Then I asked for a new LinkedIn cover, because the one ChatGPT had drawn had a poor globe. Claude wrote a script that renders the site's own globe at a single frame.\u003c/p>\n\u003cp>\u003cstrong>7 September: a page that broke the deploy.\u003c/strong> An audit offer for founders shipping with AI agents was committed at 14:45. None of my logs record who wrote it. The deploy failed on a lint error, and I sent Codex a screenshot. It found the problem, fixed it, committed at 15:00 and checked the deploy passed.\u003c/p>\n\u003cp>\u003cstrong>12 to 19 September: new cases, and one more drift.\u003c/strong> J.A.R.V.I.S. became the first case in Selected work. Its logo took four commits in eight minutes, until the triangle held on the light theme too. On 13 September Claude Fable 5.1 added it to the CV and trimmed every product to two lines, so the CV stays at two pages. I opened the CV and wrote \"i dotn see the CV chagnes\". Claude compared the file the site serves with the committed one. They matched byte for byte, so the old one was a cached copy in my browser. Then Experience was redesigned. Seven markers all ending in 2026 read as seven jobs at once. Now they are three chapters with the roles inside them, on the site and the CV alike.\u003c/p>\n\u003cp>At 03:47 on 19 September, CSS 3D Lab joined Selected work while the lab was still being built that night. It had 125 models then, and the case said 125. Seven hours later the lab had 135, and the case kept saying 125 for eight days, until I corrected it on 27 September while writing this.\u003c/p>\n\u003ch2>Truthful over friendly, applied to my own site\u003c/h2>\n\u003cp>\"Truthful over friendly\" is a rule I give Claude on every project now. When a number, a label or a status could either tell the truth or spare an awkward result, it tells the truth. It was easy to apply to an app. It was harder to apply to a page about myself, where every word is a small temptation.\u003c/p>\n\u003cp>On this site it turned into a few plain rules:\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>A Source link only when the repository is public.\u003c/strong> And the check is made signed out. Signed in, my own GitHub view shows every repository, so the broken link was invisible to me.\u003c/li>\n\u003cli>\u003cstrong>\"Built and shipped\" means built and shipped.\u003c/strong> Work I did inside someone else's product sits in Experience, with the scope stated.\u003c/li>\n\u003cli>\u003cstrong>A date that stays true.\u003c/strong> \"Since 2022\" doesn't go stale. A range ending this year does.\u003c/li>\n\u003cli>\u003cstrong>One source for every fact.\u003c/strong> The site, the CV, the share card and the LinkedIn cover read the same content file. But three of them are committed files, so an edit only reaches them when they are regenerated. That is its own trap. And the content file itself goes stale when a product moves on, which is what happened to the CSS 3D Lab count.\u003c/li>\n\u003cli>\u003cstrong>A test proves what it claims.\u003c/strong> The globe tests proved only that something moved. They now fail against the broken build.\u003c/li>\n\u003c/ul>\n\u003cp>None of this was hard to build. Each rule came from finding something false that I had published.\u003c/p>\n\u003ch2>What we got wrong\u003c/h2>\n\u003cul>\n\u003cli>The first hero illustration. It was removed 38 minutes after it went in.\u003c/li>\n\u003cli>The globe's first map was hand-drawn and inaccurate, and the globe was mirrored.\u003c/li>\n\u003cli>A Source link pointed at a private repository, so it showed a 404 to every visitor for 13 days.\u003c/li>\n\u003cli>The work section claimed products I had only worked on.\u003c/li>\n\u003cli>One case claimed 120+ tests. There are 75.\u003c/li>\n\u003cli>The CV was a hand-edited PDF, so it drifted from the site: old city, merged products, missing years.\u003c/li>\n\u003cli>The share image kept an old city in its own hand-typed copy of my details.\u003c/li>\n\u003cli>The globe was made grabbable, the tests passed, and it still couldn't be grabbed.\u003c/li>\n\u003cli>A new page was pushed with a lint error, so the deploy failed and it did not go live until the fix.\u003c/li>\n\u003cli>The CSS 3D Lab case said 125 models for eight days after the lab reached 135.\u003c/li>\n\u003c/ul>\n\u003cp>Most of these were found the same way. I asked Claude to check what the site says against the thing it describes: a repository, a live product, a file on the server.\u003c/p>\n\u003ch2>Who did what\u003c/h2>\n\u003cp>\u003cstrong>Claude Code\u003c/strong> did the building. Claude Sonnet 5 ran the first evening and the next morning, 14 commits. Claude Opus 5 took over on 17 August and made 35. Claude Fable 5.1 made 3. In the sessions that were about this site, Claude replied 1,801 times and made 1,808 tool calls: 890 commands, 258 file edits and 385 actions in a browser. That was about 15 and a half hours of active work. No helper agents were used. Eleven of those commits were made from sessions about other projects, J.A.R.V.I.S., CSS 3D Lab and a dependency sweep, and those sessions are counted in their own stories, not here.\u003c/p>\n\u003cp>\u003cstrong>Codex\u003c/strong> had two short visits: about 21 minutes, 8 messages, 101 tool calls. It edited the CV's profile paragraph as a PDF, and fixed the lint error that broke the deploy. It made one commit.\u003c/p>\n\u003cp>\u003cstrong>ChatGPT\u003c/strong> had a hand too. It wrote the new CV profile wording that Codex applied, and it drew the first LinkedIn cover, the one with the poor globe. Those chats are not on disk, so ChatGPT is not counted here.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/portfolio/numbers-1400.png Caption: Five weeks, counted from git and the session logs: Claude Code, Codex and me, and how the site got to where it is. Alt text: The portfolio rebuild by the numbers, 16 Aug – 19 Sep 2026: 55 commits in 2026 after 20 in 2021, 24 min from first message to first commit, 11 days with commits, and one content file behind the site, the CV, the share card and the LinkedIn cover. Claude Code: 52 commits (14 Sonnet 5, 35 Opus 5, 3 Fable 5.1), 1,801 replies, 1,808 tool calls, about 15½ hours. Codex: 8 messages, 101 tool calls, 1 commit. Me: 131 messages, typically 17 words, 16 screenshots.]\u003c/strong>\u003c/p>\n\u003cp>\u003cstrong>My part\u003c/strong> was deciding. I sent 131 messages, and a typical one was 17 words. I sent 16 screenshots and stopped Claude twice. I decided what the site is for, and what it may claim. I said what looked wrong, from a mirrored globe to a sentence that ran too long. And I kept asking the question that found most of the mistakes: does this match the repository?\u003c/p>\n\u003cp>Two commits came from no Claude or Codex session on record: a small content update on 20 August and the audit page. Treat the numbers as a record, not a benchmark. The models worked on different days and different jobs.\u003c/p>\n\u003ch2>What it cost\u003c/h2>\n\u003cp>The site costs nothing to host beyond the domain. GitHub Pages hosts it, the domain was already mine, and I deleted the old Firebase project by hand that first night.\u003c/p>\n\u003cp>The cost was the subscriptions. In these sessions Claude's session limit hit three times: at 23:11 on 20 August, and at 18:08 and 23:38 on 1 September. The first of those two waits was 33 minutes. The last one was two. That allowance was shared with everything else I built those weeks, so I can't put a price on this site alone.\u003c/p>\n\u003ch2>What I would tell someone starting\u003c/h2>\n\u003cul>\n\u003cli>\u003cstrong>Write down what not to claim before you write anything.\u003c/strong> My brief's accuracy section did more work than its design section.\u003c/li>\n\u003cli>\u003cstrong>Check your site signed out.\u003c/strong> That is what your visitors see.\u003c/li>\n\u003cli>\u003cstrong>Put every fact in one file.\u003c/strong> Then generate the CV, the share card and the cover from it, and regenerate them every time it changes.\u003c/li>\n\u003cli>\u003cstrong>Say what you did, not what the team did.\u003c/strong> Scope stated plainly reads as more senior, not less.\u003c/li>\n\u003cli>\u003cstrong>Prefer dates that don't expire.\u003c/strong> \"Since\" beats a range ending this year.\u003c/li>\n\u003cli>\u003cstrong>Make a test fail before you trust it.\u003c/strong> A test that passes against the broken version proves nothing.\u003c/li>\n\u003cli>\u003cstrong>Ask for an audit, not a redesign.\u003c/strong> Most of what was wrong was words, not layout.\u003c/li>\n\u003c/ul>\n\u003ch2>In one paragraph\u003c/h2>\n\u003cp>In five weeks, one person, Claude and a little Codex turned a 2021 photography site into a portfolio, an advisory page and a CV generated from the same facts, in 55 commits. The build took one evening. The rest went into making it true: a link that 404'd, a test count that was too high, a work section that claimed too much, a CV that had drifted, a globe that couldn't be grabbed. Claude wrote almost every line. What the site may say about me stayed my decision.\u003c/p>\n\u003cp class=\"close\">\u003cem>See it at \u003ca href=\"https://edgarasneverdauskas.com\">edgarasneverdauskas.com\u003c/a>. The code is open source under AGPL-3.0 at \u003ca href=\"https://github.com/Evirtual/edgarasneverdauskas.com\">github.com/Evirtual/edgarasneverdauskas.com\u003c/a>. Built with Claude Code, Claude Sonnet 5, Claude Opus 5 and Claude Fable 5.1, with two short visits from OpenAI Codex and some help from ChatGPT, which is not on disk and not counted.\u003c/em>\u003c/p>"}</script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en" data-page="index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitcoin Analytics: an hour to start, months to trust</title>
+<meta name="description" content="A Bitcoin dashboard that began as a test of building from chat alone. By my account, Codex built the first version in a weekend. Most of what came after was finding the things that were wrong without an error.">
+<meta name="author" content="Edgaras Neverdauskas">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="canonical" href="https://articles.edgarasneverdauskas.com/bitcoin-analytics/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://articles.edgarasneverdauskas.com/bitcoin-analytics/">
+<meta property="og:site_name" content="Articles — Edgaras Neverdauskas">
+<meta property="og:title" content="Bitcoin Analytics: an hour to start, months to trust">
+<meta property="og:description" content="A Bitcoin dashboard that began as a test of building from chat alone. By my account, Codex built the first version in a weekend. Most of what came after was finding the things that were wrong without an error.">
+<meta property="og:image" content="https://articles.edgarasneverdauskas.com/bitcoin-analytics/cover-medium-1500x750.png">
+<meta property="og:image:alt" content="Near-black cover. On the left, the orange Bitcoin mark and the title &quot;An hour to start, months to trust&quot;, above the line &quot;Bitcoin Analytics, built with Codex and Claude, counted from the logs.&quot; On the right, a screenshot of the live dashboard with no wallet connected: the asset tabs, a market mood gauge, price, momentum and return cards, and the Bitcoin price and volume charts for one week.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bitcoin Analytics: an hour to start, months to trust">
+<meta name="twitter:description" content="A Bitcoin dashboard that began as a test of building from chat alone. By my account, Codex built the first version in a weekend. Most of what came after was finding the things that were wrong without an error.">
+<meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/bitcoin-analytics/cover-medium-1500x750.png">
+<meta name="twitter:image:alt" content="Near-black cover. On the left, the orange Bitcoin mark and the title &quot;An hour to start, months to trust&quot;, above the line &quot;Bitcoin Analytics, built with Codex and Claude, counted from the logs.&quot; On the right, a screenshot of the live dashboard with no wallet connected: the asset tabs, a market mood gauge, price, momentum and return cards, and the Bitcoin price and volume charts for one week.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
+<script data-goatcounter="https://articles.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the article</a>
+<header class="site-head">
+  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+</header>
+<main class="layout" id="main">
+  <aside class="kit" aria-label="Share kit">
+    <details class="kit-box" id="kit">
+      <summary><span class="kit-sum"><span class="kit-title">Share kit</span><span class="kit-hint">Copy the story, images and posts</span></span></summary>
+      <div class="kit-body">
+        <section aria-labelledby="kit-story">
+          <h2 id="kit-story">Story</h2>
+          <div class="btn-grid">
+            <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
+            <button type="button" class="btn" data-copy="story-title">Copy title</button>
+            <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
+            <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
+          </div>
+          <p class="kit-note">Rich text keeps the headings, bold, lists and links when pasted into an editor such as Medium or LinkedIn. Images aren’t included: the copy has a bold line where each one goes, with its address, caption and alt text.</p>
+          <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown"># Bitcoin Analytics: an hour to start, months to trust
+
+*A Bitcoin dashboard that began as a test of building from chat alone. By my account, Codex built the first version in a weekend. Most of what came after was finding the things that were wrong without an error.*
+
+## Why I built it
+
+In December 2025 I wanted to test one thing: could an AI coding agent build something meaningful if all I did was chat with it? The project picked itself. A simple Bitcoin page where you connect your wallet and see your balances.
+
+When I told the story months later, I put it like this: "It tooks me an hour to ahve sometihng start and that could almsot be published, the thing wasa the polishign after that hour". This article is about the polishing.
+
+As with [J.A.R.V.I.S.](https://articles.edgarasneverdauskas.com/jarvis/), [Self-Aware Writing](https://articles.edgarasneverdauskas.com/self-aware-writing/) and [CSS 3D Lab](https://articles.edgarasneverdauskas.com/css-3d-lab/), I went back through the full git history and every session log I could find, so the numbers are counted, not remembered. One part could not be counted. No logs from December are on this computer, and git records no tool for that month, so who wrote the first version rests on my own account.
+
+## What Bitcoin Analytics is
+
+A free dashboard at bitcoin.edgarasneverdauskas.com. It has two halves.
+
+The market half works without a wallet. Pick one of six assets, BTC, ETH, BNB, DOGE, USDT or USDC, and you get its price, a market mood gauge built on the Fear &amp; Greed index, and ten chart cards over one day, one week or one month: price, volume, daily returns, a returns heatmap, trend, price bands, drawdown, volatility, a comparison of all six, and how closely each one moves with Bitcoin. Every card has an info button that says what it shows. Prices come from Kraken, with Coinbase as the fallback.
+
+The portfolio half appears when you connect a wallet. It reads balances straight from public nodes on Ethereum, Base and BNB Chain, including wrapped Bitcoin on each: WBTC on Ethereum and Base, BTCB on BNB Chain. It shows holdings per chain, a value line, risk, and a cost basis you type in yourself. That is kept on your device. There is no account and no backend.
+
+It is React, TypeScript and Vite, with wagmi and viem for the wallet side and Recharts for the charts. It installs as an app on a phone. The code is open source under AGPL-3.0.
+
+## How it happened
+
+**19 to 21 December 2025: the first version.** The first commit landed at 11:57 on a Friday, titled "new project ready". It already held 27 files: a price chart, a wallet connection, and wrapped Bitcoin balances on three chains. I remember the charts coming first and the wallet after. That happened before the first commit, so git can't show the order.
+
+Then came 47 more commits over three days, almost all of them titled "updated". By Friday evening the site deployed itself to GitHub Pages on every push, and had a mood gauge and more chart cards. Saturday added a swap window. On Sunday BNB and DOGE joined, which made six assets, along with a social preview image and an info tooltip. On Christmas Eve one more commit changed a single line.
+
+I built the first version with what I then called ChatGPT's Codex, on a model I later called "not as good as curent 5.6". Git records no tool: all 49 commits are under my name, with no co-author line, and no logs from then are on this computer. So I can't count my messages or its replies. Git has 49 commits in six days, and the site was live.
+
+**16 July 2026: one evening with Codex.** (Dated in my local time then, UTC+3; in UTC+7 it ran past midnight into 17 July.) After a gap of 204 days with no commits, I opened the project in Codex again, now on GPT-5.5. My first message: "seems ome thigns are nto working properly... also seems it doesnt show the wallets balances for some reason". The default public Ethereum node was failing, and one failed chain made the whole wallet look empty. Codex moved the reads onto fallback nodes and made a failure on one network show as that network's failure, not as "no assets".
+
+Then I asked what else it would improve. It offered seven things, and I asked for all seven at once: four new chart cards and a donut for the portfolio among them. Next I asked to separate the portfolio from the market, so someone without a wallet only sees the market. Then a grid you can rearrange by dragging, which took seven more of my messages to get right, one of them sent twice: boxes overlapping, a drag handle stretched across a whole row, cards of different heights. Two commits went out at the end of the evening.
+
+**16 and 24 August: a domain, and a phone.** The dashboard moved to its own subdomain. Eight days later I asked Claude whether it could be installed on a phone like my other sites. It couldn't, so it became an app: a manifest, an offline shell, icons. I asked for a review of the support window, and Claude found a bug that touched money. The donation QR codes for Ethereum, Base and BNB Chain were byte-identical. Each one held a bare address with no chain in it, so a wallet scanning the Base code had nothing telling it Base. They now carry the chain.
+
+A few minutes after that fix went live, I sent a screenshot: "the website is white page why". GitHub Pages had been publishing the repository's source folder as well as the built site, on every push. Whichever finished last won. On the next push, a small layout fix, the source folder won by two seconds.
+
+Then the icon. I wanted the Bitcoin mark from the dashboard's own header. Installed on my phone, it sat on two backgrounds, orange and a dark blue. The first fix cleaned the image, and my phone still drew a second background behind it. The second fix copied how Self-Aware Writing declares its icon, which installs cleanly on the same phone.
+
+**31 August, 22:13 to 01:49: the wallet night.** I installed the app on my phone and tried to connect a wallet. It failed. That started the longest session in the project: 35 commits between 22:37 and 01:47.
+
+The first fixes were small. A missing package, a MetaMask connector that couldn't load. A bigger one: the app told wagmi not to reconnect on launch, and wagmi took that as an order to throw away the saved session. So the installed app forgot the wallet every time it opened.
+
+Then I asked for more than fixes. Wallet kits, I wrote, are "alreayd edsign with allth edges". They detect what is installed, open the wallet app, or offer an install. Claude checked the kits against our versions. RainbowKit didn't support the version of wagmi we use. Reown's AppKit did, and at 23:03 it was in.
+
+By 23:10 Claude was correcting itself. It had told me the new wallet code loaded only when needed, and it didn't: the wallet libraries had pushed the first load to several megabytes. Then Claude's code around AppKit's theme hook put the page in an endless render loop. Its install detection turned out to be switched off by default. Its telemetry calls were refused by my ad blocker and filled the console. At 00:15, while Claude was still working, I wrote "HEY WE NEED TO GET RID OF THE APPKTI OCMPLETLEY". By 00:18 it was gone, and Claude drew the WalletConnect pairing step itself. By its own measurement, the JavaScript on first load went from 2,542 kB at the worst point to about 460 kB.
+
+The design took longer than the code. Twice I asked for the connect window to look better. Twice I got better behaviour: retry, states, a list of wallets. At 01:01: "you have been ignroign this speicfic  request i ahve t make it clear now". The redesign landed at 01:05. At 01:23 I said good night. A minute later I reported from my phone: I had killed the app with a wallet connected, opened it again, and it was still connected.
+
+**1 September: the portfolio.** I asked what the portfolio view was missing. Claude listed five things and I said "do all 5": a 24-hour change on the total, a holdings table with a per-chain breakdown, a value line, risk figures, and a cost basis you enter by hand. Most of it came from reads the app was already making and throwing away. To see it with real data, Claude pretended to connect a publicly labelled exchange wallet, one that holds every asset on every chain. "wehre id oyu get this wallet? with so many adssets ?" I asked. The first figures Claude reported for that view included a daily change of more than three million dollars.
+
+Most of the day was layout: one row of buttons on phones, the header stacking below 900 pixels, Rabby's own icon instead of the letters "RA".
+
+**6 September: the charts.** I pointed at an empty slot in the grid and asked what could fill it. Claude suggested a correlation chart, how closely each asset moves with Bitcoin, because every other card was another view of the same price line. Then I asked a simple question: were the chart types chosen for a reason? Mostly, yes. But the price charts started their axis at zero, so the line used about 5% of the chart. The fix made it 86%. Once the axis was fixed, the price bands showed a "mask" that was 4% white, which tinted the chart instead of hiding anything. And an audit found that both bar charts drew no bars at all. They had axes, a grid and tooltips, and nothing in between. Nobody had noticed.
+
+**12 September: the paperwork.** A Ko-fi link beside the crypto addresses, a README, and the AGPL-3.0 licence. These came from sessions that worked across several of my projects at once, so they are in git but not in the counts below.
+
+## Wrong, without an error
+
+When I drafted a LinkedIn post about this project in August, the line that mattered was that most of these problems "don't crash the app — they just quietly produce the wrong result". The logs are a list of them.
+
+Three QR codes that looked different and were the same. A price chart that was a flat line near the top of an empty box. Bar charts with no bars. A band that was a tint. An app that forgot your wallet because of a setting that sounded harmless. Every one of these built and deployed without complaint. None of them threw an error.
+
+The checks lied in smaller ways too. On 24 August Claude checked that the new icon was served, got a 200, and then noticed it was the preview server's fallback page answering, not the file. A note in Claude's memory said the production build couldn't run on this machine, so a whole session was checked without one. On the day of the merge it ran the build anyway, and it passed.
+
+What found these problems was using the product. A phone showed the icon plates, the forgotten wallet and the connect errors. My own screenshots showed the empty space and the wrong colours. And the question "are these the right charts?" found the axis and the missing bars, where a question about whether the code compiles never would have.
+
+## What we got wrong
+
+- The donation QR codes for three chains were identical, with no chain in them. That bug touched money.
+- GitHub Pages was publishing the source folder and the built site at once, and on 24 August the source folder won.
+- The installed icon had two backgrounds, and the first fix didn't reach my phone.
+- The installed app forgot the wallet on every launch.
+- Wallet libraries went in and came out the same night. At the worst point the first load was 2,542 kB of JavaScript, and AppKit brought a render loop and telemetry my blocker refused.
+- Claude said the new wallet code loaded lazily. It didn't, and Claude corrected itself.
+- I asked twice for a better-looking connect window and got behaviour fixes both times.
+- A stale note said the build couldn't run, so a session was verified without one.
+- Price axes started at zero, bar charts drew nothing, and the price bands' mask was see-through.
+- The drag-to-rearrange grid from July took seven more messages to get right.
+
+## Who did what
+
+**Codex**, by my account, built the first version and came back once. The 49 commits of December 2025 are the dashboard, the wallet balances and the deploy, but git credits them to me with no tool named, and those chats are not on this computer, so I can't count them or prove who wrote them. The July evening is logged: I sent 17 messages and 9 screenshots, Codex on GPT-5.5 replied 190 times and made 327 tool calls in about an hour and a half, and pushed 2 commits.
+
+**Claude Code** did the late summer. Across the five logged sessions with messages from me I sent 139 messages and 62 screenshots, and Claude replied 1,460 times with 1,392 tool calls: 824 commands, 38 file edits and 488 actions in a browser. That was about nine and a half hours of active work, with no helper agents. Claude Opus 5 gave 1,410 of those replies. Claude Sonnet 5 gave the other 50, in a session that moved the site to its domain and drafted a LinkedIn post, which ChatGPT then rewrote. In git, Claude made 64 commits: 62 Opus 5, one Sonnet 5 and one Fable 5.1. Six of those came from sessions that worked across several of my projects at once, which the counts above leave out.
+
+![By the numbers](https://articles.edgarasneverdauskas.com/bitcoin-analytics/numbers-1400.png)
+
+**My part** was deciding and testing. 156 counted messages, 71 screenshots, and a typical message of 16 words to Claude. 30 of my messages went in while Claude was still working, and I stopped it twice. I decided the six assets, the chains, and what the portfolio should answer. I said no to a kit once it cost more than it gave. I chose to keep the mood gauge tinted by the selected coin after Claude had taken the tint out. And I tested on my phone, which is where many of August's bugs were found.
+
+Treat the numbers as a record, not a benchmark. The tools worked months apart, on different jobs, and one phase left no logs at all.
+
+## What it cost
+
+The dashboard costs nothing to run. GitHub Pages hosts it, the address is a subdomain of a domain I already had, and the market data and balances come from public endpoints that need no key. There is no server and no database.
+
+The cost was the subscriptions: Codex in July (and, by my account, in December), Claude in August and September. None of the logged sessions for this project hit a usage limit.
+
+## What I would tell someone starting
+
+- **An hour gets you a start.** It really can be that fast. Budget for the months after it.
+- **Look for what doesn't throw.** Wrong axes, identical QR codes and empty charts all pass the build.
+- **Test on the real device.** The phone found what the desktop browser couldn't.
+- **Measure before you add a kit.** The wallet libraries added more than two megabytes to the first load before anyone checked.
+- **Say "design" when you mean design.** And say it again if the answer is a behaviour fix.
+- **Re-try old "can't"s.** A note that said the build was impossible was out of date.
+- **Ask the plain question.** "Are these the right charts?" found more than any test.
+
+## In one paragraph
+
+Bitcoin Analytics started as a test of whether an AI agent could build something real from chat alone, and by my account it could: Codex had a live first version within a weekend. The work after that came in bursts, one evening in July after a 204-day gap and then four weeks from mid-August, and most of the 116 commits went into things that were wrong without saying so: a QR code with no chain in it, a wallet that was forgotten, a chart axis starting at zero, bars that never drew. The models found and fixed most of them once asked the right question. Asking, testing on a phone, and deciding when it was good enough stayed with me.
+
+*Try it at [bitcoin.edgarasneverdauskas.com](https://bitcoin.edgarasneverdauskas.com). The code is open source under AGPL-3.0 at [github.com/Evirtual/bitcoin-analytics](https://github.com/Evirtual/bitcoin-analytics). Built with OpenAI Codex, GPT-5.5, Claude Code, Claude Opus 5, Claude Sonnet 5 and Claude Fable 5.1.*</textarea></details>
+        </section>
+        <section aria-labelledby="kit-images">
+          <h2 id="kit-images">Images (3)</h2>
+          <ul class="img-list">
+        <li class="img-row">
+          <img src="cover-medium-1500x750.png" alt="" width="1500" height="750" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open medium cover full size">
+          <p class="img-name">Medium cover<span>cover-medium-1500x750.png · 1500&nbsp;×&nbsp;750</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+              <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">Bitcoin Analytics on the live site, with no wallet connected. Image and dashboard: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 393 characters</p><p id="k-alt-cover-medium">Near-black cover. On the left, the orange Bitcoin mark and the title "An hour to start, months to trust", above the line "Bitcoin Analytics, built with Codex and Claude, counted from the logs." On the right, a screenshot of the live dashboard with no wallet connected: the asset tabs, a market mood gauge, price, momentum and return cards, and the Bitcoin price and volume charts for one week.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="cover-linkedin-1920x1080.png" alt="" width="1920" height="1080" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open linkedin cover full size">
+          <p class="img-name">LinkedIn cover<span>cover-linkedin-1920x1080.png · 1920&nbsp;×&nbsp;1080</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-linkedin" aria-label="Copy caption, linkedin cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-linkedin" aria-label="Copy alt text, linkedin cover">Copy alt</button>
+              <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">Bitcoin Analytics on the live site, with no wallet connected. Image and dashboard: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 393 characters</p><p id="k-alt-cover-linkedin">Near-black cover. On the left, the orange Bitcoin mark and the title "An hour to start, months to trust", above the line "Bitcoin Analytics, built with Codex and Claude, counted from the logs." On the right, a screenshot of the live dashboard with no wallet connected: the asset tabs, a market mood gauge, price, momentum and return cards, and the Bitcoin price and volume charts for one week.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="numbers-1400.png" alt="" width="1400" height="1909" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open numbers card full size">
+          <p class="img-name">Numbers card<span>numbers-1400.png · 1400&nbsp;×&nbsp;1909</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+              <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-numbers">Dec 2025 to Sep 2026, in bursts, counted from git and the session logs: Codex, Claude Code and me, and the commits by phase.</p>
+              <p class="lbl">Alt text · 390 characters</p><p id="k-alt-numbers">Bitcoin Analytics by the numbers, Dec 2025 – Sep 2026: 116 commits on 12 days, 35 of them in one night. Codex: 49 December 2025 commits by my account only (git names no tool, no logs), then one logged evening in July with 327 tool calls and 2 commits. Claude Code: 64 commits, 1,460 replies, 1,392 tool calls, about 9½ hours active. Me: 156 messages, typically 16 words, and 71 screenshots.</p>
+            </details>
+          </div>
+        </li>
+          </ul>
+        </section>
+        <section aria-labelledby="kit-share">
+          <h2 id="kit-share">Posts (3)</h2>
+        <div class="share">
+          <div class="share-head">
+            <h3>LinkedIn post</h3>
+            <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
+          </div>
+          <p class="share-meta">1,896 characters</p>
+          <pre id="share-linkedin" tabindex="0">In December I asked an AI coding agent to build a Bitcoin dashboard, just by chatting with it. An hour later I had something that could almost be published.
+
+The polishing came later, in bursts: one evening seven months on, then four weeks this late summer.
+
+Bitcoin Analytics now tracks six assets, reads wallet balances on three chains, and installs as an app on a phone. Afterwards I went through the git history and every session log I could find to count who did what: 116 commits: the first version with Codex by my own account (git records no tool and those chats aren't on this computer), Claude Code for most of what came after. Claude replied 1,460 times and made 1,392 tool calls. I sent 156 counted messages. A typical one was 16 words.
+
+Most of those words weren't about new features. They were about things that were wrong without an error.
+
+→ The donation QR codes for Ethereum, Base and BNB Chain were byte-identical. None of them said which chain. Now each one carries it.
+
+→ The installed app forgot your wallet every time it opened, because of a setting that sounded harmless. I only found it by testing on my phone.
+
+→ The price charts started their axis at zero, so the line used about 5% of the chart. Both bar charts drew no bars at all. Nobody had noticed.
+
+→ A wallet kit went in and came out the same night. Together with the other wallet libraries, it had made the first load megabytes heavier before anyone measured it.
+
+Every one of these built and deployed without complaint.
+
+The models wrote almost every line. Asking "are these the right charts?", testing on a real phone, and deciding when it was good enough stayed with me.
+
+If you're building a product with AI and the building is fast but the product keeps drifting, feel free to DM me. I'm open to consulting and product/engineering advisory work.
+
+I wrote it all up, mistakes included, in the article below.</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>Facebook post</h3>
+            <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
+          </div>
+          <p class="share-meta">933 characters</p>
+          <pre id="share-facebook" tabindex="0">I made a free Bitcoin dashboard 📈
+
+Pick Bitcoin, Ethereum, BNB, DOGE or one of two dollar stablecoins, and you get its price, a "market mood" gauge and ten simple charts: how the price moved this week, how much was traded, how bumpy the ride was, and how closely each coin follows Bitcoin. Every chart has a little info button that explains what it shows.
+
+If you have a crypto wallet, you can connect it and see your balances across three networks in one place. Nothing is stored on a server, and there's no sign-up and no ads. You can also install it on your phone like an app.
+
+I built it together with AI assistants, Codex and Claude. In about an hour I had something started that could almost be published. Getting it right took months, in bursts, mostly spent finding things that looked fine but weren't, like charts that quietly showed nothing.
+
+Have a look and tell me what you think 👇
+https://bitcoin.edgarasneverdauskas.com</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>X post</h3>
+            <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
+          </div>
+          <p class="share-meta">321 characters</p>
+          <pre id="share-x" tabindex="0">An hour to start a Bitcoin dashboard with AI. Months, in bursts, to trust it: QR codes with no chain, charts with no bars, a wallet the app forgot. 116 commits with Codex and Claude.
+
+https://bitcoin.edgarasneverdauskas.com
+
+Who did what, counted from the logs: https://articles.edgarasneverdauskas.com/bitcoin-analytics/</pre>
+        </div>
+        </section>
+      </div>
+    </details>
+  </aside>
+  <article class="story" id="story" aria-labelledby="story-title" tabindex="-1">
+    <header class="story-head">
+      <p class="kicker">12 days · 116 commits</p>
+      <h1 id="story-title">Bitcoin Analytics: an hour to start, months to trust</h1>
+      <p class="dek" id="story-dek">A Bitcoin dashboard that began as a test of building from chat alone. By my account, Codex built the first version in a weekend. Most of what came after was finding the things that were wrong without an error.</p>
+      <p class="byline"><span>Edgaras Neverdauskas</span><span>12 min read</span><span>2,809 words</span></p>
+      <nav class="also" aria-label="This story elsewhere">
+        
+        <p><span class="also-label">Project</span><a href="https://bitcoin.edgarasneverdauskas.com" rel="noopener">bitcoin.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></p>
+      </nav>
+    </header>
+    <figure class="fig fig-cover" id="fig-cover-medium">
+  <div class="frame"><img src="cover-medium-1500x750.png" alt="Near-black cover. On the left, the orange Bitcoin mark and the title &quot;An hour to start, months to trust&quot;, above the line &quot;Bitcoin Analytics, built with Codex and Claude, counted from the logs.&quot; On the right, a screenshot of the live dashboard with no wallet connected: the asset tabs, a market mood gauge, price, momentum and return cards, and the Bitcoin price and volume charts for one week." width="1500" height="750" decoding="async" tabindex="0" role="button" aria-label="Open this picture" fetchpriority="high"></div>
+  <figcaption>
+    <p class="cap" id="cap-cover-medium">Bitcoin Analytics on the live site, with no wallet connected. Image and dashboard: Edgaras Neverdauskas.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+      <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 393 characters</span></summary><p id="alt-cover-medium">Near-black cover. On the left, the orange Bitcoin mark and the title "An hour to start, months to trust", above the line "Bitcoin Analytics, built with Codex and Claude, counted from the logs." On the right, a screenshot of the live dashboard with no wallet connected: the asset tabs, a market mood gauge, price, momentum and return cards, and the Bitcoin price and volume charts for one week.</p></details>
+  </figcaption>
+</figure>
+    <div class="prose" id="article-body">
+<h2>Why I built it</h2>
+<p>In December 2025 I wanted to test one thing: could an AI coding agent build something meaningful if all I did was chat with it? The project picked itself. A simple Bitcoin page where you connect your wallet and see your balances.</p>
+<p>When I told the story months later, I put it like this: "It tooks me an hour to ahve sometihng start and that could almsot be published, the thing wasa the polishign after that hour". This article is about the polishing.</p>
+<p>As with <a href="../jarvis/">J.A.R.V.I.S.</a>, <a href="../self-aware-writing/">Self-Aware Writing</a> and <a href="../css-3d-lab/">CSS 3D Lab</a>, I went back through the full git history and every session log I could find, so the numbers are counted, not remembered. One part could not be counted. No logs from December are on this computer, and git records no tool for that month, so who wrote the first version rests on my own account.</p>
+<h2>What Bitcoin Analytics is</h2>
+<p>A free dashboard at bitcoin.edgarasneverdauskas.com. It has two halves.</p>
+<p>The market half works without a wallet. Pick one of six assets, BTC, ETH, BNB, DOGE, USDT or USDC, and you get its price, a market mood gauge built on the Fear &amp; Greed index, and ten chart cards over one day, one week or one month: price, volume, daily returns, a returns heatmap, trend, price bands, drawdown, volatility, a comparison of all six, and how closely each one moves with Bitcoin. Every card has an info button that says what it shows. Prices come from Kraken, with Coinbase as the fallback.</p>
+<p>The portfolio half appears when you connect a wallet. It reads balances straight from public nodes on Ethereum, Base and BNB Chain, including wrapped Bitcoin on each: WBTC on Ethereum and Base, BTCB on BNB Chain. It shows holdings per chain, a value line, risk, and a cost basis you type in yourself. That is kept on your device. There is no account and no backend.</p>
+<p>It is React, TypeScript and Vite, with wagmi and viem for the wallet side and Recharts for the charts. It installs as an app on a phone. The code is open source under AGPL-3.0.</p>
+<h2>How it happened</h2>
+<p><strong>19 to 21 December 2025: the first version.</strong> The first commit landed at 11:57 on a Friday, titled "new project ready". It already held 27 files: a price chart, a wallet connection, and wrapped Bitcoin balances on three chains. I remember the charts coming first and the wallet after. That happened before the first commit, so git can't show the order.</p>
+<p>Then came 47 more commits over three days, almost all of them titled "updated". By Friday evening the site deployed itself to GitHub Pages on every push, and had a mood gauge and more chart cards. Saturday added a swap window. On Sunday BNB and DOGE joined, which made six assets, along with a social preview image and an info tooltip. On Christmas Eve one more commit changed a single line.</p>
+<p>I built the first version with what I then called ChatGPT's Codex, on a model I later called "not as good as curent 5.6". Git records no tool: all 49 commits are under my name, with no co-author line, and no logs from then are on this computer. So I can't count my messages or its replies. Git has 49 commits in six days, and the site was live.</p>
+<p><strong>16 July 2026: one evening with Codex.</strong> (Dated in my local time then, UTC+3; in UTC+7 it ran past midnight into 17 July.) After a gap of 204 days with no commits, I opened the project in Codex again, now on GPT-5.5. My first message: "seems ome thigns are nto working properly... also seems it doesnt show the wallets balances for some reason". The default public Ethereum node was failing, and one failed chain made the whole wallet look empty. Codex moved the reads onto fallback nodes and made a failure on one network show as that network's failure, not as "no assets".</p>
+<p>Then I asked what else it would improve. It offered seven things, and I asked for all seven at once: four new chart cards and a donut for the portfolio among them. Next I asked to separate the portfolio from the market, so someone without a wallet only sees the market. Then a grid you can rearrange by dragging, which took seven more of my messages to get right, one of them sent twice: boxes overlapping, a drag handle stretched across a whole row, cards of different heights. Two commits went out at the end of the evening.</p>
+<p><strong>16 and 24 August: a domain, and a phone.</strong> The dashboard moved to its own subdomain. Eight days later I asked Claude whether it could be installed on a phone like my other sites. It couldn't, so it became an app: a manifest, an offline shell, icons. I asked for a review of the support window, and Claude found a bug that touched money. The donation QR codes for Ethereum, Base and BNB Chain were byte-identical. Each one held a bare address with no chain in it, so a wallet scanning the Base code had nothing telling it Base. They now carry the chain.</p>
+<p>A few minutes after that fix went live, I sent a screenshot: "the website is white page why". GitHub Pages had been publishing the repository's source folder as well as the built site, on every push. Whichever finished last won. On the next push, a small layout fix, the source folder won by two seconds.</p>
+<p>Then the icon. I wanted the Bitcoin mark from the dashboard's own header. Installed on my phone, it sat on two backgrounds, orange and a dark blue. The first fix cleaned the image, and my phone still drew a second background behind it. The second fix copied how Self-Aware Writing declares its icon, which installs cleanly on the same phone.</p>
+<p><strong>31 August, 22:13 to 01:49: the wallet night.</strong> I installed the app on my phone and tried to connect a wallet. It failed. That started the longest session in the project: 35 commits between 22:37 and 01:47.</p>
+<p>The first fixes were small. A missing package, a MetaMask connector that couldn't load. A bigger one: the app told wagmi not to reconnect on launch, and wagmi took that as an order to throw away the saved session. So the installed app forgot the wallet every time it opened.</p>
+<p>Then I asked for more than fixes. Wallet kits, I wrote, are "alreayd edsign with allth edges". They detect what is installed, open the wallet app, or offer an install. Claude checked the kits against our versions. RainbowKit didn't support the version of wagmi we use. Reown's AppKit did, and at 23:03 it was in.</p>
+<p>By 23:10 Claude was correcting itself. It had told me the new wallet code loaded only when needed, and it didn't: the wallet libraries had pushed the first load to several megabytes. Then Claude's code around AppKit's theme hook put the page in an endless render loop. Its install detection turned out to be switched off by default. Its telemetry calls were refused by my ad blocker and filled the console. At 00:15, while Claude was still working, I wrote "HEY WE NEED TO GET RID OF THE APPKTI OCMPLETLEY". By 00:18 it was gone, and Claude drew the WalletConnect pairing step itself. By its own measurement, the JavaScript on first load went from 2,542 kB at the worst point to about 460 kB.</p>
+<p>The design took longer than the code. Twice I asked for the connect window to look better. Twice I got better behaviour: retry, states, a list of wallets. At 01:01: "you have been ignroign this speicfic  request i ahve t make it clear now". The redesign landed at 01:05. At 01:23 I said good night. A minute later I reported from my phone: I had killed the app with a wallet connected, opened it again, and it was still connected.</p>
+<p><strong>1 September: the portfolio.</strong> I asked what the portfolio view was missing. Claude listed five things and I said "do all 5": a 24-hour change on the total, a holdings table with a per-chain breakdown, a value line, risk figures, and a cost basis you enter by hand. Most of it came from reads the app was already making and throwing away. To see it with real data, Claude pretended to connect a publicly labelled exchange wallet, one that holds every asset on every chain. "wehre id oyu get this wallet? with so many adssets ?" I asked. The first figures Claude reported for that view included a daily change of more than three million dollars.</p>
+<p>Most of the day was layout: one row of buttons on phones, the header stacking below 900 pixels, Rabby's own icon instead of the letters "RA".</p>
+<p><strong>6 September: the charts.</strong> I pointed at an empty slot in the grid and asked what could fill it. Claude suggested a correlation chart, how closely each asset moves with Bitcoin, because every other card was another view of the same price line. Then I asked a simple question: were the chart types chosen for a reason? Mostly, yes. But the price charts started their axis at zero, so the line used about 5% of the chart. The fix made it 86%. Once the axis was fixed, the price bands showed a "mask" that was 4% white, which tinted the chart instead of hiding anything. And an audit found that both bar charts drew no bars at all. They had axes, a grid and tooltips, and nothing in between. Nobody had noticed.</p>
+<p><strong>12 September: the paperwork.</strong> A Ko-fi link beside the crypto addresses, a README, and the AGPL-3.0 licence. These came from sessions that worked across several of my projects at once, so they are in git but not in the counts below.</p>
+<h2>Wrong, without an error</h2>
+<p>When I drafted a LinkedIn post about this project in August, the line that mattered was that most of these problems "don't crash the app — they just quietly produce the wrong result". The logs are a list of them.</p>
+<p>Three QR codes that looked different and were the same. A price chart that was a flat line near the top of an empty box. Bar charts with no bars. A band that was a tint. An app that forgot your wallet because of a setting that sounded harmless. Every one of these built and deployed without complaint. None of them threw an error.</p>
+<p>The checks lied in smaller ways too. On 24 August Claude checked that the new icon was served, got a 200, and then noticed it was the preview server's fallback page answering, not the file. A note in Claude's memory said the production build couldn't run on this machine, so a whole session was checked without one. On the day of the merge it ran the build anyway, and it passed.</p>
+<p>What found these problems was using the product. A phone showed the icon plates, the forgotten wallet and the connect errors. My own screenshots showed the empty space and the wrong colours. And the question "are these the right charts?" found the axis and the missing bars, where a question about whether the code compiles never would have.</p>
+<h2>What we got wrong</h2>
+<ul>
+<li>The donation QR codes for three chains were identical, with no chain in them. That bug touched money.</li>
+<li>GitHub Pages was publishing the source folder and the built site at once, and on 24 August the source folder won.</li>
+<li>The installed icon had two backgrounds, and the first fix didn't reach my phone.</li>
+<li>The installed app forgot the wallet on every launch.</li>
+<li>Wallet libraries went in and came out the same night. At the worst point the first load was 2,542 kB of JavaScript, and AppKit brought a render loop and telemetry my blocker refused.</li>
+<li>Claude said the new wallet code loaded lazily. It didn't, and Claude corrected itself.</li>
+<li>I asked twice for a better-looking connect window and got behaviour fixes both times.</li>
+<li>A stale note said the build couldn't run, so a session was verified without one.</li>
+<li>Price axes started at zero, bar charts drew nothing, and the price bands' mask was see-through.</li>
+<li>The drag-to-rearrange grid from July took seven more messages to get right.</li>
+</ul>
+<h2>Who did what</h2>
+<p><strong>Codex</strong>, by my account, built the first version and came back once. The 49 commits of December 2025 are the dashboard, the wallet balances and the deploy, but git credits them to me with no tool named, and those chats are not on this computer, so I can't count them or prove who wrote them. The July evening is logged: I sent 17 messages and 9 screenshots, Codex on GPT-5.5 replied 190 times and made 327 tool calls in about an hour and a half, and pushed 2 commits.</p>
+<p><strong>Claude Code</strong> did the late summer. Across the five logged sessions with messages from me I sent 139 messages and 62 screenshots, and Claude replied 1,460 times with 1,392 tool calls: 824 commands, 38 file edits and 488 actions in a browser. That was about nine and a half hours of active work, with no helper agents. Claude Opus 5 gave 1,410 of those replies. Claude Sonnet 5 gave the other 50, in a session that moved the site to its domain and drafted a LinkedIn post, which ChatGPT then rewrote. In git, Claude made 64 commits: 62 Opus 5, one Sonnet 5 and one Fable 5.1. Six of those came from sessions that worked across several of my projects at once, which the counts above leave out.</p>
+<figure class="fig" id="fig-numbers">
+  <div class="frame"><img src="numbers-1400.png" alt="Bitcoin Analytics by the numbers, Dec 2025 – Sep 2026: 116 commits on 12 days, 35 of them in one night. Codex: 49 December 2025 commits by my account only (git names no tool, no logs), then one logged evening in July with 327 tool calls and 2 commits. Claude Code: 64 commits, 1,460 replies, 1,392 tool calls, about 9½ hours active. Me: 156 messages, typically 16 words, and 71 screenshots." width="1400" height="1909" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-numbers">Dec 2025 to Sep 2026, in bursts, counted from git and the session logs: Codex, Claude Code and me, and the commits by phase.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-numbers" aria-label="Copy caption, numbers card">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-numbers" aria-label="Copy alt text, numbers card">Copy alt</button>
+      <a class="chip" href="numbers-1400.png" download aria-label="Download image, numbers card (numbers-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 390 characters</span></summary><p id="alt-numbers">Bitcoin Analytics by the numbers, Dec 2025 – Sep 2026: 116 commits on 12 days, 35 of them in one night. Codex: 49 December 2025 commits by my account only (git names no tool, no logs), then one logged evening in July with 327 tool calls and 2 commits. Claude Code: 64 commits, 1,460 replies, 1,392 tool calls, about 9½ hours active. Me: 156 messages, typically 16 words, and 71 screenshots.</p></details>
+  </figcaption>
+</figure>
+<p><strong>My part</strong> was deciding and testing. 156 counted messages, 71 screenshots, and a typical message of 16 words to Claude. 30 of my messages went in while Claude was still working, and I stopped it twice. I decided the six assets, the chains, and what the portfolio should answer. I said no to a kit once it cost more than it gave. I chose to keep the mood gauge tinted by the selected coin after Claude had taken the tint out. And I tested on my phone, which is where many of August's bugs were found.</p>
+<p>Treat the numbers as a record, not a benchmark. The tools worked months apart, on different jobs, and one phase left no logs at all.</p>
+<h2>What it cost</h2>
+<p>The dashboard costs nothing to run. GitHub Pages hosts it, the address is a subdomain of a domain I already had, and the market data and balances come from public endpoints that need no key. There is no server and no database.</p>
+<p>The cost was the subscriptions: Codex in July (and, by my account, in December), Claude in August and September. None of the logged sessions for this project hit a usage limit.</p>
+<h2>What I would tell someone starting</h2>
+<ul>
+<li><strong>An hour gets you a start.</strong> It really can be that fast. Budget for the months after it.</li>
+<li><strong>Look for what doesn't throw.</strong> Wrong axes, identical QR codes and empty charts all pass the build.</li>
+<li><strong>Test on the real device.</strong> The phone found what the desktop browser couldn't.</li>
+<li><strong>Measure before you add a kit.</strong> The wallet libraries added more than two megabytes to the first load before anyone checked.</li>
+<li><strong>Say "design" when you mean design.</strong> And say it again if the answer is a behaviour fix.</li>
+<li><strong>Re-try old "can't"s.</strong> A note that said the build was impossible was out of date.</li>
+<li><strong>Ask the plain question.</strong> "Are these the right charts?" found more than any test.</li>
+</ul>
+<h2>In one paragraph</h2>
+<p>Bitcoin Analytics started as a test of whether an AI agent could build something real from chat alone, and by my account it could: Codex had a live first version within a weekend. The work after that came in bursts, one evening in July after a 204-day gap and then four weeks from mid-August, and most of the 116 commits went into things that were wrong without saying so: a QR code with no chain in it, a wallet that was forgotten, a chart axis starting at zero, bars that never drew. The models found and fixed most of them once asked the right question. Asking, testing on a phone, and deciding when it was good enough stayed with me.</p>
+<p class="close"><em>Try it at <a href="https://bitcoin.edgarasneverdauskas.com">bitcoin.edgarasneverdauskas.com</a>. The code is open source under AGPL-3.0 at <a href="https://github.com/Evirtual/bitcoin-analytics">github.com/Evirtual/bitcoin-analytics</a>. Built with OpenAI Codex, GPT-5.5, Claude Code, Claude Opus 5, Claude Sonnet 5 and Claude Fable 5.1.</em></p>
+    </div>
+    <footer class="story-foot">
+      <p class="also-end"><span><a href="https://bitcoin.edgarasneverdauskas.com" rel="noopener">Visit the project<span aria-hidden="true"> ↗</span></a></span></p>
+      <nav class="more" aria-labelledby="more-bitcoin-analytics">
+        <h2 id="more-bitcoin-analytics">More build stories</h2>
+        <ul><li><a href="../css-3d-lab-ledger/">A green tick is a date, not a fact</a></li><li><a href="../css-3d-lab/">CSS 3D Lab: learning 3D on the web by playing with it</a></li><li><a href="../self-aware-writing/">A book that knows you're reading it</a></li><li><a href="../jarvis/">Five days building J.A.R.V.I.S. with Claude</a></li><li><a href="../portfolio/">My portfolio, rebuilt to tell the truth</a></li><li><a href="../timeline/">The AI race: who shipped what, and when</a></li><li><a href="../agi-watch/">AGI Watch: are we getting there?</a></li><li><a href="../ampuno/">Ampuno: 28 minutes to build, eight weeks to draw the cars</a></li><li><a href="../social-blockchain-network/">Social Blockchain Network: refactor, don't rebuild</a></li><li><a href="../atunicorn/">@unicorn: an old app, a new stack, and two AI tools</a></li></ul>
+      </nav>
+    </footer>
+  </article>
+</main>
+<footer class="site-foot">
+  <a href="../"><span aria-hidden="true">←</span> All articles</a>
+  <a href="https://edgarasneverdauskas.com">edgarasneverdauskas.com</a>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="kit-data">{"richHtml":"\u003ch1>Bitcoin Analytics: an hour to start, months to trust\u003c/h1>\n\u003cp>\u003cem>A Bitcoin dashboard that began as a test of building from chat alone. By my account, Codex built the first version in a weekend. Most of what came after was finding the things that were wrong without an error.\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/bitcoin-analytics/cover-medium-1500x750.png Caption: Bitcoin Analytics on the live site, with no wallet connected. Image and dashboard: Edgaras Neverdauskas. Alt text: Near-black cover. On the left, the orange Bitcoin mark and the title \"An hour to start, months to trust\", above the line \"Bitcoin Analytics, built with Codex and Claude, counted from the logs.\" On the right, a screenshot of the live dashboard with no wallet connected: the asset tabs, a market mood gauge, price, momentum and return cards, and the Bitcoin price and volume charts for one week.]\u003c/strong>\u003c/p>\n\u003ch2>Why I built it\u003c/h2>\n\u003cp>In December 2025 I wanted to test one thing: could an AI coding agent build something meaningful if all I did was chat with it? The project picked itself. A simple Bitcoin page where you connect your wallet and see your balances.\u003c/p>\n\u003cp>When I told the story months later, I put it like this: \"It tooks me an hour to ahve sometihng start and that could almsot be published, the thing wasa the polishign after that hour\". This article is about the polishing.\u003c/p>\n\u003cp>As with \u003ca href=\"https://articles.edgarasneverdauskas.com/jarvis/\">J.A.R.V.I.S.\u003c/a>, \u003ca href=\"https://articles.edgarasneverdauskas.com/self-aware-writing/\">Self-Aware Writing\u003c/a> and \u003ca href=\"https://articles.edgarasneverdauskas.com/css-3d-lab/\">CSS 3D Lab\u003c/a>, I went back through the full git history and every session log I could find, so the numbers are counted, not remembered. One part could not be counted. No logs from December are on this computer, and git records no tool for that month, so who wrote the first version rests on my own account.\u003c/p>\n\u003ch2>What Bitcoin Analytics is\u003c/h2>\n\u003cp>A free dashboard at bitcoin.edgarasneverdauskas.com. It has two halves.\u003c/p>\n\u003cp>The market half works without a wallet. Pick one of six assets, BTC, ETH, BNB, DOGE, USDT or USDC, and you get its price, a market mood gauge built on the Fear &amp; Greed index, and ten chart cards over one day, one week or one month: price, volume, daily returns, a returns heatmap, trend, price bands, drawdown, volatility, a comparison of all six, and how closely each one moves with Bitcoin. Every card has an info button that says what it shows. Prices come from Kraken, with Coinbase as the fallback.\u003c/p>\n\u003cp>The portfolio half appears when you connect a wallet. It reads balances straight from public nodes on Ethereum, Base and BNB Chain, including wrapped Bitcoin on each: WBTC on Ethereum and Base, BTCB on BNB Chain. It shows holdings per chain, a value line, risk, and a cost basis you type in yourself. That is kept on your device. There is no account and no backend.\u003c/p>\n\u003cp>It is React, TypeScript and Vite, with wagmi and viem for the wallet side and Recharts for the charts. It installs as an app on a phone. The code is open source under AGPL-3.0.\u003c/p>\n\u003ch2>How it happened\u003c/h2>\n\u003cp>\u003cstrong>19 to 21 December 2025: the first version.\u003c/strong> The first commit landed at 11:57 on a Friday, titled \"new project ready\". It already held 27 files: a price chart, a wallet connection, and wrapped Bitcoin balances on three chains. I remember the charts coming first and the wallet after. That happened before the first commit, so git can't show the order.\u003c/p>\n\u003cp>Then came 47 more commits over three days, almost all of them titled \"updated\". By Friday evening the site deployed itself to GitHub Pages on every push, and had a mood gauge and more chart cards. Saturday added a swap window. On Sunday BNB and DOGE joined, which made six assets, along with a social preview image and an info tooltip. On Christmas Eve one more commit changed a single line.\u003c/p>\n\u003cp>I built the first version with what I then called ChatGPT's Codex, on a model I later called \"not as good as curent 5.6\". Git records no tool: all 49 commits are under my name, with no co-author line, and no logs from then are on this computer. So I can't count my messages or its replies. Git has 49 commits in six days, and the site was live.\u003c/p>\n\u003cp>\u003cstrong>16 July 2026: one evening with Codex.\u003c/strong> (Dated in my local time then, UTC+3; in UTC+7 it ran past midnight into 17 July.) After a gap of 204 days with no commits, I opened the project in Codex again, now on GPT-5.5. My first message: \"seems ome thigns are nto working properly... also seems it doesnt show the wallets balances for some reason\". The default public Ethereum node was failing, and one failed chain made the whole wallet look empty. Codex moved the reads onto fallback nodes and made a failure on one network show as that network's failure, not as \"no assets\".\u003c/p>\n\u003cp>Then I asked what else it would improve. It offered seven things, and I asked for all seven at once: four new chart cards and a donut for the portfolio among them. Next I asked to separate the portfolio from the market, so someone without a wallet only sees the market. Then a grid you can rearrange by dragging, which took seven more of my messages to get right, one of them sent twice: boxes overlapping, a drag handle stretched across a whole row, cards of different heights. Two commits went out at the end of the evening.\u003c/p>\n\u003cp>\u003cstrong>16 and 24 August: a domain, and a phone.\u003c/strong> The dashboard moved to its own subdomain. Eight days later I asked Claude whether it could be installed on a phone like my other sites. It couldn't, so it became an app: a manifest, an offline shell, icons. I asked for a review of the support window, and Claude found a bug that touched money. The donation QR codes for Ethereum, Base and BNB Chain were byte-identical. Each one held a bare address with no chain in it, so a wallet scanning the Base code had nothing telling it Base. They now carry the chain.\u003c/p>\n\u003cp>A few minutes after that fix went live, I sent a screenshot: \"the website is white page why\". GitHub Pages had been publishing the repository's source folder as well as the built site, on every push. Whichever finished last won. On the next push, a small layout fix, the source folder won by two seconds.\u003c/p>\n\u003cp>Then the icon. I wanted the Bitcoin mark from the dashboard's own header. Installed on my phone, it sat on two backgrounds, orange and a dark blue. The first fix cleaned the image, and my phone still drew a second background behind it. The second fix copied how Self-Aware Writing declares its icon, which installs cleanly on the same phone.\u003c/p>\n\u003cp>\u003cstrong>31 August, 22:13 to 01:49: the wallet night.\u003c/strong> I installed the app on my phone and tried to connect a wallet. It failed. That started the longest session in the project: 35 commits between 22:37 and 01:47.\u003c/p>\n\u003cp>The first fixes were small. A missing package, a MetaMask connector that couldn't load. A bigger one: the app told wagmi not to reconnect on launch, and wagmi took that as an order to throw away the saved session. So the installed app forgot the wallet every time it opened.\u003c/p>\n\u003cp>Then I asked for more than fixes. Wallet kits, I wrote, are \"alreayd edsign with allth edges\". They detect what is installed, open the wallet app, or offer an install. Claude checked the kits against our versions. RainbowKit didn't support the version of wagmi we use. Reown's AppKit did, and at 23:03 it was in.\u003c/p>\n\u003cp>By 23:10 Claude was correcting itself. It had told me the new wallet code loaded only when needed, and it didn't: the wallet libraries had pushed the first load to several megabytes. Then Claude's code around AppKit's theme hook put the page in an endless render loop. Its install detection turned out to be switched off by default. Its telemetry calls were refused by my ad blocker and filled the console. At 00:15, while Claude was still working, I wrote \"HEY WE NEED TO GET RID OF THE APPKTI OCMPLETLEY\". By 00:18 it was gone, and Claude drew the WalletConnect pairing step itself. By its own measurement, the JavaScript on first load went from 2,542 kB at the worst point to about 460 kB.\u003c/p>\n\u003cp>The design took longer than the code. Twice I asked for the connect window to look better. Twice I got better behaviour: retry, states, a list of wallets. At 01:01: \"you have been ignroign this speicfic  request i ahve t make it clear now\". The redesign landed at 01:05. At 01:23 I said good night. A minute later I reported from my phone: I had killed the app with a wallet connected, opened it again, and it was still connected.\u003c/p>\n\u003cp>\u003cstrong>1 September: the portfolio.\u003c/strong> I asked what the portfolio view was missing. Claude listed five things and I said \"do all 5\": a 24-hour change on the total, a holdings table with a per-chain breakdown, a value line, risk figures, and a cost basis you enter by hand. Most of it came from reads the app was already making and throwing away. To see it with real data, Claude pretended to connect a publicly labelled exchange wallet, one that holds every asset on every chain. \"wehre id oyu get this wallet? with so many adssets ?\" I asked. The first figures Claude reported for that view included a daily change of more than three million dollars.\u003c/p>\n\u003cp>Most of the day was layout: one row of buttons on phones, the header stacking below 900 pixels, Rabby's own icon instead of the letters \"RA\".\u003c/p>\n\u003cp>\u003cstrong>6 September: the charts.\u003c/strong> I pointed at an empty slot in the grid and asked what could fill it. Claude suggested a correlation chart, how closely each asset moves with Bitcoin, because every other card was another view of the same price line. Then I asked a simple question: were the chart types chosen for a reason? Mostly, yes. But the price charts started their axis at zero, so the line used about 5% of the chart. The fix made it 86%. Once the axis was fixed, the price bands showed a \"mask\" that was 4% white, which tinted the chart instead of hiding anything. And an audit found that both bar charts drew no bars at all. They had axes, a grid and tooltips, and nothing in between. Nobody had noticed.\u003c/p>\n\u003cp>\u003cstrong>12 September: the paperwork.\u003c/strong> A Ko-fi link beside the crypto addresses, a README, and the AGPL-3.0 licence. These came from sessions that worked across several of my projects at once, so they are in git but not in the counts below.\u003c/p>\n\u003ch2>Wrong, without an error\u003c/h2>\n\u003cp>When I drafted a LinkedIn post about this project in August, the line that mattered was that most of these problems \"don't crash the app — they just quietly produce the wrong result\". The logs are a list of them.\u003c/p>\n\u003cp>Three QR codes that looked different and were the same. A price chart that was a flat line near the top of an empty box. Bar charts with no bars. A band that was a tint. An app that forgot your wallet because of a setting that sounded harmless. Every one of these built and deployed without complaint. None of them threw an error.\u003c/p>\n\u003cp>The checks lied in smaller ways too. On 24 August Claude checked that the new icon was served, got a 200, and then noticed it was the preview server's fallback page answering, not the file. A note in Claude's memory said the production build couldn't run on this machine, so a whole session was checked without one. On the day of the merge it ran the build anyway, and it passed.\u003c/p>\n\u003cp>What found these problems was using the product. A phone showed the icon plates, the forgotten wallet and the connect errors. My own screenshots showed the empty space and the wrong colours. And the question \"are these the right charts?\" found the axis and the missing bars, where a question about whether the code compiles never would have.\u003c/p>\n\u003ch2>What we got wrong\u003c/h2>\n\u003cul>\n\u003cli>The donation QR codes for three chains were identical, with no chain in them. That bug touched money.\u003c/li>\n\u003cli>GitHub Pages was publishing the source folder and the built site at once, and on 24 August the source folder won.\u003c/li>\n\u003cli>The installed icon had two backgrounds, and the first fix didn't reach my phone.\u003c/li>\n\u003cli>The installed app forgot the wallet on every launch.\u003c/li>\n\u003cli>Wallet libraries went in and came out the same night. At the worst point the first load was 2,542 kB of JavaScript, and AppKit brought a render loop and telemetry my blocker refused.\u003c/li>\n\u003cli>Claude said the new wallet code loaded lazily. It didn't, and Claude corrected itself.\u003c/li>\n\u003cli>I asked twice for a better-looking connect window and got behaviour fixes both times.\u003c/li>\n\u003cli>A stale note said the build couldn't run, so a session was verified without one.\u003c/li>\n\u003cli>Price axes started at zero, bar charts drew nothing, and the price bands' mask was see-through.\u003c/li>\n\u003cli>The drag-to-rearrange grid from July took seven more messages to get right.\u003c/li>\n\u003c/ul>\n\u003ch2>Who did what\u003c/h2>\n\u003cp>\u003cstrong>Codex\u003c/strong>, by my account, built the first version and came back once. The 49 commits of December 2025 are the dashboard, the wallet balances and the deploy, but git credits them to me with no tool named, and those chats are not on this computer, so I can't count them or prove who wrote them. The July evening is logged: I sent 17 messages and 9 screenshots, Codex on GPT-5.5 replied 190 times and made 327 tool calls in about an hour and a half, and pushed 2 commits.\u003c/p>\n\u003cp>\u003cstrong>Claude Code\u003c/strong> did the late summer. Across the five logged sessions with messages from me I sent 139 messages and 62 screenshots, and Claude replied 1,460 times with 1,392 tool calls: 824 commands, 38 file edits and 488 actions in a browser. That was about nine and a half hours of active work, with no helper agents. Claude Opus 5 gave 1,410 of those replies. Claude Sonnet 5 gave the other 50, in a session that moved the site to its domain and drafted a LinkedIn post, which ChatGPT then rewrote. In git, Claude made 64 commits: 62 Opus 5, one Sonnet 5 and one Fable 5.1. Six of those came from sessions that worked across several of my projects at once, which the counts above leave out.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/bitcoin-analytics/numbers-1400.png Caption: Dec 2025 to Sep 2026, in bursts, counted from git and the session logs: Codex, Claude Code and me, and the commits by phase. Alt text: Bitcoin Analytics by the numbers, Dec 2025 – Sep 2026: 116 commits on 12 days, 35 of them in one night. Codex: 49 December 2025 commits by my account only (git names no tool, no logs), then one logged evening in July with 327 tool calls and 2 commits. Claude Code: 64 commits, 1,460 replies, 1,392 tool calls, about 9½ hours active. Me: 156 messages, typically 16 words, and 71 screenshots.]\u003c/strong>\u003c/p>\n\u003cp>\u003cstrong>My part\u003c/strong> was deciding and testing. 156 counted messages, 71 screenshots, and a typical message of 16 words to Claude. 30 of my messages went in while Claude was still working, and I stopped it twice. I decided the six assets, the chains, and what the portfolio should answer. I said no to a kit once it cost more than it gave. I chose to keep the mood gauge tinted by the selected coin after Claude had taken the tint out. And I tested on my phone, which is where many of August's bugs were found.\u003c/p>\n\u003cp>Treat the numbers as a record, not a benchmark. The tools worked months apart, on different jobs, and one phase left no logs at all.\u003c/p>\n\u003ch2>What it cost\u003c/h2>\n\u003cp>The dashboard costs nothing to run. GitHub Pages hosts it, the address is a subdomain of a domain I already had, and the market data and balances come from public endpoints that need no key. There is no server and no database.\u003c/p>\n\u003cp>The cost was the subscriptions: Codex in July (and, by my account, in December), Claude in August and September. None of the logged sessions for this project hit a usage limit.\u003c/p>\n\u003ch2>What I would tell someone starting\u003c/h2>\n\u003cul>\n\u003cli>\u003cstrong>An hour gets you a start.\u003c/strong> It really can be that fast. Budget for the months after it.\u003c/li>\n\u003cli>\u003cstrong>Look for what doesn't throw.\u003c/strong> Wrong axes, identical QR codes and empty charts all pass the build.\u003c/li>\n\u003cli>\u003cstrong>Test on the real device.\u003c/strong> The phone found what the desktop browser couldn't.\u003c/li>\n\u003cli>\u003cstrong>Measure before you add a kit.\u003c/strong> The wallet libraries added more than two megabytes to the first load before anyone checked.\u003c/li>\n\u003cli>\u003cstrong>Say \"design\" when you mean design.\u003c/strong> And say it again if the answer is a behaviour fix.\u003c/li>\n\u003cli>\u003cstrong>Re-try old \"can't\"s.\u003c/strong> A note that said the build was impossible was out of date.\u003c/li>\n\u003cli>\u003cstrong>Ask the plain question.\u003c/strong> \"Are these the right charts?\" found more than any test.\u003c/li>\n\u003c/ul>\n\u003ch2>In one paragraph\u003c/h2>\n\u003cp>Bitcoin Analytics started as a test of whether an AI agent could build something real from chat alone, and by my account it could: Codex had a live first version within a weekend. The work after that came in bursts, one evening in July after a 204-day gap and then four weeks from mid-August, and most of the 116 commits went into things that were wrong without saying so: a QR code with no chain in it, a wallet that was forgotten, a chart axis starting at zero, bars that never drew. The models found and fixed most of them once asked the right question. Asking, testing on a phone, and deciding when it was good enough stayed with me.\u003c/p>\n\u003cp class=\"close\">\u003cem>Try it at \u003ca href=\"https://bitcoin.edgarasneverdauskas.com\">bitcoin.edgarasneverdauskas.com\u003c/a>. The code is open source under AGPL-3.0 at \u003ca href=\"https://github.com/Evirtual/bitcoin-analytics\">github.com/Evirtual/bitcoin-analytics\u003c/a>. Built with OpenAI Codex, GPT-5.5, Claude Code, Claude Opus 5, Claude Sonnet 5 and Claude Fable 5.1.\u003c/em>\u003c/p>"}</script>
+</body>
+</html>
