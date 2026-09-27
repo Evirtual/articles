@@ -323,7 +323,16 @@ const writeIcon = (dir, key, slug = key) => {
 };
 
 /** The same lines, inline and in currentColor, for the page itself rather than the tab. */
-const markSvg = (cls = 'mark') => `<svg class="${cls}" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill="currentColor"><rect x="3" y="4.1" width="10" height="1.9" rx=".95"/><rect x="3" y="7.05" width="10" height="1.9" rx=".95"/><rect x="3" y="10" width="10" height="1.9" rx=".95"/></g><rect x="3" y="12.95" width="5.6" height="1.9" rx=".95" fill="currentColor" opacity=".55"/></svg>`;
+/*
+ * The portfolio's own mark, not a second one invented here.
+ *
+ * This site is one of Edgaras's, linked from that one and linking back, so the name in the header
+ * should carry the mark that is already his: EN with the accent square, from
+ * edgarasneverdauskas.com's LogoMark. Drawn rather than imported because it is a text mark, and
+ * the letters have to be set in whatever font THIS site loads -- an SVG copied across would ask
+ * for a font that is not here. The square keeps the accent colour, so it follows the theme.
+ */
+const markSvg = (cls = 'mark') => `<svg class="${cls}" viewBox="0 0 38 24" aria-hidden="true" focusable="false"><text x="0" y="19.3" font-family="var(--f-ui), ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="21" fill="currentColor">EN</text><rect x="30.1" y="12.8" width="6.5" height="6.5" rx="1.2" fill="var(--accent)"/></svg>`;
 writeIcon(DOCS, 'index');
 
 const fontSrc = path.join(desktop, 'selfawarewriting-article', 'src');

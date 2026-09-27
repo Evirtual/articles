@@ -163,7 +163,8 @@ a:hover { text-decoration-thickness: 2px; }
    An inline <svg> with only a viewBox and no width takes the whole column, which is what these
    did until they were given a size: four rounded bars the height of the screen. */
 .site-head .home { display: inline-flex; align-items: center; gap: 9px; }
-.mark { flex: none; width: 15px; height: 15px; color: var(--accent); }
+/* the EN wordmark: wider than it is tall, so it is sized by height and lets width follow */
+.mark { flex: none; width: auto; height: 15px; color: var(--strong); }
 .index-head .kicker { display: inline-flex; align-items: center; gap: 8px; }
 .index-head .kicker .mark { width: 13px; height: 13px; }
 .site-head .home:hover { text-decoration: underline; }
