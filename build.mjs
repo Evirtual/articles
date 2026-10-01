@@ -506,7 +506,7 @@ ${[`${SITE_URL}/`, ...built.map((a) => pageUrl(a.slug))].map((u) => `  <url><loc
 fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 // --- templates --------------------------------------------------------------------------------
-function head({ pageKey, slug = pageKey, title, description, image, imageAlt, url, canonical = url, type, fontsLink, base, counted = false }) {
+function head({ pageKey, slug = pageKey, title, description, image, imageAlt, imageW, imageH, url, canonical = url, type, fontsLink, base, counted = false }) {
   return `<!doctype html>
 <html lang="en" data-page="${pageKey}">
 <head>
@@ -524,7 +524,9 @@ function head({ pageKey, slug = pageKey, title, description, image, imageAlt, ur
 <meta property="og:title" content="${attr(title)}">
 <meta property="og:description" content="${attr(description)}">
 <meta property="og:image" content="${attr(image)}">
-<meta property="og:image:alt" content="${attr(imageAlt)}">
+<meta property="og:image:alt" content="${attr(imageAlt)}">${imageW && imageH ? `
+<meta property="og:image:width" content="${imageW}">
+<meta property="og:image:height" content="${imageH}">` : ''}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${attr(title)}">
 <meta name="twitter:description" content="${attr(description)}">
@@ -653,7 +655,7 @@ function siteFoot(back, mirror = false) {
 
 function articlePage(a, body, md, kitData, { mirror = false } = {}) {
   const url = mirror ? `${a.project}/article/` : pageUrl(a.slug);
-  return `${head({ pageKey: a.theme ?? a.slug, slug: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../', counted: !mirror })}
+  return `${head({ pageKey: a.theme ?? a.slug, slug: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, imageW: a.cover.w, imageH: a.cover.h, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../', counted: !mirror })}
 <body>
 <a class="skip" href="#story">Skip to the article</a>
 <header class="site-head">
@@ -716,7 +718,7 @@ function indexPage(list) {
       </div>
     </article>`).join('\n    ');
   const first = list[0];
-  return `${head({ pageKey: 'index', title: `Articles — ${AUTHOR}`, description: 'Build stories, counted from the logs.', image: pageUrl(first.slug) + first.cover.file, imageAlt: first.cover.alt, url: `${SITE_URL}/`, type: 'website', fontsLink: '', base: '', counted: true })}
+  return `${head({ pageKey: 'index', title: `Articles — ${AUTHOR}`, description: 'Build stories, counted from the logs.', image: pageUrl(first.slug) + first.cover.file, imageAlt: first.cover.alt, imageW: first.cover.w, imageH: first.cover.h, url: `${SITE_URL}/`, type: 'website', fontsLink: '', base: '', counted: true })}
 <body>
 <a class="skip" href="#main">Skip to the articles</a>
 <header class="site-head">
