@@ -652,29 +652,27 @@ Then the imagination does not have to be translated. It can be checked.
             <h3>LinkedIn post</h3>
             <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
           </div>
-          <p class="share-meta">2,048 characters</p>
-          <pre id="share-linkedin" tabindex="0">Twelve days ago I wanted one feature for CSS 3D Lab, my gallery of 3D models drawn with nothing but CSS: let people export a model as a picture or a video.
+          <p class="share-meta">1,603 characters</p>
+          <pre id="share-linkedin" tabindex="0">I built a free gallery of 3D models made only with CSS, and wanted to add one feature: a download button, so you can save any model as a picture or a video.
 
-It turned into a page called the Ledger. 143 models, eleven automated checks, and one rule: a result expires when the thing it judged changes. Nothing green is old, and "didn't run" never looks like "passed".
+That one feature took two weeks. Every model has to look the same everywhere: in the gallery, full screen, and in the downloaded file. With 143 models, I couldn't check that by eye.
 
-The first week I built it, with twelve AI agents rewriting every model against one written rule. The week after, the ticks lied to me, politely. Eight checks that had been passing had holes in what they were asked:
+So I built a checking page. Eleven automatic tests run on every model, and a model is only approved when all of them pass and I've looked at it myself. If a model changes, its old results stop counting until the tests run again.
 
-→ lettering that never once reached the exported file, behind a check that only asked "was the answer OK?" It was. The server had sent the home page instead.
-→ a pass recorded three days earlier, on a model nobody had touched since
-→ an export step that checked 8 models and reported 135
-→ a comparison between my laptop and itself
+The surprising part: some tests were wrong while showing green.
+→ The downloads never got the right font. The test only asked "did the server answer?" It did, with the wrong file.
+→ One test was quietly checking 8 models and reporting 135.
+→ Another compared my laptop with itself, so of course they matched.
 
-The fix was not more checks. Every result now names the files it judged, so a README edit no longer throws away a four-hour run. And the checklist's padlock, which for a week was only a drawing, now really refuses a push nobody signed off, twice over: on my machine and in the deploy.
+So I made every result say exactly what it checked, and made the site refuse to go live until everything passes and I've signed off.
 
-What no check could catch: a ring that didn't wrap its planet, a Newton's cradle swinging the wrong way, a word redrawn a pixel lower half a second after everything had stopped. I found those by looking.
+Some things no test catches: a Newton's cradle swinging the wrong way, a ring that didn't go around its planet. I found those by looking.
 
-The thing I would tell anyone building with AI: describing a picture in words costs hours and does not survive the trip. Give it the app, and the reason the app exists, and the imagination can be checked instead of translated.
+What I learned about working with AI: describing what I imagine in words is slow, and a lot gets lost. Letting the AI actually use the app, and telling it why the app exists, worked far better.
 
-Cost, honestly: about 9.6 billion tokens in the first six days, the weekly allowance at 95% by Tuesday, and a gaming laptop that played no games for two weeks.
+I worked with several Claude agents at once. If you're doing the same and can't tell what's actually finished, feel free to message me. I'm open to consulting and advisory work.
 
-If you are running agents in parallel and nobody can tell you the state, feel free to DM me. I am open to consulting and product/engineering advisory work.
-
-The whole story, mistakes included: https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
+The full story: https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
         </div>
 <div class="share">
           <div class="share-head">
