@@ -136,6 +136,7 @@ const IMAGE_LABELS = {
   'threedays-1400.png': 'Three days chart',
   'fortnight-1400.png': 'Fortnight of tokens chart',
   'eight-1400.png': 'Eight models',
+  'lab-1400.png': 'The gallery',
   'still-1400.png': 'Two shots of one still',
   'checklist-1400.png': 'The release checklist',
   'fiftyone-1400.png': '51 of 51, each time',
