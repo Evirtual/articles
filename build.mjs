@@ -430,7 +430,15 @@ for (const a of ARTICLES) {
     // eight thousand words: ## is a part, ### is a section inside it. Order matters -- ###
     // has to be tested first, since '### x'.startsWith('## ') is also true.
     if (b.startsWith('### ')) both((m) => `<h3>${inline(b.slice(4), a, m)}</h3>`);
-    else if (b.startsWith('## ')) both((m) => `<h2>${inline(b.slice(3), a, m)}</h2>`);
+    // An act opens a part: 'Act one: the title' becomes a label and a title on the page, so the
+    // three acts read as a different kind of heading from the sections. A paste (copy) keeps the
+    // plain line, since Medium and the rest cannot style it.
+    else if (b.startsWith('## ')) both((m) => {
+      const act = m !== 'copy' && /^Act ([a-z]+):\s*(.+)$/i.exec(b.slice(3));
+      // the title stands on its own under the label, so it starts with a capital
+      const title = act ? act[2].charAt(0).toUpperCase() + act[2].slice(1) : '';
+      return act ? `<h2 class="act"><span class="act__n">Act ${act[1]}</span><span class="act__t">${inline(title, a, m)}</span></h2>` : `<h2>${inline(b.slice(3), a, m)}</h2>`;
+    });
     else if (b.startsWith('![')) {
       // ![alt](file.png): any picture the folder has for this story, placed where the line is
       const file = /\(([^)]+)\)/.exec(b)?.[1];
