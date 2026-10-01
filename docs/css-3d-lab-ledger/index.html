@@ -661,10 +661,10 @@ Then the imagination does not have to be translated. It can be checked.
             <h3>LinkedIn post</h3>
             <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
           </div>
-          <p class="share-meta">2,285 characters</p>
-          <pre id="share-linkedin" tabindex="0">Last week I had several AI agents working on the same codebase at once. They were fast. Then someone asked me whether the work was done, and I realised I could not answer without taking an agent's word for it.
+          <p class="share-meta">2,684 characters</p>
+          <pre id="share-linkedin" tabindex="0">Over the last two weeks I had several AI agents working on the same codebase at once. They were fast. Then someone asked me whether the work was done, and I realised I could not answer without taking an agent's word for it.
 
-I couldn't check 135 models by hand, so I spent six days building the thing that could: a ledger. Every model has to clear it before approval, and the last check, the visual one, is mine. Eleven checks, one page that says which of them hold right now and which went stale.
+I couldn't check 143 models by hand, so I spent twelve days building something that could: a ledger. Every model has to clear it before approval, and the last check, the visual one, is mine. Eleven checks, one page that says which of them hold right now and which went stale.
 
 Four rules did most of the work.
 
@@ -676,11 +676,13 @@ Four rules did most of the work.
 
 → A check nobody has seen fail is decoration. Every check ships with a deliberately broken copy it must fail.
 
-What that caught, in six days: 35 models with text below WCAG AA on one stage; 18 that only looked right because the site's stylesheet set box-sizing for them; MP4 exports coming out dark because the video stream carried no colour description; a click that piled up elements until the page froze; a zoom feature measuring 926 element boxes per keystroke.
+What that caught, in the first six days: 35 models with text below WCAG AA on one stage; 18 that only looked right because the site's stylesheet set box-sizing for them; MP4 exports coming out dark because the video stream carried no colour description; a click that piled up elements until the page froze; a zoom feature measuring 926 element boxes per keystroke.
+
+Then the second week: eight checks that had been passing turned out to have holes in what they were asked — lettering that never arrived, a pass recorded three days earlier, a check comparing a machine to itself. The fix was not more checks. It was making every result say which files it judged, and making the push actually refuse when the page said it was blocked.
 
 What it could not catch: a planet's ring that didn't wrap the planet, a sun spilling below the horizon, a rocket that read as shrinking instead of launching. All three passed every check that existed. I found them by looking.
 
-Cost, honestly: about 9.6 billion tokens across the agents, a weekly allowance gone by Tuesday, two collisions where two agents edited one file and one of them lost, a gate that once had 57 headless browsers open and made me restart the laptop, and background waiters left running for 25 hours.
+Cost, honestly: about 9.6 billion tokens in the first six days, a weekly allowance gone by Tuesday, two collisions where two agents edited one file and one of them lost, a gate that once had 57 headless browsers open and made me restart the laptop, and background waiters left running for 25 hours.
 
 If you are running agents in parallel and the building is fast but nobody can tell you the state, feel free to DM me. I am open to consulting and product/engineering advisory work.
 
@@ -692,11 +694,11 @@ The whole process, mistakes included, is in the article below.</pre>
             <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
           </div>
           <p class="share-meta">1,107 characters</p>
-          <pre id="share-facebook" tabindex="0">I spent six days last week letting several AI assistants work on the same project at the same time 🤖
+          <pre id="share-facebook" tabindex="0">I spent the last two weeks letting several AI assistants work on the same project at the same time 🤖
 
 They were fast. The problem was that I stopped being able to tell whether anything was actually finished. Every one of them says it is done. None of them is lying, exactly — they just cannot see each other.
 
-So I built a scoreboard for them. Every one of the 135 little 3D models on my site now has a row, and eleven automatic tests have to agree before it says "approved". If I change a model, its old results go grey, because they were about the old version. If a test crashes, that never counts as a pass.
+So I built a scoreboard for them. Every one of the 143 little 3D models on my site now has a row, and eleven automatic tests have to agree before it says "approved". If I change a model, its old results go grey, because they were about the old version. If a test crashes, that never counts as a pass.
 
 It found things I never would have: text nobody could read on a light background, videos coming out slightly dark, a click that froze the page if you did it fast enough.
 
@@ -710,10 +712,10 @@ https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
             <h3>X post</h3>
             <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
           </div>
-          <p class="share-meta">309 characters</p>
-          <pre id="share-x" tabindex="0">135 CSS 3D models, and I couldn't check the technical side of each by hand. So: eleven automated checks every model must clear before approval, and the last check, the visual one, is mine.
+          <p class="share-meta">319 characters</p>
+          <pre id="share-x" tabindex="0">143 CSS 3D models, and I couldn't check the technical side of each by hand. So: eleven automated checks every model must clear before approval, and the last check, the visual one, is mine.
 
-Six days of AI agents, and what I learned about the canvas: https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
+Twelve days of AI agents, and the eight times a green tick was wrong: https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
         </div>
         </section>
       </div>
