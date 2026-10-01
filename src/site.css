@@ -262,7 +262,8 @@ details.alt p.lbl { padding: 0; background: none; margin: 10px 0 -4px; font-size
 .prose h2 { padding-top: 1.1em; border-top: 1px solid var(--line); }
 .prose h2:first-of-type { padding-top: 0; border-top: 0; }
 /* an act: more room before it, a heavier rule, and its number as a small label above the title */
-.prose h2.act { margin-top: 3em; padding-top: 1.4em; border-top: 2px solid var(--accent); }
+/* no rule of its own: the theme's accent dash and the label already open the part */
+.prose h2.act { margin-top: 3em; padding-top: 0; border-top: 0; }
 .prose h2.act .act__n { display: block; margin-bottom: 0.55em; font: 600 13px/1 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
 .prose h2.act .act__t { display: block; }
 .prose h3 {
