@@ -652,50 +652,45 @@ Then the imagination does not have to be translated. It can be checked.
             <h3>LinkedIn post</h3>
             <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
           </div>
-          <p class="share-meta">2,666 characters</p>
-          <pre id="share-linkedin" tabindex="0">Over the last two weeks I had several AI agents working on the same codebase at once. They were fast. Then someone asked me whether the work was done, and I realised I could not answer without taking an agent's word for it.
+          <p class="share-meta">2,048 characters</p>
+          <pre id="share-linkedin" tabindex="0">Twelve days ago I wanted one feature for CSS 3D Lab, my gallery of 3D models drawn with nothing but CSS: let people export a model as a picture or a video.
 
-I couldn't check 143 models by hand, so I spent twelve days building something that could: a ledger. Every model has to clear it before approval, and the last check, the visual one, is mine. Eleven checks, one page that says which of them hold right now and which went stale.
+It turned into a page called the Ledger. 143 models, eleven automated checks, and one rule: a result expires when the thing it judged changes. Nothing green is old, and "didn't run" never looks like "passed".
 
-Four rules did most of the work.
+The first week I built it, with twelve AI agents rewriting every model against one written rule. The week after, the ticks lied to me, politely. Eight checks that had been passing had holes in what they were asked:
 
-→ A count has to balance. Every model sits in exactly one stage, the parts of a stage add up to the stage, and the build records whether it balanced. "It is like an accountant" is the note I sent, and it stuck.
+→ lettering that never once reached the exported file, behind a check that only asked "was the answer OK?" It was. The server had sent the home page instead.
+→ a pass recorded three days earlier, on a model nobody had touched since
+→ an export step that checked 8 models and reported 135
+→ a comparison between my laptop and itself
 
-→ A result goes stale when what it judged changes. Not on every commit — the check fingerprints what it actually looked at, including shared code and its own rule version. A pass under rule v1 never counts as a pass under v2.
+The fix was not more checks. Every result now names the files it judged, so a README edit no longer throws away a four-hour run. And the checklist's padlock, which for a week was only a drawing, now really refuses a push nobody signed off, twice over: on my machine and in the deploy.
 
-→ "Didn't run" is never "passed". A crashed test gets its own bucket, named, and it blocks.
+What no check could catch: a ring that didn't wrap its planet, a Newton's cradle swinging the wrong way, a word redrawn a pixel lower half a second after everything had stopped. I found those by looking.
 
-→ A check nobody has seen fail is decoration. Break it on purpose, once, and watch it go red.
+The thing I would tell anyone building with AI: describing a picture in words costs hours and does not survive the trip. Give it the app, and the reason the app exists, and the imagination can be checked instead of translated.
 
-What that caught, in the first six days: text below WCAG AA on one stage or the other; models that only looked right because the site's stylesheet set box-sizing for them; MP4 exports coming out dark because the video stream carried no colour description; a click that piled up elements until the page froze; a zoom feature measuring 926 element boxes per keystroke.
+Cost, honestly: about 9.6 billion tokens in the first six days, the weekly allowance at 95% by Tuesday, and a gaming laptop that played no games for two weeks.
 
-Then the second week: eight checks that had been passing turned out to have holes in what they were asked — lettering that never arrived, a pass recorded three days earlier, a check comparing a machine to itself. The fix was not more checks. It was making every result say which files it judged, and making the push actually refuse when the page said it was blocked.
+If you are running agents in parallel and nobody can tell you the state, feel free to DM me. I am open to consulting and product/engineering advisory work.
 
-What it could not catch: a planet's ring that didn't wrap the planet, a sun spilling below the horizon, a rocket that read as shrinking instead of launching. All three passed every check that existed. I found them by looking.
-
-Cost, honestly: about 9.6 billion tokens in the first six days, a weekly allowance gone by Tuesday, two collisions where two agents edited one file and one of them lost, a gate that once had 57 headless browsers open and made me restart the laptop, and a dev server left listening for 25 hours.
-
-If you are running agents in parallel and the building is fast but nobody can tell you the state, feel free to DM me. I am open to consulting and product/engineering advisory work.
-
-The whole process, mistakes included, is in the article below.</pre>
+The whole story, mistakes included: https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
         </div>
 <div class="share">
           <div class="share-head">
             <h3>Facebook post</h3>
             <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
           </div>
-          <p class="share-meta">1,107 characters</p>
-          <pre id="share-facebook" tabindex="0">I spent the last two weeks letting several AI assistants work on the same project at the same time 🤖
+          <p class="share-meta">886 characters</p>
+          <pre id="share-facebook" tabindex="0">Two weeks ago I wanted one small feature on my site of 3D models: a download button. It turned into a scoreboard 🤖
 
-They were fast. The problem was that I stopped being able to tell whether anything was actually finished. Every one of them says it is done. None of them is lying, exactly — they just cannot see each other.
+Every one of the 143 little models now has a row, and eleven automatic tests have to agree before it says "approved". If I change a model, its old results go grey, because they were about the old version. If a test crashes, that never counts as a pass.
 
-So I built a scoreboard for them. Every one of the 143 little 3D models on my site now has a row, and eleven automatic tests have to agree before it says "approved". If I change a model, its old results go grey, because they were about the old version. If a test crashes, that never counts as a pass.
+The funny part: for a week the scoreboard was green and wrong. The font in the downloads never actually arrived, because the server politely sent the home page instead. One test was checking 8 models and calling it 135. Another was comparing my laptop to itself.
 
-It found things I never would have: text nobody could read on a light background, videos coming out slightly dark, a click that froze the page if you did it fast enough.
+And some things no test could catch: a Newton's cradle swinging the wrong way, a ring that didn't go around its planet. I found those by looking.
 
-And it missed things a person catches in a second — a planet whose ring didn't go around the planet, a rocket that looked like it was shrinking instead of taking off. I found those by looking at them.
-
-Wrote the whole thing up, including the bits that went wrong 👇
+Wrote the whole thing up, mistakes included 👇
 https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
         </div>
 <div class="share">
@@ -703,10 +698,8 @@ https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
             <h3>X post</h3>
             <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
           </div>
-          <p class="share-meta">319 characters</p>
-          <pre id="share-x" tabindex="0">143 CSS 3D models, and I couldn't check the technical side of each by hand. So: eleven automated checks every model must clear before approval, and the last check, the visual one, is mine.
-
-Twelve days of AI agents, and the eight times a green tick was wrong: https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
+          <p class="share-meta">223 characters</p>
+          <pre id="share-x" tabindex="0">A green tick is a date, not a fact. Twelve days building a page that checks 143 CSS 3D models and refuses to call one fine — and the eight times it said so anyway: https://articles.edgarasneverdauskas.com/css-3d-lab-ledger/</pre>
         </div>
         </section>
       </div>
