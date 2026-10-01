@@ -43,7 +43,7 @@ const ALL_ARTICLES = [
     // numbers-1400.png here is a contact sheet of one model before and after a fix, not the
     // numbers card that filename holds in the J.A.R.V.I.S. story.
     labels: { 'numbers-1400.png': 'Bookshelf, before and after' },
-    kicker: 'Six days · 694 commits',
+    kicker: 'Twelve days · 949 commits',
     coverInCopy: true,
     fontsLink: '',
   },
