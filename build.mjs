@@ -467,6 +467,9 @@ for (const a of ARTICLES) {
     });
     else if (b.startsWith('- ')) both((m) => `<ul>\n${b.split('\n').map((l) => `<li>${inline(l.replace(/^- /, ''), a, m)}</li>`).join('\n')}\n</ul>`);
     else if (j === rest.length - 1) both((m) => `<p class="close">${a.closeEm ? `<em>${inline(b, a, m)}</em>` : inline(b, a, m)}</p>`);
+    // a fenced code block: kept as written, never run through inline(), so its backticks do not
+    // leak into the page (the d00ed98 block in the ledger article rendered as ``<code>…</code>``)
+    else if (b.startsWith('```')) both(() => `<pre><code>${esc(b.replace(/^```[^\n]*\n?/, '').replace(/\n?```$/, ''))}</code></pre>`);
     else both((m) => `<p>${inline(b, a, m)}</p>`);
     if (a.numbersAfter?.test(b)) pushNumbers();
   });

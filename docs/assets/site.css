@@ -289,6 +289,9 @@ details.alt p.lbl { padding: 0; background: none; margin: 10px 0 -4px; font-size
 .prose li { margin: 0 0 0.55em; padding-left: 0.2em; }
 .prose li::marker { color: var(--accent); }
 .prose code { font: 0.84em var(--f-mono); background: var(--surface2); padding: 0.1em 0.35em; border-radius: 4px; }
+/* a code block: the inline code's face and ground, one block, its lines kept; long lines scroll */
+.prose pre { margin: 1.4em 0; padding: 0.9em 1.1em; background: var(--surface2); border-radius: 8px; overflow-x: auto; }
+.prose pre code { background: none; padding: 0; font-size: 0.84em; line-height: 1.6; white-space: pre; }
 /* --- a picture, opened ----------------------------------------------------------------------
    The column is about 68 characters wide, which is right for reading and too narrow for a chart or
    a diagram: on a phone or a laptop alike, the labels end up smaller than the text around them.
