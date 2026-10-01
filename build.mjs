@@ -371,7 +371,12 @@ for (const a of ARTICLES) {
   const src = readSourcePage(a);
 
   // images: every PNG the folder has for this story, with verbatim alt text and captions
-  const images = Object.keys(IMAGE_LABELS).filter((f) => fs.existsSync(path.join(a.dir, f))).map((file) => {
+  // in the order a reader meets them: the covers, then each picture where the article places it
+  // (it was the order of IMAGE_LABELS, so the kit's list did not follow the story)
+  const storyText = fs.readFileSync(path.join(a.dir, 'article.md'), 'utf8');
+  const placeOf = (f) => (f.startsWith('cover-') ? -1 : (storyText.indexOf('](' + f + ')') + 1 || Infinity));
+  const inStoryOrder = Object.keys(IMAGE_LABELS).filter((f) => fs.existsSync(path.join(a.dir, f))).sort((x, y) => placeOf(x) - placeOf(y));
+  const images = inStoryOrder.map((file) => {
     fs.copyFileSync(path.join(a.dir, file), path.join(out, file));
     let from = src.figures[file];
     // SAW and CSS 3D Lab: the LinkedIn cover is the same design as the Medium cover, and the
