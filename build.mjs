@@ -44,6 +44,8 @@ const ALL_ARTICLES = [
     kicker: 'One Reddit post · ~20,000 views',
     coverInCopy: true,
     theme: 'css-3d-lab',
+    // its last line is the conclusion, not a sign-off, so it is not set as a quiet closing note
+    closeNote: false,
     fontsLink: '',
   },
   {
@@ -540,7 +542,7 @@ for (const a of ARTICLES) {
       return `<blockquote class="say">\n${said}${who ? `\n<p class="who">${inline(who, a, m)}</p>` : ''}\n</blockquote>`;
     });
     else if (b.startsWith('- ')) both((m) => `<ul>\n${b.split('\n').map((l) => `<li>${inline(l.replace(/^- /, ''), a, m)}</li>`).join('\n')}\n</ul>`);
-    else if (j === rest.length - 1) both((m) => `<p class="close">${a.closeEm ? `<em>${inline(b, a, m)}</em>` : inline(b, a, m)}</p>`);
+    else if (j === rest.length - 1 && a.closeNote !== false) both((m) => `<p class="close">${a.closeEm ? `<em>${inline(b, a, m)}</em>` : inline(b, a, m)}</p>`);
     // a fenced code block: kept as written, never run through inline(), so its backticks do not
     // leak into the page (the d00ed98 block in the ledger article rendered as ``<code>…</code>``)
     else if (b.startsWith('```')) both(() => `<pre><code>${esc(b.replace(/^```[^\n]*\n?/, '').replace(/\n?```$/, ''))}</code></pre>`);
