@@ -192,3 +192,29 @@
     }
   });
 })();
+
+// "More build stories" scrolls sideways by swiping; these buttons do the same for a mouse. They stay
+// hidden without JavaScript, and each turns off at its end of the row.
+(() => {
+  for (const nav of document.querySelectorAll('.more')) {
+    const row = nav.querySelector('.more-row');
+    const btns = nav.querySelector('.more-btns');
+    if (!row || !btns) continue;
+    const [back, fwd] = btns.querySelectorAll('button');
+    const sync = () => {
+      const max = row.scrollWidth - row.clientWidth;
+      btns.hidden = max < 4;
+      back.disabled = row.scrollLeft < 4;
+      fwd.disabled = row.scrollLeft > max - 4;
+    };
+    btns.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-more]');
+      if (!b) return;
+      const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+      row.scrollBy({ left: Number(b.dataset.more) * row.clientWidth * 0.9, behavior: smooth ? 'smooth' : 'auto' });
+    });
+    row.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync);
+    sync();
+  }
+})();

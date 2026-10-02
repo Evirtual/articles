@@ -219,8 +219,29 @@ a:hover { text-decoration-thickness: 2px; }
 .also-end a { font-weight: 600; }
 .more { margin-top: 26px; }
 .more h2 { margin: 0 0 10px; font: 600 12px/1.2 var(--f-ui); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.more ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.more a { font: var(--h2-weight) 18px/1.3 var(--f-display); letter-spacing: var(--h-track); }
+/* "More build stories": a row of cards that scrolls sideways, the next one peeking in at the edge */
+.more-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.more-head h2 { margin: 0; }
+.more-btns { display: flex; gap: 6px; }
+.more-btns .chip { min-width: 36px; justify-content: center; }
+.more-btns .chip:disabled { opacity: 0.35; cursor: default; }
+.more-row {
+  list-style: none; margin: 0; padding: 2px 2px 14px; display: flex; gap: 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 2px; overscroll-behavior-x: contain;
+  scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+}
+.more-row > li { flex: 0 0 min(76%, 250px); scroll-snap-align: start; }
+.mini {
+  display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--strong);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-ui); overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.mini:hover { border-color: var(--accent); transform: translateY(-2px); }
+.mini:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.mini img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; background: var(--frame); border-bottom: 1px solid var(--line); }
+.mini-k { margin: 12px 14px 0; font: 600 11px/1.3 var(--f-kicker); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.mini-t { margin: 6px 14px 14px; font: var(--h2-weight) 16.5px/1.3 var(--f-display); letter-spacing: var(--h-track); text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) { .mini, .mini:hover { transition: none; transform: none; } }
 :root[data-page="jarvis"] .also-label, :root[data-page="jarvis"] .more h2 { letter-spacing: 0.16em; }
 
 /* --- figures: the images are dark by design, so they sit in a dark frame in both modes -------- */

@@ -33,10 +33,14 @@ Newer stories can live in this repository instead, under `articles/<slug>/` (the
 `node articles/css-3d-lab-reddit/cover/render.mjs` (needs Edge or Chrome).
 
 **Building without the Desktop folders.** An article whose source folder is not on this machine is
-carried over: its committed `docs/<slug>/` is kept untouched, and the home page, sitemap and lists
-read its title, cover and read time back from that page. The build names every carried article. A
-carried page is not rebuilt, so its own "More build stories" list only gains a new article once the
-build runs where its source folder exists.
+carried over: its committed `docs/<slug>/` is kept, and the home page, sitemap and lists read
+its title, cover and read time back from that page. The build names every carried article. Only its
+"More build stories" block is redrawn, so a new article shows up under every story, carried or not.
+
+**More build stories** is a sideways row of cards (thumbnail, kicker, title) under each article.
+`thumbs.mjs` makes a 600 × 300 WebP of each cover (about 13 KB, against about 500 KB for the cover)
+with headless Edge or Chrome, keeps it in `src/thumbs/` named after the cover's hash, and only makes
+it again when the cover changes. With no browser, the cards use the full covers and the build says so.
 
 **Drafts.** `draft: true` on an article builds its page at its normal URL but marks it `noindex`,
 leaves it out of the home page, the sitemap and the other stories' lists, and doesn't count its

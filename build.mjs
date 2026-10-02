@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { ensureThumbs, THUMB_W, THUMB_H } from './thumbs.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const DOCS = path.join(here, 'docs');
@@ -424,6 +425,12 @@ const TITLES = Object.fromEntries(ARTICLES.map((a) => {
   return [a.slug, plain(firstLine.slice(2))];
 }).concat(CARRIED.map((a) => [a.slug, carried[a.slug].title])));
 const built = [];
+
+// Thumbnails for the "More build stories" cards: one per listed story, from its Medium cover.
+const coverOf = (a) => path.join(isReady(a) ? a.dir : path.join(DOCS, a.slug), 'cover-medium-1500x750.png');
+const thumbs = await ensureThumbs(LISTED.map((a) => ({ slug: a.slug, file: coverOf(a) })), path.join(here, 'src', 'thumbs'));
+fs.mkdirSync(path.join(DOCS, 'assets', 'thumbs'), { recursive: true });
+for (const name of Object.values(thumbs.names)) fs.copyFileSync(path.join(here, 'src', 'thumbs', name), path.join(DOCS, 'assets', 'thumbs', name));
 for (const a of ARTICLES) {
   const out = path.join(DOCS, a.slug);
   fs.mkdirSync(out, { recursive: true });
@@ -572,6 +579,22 @@ for (const a of ARTICLES) {
   if (SYNC_PROJECTS && a.mirrorDir) syncProjectArticle(info, mirror.join('\n'), mdCopy, kitData);
 }
 
+/*
+ * A carried page's own "More build stories" is redrawn as well.
+ *
+ * Its list was written when it was last built from source, so a story added since -- on this
+ * machine or any other -- never showed up under it. The block is the build's own markup, so it is
+ * found by its marker and replaced with the same list every built page gets; the rest of the page
+ * stays as it was committed.
+ */
+for (const a of CARRIED) {
+  const file = path.join(DOCS, a.slug, 'index.html');
+  const html = fs.readFileSync(file, 'utf8');
+  const re = new RegExp(`<nav class="more" aria-labelledby="more-${a.slug}">[\\s\\S]*?</nav>`);
+  if (!re.test(html)) throw new Error(`${a.slug}: no "More build stories" block to update in docs/${a.slug}/index.html`);
+  fs.writeFileSync(file, html.replace(re, () => moreNav(a, LISTED)));
+}
+
 // the home page and the sitemap: every listed story, built here or carried, in home-page order
 const listed = LISTED.map((a) => built.find((b) => b.slug === a.slug) ?? carried[a.slug]);
 fs.writeFileSync(path.join(DOCS, 'index.html'), indexPage(listed));
@@ -663,11 +686,29 @@ function alsoEnd(a, list, mirror = false) {
   const others = list.filter((x) => x.slug !== a.slug);
   return `<footer class="story-foot">
       <p class="also-end">${copies.length ? `<span>Read it on ${copies.join(' / ')}</span>` : ''}${a.project ? `<span>${ext(a.project, 'Visit the project')}</span>` : ''}</p>
-      <nav class="more" aria-labelledby="more-${a.slug}">
-        <h2 id="more-${a.slug}">More build stories</h2>
-        <ul>${others.map((x) => `<li><a href="${mirror ? pageUrl(x.slug) : `../${x.slug}/`}">${esc(TITLES[x.slug])}</a></li>`).join('')}</ul>
-      </nav>
+      ${moreNav(a, list, mirror)}
     </footer>`;
+}
+/*
+ * The other stories as cards -- cover, kicker, title -- in a row that scrolls sideways.
+ *
+ * A list of eleven titles was easy to skip past; a picture is what makes someone open another one.
+ * Eleven cards stacked would be longer than some of the stories, so they sit in one row: on a phone
+ * you swipe and the next card peeks in from the edge, and site.js adds back and forward buttons for
+ * a mouse. The images are the small thumbnails, not the covers.
+ */
+function moreNav(a, list, mirror = false) {
+  const others = list.filter((x) => x.slug !== a.slug);
+  const base = mirror ? `${SITE_URL}/` : '../';
+  const card = (x) => {
+    const t = thumbs.names[x.slug];
+    const src = t ? `${base}assets/thumbs/${t}` : `${base}${x.slug}/cover-medium-1500x750.png`;
+    return `<li><a class="mini" data-accent="${x.slug}" href="${mirror ? pageUrl(x.slug) : `../${x.slug}/`}"><img src="${attr(src)}" alt="" width="${THUMB_W}" height="${THUMB_H}" loading="lazy" decoding="async"><span class="mini-k">${esc(x.kicker)}</span><span class="mini-t">${esc(TITLES[x.slug])}</span></a></li>`;
+  };
+  return `<nav class="more" aria-labelledby="more-${a.slug}">
+        <div class="more-head"><h2 id="more-${a.slug}">More build stories</h2><span class="more-btns" hidden><button type="button" class="chip" data-more="-1" aria-label="Previous stories">←</button><button type="button" class="chip" data-more="1" aria-label="Next stories">→</button></span></div>
+        <ul class="more-row">${others.map(card).join('')}</ul>
+      </nav>`;
 }
 
 function kit(a, md) {
@@ -831,6 +872,8 @@ for (const a of built) {
   console.log(`${a.slug}${a.draft ? ' (draft: noindex, not listed)' : ''}: ${num(a.words)} words, ${a.minutes} min, ${a.images.length} images, ${a.shares.length} posts`);
 }
 console.log(`contrast: ${contrastReport.length} text pairs checked, lowest ${minRatio.ratio}:1 (${minRatio.page} ${minRatio.mode} ${minRatio.pair})`);
+if (thumbs.made) console.log(`thumbnails: made ${thumbs.made} in src/thumbs/`);
+if (thumbs.failed.length) console.log(`thumbnails: none for ${thumbs.failed.join(', ')} (no Edge or Chrome found, or it failed), so their cards load the full cover`);
 if (CARRIED.length) console.log(`carried over from docs/ (source folder not on this machine): ${CARRIED.map((a) => a.slug).join(', ')}`);
 if (NOT_READY.length) console.log(`not built yet (package incomplete): ${NOT_READY.map((a) => a.slug).join(", ")}`);
 console.log(`wrote ${path.relative(here, DOCS)}${path.sep}`);
