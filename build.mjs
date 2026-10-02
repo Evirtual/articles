@@ -31,6 +31,20 @@ const ANALYTICS = 'https://articles.goatcounter.com/count';
 // medium / linkedin: the story's other copies. project: the thing the story is about.
 const ALL_ARTICLES = [
   {
+    slug: 'css-3d-lab-reddit',
+    // Newer stories can live inside this repository instead of depending on a Desktop sibling.
+    dir: path.join(here, 'articles', 'css-3d-lab-reddit'),
+    sourceHtml: 'source.html',
+    medium: '',
+    linkedin: '',
+    project: 'https://css3dlab.edgarasneverdauskas.com',
+    mirrorDir: null,
+    kicker: 'One Reddit post · ~20,000 views',
+    coverInCopy: true,
+    theme: 'css-3d-lab',
+    fontsLink: '',
+  },
+  {
     slug: 'css-3d-lab-ledger',
     dir: path.join(desktop, 'css-3d-lab-ledger-article'),
     sourceHtml: 'css-3d-lab-ledger-article.html',
