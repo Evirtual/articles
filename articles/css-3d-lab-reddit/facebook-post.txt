@@ -1,0 +1,10 @@
+I shared my little 3D-with-CSS project on Reddit, expecting people to talk about CSS. They ended up arguing about whether I'd made anything at all 🤖
+
+I built CSS 3D Lab together with an AI assistant, Claude, and said so openly. About 20,000 people saw the post. Some liked it, some hated it, some made jokes, and a few went digging through my code history and articles like detectives.
+
+The big question in the comments: if the AI wrote the code, who made it?
+
+Then the moderators took the post down. I don't know why, and honestly that turned out to be the least interesting part.
+
+Wrote the whole thing up 👇
+[article link]

@@ -43,9 +43,6 @@ const ALL_ARTICLES = [
     kicker: 'One Reddit post · ~20,000 views',
     coverInCopy: true,
     theme: 'css-3d-lab',
-    // Built and published at its URL for review, but noindex, and left off the home page, the
-    // sitemap and the other stories' lists. Delete this line to make it a normal article.
-    draft: true,
     fontsLink: '',
   },
   {
