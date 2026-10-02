@@ -27,6 +27,21 @@ The build reads the four article folders that sit next to this one on the Deskto
 The source folders are only read, never changed. `docs/` is deleted and written fresh on every
 build, so edit `build.mjs` and `src/`, not `docs/`.
 
+Newer stories can live in this repository instead, under `articles/<slug>/` (the same package:
+`article.md`, a source page with alt text and captions, and both covers). The first is
+`articles/css-3d-lab-reddit/`; its covers are drawn in `cover/cover.html` and rendered with
+`node articles/css-3d-lab-reddit/cover/render.mjs` (needs Edge or Chrome).
+
+**Building without the Desktop folders.** An article whose source folder is not on this machine is
+carried over: its committed `docs/<slug>/` is kept untouched, and the home page, sitemap and lists
+read its title, cover and read time back from that page. The build names every carried article. A
+carried page is not rebuilt, so its own "More build stories" list only gains a new article once the
+build runs where its source folder exists.
+
+**Drafts.** `draft: true` on an article builds its page at its normal URL but marks it `noindex`,
+leaves it out of the home page, the sitemap and the other stories' lists, and doesn't count its
+visits. Delete the line to publish it.
+
 To rebuild the hub and synchronize the matching single-article page into every project's public
 assets, run:
 

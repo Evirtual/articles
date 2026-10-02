@@ -453,6 +453,7 @@ html.has-box { overflow: hidden; }
 .card[data-accent="jarvis"] { --card-accent: var(--acc-jarvis); }
 .card[data-accent="self-aware-writing"] { --card-accent: var(--acc-saw); }
 .card[data-accent="css-3d-lab"] { --card-accent: var(--acc-css); }
+.card[data-accent="css-3d-lab-reddit"] { --card-accent: var(--acc-css); }
 .card[data-accent="css-3d-lab-ledger"] { --card-accent: var(--acc-ledger); }
 .card::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: var(--card-accent); z-index: 1; }
 .card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px -28px rgb(0 0 0 / 45%); border-color: var(--card-accent); }

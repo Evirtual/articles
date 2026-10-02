@@ -6,6 +6,7 @@
 // Links inside the site are relative; canonical, og:url, og:image and the sitemap are absolute.
 // No dependencies. The source folders are only read, never written.
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -42,6 +43,9 @@ const ALL_ARTICLES = [
     kicker: 'One Reddit post · ~20,000 views',
     coverInCopy: true,
     theme: 'css-3d-lab',
+    // Built and published at its URL for review, but noindex, and left off the home page, the
+    // sitemap and the other stories' lists. Delete this line to make it a normal article.
+    draft: true,
     fontsLink: '',
   },
   {
@@ -139,7 +143,19 @@ const ALL_ARTICLES = [
 const isReady = (a) => ['article.md', a.sourceHtml, 'cover-medium-1500x750.png', 'cover-linkedin-1920x1080.png']
   .every((f) => fs.existsSync(path.join(a.dir, f)));
 const ARTICLES = ALL_ARTICLES.filter(isReady);
-const NOT_READY = ALL_ARTICLES.filter((a) => !isReady(a));
+/*
+ * An article whose source folder is not on this machine keeps the page the last full build wrote.
+ *
+ * The Desktop siblings exist on one computer only, and docs/ is wiped on every build, so building
+ * anywhere else used to delete every story it could not read. Its committed docs/<slug>/ is copied
+ * across untouched instead, and the home page and the lists read its title, cover and read time
+ * back from that page. With every source present, nothing is carried and the build is as before.
+ */
+const CARRIED = ALL_ARTICLES.filter((a) => !isReady(a) && fs.existsSync(path.join(DOCS, a.slug, 'index.html')));
+const NOT_READY = ALL_ARTICLES.filter((a) => !isReady(a) && !CARRIED.includes(a));
+// Every story with a page on the site, in home-page order, and the ones that are listed there.
+const ON_SITE = ALL_ARTICLES.filter((a) => isReady(a) || CARRIED.includes(a));
+const LISTED = ON_SITE.filter((a) => !a.draft);
 const AUTHOR = 'Edgaras Neverdauskas';
 const IMAGE_LABELS = {
   'cover-medium-1500x750.png': 'Medium cover',
@@ -242,7 +258,7 @@ const pageUrl = (slug) => `${SITE_URL}/${slug}/`;
 
 // Links to a sibling article's Medium or LinkedIn copy point at its page on this site instead:
 // relative on the page itself, absolute in anything copied for use elsewhere.
-const ARTICLE_URLS = new Map(ARTICLES.flatMap((x) => [x.medium, x.linkedin].filter(Boolean).map((u) => [u.replace(/\/+$/, ''), x.slug])));
+const ARTICLE_URLS = new Map(ON_SITE.flatMap((x) => [x.medium, x.linkedin].filter(Boolean).map((u) => [u.replace(/\/+$/, ''), x.slug])));
 const siblingSlug = (url) => ARTICLE_URLS.get(url.replace(/[?#].*$/, '').replace(/\/+$/, ''));
 const linkFor = (url, mode) => {
   const slug = siblingSlug(url);
@@ -282,7 +298,38 @@ function readSourcePage(a) {
   return { figures };
 }
 
+// A carried article's page, read back for the home page and the lists.
+function readBuiltPage(a) {
+  const html = fs.readFileSync(path.join(DOCS, a.slug, 'index.html'), 'utf8');
+  const pick = (re, what) => {
+    const m = re.exec(html);
+    if (!m) throw new Error(`${a.slug}: cannot read the ${what} back from docs/${a.slug}/index.html`);
+    return m[1];
+  };
+  const coverUrl = pick(/<meta property="og:image" content="([^"]+)">/, 'cover');
+  return {
+    ...a,
+    title: stripTags(pick(/<h1 id="story-title">([\s\S]*?)<\/h1>/, 'title')),
+    subtitle: stripTags(pick(/<p class="dek" id="story-dek">([\s\S]*?)<\/p>/, 'subtitle')),
+    minutes: Number(pick(/<span>(\d+) min read<\/span>/, 'read time')),
+    words: Number(pick(/<span>([\d,]+) words<\/span>/, 'word count').replace(/,/g, '')),
+    cover: {
+      file: decode(coverUrl).split('/').pop(),
+      alt: decode(pick(/<meta property="og:image:alt" content="([^"]*)">/, 'cover alt text')),
+      w: Number(pick(/<meta property="og:image:width" content="(\d+)">/, 'cover width')),
+      h: Number(pick(/<meta property="og:image:height" content="(\d+)">/, 'cover height')),
+    },
+  };
+}
+const carried = Object.fromEntries(CARRIED.map((a) => [a.slug, readBuiltPage(a)]));
+
 // --- per-article build ------------------------------------------------------------------------
+// What has to survive the wipe -- carried pages and, without the fonts' source folder, the fonts --
+// is copied aside first.
+const fontSrc = path.join(desktop, 'selfawarewriting-article', 'src');
+const keep = [...CARRIED.map((a) => a.slug), ...(fs.existsSync(fontSrc) ? [] : [path.join('assets', 'fonts')])];
+const aside = keep.length ? fs.mkdtempSync(path.join(os.tmpdir(), 'articles-docs-')) : null;
+for (const p of keep) fs.cpSync(path.join(DOCS, p), path.join(aside, p), { recursive: true });
 fs.rmSync(DOCS, { recursive: true, force: true });
 fs.mkdirSync(path.join(DOCS, 'assets', 'fonts'), { recursive: true });
 fs.writeFileSync(path.join(DOCS, '.nojekyll'), '');
@@ -360,10 +407,11 @@ const writeIcon = (dir, key, slug = key) => {
 const markSvg = (cls = 'mark') => `<svg class="${cls}" viewBox="0 0 38 24" aria-hidden="true" focusable="false"><text x="0" y="19.3" font-family="var(--f-ui), ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="21" fill="currentColor">EN</text><rect x="30.1" y="12.8" width="6.5" height="6.5" rx="1.2" fill="var(--accent)"/></svg>`;
 writeIcon(DOCS, 'index');
 
-const fontSrc = path.join(desktop, 'selfawarewriting-article', 'src');
 for (const f of ['dm-sans-latin.woff2', 'eb-garamond-latin.woff2', 'eb-garamond-latin-italic.woff2']) {
-  fs.copyFileSync(path.join(fontSrc, f), path.join(DOCS, 'assets', 'fonts', f));
+  fs.copyFileSync(path.join(fs.existsSync(fontSrc) ? fontSrc : path.join(aside, 'assets', 'fonts'), f), path.join(DOCS, 'assets', 'fonts', f));
 }
+for (const a of CARRIED) fs.cpSync(path.join(aside, a.slug), path.join(DOCS, a.slug), { recursive: true });
+if (aside) fs.rmSync(aside, { recursive: true, force: true });
 const fontFaces = `@font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 100 1000; font-display: swap; src: url(fonts/dm-sans-latin.woff2) format('woff2'); }
 @font-face { font-family: 'EB Garamond'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(fonts/eb-garamond-latin.woff2) format('woff2'); }
 @font-face { font-family: 'EB Garamond'; font-style: italic; font-weight: 400 800; font-display: swap; src: url(fonts/eb-garamond-latin-italic.woff2) format('woff2'); }`;
@@ -377,7 +425,7 @@ const TITLES = Object.fromEntries(ARTICLES.map((a) => {
   const firstLine = fs.readFileSync(path.join(a.dir, 'article.md'), 'utf8').replace(/\r/g, '').split('\n', 1)[0];
   if (!firstLine.startsWith('# ')) throw new Error(`${a.slug}: article.md must start with "# Title"`);
   return [a.slug, plain(firstLine.slice(2))];
-}));
+}).concat(CARRIED.map((a) => [a.slug, carried[a.slug].title])));
 const built = [];
 for (const a of ARTICLES) {
   const out = path.join(DOCS, a.slug);
@@ -527,16 +575,18 @@ for (const a of ARTICLES) {
   if (SYNC_PROJECTS && a.mirrorDir) syncProjectArticle(info, mirror.join('\n'), mdCopy, kitData);
 }
 
-fs.writeFileSync(path.join(DOCS, 'index.html'), indexPage(built));
+// the home page and the sitemap: every listed story, built here or carried, in home-page order
+const listed = LISTED.map((a) => built.find((b) => b.slug === a.slug) ?? carried[a.slug]);
+fs.writeFileSync(path.join(DOCS, 'index.html'), indexPage(listed));
 fs.writeFileSync(path.join(DOCS, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[`${SITE_URL}/`, ...built.map((a) => pageUrl(a.slug))].map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}
+${[`${SITE_URL}/`, ...listed.map((a) => pageUrl(a.slug))].map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}
 </urlset>
 `);
 fs.writeFileSync(path.join(DOCS, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 // --- templates --------------------------------------------------------------------------------
-function head({ pageKey, slug = pageKey, title, description, image, imageAlt, imageW, imageH, url, canonical = url, type, fontsLink, base, counted = false }) {
+function head({ pageKey, slug = pageKey, title, description, image, imageAlt, imageW, imageH, url, canonical = url, type, fontsLink, base, counted = false, noindex = false }) {
   return `<!doctype html>
 <html lang="en" data-page="${pageKey}">
 <head>
@@ -544,7 +594,8 @@ function head({ pageKey, slug = pageKey, title, description, image, imageAlt, im
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${attr(description)}">
-<meta name="author" content="${AUTHOR}">
+<meta name="author" content="${AUTHOR}">${noindex ? `
+<meta name="robots" content="noindex">` : ''}
 <meta name="color-scheme" content="light dark">
 <script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="canonical" href="${attr(canonical)}">
@@ -685,7 +736,7 @@ function siteFoot(back, mirror = false) {
 
 function articlePage(a, body, md, kitData, { mirror = false } = {}) {
   const url = mirror ? `${a.project}/article/` : pageUrl(a.slug);
-  return `${head({ pageKey: a.theme ?? a.slug, slug: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, imageW: a.cover.w, imageH: a.cover.h, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../', counted: !mirror })}
+  return `${head({ pageKey: a.theme ?? a.slug, slug: a.slug, title: a.title, description: a.subtitle, image: url + a.cover.file, imageAlt: a.cover.alt, imageW: a.cover.w, imageH: a.cover.h, url, canonical: pageUrl(a.slug), type: 'article', fontsLink: a.fontsLink, base: mirror ? './' : '../', counted: !mirror && !a.draft, noindex: !!a.draft })}
 <body>
 <a class="skip" href="#story">Skip to the article</a>
 <header class="site-head">
@@ -706,7 +757,7 @@ function articlePage(a, body, md, kitData, { mirror = false } = {}) {
     <div class="prose" id="article-body">
 ${body}
     </div>
-    ${alsoEnd(a, ARTICLES, mirror)}
+    ${alsoEnd(a, LISTED, mirror)}
   </article>
 </main>
 ${siteFoot(true, mirror)}
@@ -780,8 +831,9 @@ ${siteFoot(false)}
 
 // --- report -----------------------------------------------------------------------------------
 for (const a of built) {
-  console.log(`${a.slug}: ${num(a.words)} words, ${a.minutes} min, ${a.images.length} images, ${a.shares.length} posts`);
+  console.log(`${a.slug}${a.draft ? ' (draft: noindex, not listed)' : ''}: ${num(a.words)} words, ${a.minutes} min, ${a.images.length} images, ${a.shares.length} posts`);
 }
 console.log(`contrast: ${contrastReport.length} text pairs checked, lowest ${minRatio.ratio}:1 (${minRatio.page} ${minRatio.mode} ${minRatio.pair})`);
+if (CARRIED.length) console.log(`carried over from docs/ (source folder not on this machine): ${CARRIED.map((a) => a.slug).join(', ')}`);
 if (NOT_READY.length) console.log(`not built yet (package incomplete): ${NOT_READY.map((a) => a.slug).join(", ")}`);
 console.log(`wrote ${path.relative(here, DOCS)}${path.sep}`);
