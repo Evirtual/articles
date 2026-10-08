@@ -59,6 +59,18 @@ export async function ensureThumbs(covers, dir) {
   return { names, failed, made: missing.length - failed.length };
 }
 
+/** Browser.close over the browser's own DevTools endpoint; quiet if it is already gone. */
+async function closeBrowser(port) {
+  try {
+    const { webSocketDebuggerUrl } = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json();
+    const bws = new WebSocket(webSocketDebuggerUrl);
+    await new Promise((ok, no) => { bws.onopen = ok; bws.onerror = no; });
+    const gone = new Promise((ok) => { bws.onclose = ok; setTimeout(ok, 3000); });
+    bws.send(JSON.stringify({ id: 1, method: 'Browser.close' }));
+    await gone;
+  } catch {}
+}
+
 async function render(browser, list) {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'thumbs-'));
   const profile = path.join(tmp, 'profile');
@@ -66,11 +78,11 @@ async function render(browser, list) {
   // protocol instead (Node's own WebSocket, no packages)
   const proc = spawn(browser, ['--headless=new', '--disable-gpu', '--remote-debugging-port=0', `--user-data-dir=${profile}`, 'about:blank'], { stdio: 'ignore' });
   const out = {};
-  let ws;
+  let ws, port;
   try {
     const portFile = path.join(profile, 'DevToolsActivePort');
     for (let i = 0; i < 150 && !fs.existsSync(portFile); i++) await sleep(100);
-    const port = fs.readFileSync(portFile, 'utf8').trim().split(/\s+/)[0];
+    port = fs.readFileSync(portFile, 'utf8').trim().split(/\s+/)[0];
     let page;
     for (let i = 0; i < 50 && !page; i++) {
       page = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find((t) => t.type === 'page');
@@ -102,6 +114,10 @@ async function render(browser, list) {
     console.log(`thumbnails: ${browser} failed: ${e.message}`);
   } finally {
     try { ws?.close(); } catch {}
+    // Edge on Windows hands its work to child processes, so killing the one we spawned can leave
+    // the rest running headless all day (found on 2026-10-08: two copies, half an hour of CPU).
+    // Asking the browser itself to close takes every process with it; the kill is the fallback.
+    if (port) await closeBrowser(port);
     proc.kill();
     await sleep(300);
     // the browser can still be letting go of its profile; a leftover temp folder is harmless
