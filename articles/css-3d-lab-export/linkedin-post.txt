@@ -11,7 +11,7 @@ Then the rework:
 → Each export counted at its real time, with limits that hold even if someone skips the page.
 → Every one of the 159 models drawn on the service and compared with my own computer, which found very large glows clipped into rectangles and symbols drawn in the wrong font.
 
-I'm a frontend developer, and this is exactly the backend work I'd normally avoid. Claude wrote the code. My part was asking for things and asking the awkward questions, like "what if someone bypasses the frontend?"
+I started as a frontend developer; these days I work as a product engineer, and this is exactly the backend work I used to leave to someone else. Claude wrote the code. My part was asking for things and asking the awkward questions, like "what if someone bypasses the frontend?"
 
 What's the most expensive "free" thing you've built on?
 

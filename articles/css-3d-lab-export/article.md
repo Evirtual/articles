@@ -113,12 +113,12 @@ The comparison itself had to change as well. One average over the whole picture 
 - **Ask what happens if someone skips your page.** Limits in the page are suggestions; limits in the service are rules.
 - **Test it live, on the real thing.** Every one of the last bugs looked fine until a real export hit it.
 
-## A frontend developer's backend
+## From frontend developer to product engineer
 
-I'm a frontend developer. Servers, browser quotas, billing plans and video encoding are exactly the parts of a project I'd normally avoid. Through all of this I never read the service's code, and I didn't need to.
+I started as a frontend developer. Servers, browser quotas, billing plans and video encoding were the parts of a project I'd happily leave to someone else. When AI came along I had to adapt, and my work moved from the front end to the whole product. These days my title says product engineer, and this project shows what that means for me: through all of this I never read the service's code, and I didn't need to.
 
 Claude did that part. It read Cloudflare's own pricing and limits pages before comparing plans. It measured what an export really cost on the live service instead of guessing. It explained every trade-off in plain words, so the decisions stayed mine: stay free, keep the hard stop, fix the counter. And when something broke, it traced the problem back to its cause: a counter that charged for opening a browser but not for keeping it open, a rule that refuses a second browser for 20 seconds, a font that Linux doesn't have.
 
-It isn't magic, and it isn't always right. Several bugs in this story were in code Claude had written itself a few days earlier, and some of its first explanations were wrong until a live test showed otherwise. What made it work was testing on the real thing, and questions. "Why do we need to switch?" "What if someone bypasses the frontend?" "Shouldn't it apply to all models?" I didn't need to understand how the backend worked. I needed to know what to ask about it.
+It isn't magic, and it isn't always right. Several bugs in this story were in code Claude had written itself a few days earlier, and some of its first explanations were wrong until a live test showed otherwise. What made it work was testing on the real thing, and questions. "Why do we need to switch?" "What if someone bypasses the frontend?" "Shouldn't it apply to all models?" I didn't need to understand how the backend worked. I needed to know what to ask about it, and that is the part of the job I adapted to.
 
 You can try it on any model in [CSS 3D Lab](https://css3dlab.edgarasneverdauskas.com): open one, press Image or Video, and it's drawn by the service this story is about, within its ten free minutes a day.
