@@ -1,0 +1,18 @@
+Every model in CSS 3D Lab can be saved as a picture or a video. Making that work on Cloudflare's free tier took three weeks, and the most useful thing I learned was to ask what a counter actually counts.
+
+A web page can't photograph its own 3D CSS, so a small service on Cloudflare draws each export in a real browser. The free plan gives it ten minutes of browser time a day.
+
+On 4 October two releases used all ten. The next morning the site's own counter said six of ten minutes were used, while Cloudflare had already said no. The counter charged three minutes when a browser opened and nothing when an export reused one. Cloudflare counts every second a browser is open, busy or idle.
+
+I looked at a $5 paid plan, a hosted browser service and my own small server. I stayed free, because the free plan is the one that stops instead of billing.
+
+Then the rework:
+→ One browser per export, closed when it's done. A picture went from about 3 minutes of the allowance to 2–6 seconds.
+→ Each export counted at its real time, with limits that hold even if someone skips the page.
+→ Every one of the 159 models drawn on the service and compared with my own computer, which found very large glows clipped into rectangles and symbols drawn in the wrong font.
+
+I'm a frontend developer, and this is exactly the backend work I'd normally avoid. Claude wrote the code. My part was asking for things and asking the awkward questions, like "what if someone bypasses the frontend?"
+
+What's the most expensive "free" thing you've built on?
+
+The full story: [article link]

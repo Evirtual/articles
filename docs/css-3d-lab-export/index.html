@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en" data-page="css-3d-lab">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ten free minutes a day</title>
+<meta name="description" content="Every model in CSS 3D Lab can be saved as a picture or a video. Making that work on Cloudflare's free tier took three weeks, a counter that lied, and one rule I wasn't willing to break: it must stop, not bill.">
+<meta name="author" content="Edgaras Neverdauskas">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('articles-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="canonical" href="https://articles.edgarasneverdauskas.com/css-3d-lab-export/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://articles.edgarasneverdauskas.com/css-3d-lab-export/">
+<meta property="og:site_name" content="Articles — Edgaras Neverdauskas">
+<meta property="og:title" content="Ten free minutes a day">
+<meta property="og:description" content="Every model in CSS 3D Lab can be saved as a picture or a video. Making that work on Cloudflare's free tier took three weeks, a counter that lied, and one rule I wasn't willing to break: it must stop, not bill.">
+<meta property="og:image" content="https://articles.edgarasneverdauskas.com/css-3d-lab-export/cover-medium-1500x750.png">
+<meta property="og:image:alt" content="Dark cover. On the left, the CSS 3D Lab cube, the label CSS 3D Lab · The export, the title “Ten free minutes a day” and the line “How far they go: making 3D exports work on Cloudflare’s free tier.” On the right, a card titled The same ten minutes, one free day, with two bars. Before: three wide pink blocks fill the bar, about 3 pictures a day at about 3 minutes each. After: about a hundred thin teal slices fill it, 100+ pictures a day at 2–6 seconds each. Underneath: $0, by design.">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="750">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ten free minutes a day">
+<meta name="twitter:description" content="Every model in CSS 3D Lab can be saved as a picture or a video. Making that work on Cloudflare's free tier took three weeks, a counter that lied, and one rule I wasn't willing to break: it must stop, not bill.">
+<meta name="twitter:image" content="https://articles.edgarasneverdauskas.com/css-3d-lab-export/cover-medium-1500x750.png">
+<meta name="twitter:image:alt" content="Dark cover. On the left, the CSS 3D Lab cube, the label CSS 3D Lab · The export, the title “Ten free minutes a day” and the line “How far they go: making 3D exports work on Cloudflare’s free tier.” On the right, a card titled The same ten minutes, one free day, with two bars. Before: three wide pink blocks fill the bar, about 3 pictures a day at about 3 minutes each. After: about a hundred thin teal slices fill it, 100+ pictures a day at 2–6 seconds each. Underneath: $0, by design.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js" defer></script>
+<script data-goatcounter="https://articles.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<a class="skip" href="#story">Skip to the article</a>
+<header class="site-head">
+  <nav aria-label="Site"><a class="home" href="../"><span aria-hidden="true">←</span> All articles</a></nav>
+  <button type="button" class="theme-switch" data-theme-cycle hidden aria-label="Colour theme: following the system. Click for light." title="Colour theme: following the system. Click for light.">
+      <svg class="ti ti-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <svg class="ti ti-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ti ti-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+</header>
+<main class="layout" id="main">
+  <aside class="kit" aria-label="Share kit">
+    <details class="kit-box" id="kit">
+      <summary><span class="kit-sum"><span class="kit-title">Share kit</span><span class="kit-hint">Copy the story, images and posts</span></span></summary>
+      <div class="kit-body">
+        <section aria-labelledby="kit-story">
+          <h2 id="kit-story">Story</h2>
+          <div class="btn-grid">
+            <button type="button" class="btn primary" data-copy-rich>Copy article as rich text</button>
+            <button type="button" class="btn" data-copy="story-title">Copy title</button>
+            <button type="button" class="btn" data-copy="story-dek">Copy subtitle</button>
+            <button type="button" class="btn wide" data-copy="md-source">Copy article as Markdown</button>
+          </div>
+          <p class="kit-note">Rich text keeps the headings, bold, lists and links when pasted into an editor such as Medium or LinkedIn. Images aren’t included: the copy has a bold line where each one goes, with its address, caption and alt text.</p>
+          <details class="alt"><summary>Show the Markdown</summary><textarea id="md-source" rows="8" readonly aria-label="The article as Markdown"># Ten free minutes a day
+
+*Every model in CSS 3D Lab can be saved as a picture or a video. Making that work on Cloudflare's free tier took three weeks, a counter that lied, and one rule I wasn't willing to break: it must stop, not bill.*
+
+## Why a picture needs a server
+
+You'd think saving a picture of something on a web page would be easy. It isn't. A page has no clean way to photograph itself. Screen sharing asks permission and records your whole screen at whatever size it happens to be, and the libraries that redraw a page as an image mostly can't handle 3D transforms, which is everything CSS 3D Lab is made of.
+
+We tried anyway. On 20 September the export drew each model inside your own browser, by turning the page into a picture with a built-in trick that doesn't understand 3D depth. A die came out as a blob, and a puzzle cube lost its middle layer. A cleverer version followed the same day: draw every face flat, then put the faces back together in 3D. Model after model still found new ways to come out wrong, and the next day the drawing moved to a real browser on a server, the same kind of engine that draws the model on your screen.
+
+So the export works like this. Your browser writes the model out exactly as it is: every element, every style and where each animation is at that moment. It sends that to a small service on Cloudflare, which opens it in a real browser of its own, draws the frames, and streams them back. Your browser then puts them together into the video, or saves the picture.
+
+![How an export travels](https://articles.edgarasneverdauskas.com/css-3d-lab-export/flow-1400.png)
+
+As in the rest of CSS 3D Lab, Claude wrote the code. My part was asking for things, trying them, and asking awkward questions when something didn't add up. Several of the turning points below started as one of those questions.
+
+## Ten minutes a day
+
+The service runs on Cloudflare's free plan. Its browser allowance is simple: ten minutes of browser time a day, for the whole account. When it's used up, exports stop until midnight UTC, and nothing is charged.
+
+Ten minutes sounds like plenty for a picture that takes a few seconds. It wasn't, for a reason it took a while to see.
+
+[numbers]
+10 min | free browser time a day
+3 min → 2–6 s | what one picture cost, before and after
+89 | commits on the export, on 16 days in three weeks
+159 | models compared on both browsers
+
+## Three weeks, briefly
+
+The first downloads, on 18 September, weren't live at all: videos filmed in advance and served as files. Three days later exports were drawn live on Cloudflare. The first test there was sobering: a picture took about 15 seconds, browser start included, and a 3-second video managed only 77 of its 90 frames before the service's time limit cut it off. The same day video got about three times faster, by sending each frame back as a compressed WebP instead of a PNG.
+
+Then the problems came one at a time. Long videos were cut off by a fixed three-minute limit, which killed the longest exports of 18 models, so the limit now grows with the length of the video. A second picture taken straight after a first was refused, because Cloudflare's free plan allows only one new browser every 20 seconds, so the service started keeping its browser open for three minutes after each export, ready for the next. A spending ceiling arrived too: one counter on Cloudflare that every export has to ask before it starts. And refusals learned to say which limit they had hit.
+
+## The fonts that didn't travel
+
+The strangest problem in those weeks wasn't about time at all. On 25 September a payment card exported from the live site came back with its card number, 4242, running off the edge, and a name that fits on one line wrapped onto two. On my computer it looked fine.
+
+The reason was fonts. The export sent the model but not its fonts, so each browser drew the text in whatever it had installed. My Windows laptop has Segoe UI and Consolas; Cloudflare's browser runs on Linux and has neither, and its stand-ins are wider. The fix was to make every export carry its own fonts: Inter and JetBrains Mono, packed in with the scene.
+
+![The same card in the system font, on this computer and on the service](https://articles.edgarasneverdauskas.com/css-3d-lab-export/fonts-1400.png)
+
+Two days later it turned out those fonts had never actually loaded. A build tool had quietly rewritten the path to the font files, so every one of them failed. And once that was fixed, seven chart models still asked for the computer's own default font by name instead of Inter, so the packed fonts never reached them. On the treemap, a label ran 7.8% past the edge of the exported picture.
+
+The check that should have caught it compared file sizes, not pictures, and the treemap passed with its label off the frame. That's why the comparison now looks at the pictures themselves.
+
+## Smaller surprises
+
+Some problems had nothing to do with time or fonts.
+
+Videos came out slightly darker and greener than the model on screen. The video file didn't say which colours it was written in, so players guessed, and guessed wrong. The fix was to label the colours inside every file.
+
+4K was in the dialog for a few days. The free service runs out of memory and time drawing frames that size, so first the button said "coming later", and then it went away completely. A button for something that doesn't exist is worse than no button.
+
+And a see-through video, with no background behind the model, can't be made in any browser today. The option says so plainly, instead of failing halfway through.
+
+## The day it ran out
+
+On 4 October, two releases in one day used up all ten minutes. The release checks draw a few models on the service to compare them with my own computer, and they share the same allowance as everyone else. For the rest of that day nobody could export anything.
+
+The next morning I asked how much was actually left. To answer that, the service got a small page that reports its own count. It said six of ten minutes were used, while Cloudflare had already refused.
+
+The counter was wrong, and the reason was the three-minute keep-alive. The service charged three minutes when it opened a browser, and nothing when an export reused one that was already open. But Cloudflare counts every second a browser is open, busy or idle.
+
+## Pay, rent, or stay free
+
+The obvious fix was money. Cloudflare's paid plan is $5 a month and includes ten hours of browser time. I also looked at Browserless, a hosted-browser service (about $25 a month for its first paid plan, billed yearly), and at renting my own small server on DigitalOcean (roughly $6–12 a month for one with enough memory for a browser).
+
+What decided it was a question about the paid plan: what happens if something goes wrong? Cloudflare's paid plan has no hard cap: past what it includes, it bills. The service's own ceiling would cover browser time, but not everything, like a flood of requests, and a bill that is probably $5 isn't the same as one that can't be more. Even a fixed-price server can charge for extra traffic. The free plan is the one that simply stops.
+
+I wanted a service where I know it will stop when the limit is reached. And honestly, almost nobody uses exports yet. So: stay free, and make the ten minutes go much further.
+
+## What if someone skips the page?
+
+Before changing anything I asked one more question: the page limits a video to 30 seconds, but what if someone sends a request without the page?
+
+The service did check that itself: anything over 900 frames, or over the size limits, was refused before a browser opened. But the question exposed a worse hole. The largest export it accepts can keep a browser busy for about sixteen minutes, and an export that reused an open browser cost the counter nothing. On the free plan Cloudflare's own limit would stop it. On a paid plan it would have been a bill the service never saw.
+
+## The rework
+
+Three changes, all on the free plan:
+
+- **One browser per export, closed when it's done.** No keep-alive, so no idle minutes. A picture went from costing about three minutes to 2–6 seconds, so the same ten minutes now hold more than a hundred pictures instead of about three.
+- **Count the real time.** Before an export starts, the service reserves its worst case; when the browser closes, it records what it actually took.
+- **Limits that hold whatever sends the request:** a monthly ceiling, at most three exports at once, the day's total, and a share for each visitor so one person can't use up everyone's day.
+
+Testing it live found three more bugs. A second export straight after a first was refused with "out of exports for today": Cloudflare's 20-second rule again, reported as if the day were over. Exports now queue about twenty seconds apart instead. The per-visitor share counted running exports at their worst case, so two pictures in flight used up a visitor's three minutes after 26 real seconds. And the timer started after the browser opened, missing the opening itself.
+
+Each of those took one live test to find and one change to fix. The release checks now carry a private key so they don't use a visitor's share, and they print what's left before they spend any of it.
+
+## Two browsers, one picture
+
+With exports cheap, there was room for something that had never fit before: drawing every model on the service and comparing it with the same picture drawn on my computer. All 159 of them.
+
+Most matched. The few that differed taught me two things about drawing in someone else's browser.
+
+Soft glows come out weaker there, and very large ones get cut off in a rectangle instead of fading out:
+
+![A large glow fading out smoothly here, and cut off in a rectangle on the service](https://articles.edgarasneverdauskas.com/css-3d-lab-export/glow-1400.png)
+
+And, as the last part of the font story, a few characters, ★, ♠, →, ▾ and ⅓, aren't in the two fonts the export carries, so each browser drew them in a substitute font of its own. Eight models used them.
+
+![The coin's typed star, drawn here and on the service](https://articles.edgarasneverdauskas.com/css-3d-lab-export/star-1400.png)
+
+They're now drawn as shapes, and a check asks the fonts about every character every model shows, so it can't happen again. That one also fixed something nobody had noticed: visitors' own devices were each drawing their own stars too.
+
+The comparison itself had to change as well. One average over the whole picture couldn't tell a harmless glow from a missing part. It now judges the fine detail and the soft areas separately, by the worst small square in the picture, and I tested it on pictures damaged on purpose to make sure it still catches real breakage.
+
+## What I'd tell someone trying this
+
+- **Ask what your counter actually counts.** Mine counted when a browser opened. The bill counted every second it was open.
+- **A free plan that stops is a feature.** When nobody is depending on it yet, a hard stop is worth more than headroom.
+- **Ask what happens if someone skips your page.** Limits in the page are suggestions; limits in the service are rules.
+- **Test it live, on the real thing.** Every one of the last bugs looked fine until a real export hit it.
+
+## A frontend developer's backend
+
+I'm a frontend developer. Servers, browser quotas, billing plans and video encoding are exactly the parts of a project I'd normally avoid. Through all of this I never read the service's code, and I didn't need to.
+
+Claude did that part. It read Cloudflare's own pricing and limits pages before comparing plans. It measured what an export really cost on the live service instead of guessing. It explained every trade-off in plain words, so the decisions stayed mine: stay free, keep the hard stop, fix the counter. And when something broke, it traced the problem back to its cause: a counter that charged for opening a browser but not for keeping it open, a rule that refuses a second browser for 20 seconds, a font that Linux doesn't have.
+
+It isn't magic, and it isn't always right. Several bugs in this story were in code Claude had written itself a few days earlier, and some of its first explanations were wrong until a live test showed otherwise. What made it work was testing on the real thing, and questions. "Why do we need to switch?" "What if someone bypasses the frontend?" "Shouldn't it apply to all models?" I didn't need to understand how the backend worked. I needed to know what to ask about it.
+
+You can try it on any model in [CSS 3D Lab](https://css3dlab.edgarasneverdauskas.com): open one, press Image or Video, and it's drawn by the service this story is about, within its ten free minutes a day.</textarea></details>
+        </section>
+        <section aria-labelledby="kit-images">
+          <h2 id="kit-images">Images (6)</h2>
+          <ul class="img-list">
+        <li class="img-row">
+          <img src="cover-medium-1500x750.png" alt="" width="1500" height="750" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open medium cover full size">
+          <p class="img-name">Medium cover<span>cover-medium-1500x750.png · 1500&nbsp;×&nbsp;750</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+              <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-medium">The same ten free minutes a day: about three pictures before the rework, more than a hundred after. Image: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 486 characters</p><p id="k-alt-cover-medium">Dark cover. On the left, the CSS 3D Lab cube, the label CSS 3D Lab · The export, the title “Ten free minutes a day” and the line “How far they go: making 3D exports work on Cloudflare’s free tier.” On the right, a card titled The same ten minutes, one free day, with two bars. Before: three wide pink blocks fill the bar, about 3 pictures a day at about 3 minutes each. After: about a hundred thin teal slices fill it, 100+ pictures a day at 2–6 seconds each. Underneath: $0, by design.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="cover-linkedin-1920x1080.png" alt="" width="1920" height="1080" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open linkedin cover full size">
+          <p class="img-name">LinkedIn cover<span>cover-linkedin-1920x1080.png · 1920&nbsp;×&nbsp;1080</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-cover-linkedin" aria-label="Copy caption, linkedin cover">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-cover-linkedin" aria-label="Copy alt text, linkedin cover">Copy alt</button>
+              <a class="chip" href="cover-linkedin-1920x1080.png" download aria-label="Download image, linkedin cover (cover-linkedin-1920x1080.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-cover-linkedin">The same ten free minutes a day: about three pictures before the rework, more than a hundred after. Image: Edgaras Neverdauskas.</p>
+              <p class="lbl">Alt text · 486 characters</p><p id="k-alt-cover-linkedin">Dark cover. On the left, the CSS 3D Lab cube, the label CSS 3D Lab · The export, the title “Ten free minutes a day” and the line “How far they go: making 3D exports work on Cloudflare’s free tier.” On the right, a card titled The same ten minutes, one free day, with two bars. Before: three wide pink blocks fill the bar, about 3 pictures a day at about 3 minutes each. After: about a hundred thin teal slices fill it, 100+ pictures a day at 2–6 seconds each. Underneath: $0, by design.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="flow-1400.png" alt="" width="1400" height="560" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open how an export travels full size">
+          <p class="img-name">How an export travels<span>flow-1400.png · 1400&nbsp;×&nbsp;560</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-flow" aria-label="Copy caption, how an export travels">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-flow" aria-label="Copy alt text, how an export travels">Copy alt</button>
+              <a class="chip" href="flow-1400.png" download aria-label="Download image, how an export travels (flow-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-flow">An export goes out as a description of the model and comes back as frames; only step 3 uses the free allowance.</p>
+              <p class="lbl">Alt text · 460 characters</p><p id="k-alt-flow">A diagram in four steps. 1, your browser writes the model out: every element, every style, where each animation is. 2, the service, a Cloudflare Worker, checks the budget. 3, a real browser on Cloudflare moves each animation to its moment and draws every frame. 4, your browser puts the frames together into MP4 or WebM, or saves PNG or JPEG. Underneath: free plan, ten minutes of browser time a day, then exports stop until midnight UTC and nothing is billed.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="fonts-1400.png" alt="" width="1400" height="610" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open what the export embedded full size">
+          <p class="img-name">What the export embedded<span>fonts-1400.png · 1400&nbsp;×&nbsp;610</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-fonts" aria-label="Copy caption, what the export embedded">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-fonts" aria-label="Copy alt text, what the export embedded">Copy alt</button>
+              <a class="chip" href="fonts-1400.png" download aria-label="Download image, what the export embedded (fonts-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-fonts">Recreated on 8 October: the same card with its text in the system font, as it was before the fix, drawn by this computer and by the export service from one scene.</p>
+              <p class="lbl">Alt text · 394 characters</p><p id="k-alt-fonts">Two copies of the same purple payment card, numbered with dots and 4242, for Alex Morgan, expiring 09/29, with the text in the system font. On the left, labelled Your computer, where the system font is Segoe UI, the name ALEX MORGAN fits on one line. On the right, labelled The export service, a wider Linux font: the number spreads further and the name wraps onto two lines, ALEX above MORGAN.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="glow-1400.png" alt="" width="1400" height="640" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open a large glow, here and on the service full size">
+          <p class="img-name">A large glow, here and on the service<span>glow-1400.png · 1400&nbsp;×&nbsp;640</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-glow" aria-label="Copy caption, a large glow, here and on the service">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-glow" aria-label="Copy alt text, a large glow, here and on the service">Copy alt</button>
+              <a class="chip" href="glow-1400.png" download aria-label="Download image, a large glow, here and on the service (glow-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-glow">A 256 px glow drawn in both places and brightened three times: smooth here, cut off in a rectangle on the service.</p>
+              <p class="lbl">Alt text · 302 characters</p><p id="k-alt-glow">Two panels of the same test picture, brightened: soft cyan glows around small squares. On the left, labelled This computer, the largest glow fades out smoothly. On the right, labelled The export service, the same glow stops at a straight vertical and a straight horizontal edge, cut off in a rectangle.</p>
+            </details>
+          </div>
+        </li>
+<li class="img-row">
+          <img src="star-1400.png" alt="" width="1400" height="470" loading="lazy" decoding="async" tabindex="0" role="button" aria-label="Open the typed star, here and on the service full size">
+          <p class="img-name">The typed star, here and on the service<span>star-1400.png · 1400&nbsp;×&nbsp;470</span></p>
+          <div class="img-more">
+            <div class="fig-tools">
+              <button type="button" class="chip" data-copy="k-cap-star" aria-label="Copy caption, the typed star, here and on the service">Copy caption</button>
+              <button type="button" class="chip" data-copy="k-alt-star" aria-label="Copy alt text, the typed star, here and on the service">Copy alt</button>
+              <a class="chip" href="star-1400.png" download aria-label="Download image, the typed star, here and on the service (star-1400.png)">Download</a>
+            </div>
+            <details class="alt"><summary>Caption and alt text</summary>
+              <p class="lbl">Caption</p><p id="k-cap-star">The coin before its star was drawn as a shape, from the comparison on 6 October: the same typed ★, in two different fonts.</p>
+              <p class="lbl">Alt text · 375 characters</p><p id="k-alt-star">Three panels. Left, labelled Your computer: the dark star on the gold coin, drawn from a Windows symbol font. Middle, labelled The export service: the same star drawn from a Linux symbol font, slightly smaller with different points. Right, the two laid over each other: white where they agree, teal where only this computer's star reaches, pink where only the service's does.</p>
+            </details>
+          </div>
+        </li>
+          </ul>
+        </section>
+        <section aria-labelledby="kit-share">
+          <h2 id="kit-share">Posts (3)</h2>
+        <div class="share">
+          <div class="share-head">
+            <h3>LinkedIn post</h3>
+            <button type="button" class="chip" data-copy="share-linkedin" aria-label="Copy LinkedIn post">Copy</button>
+          </div>
+          <p class="share-meta">1,604 characters</p>
+          <pre id="share-linkedin" tabindex="0">Every model in CSS 3D Lab can be saved as a picture or a video. Making that work on Cloudflare's free tier took three weeks, and the most useful thing I learned was to ask what a counter actually counts.
+
+A web page can't photograph its own 3D CSS, so a small service on Cloudflare draws each export in a real browser. The free plan gives it ten minutes of browser time a day.
+
+On 4 October two releases used all ten. The next morning the site's own counter said six of ten minutes were used, while Cloudflare had already said no. The counter charged three minutes when a browser opened and nothing when an export reused one. Cloudflare counts every second a browser is open, busy or idle.
+
+I looked at a $5 paid plan, a hosted browser service and my own small server. I stayed free, because the free plan is the one that stops instead of billing.
+
+Then the rework:
+→ One browser per export, closed when it's done. A picture went from about 3 minutes of the allowance to 2–6 seconds.
+→ Each export counted at its real time, with limits that hold even if someone skips the page.
+→ Every one of the 159 models drawn on the service and compared with my own computer, which found very large glows clipped into rectangles and symbols drawn in the wrong font.
+
+I'm a frontend developer, and this is exactly the backend work I'd normally avoid. Claude wrote the code. My part was asking for things and asking the awkward questions, like "what if someone bypasses the frontend?"
+
+What's the most expensive "free" thing you've built on?
+
+The full story: https://articles.edgarasneverdauskas.com/css-3d-lab-export/</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>Facebook post</h3>
+            <button type="button" class="chip" data-copy="share-facebook" aria-label="Copy Facebook post">Copy</button>
+          </div>
+          <p class="share-meta">705 characters</p>
+          <pre id="share-facebook" tabindex="0">My CSS 3D Lab lets you save any of its 3D models as a picture or a video. Behind that button is a little server that gets just ten free minutes a day ⏱️
+
+One morning it ran out, and its own counter swore only six minutes were used. Turns out it was counting the wrong thing.
+
+I could have paid for more. I chose to keep it free, because free simply stops when the time is up, while paid plans keep going and send a bill.
+
+So we made it thriftier: a picture now uses a few seconds instead of three minutes. Along the way we found very large glows being chopped into rectangles and stars drawn in the wrong font.
+
+The whole story, in plain words 👇
+https://articles.edgarasneverdauskas.com/css-3d-lab-export/</pre>
+        </div>
+<div class="share">
+          <div class="share-head">
+            <h3>X post</h3>
+            <button type="button" class="chip" data-copy="share-x" aria-label="Copy X post">Copy</button>
+          </div>
+          <p class="share-meta">252 characters</p>
+          <pre id="share-x" tabindex="0">Ten free minutes of browser time a day: how CSS 3D Lab's picture and video exports run on Cloudflare's free tier, the counter that lied, and why I chose a limit that stops over one that bills: https://articles.edgarasneverdauskas.com/css-3d-lab-export/</pre>
+        </div>
+        </section>
+      </div>
+    </details>
+  </aside>
+  <article class="story" id="story" aria-labelledby="story-title" tabindex="-1">
+    <header class="story-head">
+      <p class="kicker">Three weeks · 10 free minutes a day</p>
+      <h1 id="story-title">Ten free minutes a day</h1>
+      <p class="dek" id="story-dek">Every model in CSS 3D Lab can be saved as a picture or a video. Making that work on Cloudflare's free tier took three weeks, a counter that lied, and one rule I wasn't willing to break: it must stop, not bill.</p>
+      <p class="byline"><span>Edgaras Neverdauskas</span><span>9 min read</span><span>2,180 words</span></p>
+      <nav class="also" aria-label="This story elsewhere">
+        
+        <p><span class="also-label">Project</span><a href="https://css3dlab.edgarasneverdauskas.com" rel="noopener">css3dlab.edgarasneverdauskas.com<span aria-hidden="true"> ↗</span></a></p>
+      </nav>
+    </header>
+    <figure class="fig fig-cover" id="fig-cover-medium">
+  <div class="frame"><img src="cover-medium-1500x750.png" alt="Dark cover. On the left, the CSS 3D Lab cube, the label CSS 3D Lab · The export, the title “Ten free minutes a day” and the line “How far they go: making 3D exports work on Cloudflare’s free tier.” On the right, a card titled The same ten minutes, one free day, with two bars. Before: three wide pink blocks fill the bar, about 3 pictures a day at about 3 minutes each. After: about a hundred thin teal slices fill it, 100+ pictures a day at 2–6 seconds each. Underneath: $0, by design." width="1500" height="750" decoding="async" tabindex="0" role="button" aria-label="Open this picture" fetchpriority="high"></div>
+  <figcaption>
+    <p class="cap" id="cap-cover-medium">The same ten free minutes a day: about three pictures before the rework, more than a hundred after. Image: Edgaras Neverdauskas.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-cover-medium" aria-label="Copy caption, medium cover">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-cover-medium" aria-label="Copy alt text, medium cover">Copy alt</button>
+      <a class="chip" href="cover-medium-1500x750.png" download aria-label="Download image, medium cover (cover-medium-1500x750.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 486 characters</span></summary><p id="alt-cover-medium">Dark cover. On the left, the CSS 3D Lab cube, the label CSS 3D Lab · The export, the title “Ten free minutes a day” and the line “How far they go: making 3D exports work on Cloudflare’s free tier.” On the right, a card titled The same ten minutes, one free day, with two bars. Before: three wide pink blocks fill the bar, about 3 pictures a day at about 3 minutes each. After: about a hundred thin teal slices fill it, 100+ pictures a day at 2–6 seconds each. Underneath: $0, by design.</p></details>
+  </figcaption>
+</figure>
+    <div class="prose" id="article-body">
+<h2>Why a picture needs a server</h2>
+<p>You'd think saving a picture of something on a web page would be easy. It isn't. A page has no clean way to photograph itself. Screen sharing asks permission and records your whole screen at whatever size it happens to be, and the libraries that redraw a page as an image mostly can't handle 3D transforms, which is everything CSS 3D Lab is made of.</p>
+<p>We tried anyway. On 20 September the export drew each model inside your own browser, by turning the page into a picture with a built-in trick that doesn't understand 3D depth. A die came out as a blob, and a puzzle cube lost its middle layer. A cleverer version followed the same day: draw every face flat, then put the faces back together in 3D. Model after model still found new ways to come out wrong, and the next day the drawing moved to a real browser on a server, the same kind of engine that draws the model on your screen.</p>
+<p>So the export works like this. Your browser writes the model out exactly as it is: every element, every style and where each animation is at that moment. It sends that to a small service on Cloudflare, which opens it in a real browser of its own, draws the frames, and streams them back. Your browser then puts them together into the video, or saves the picture.</p>
+<figure class="fig" id="fig-flow">
+  <div class="frame"><img src="flow-1400.png" alt="A diagram in four steps. 1, your browser writes the model out: every element, every style, where each animation is. 2, the service, a Cloudflare Worker, checks the budget. 3, a real browser on Cloudflare moves each animation to its moment and draws every frame. 4, your browser puts the frames together into MP4 or WebM, or saves PNG or JPEG. Underneath: free plan, ten minutes of browser time a day, then exports stop until midnight UTC and nothing is billed." width="1400" height="560" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-flow">An export goes out as a description of the model and comes back as frames; only step 3 uses the free allowance.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-flow" aria-label="Copy caption, how an export travels">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-flow" aria-label="Copy alt text, how an export travels">Copy alt</button>
+      <a class="chip" href="flow-1400.png" download aria-label="Download image, how an export travels (flow-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 460 characters</span></summary><p id="alt-flow">A diagram in four steps. 1, your browser writes the model out: every element, every style, where each animation is. 2, the service, a Cloudflare Worker, checks the budget. 3, a real browser on Cloudflare moves each animation to its moment and draws every frame. 4, your browser puts the frames together into MP4 or WebM, or saves PNG or JPEG. Underneath: free plan, ten minutes of browser time a day, then exports stop until midnight UTC and nothing is billed.</p></details>
+  </figcaption>
+</figure>
+<p>As in the rest of CSS 3D Lab, Claude wrote the code. My part was asking for things, trying them, and asking awkward questions when something didn't add up. Several of the turning points below started as one of those questions.</p>
+<h2>Ten minutes a day</h2>
+<p>The service runs on Cloudflare's free plan. Its browser allowance is simple: ten minutes of browser time a day, for the whole account. When it's used up, exports stop until midnight UTC, and nothing is charged.</p>
+<p>Ten minutes sounds like plenty for a picture that takes a few seconds. It wasn't, for a reason it took a while to see.</p>
+<ul class="figs">
+<li><b>10 min</b><span>free browser time a day</span></li>
+<li><b>3 min → 2–6 s</b><span>what one picture cost, before and after</span></li>
+<li><b>89</b><span>commits on the export, on 16 days in three weeks</span></li>
+<li><b>159</b><span>models compared on both browsers</span></li>
+</ul>
+<h2>Three weeks, briefly</h2>
+<p>The first downloads, on 18 September, weren't live at all: videos filmed in advance and served as files. Three days later exports were drawn live on Cloudflare. The first test there was sobering: a picture took about 15 seconds, browser start included, and a 3-second video managed only 77 of its 90 frames before the service's time limit cut it off. The same day video got about three times faster, by sending each frame back as a compressed WebP instead of a PNG.</p>
+<p>Then the problems came one at a time. Long videos were cut off by a fixed three-minute limit, which killed the longest exports of 18 models, so the limit now grows with the length of the video. A second picture taken straight after a first was refused, because Cloudflare's free plan allows only one new browser every 20 seconds, so the service started keeping its browser open for three minutes after each export, ready for the next. A spending ceiling arrived too: one counter on Cloudflare that every export has to ask before it starts. And refusals learned to say which limit they had hit.</p>
+<h2>The fonts that didn't travel</h2>
+<p>The strangest problem in those weeks wasn't about time at all. On 25 September a payment card exported from the live site came back with its card number, 4242, running off the edge, and a name that fits on one line wrapped onto two. On my computer it looked fine.</p>
+<p>The reason was fonts. The export sent the model but not its fonts, so each browser drew the text in whatever it had installed. My Windows laptop has Segoe UI and Consolas; Cloudflare's browser runs on Linux and has neither, and its stand-ins are wider. The fix was to make every export carry its own fonts: Inter and JetBrains Mono, packed in with the scene.</p>
+<figure class="fig" id="fig-fonts">
+  <div class="frame"><img src="fonts-1400.png" alt="Two copies of the same purple payment card, numbered with dots and 4242, for Alex Morgan, expiring 09/29, with the text in the system font. On the left, labelled Your computer, where the system font is Segoe UI, the name ALEX MORGAN fits on one line. On the right, labelled The export service, a wider Linux font: the number spreads further and the name wraps onto two lines, ALEX above MORGAN." width="1400" height="610" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-fonts">Recreated on 8 October: the same card with its text in the system font, as it was before the fix, drawn by this computer and by the export service from one scene.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-fonts" aria-label="Copy caption, what the export embedded">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-fonts" aria-label="Copy alt text, what the export embedded">Copy alt</button>
+      <a class="chip" href="fonts-1400.png" download aria-label="Download image, what the export embedded (fonts-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 394 characters</span></summary><p id="alt-fonts">Two copies of the same purple payment card, numbered with dots and 4242, for Alex Morgan, expiring 09/29, with the text in the system font. On the left, labelled Your computer, where the system font is Segoe UI, the name ALEX MORGAN fits on one line. On the right, labelled The export service, a wider Linux font: the number spreads further and the name wraps onto two lines, ALEX above MORGAN.</p></details>
+  </figcaption>
+</figure>
+<p>Two days later it turned out those fonts had never actually loaded. A build tool had quietly rewritten the path to the font files, so every one of them failed. And once that was fixed, seven chart models still asked for the computer's own default font by name instead of Inter, so the packed fonts never reached them. On the treemap, a label ran 7.8% past the edge of the exported picture.</p>
+<p>The check that should have caught it compared file sizes, not pictures, and the treemap passed with its label off the frame. That's why the comparison now looks at the pictures themselves.</p>
+<h2>Smaller surprises</h2>
+<p>Some problems had nothing to do with time or fonts.</p>
+<p>Videos came out slightly darker and greener than the model on screen. The video file didn't say which colours it was written in, so players guessed, and guessed wrong. The fix was to label the colours inside every file.</p>
+<p>4K was in the dialog for a few days. The free service runs out of memory and time drawing frames that size, so first the button said "coming later", and then it went away completely. A button for something that doesn't exist is worse than no button.</p>
+<p>And a see-through video, with no background behind the model, can't be made in any browser today. The option says so plainly, instead of failing halfway through.</p>
+<h2>The day it ran out</h2>
+<p>On 4 October, two releases in one day used up all ten minutes. The release checks draw a few models on the service to compare them with my own computer, and they share the same allowance as everyone else. For the rest of that day nobody could export anything.</p>
+<p>The next morning I asked how much was actually left. To answer that, the service got a small page that reports its own count. It said six of ten minutes were used, while Cloudflare had already refused.</p>
+<p>The counter was wrong, and the reason was the three-minute keep-alive. The service charged three minutes when it opened a browser, and nothing when an export reused one that was already open. But Cloudflare counts every second a browser is open, busy or idle.</p>
+<h2>Pay, rent, or stay free</h2>
+<p>The obvious fix was money. Cloudflare's paid plan is $5 a month and includes ten hours of browser time. I also looked at Browserless, a hosted-browser service (about $25 a month for its first paid plan, billed yearly), and at renting my own small server on DigitalOcean (roughly $6–12 a month for one with enough memory for a browser).</p>
+<p>What decided it was a question about the paid plan: what happens if something goes wrong? Cloudflare's paid plan has no hard cap: past what it includes, it bills. The service's own ceiling would cover browser time, but not everything, like a flood of requests, and a bill that is probably $5 isn't the same as one that can't be more. Even a fixed-price server can charge for extra traffic. The free plan is the one that simply stops.</p>
+<p>I wanted a service where I know it will stop when the limit is reached. And honestly, almost nobody uses exports yet. So: stay free, and make the ten minutes go much further.</p>
+<h2>What if someone skips the page?</h2>
+<p>Before changing anything I asked one more question: the page limits a video to 30 seconds, but what if someone sends a request without the page?</p>
+<p>The service did check that itself: anything over 900 frames, or over the size limits, was refused before a browser opened. But the question exposed a worse hole. The largest export it accepts can keep a browser busy for about sixteen minutes, and an export that reused an open browser cost the counter nothing. On the free plan Cloudflare's own limit would stop it. On a paid plan it would have been a bill the service never saw.</p>
+<h2>The rework</h2>
+<p>Three changes, all on the free plan:</p>
+<ul>
+<li><strong>One browser per export, closed when it's done.</strong> No keep-alive, so no idle minutes. A picture went from costing about three minutes to 2–6 seconds, so the same ten minutes now hold more than a hundred pictures instead of about three.</li>
+<li><strong>Count the real time.</strong> Before an export starts, the service reserves its worst case; when the browser closes, it records what it actually took.</li>
+<li><strong>Limits that hold whatever sends the request:</strong> a monthly ceiling, at most three exports at once, the day's total, and a share for each visitor so one person can't use up everyone's day.</li>
+</ul>
+<p>Testing it live found three more bugs. A second export straight after a first was refused with "out of exports for today": Cloudflare's 20-second rule again, reported as if the day were over. Exports now queue about twenty seconds apart instead. The per-visitor share counted running exports at their worst case, so two pictures in flight used up a visitor's three minutes after 26 real seconds. And the timer started after the browser opened, missing the opening itself.</p>
+<p>Each of those took one live test to find and one change to fix. The release checks now carry a private key so they don't use a visitor's share, and they print what's left before they spend any of it.</p>
+<h2>Two browsers, one picture</h2>
+<p>With exports cheap, there was room for something that had never fit before: drawing every model on the service and comparing it with the same picture drawn on my computer. All 159 of them.</p>
+<p>Most matched. The few that differed taught me two things about drawing in someone else's browser.</p>
+<p>Soft glows come out weaker there, and very large ones get cut off in a rectangle instead of fading out:</p>
+<figure class="fig" id="fig-glow">
+  <div class="frame"><img src="glow-1400.png" alt="Two panels of the same test picture, brightened: soft cyan glows around small squares. On the left, labelled This computer, the largest glow fades out smoothly. On the right, labelled The export service, the same glow stops at a straight vertical and a straight horizontal edge, cut off in a rectangle." width="1400" height="640" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-glow">A 256 px glow drawn in both places and brightened three times: smooth here, cut off in a rectangle on the service.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-glow" aria-label="Copy caption, a large glow, here and on the service">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-glow" aria-label="Copy alt text, a large glow, here and on the service">Copy alt</button>
+      <a class="chip" href="glow-1400.png" download aria-label="Download image, a large glow, here and on the service (glow-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 302 characters</span></summary><p id="alt-glow">Two panels of the same test picture, brightened: soft cyan glows around small squares. On the left, labelled This computer, the largest glow fades out smoothly. On the right, labelled The export service, the same glow stops at a straight vertical and a straight horizontal edge, cut off in a rectangle.</p></details>
+  </figcaption>
+</figure>
+<p>And, as the last part of the font story, a few characters, ★, ♠, →, ▾ and ⅓, aren't in the two fonts the export carries, so each browser drew them in a substitute font of its own. Eight models used them.</p>
+<figure class="fig" id="fig-star">
+  <div class="frame"><img src="star-1400.png" alt="Three panels. Left, labelled Your computer: the dark star on the gold coin, drawn from a Windows symbol font. Middle, labelled The export service: the same star drawn from a Linux symbol font, slightly smaller with different points. Right, the two laid over each other: white where they agree, teal where only this computer's star reaches, pink where only the service's does." width="1400" height="470" decoding="async" tabindex="0" role="button" aria-label="Open this picture" loading="lazy"></div>
+  <figcaption>
+    <p class="cap" id="cap-star">The coin before its star was drawn as a shape, from the comparison on 6 October: the same typed ★, in two different fonts.</p>
+    <div class="fig-tools">
+      <button type="button" class="chip" data-copy="cap-star" aria-label="Copy caption, the typed star, here and on the service">Copy caption</button>
+      <button type="button" class="chip" data-copy="alt-star" aria-label="Copy alt text, the typed star, here and on the service">Copy alt</button>
+      <a class="chip" href="star-1400.png" download aria-label="Download image, the typed star, here and on the service (star-1400.png)">Download</a>
+    </div>
+    <details class="alt"><summary>Alt text <span>· 375 characters</span></summary><p id="alt-star">Three panels. Left, labelled Your computer: the dark star on the gold coin, drawn from a Windows symbol font. Middle, labelled The export service: the same star drawn from a Linux symbol font, slightly smaller with different points. Right, the two laid over each other: white where they agree, teal where only this computer's star reaches, pink where only the service's does.</p></details>
+  </figcaption>
+</figure>
+<p>They're now drawn as shapes, and a check asks the fonts about every character every model shows, so it can't happen again. That one also fixed something nobody had noticed: visitors' own devices were each drawing their own stars too.</p>
+<p>The comparison itself had to change as well. One average over the whole picture couldn't tell a harmless glow from a missing part. It now judges the fine detail and the soft areas separately, by the worst small square in the picture, and I tested it on pictures damaged on purpose to make sure it still catches real breakage.</p>
+<h2>What I'd tell someone trying this</h2>
+<ul>
+<li><strong>Ask what your counter actually counts.</strong> Mine counted when a browser opened. The bill counted every second it was open.</li>
+<li><strong>A free plan that stops is a feature.</strong> When nobody is depending on it yet, a hard stop is worth more than headroom.</li>
+<li><strong>Ask what happens if someone skips your page.</strong> Limits in the page are suggestions; limits in the service are rules.</li>
+<li><strong>Test it live, on the real thing.</strong> Every one of the last bugs looked fine until a real export hit it.</li>
+</ul>
+<h2>A frontend developer's backend</h2>
+<p>I'm a frontend developer. Servers, browser quotas, billing plans and video encoding are exactly the parts of a project I'd normally avoid. Through all of this I never read the service's code, and I didn't need to.</p>
+<p>Claude did that part. It read Cloudflare's own pricing and limits pages before comparing plans. It measured what an export really cost on the live service instead of guessing. It explained every trade-off in plain words, so the decisions stayed mine: stay free, keep the hard stop, fix the counter. And when something broke, it traced the problem back to its cause: a counter that charged for opening a browser but not for keeping it open, a rule that refuses a second browser for 20 seconds, a font that Linux doesn't have.</p>
+<p>It isn't magic, and it isn't always right. Several bugs in this story were in code Claude had written itself a few days earlier, and some of its first explanations were wrong until a live test showed otherwise. What made it work was testing on the real thing, and questions. "Why do we need to switch?" "What if someone bypasses the frontend?" "Shouldn't it apply to all models?" I didn't need to understand how the backend worked. I needed to know what to ask about it.</p>
+<p class="close">You can try it on any model in <a href="https://css3dlab.edgarasneverdauskas.com">CSS 3D Lab</a>: open one, press Image or Video, and it's drawn by the service this story is about, within its ten free minutes a day.</p>
+    </div>
+    <footer class="story-foot">
+      <p class="also-end"><span><a href="https://css3dlab.edgarasneverdauskas.com" rel="noopener">Visit the project<span aria-hidden="true"> ↗</span></a></span></p>
+      <nav class="more" aria-labelledby="more-css-3d-lab-export">
+        <div class="more-head"><h2 id="more-css-3d-lab-export">More build stories</h2><span class="more-btns" hidden><button type="button" class="chip" data-more="-1" aria-label="Previous stories">←</button><button type="button" class="chip" data-more="1" aria-label="Next stories">→</button></span></div>
+        <ul class="more-row"><li><a class="mini" data-accent="css-3d-lab-shapes" href="../css-3d-lab-shapes/"><img src="../assets/thumbs/css-3d-lab-shapes-4ec3ed13be.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">Shapes &amp; solids · 30 models</span><span class="mini-t">Every solid in CSS is made of paper</span></a></li><li><a class="mini" data-accent="css-3d-lab-reddit" href="../css-3d-lab-reddit/"><img src="../assets/thumbs/css-3d-lab-reddit-92479285ed.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">One Reddit post · ~20,000 views</span><span class="mini-t">When my CSS experiment became an AI experiment</span></a></li><li><a class="mini" data-accent="css-3d-lab-ledger" href="../css-3d-lab-ledger/"><img src="../assets/thumbs/css-3d-lab-ledger-1608cdf9c2.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">Twelve days · 949 commits</span><span class="mini-t">A green tick is a date, not a fact</span></a></li><li><a class="mini" data-accent="css-3d-lab" href="../css-3d-lab/"><img src="../assets/thumbs/css-3d-lab-f9ddb37f6f.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">About a day · 135 models</span><span class="mini-t">CSS 3D Lab: learning 3D on the web by playing with it</span></a></li><li><a class="mini" data-accent="self-aware-writing" href="../self-aware-writing/"><img src="../assets/thumbs/self-aware-writing-fc301ba610.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">Four weeks · 4 chapters</span><span class="mini-t">A book that knows you're reading it</span></a></li><li><a class="mini" data-accent="jarvis" href="../jarvis/"><img src="../assets/thumbs/jarvis-8b307f5e99.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">Five days · 39 hours</span><span class="mini-t">Five days building J.A.R.V.I.S. with Claude</span></a></li><li><a class="mini" data-accent="portfolio" href="../portfolio/"><img src="../assets/thumbs/portfolio-652afe783f.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">11 days · 55 commits</span><span class="mini-t">My portfolio, rebuilt to tell the truth</span></a></li><li><a class="mini" data-accent="timeline" href="../timeline/"><img src="../assets/thumbs/timeline-85fb052ca9.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">30 commits · 8 organisations</span><span class="mini-t">The AI race: who shipped what, and when</span></a></li><li><a class="mini" data-accent="agi-watch" href="../agi-watch/"><img src="../assets/thumbs/agi-watch-5eb5951c06.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">One afternoon · 92 minutes</span><span class="mini-t">AGI Watch: are we getting there?</span></a></li><li><a class="mini" data-accent="ampuno" href="../ampuno/"><img src="../assets/thumbs/ampuno-d4d0f0bf53.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">56 days · 86 commits</span><span class="mini-t">Ampuno: 28 minutes to build, eight weeks to draw the cars</span></a></li><li><a class="mini" data-accent="bitcoin-analytics" href="../bitcoin-analytics/"><img src="../assets/thumbs/bitcoin-analytics-a3b6192320.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">12 days · 116 commits</span><span class="mini-t">Bitcoin Analytics: an hour to start, months to trust</span></a></li><li><a class="mini" data-accent="social-blockchain-network" href="../social-blockchain-network/"><img src="../assets/thumbs/social-blockchain-network-72cb2ddc26.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">42 days · 352 commits</span><span class="mini-t">Social Blockchain Network: refactor, don't rebuild</span></a></li><li><a class="mini" data-accent="atunicorn" href="../atunicorn/"><img src="../assets/thumbs/atunicorn-b1b925d7d4.webp" alt="" width="600" height="300" loading="lazy" decoding="async"><span class="mini-k">Since 2021 · 369 commits</span><span class="mini-t">@unicorn: an old app, a new stack, and two AI tools</span></a></li></ul>
+      </nav>
+    </footer>
+  </article>
+</main>
+<footer class="site-foot">
+  <a href="../"><span aria-hidden="true">←</span> All articles</a>
+  <a href="https://edgarasneverdauskas.com">edgarasneverdauskas.com</a>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="kit-data">{"richHtml":"\u003ch1>Ten free minutes a day\u003c/h1>\n\u003cp>\u003cem>Every model in CSS 3D Lab can be saved as a picture or a video. Making that work on Cloudflare's free tier took three weeks, a counter that lied, and one rule I wasn't willing to break: it must stop, not bill.\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/css-3d-lab-export/cover-medium-1500x750.png Caption: The same ten free minutes a day: about three pictures before the rework, more than a hundred after. Image: Edgaras Neverdauskas. Alt text: Dark cover. On the left, the CSS 3D Lab cube, the label CSS 3D Lab · The export, the title “Ten free minutes a day” and the line “How far they go: making 3D exports work on Cloudflare’s free tier.” On the right, a card titled The same ten minutes, one free day, with two bars. Before: three wide pink blocks fill the bar, about 3 pictures a day at about 3 minutes each. After: about a hundred thin teal slices fill it, 100+ pictures a day at 2–6 seconds each. Underneath: $0, by design.]\u003c/strong>\u003c/p>\n\u003ch2>Why a picture needs a server\u003c/h2>\n\u003cp>You'd think saving a picture of something on a web page would be easy. It isn't. A page has no clean way to photograph itself. Screen sharing asks permission and records your whole screen at whatever size it happens to be, and the libraries that redraw a page as an image mostly can't handle 3D transforms, which is everything CSS 3D Lab is made of.\u003c/p>\n\u003cp>We tried anyway. On 20 September the export drew each model inside your own browser, by turning the page into a picture with a built-in trick that doesn't understand 3D depth. A die came out as a blob, and a puzzle cube lost its middle layer. A cleverer version followed the same day: draw every face flat, then put the faces back together in 3D. Model after model still found new ways to come out wrong, and the next day the drawing moved to a real browser on a server, the same kind of engine that draws the model on your screen.\u003c/p>\n\u003cp>So the export works like this. Your browser writes the model out exactly as it is: every element, every style and where each animation is at that moment. It sends that to a small service on Cloudflare, which opens it in a real browser of its own, draws the frames, and streams them back. Your browser then puts them together into the video, or saves the picture.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/css-3d-lab-export/flow-1400.png Caption: An export goes out as a description of the model and comes back as frames; only step 3 uses the free allowance. Alt text: A diagram in four steps. 1, your browser writes the model out: every element, every style, where each animation is. 2, the service, a Cloudflare Worker, checks the budget. 3, a real browser on Cloudflare moves each animation to its moment and draws every frame. 4, your browser puts the frames together into MP4 or WebM, or saves PNG or JPEG. Underneath: free plan, ten minutes of browser time a day, then exports stop until midnight UTC and nothing is billed.]\u003c/strong>\u003c/p>\n\u003cp>As in the rest of CSS 3D Lab, Claude wrote the code. My part was asking for things, trying them, and asking awkward questions when something didn't add up. Several of the turning points below started as one of those questions.\u003c/p>\n\u003ch2>Ten minutes a day\u003c/h2>\n\u003cp>The service runs on Cloudflare's free plan. Its browser allowance is simple: ten minutes of browser time a day, for the whole account. When it's used up, exports stop until midnight UTC, and nothing is charged.\u003c/p>\n\u003cp>Ten minutes sounds like plenty for a picture that takes a few seconds. It wasn't, for a reason it took a while to see.\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>10 min\u003c/strong> — free browser time a day\u003c/li>\n\u003cli>\u003cstrong>3 min → 2–6 s\u003c/strong> — what one picture cost, before and after\u003c/li>\n\u003cli>\u003cstrong>89\u003c/strong> — commits on the export, on 16 days in three weeks\u003c/li>\n\u003cli>\u003cstrong>159\u003c/strong> — models compared on both browsers\u003c/li>\n\u003c/ul>\n\u003ch2>Three weeks, briefly\u003c/h2>\n\u003cp>The first downloads, on 18 September, weren't live at all: videos filmed in advance and served as files. Three days later exports were drawn live on Cloudflare. The first test there was sobering: a picture took about 15 seconds, browser start included, and a 3-second video managed only 77 of its 90 frames before the service's time limit cut it off. The same day video got about three times faster, by sending each frame back as a compressed WebP instead of a PNG.\u003c/p>\n\u003cp>Then the problems came one at a time. Long videos were cut off by a fixed three-minute limit, which killed the longest exports of 18 models, so the limit now grows with the length of the video. A second picture taken straight after a first was refused, because Cloudflare's free plan allows only one new browser every 20 seconds, so the service started keeping its browser open for three minutes after each export, ready for the next. A spending ceiling arrived too: one counter on Cloudflare that every export has to ask before it starts. And refusals learned to say which limit they had hit.\u003c/p>\n\u003ch2>The fonts that didn't travel\u003c/h2>\n\u003cp>The strangest problem in those weeks wasn't about time at all. On 25 September a payment card exported from the live site came back with its card number, 4242, running off the edge, and a name that fits on one line wrapped onto two. On my computer it looked fine.\u003c/p>\n\u003cp>The reason was fonts. The export sent the model but not its fonts, so each browser drew the text in whatever it had installed. My Windows laptop has Segoe UI and Consolas; Cloudflare's browser runs on Linux and has neither, and its stand-ins are wider. The fix was to make every export carry its own fonts: Inter and JetBrains Mono, packed in with the scene.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/css-3d-lab-export/fonts-1400.png Caption: Recreated on 8 October: the same card with its text in the system font, as it was before the fix, drawn by this computer and by the export service from one scene. Alt text: Two copies of the same purple payment card, numbered with dots and 4242, for Alex Morgan, expiring 09/29, with the text in the system font. On the left, labelled Your computer, where the system font is Segoe UI, the name ALEX MORGAN fits on one line. On the right, labelled The export service, a wider Linux font: the number spreads further and the name wraps onto two lines, ALEX above MORGAN.]\u003c/strong>\u003c/p>\n\u003cp>Two days later it turned out those fonts had never actually loaded. A build tool had quietly rewritten the path to the font files, so every one of them failed. And once that was fixed, seven chart models still asked for the computer's own default font by name instead of Inter, so the packed fonts never reached them. On the treemap, a label ran 7.8% past the edge of the exported picture.\u003c/p>\n\u003cp>The check that should have caught it compared file sizes, not pictures, and the treemap passed with its label off the frame. That's why the comparison now looks at the pictures themselves.\u003c/p>\n\u003ch2>Smaller surprises\u003c/h2>\n\u003cp>Some problems had nothing to do with time or fonts.\u003c/p>\n\u003cp>Videos came out slightly darker and greener than the model on screen. The video file didn't say which colours it was written in, so players guessed, and guessed wrong. The fix was to label the colours inside every file.\u003c/p>\n\u003cp>4K was in the dialog for a few days. The free service runs out of memory and time drawing frames that size, so first the button said \"coming later\", and then it went away completely. A button for something that doesn't exist is worse than no button.\u003c/p>\n\u003cp>And a see-through video, with no background behind the model, can't be made in any browser today. The option says so plainly, instead of failing halfway through.\u003c/p>\n\u003ch2>The day it ran out\u003c/h2>\n\u003cp>On 4 October, two releases in one day used up all ten minutes. The release checks draw a few models on the service to compare them with my own computer, and they share the same allowance as everyone else. For the rest of that day nobody could export anything.\u003c/p>\n\u003cp>The next morning I asked how much was actually left. To answer that, the service got a small page that reports its own count. It said six of ten minutes were used, while Cloudflare had already refused.\u003c/p>\n\u003cp>The counter was wrong, and the reason was the three-minute keep-alive. The service charged three minutes when it opened a browser, and nothing when an export reused one that was already open. But Cloudflare counts every second a browser is open, busy or idle.\u003c/p>\n\u003ch2>Pay, rent, or stay free\u003c/h2>\n\u003cp>The obvious fix was money. Cloudflare's paid plan is $5 a month and includes ten hours of browser time. I also looked at Browserless, a hosted-browser service (about $25 a month for its first paid plan, billed yearly), and at renting my own small server on DigitalOcean (roughly $6–12 a month for one with enough memory for a browser).\u003c/p>\n\u003cp>What decided it was a question about the paid plan: what happens if something goes wrong? Cloudflare's paid plan has no hard cap: past what it includes, it bills. The service's own ceiling would cover browser time, but not everything, like a flood of requests, and a bill that is probably $5 isn't the same as one that can't be more. Even a fixed-price server can charge for extra traffic. The free plan is the one that simply stops.\u003c/p>\n\u003cp>I wanted a service where I know it will stop when the limit is reached. And honestly, almost nobody uses exports yet. So: stay free, and make the ten minutes go much further.\u003c/p>\n\u003ch2>What if someone skips the page?\u003c/h2>\n\u003cp>Before changing anything I asked one more question: the page limits a video to 30 seconds, but what if someone sends a request without the page?\u003c/p>\n\u003cp>The service did check that itself: anything over 900 frames, or over the size limits, was refused before a browser opened. But the question exposed a worse hole. The largest export it accepts can keep a browser busy for about sixteen minutes, and an export that reused an open browser cost the counter nothing. On the free plan Cloudflare's own limit would stop it. On a paid plan it would have been a bill the service never saw.\u003c/p>\n\u003ch2>The rework\u003c/h2>\n\u003cp>Three changes, all on the free plan:\u003c/p>\n\u003cul>\n\u003cli>\u003cstrong>One browser per export, closed when it's done.\u003c/strong> No keep-alive, so no idle minutes. A picture went from costing about three minutes to 2–6 seconds, so the same ten minutes now hold more than a hundred pictures instead of about three.\u003c/li>\n\u003cli>\u003cstrong>Count the real time.\u003c/strong> Before an export starts, the service reserves its worst case; when the browser closes, it records what it actually took.\u003c/li>\n\u003cli>\u003cstrong>Limits that hold whatever sends the request:\u003c/strong> a monthly ceiling, at most three exports at once, the day's total, and a share for each visitor so one person can't use up everyone's day.\u003c/li>\n\u003c/ul>\n\u003cp>Testing it live found three more bugs. A second export straight after a first was refused with \"out of exports for today\": Cloudflare's 20-second rule again, reported as if the day were over. Exports now queue about twenty seconds apart instead. The per-visitor share counted running exports at their worst case, so two pictures in flight used up a visitor's three minutes after 26 real seconds. And the timer started after the browser opened, missing the opening itself.\u003c/p>\n\u003cp>Each of those took one live test to find and one change to fix. The release checks now carry a private key so they don't use a visitor's share, and they print what's left before they spend any of it.\u003c/p>\n\u003ch2>Two browsers, one picture\u003c/h2>\n\u003cp>With exports cheap, there was room for something that had never fit before: drawing every model on the service and comparing it with the same picture drawn on my computer. All 159 of them.\u003c/p>\n\u003cp>Most matched. The few that differed taught me two things about drawing in someone else's browser.\u003c/p>\n\u003cp>Soft glows come out weaker there, and very large ones get cut off in a rectangle instead of fading out:\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/css-3d-lab-export/glow-1400.png Caption: A 256 px glow drawn in both places and brightened three times: smooth here, cut off in a rectangle on the service. Alt text: Two panels of the same test picture, brightened: soft cyan glows around small squares. On the left, labelled This computer, the largest glow fades out smoothly. On the right, labelled The export service, the same glow stops at a straight vertical and a straight horizontal edge, cut off in a rectangle.]\u003c/strong>\u003c/p>\n\u003cp>And, as the last part of the font story, a few characters, ★, ♠, →, ▾ and ⅓, aren't in the two fonts the export carries, so each browser drew them in a substitute font of its own. Eight models used them.\u003c/p>\n\u003cp>\u003cstrong>[Image: https://articles.edgarasneverdauskas.com/css-3d-lab-export/star-1400.png Caption: The coin before its star was drawn as a shape, from the comparison on 6 October: the same typed ★, in two different fonts. Alt text: Three panels. Left, labelled Your computer: the dark star on the gold coin, drawn from a Windows symbol font. Middle, labelled The export service: the same star drawn from a Linux symbol font, slightly smaller with different points. Right, the two laid over each other: white where they agree, teal where only this computer's star reaches, pink where only the service's does.]\u003c/strong>\u003c/p>\n\u003cp>They're now drawn as shapes, and a check asks the fonts about every character every model shows, so it can't happen again. That one also fixed something nobody had noticed: visitors' own devices were each drawing their own stars too.\u003c/p>\n\u003cp>The comparison itself had to change as well. One average over the whole picture couldn't tell a harmless glow from a missing part. It now judges the fine detail and the soft areas separately, by the worst small square in the picture, and I tested it on pictures damaged on purpose to make sure it still catches real breakage.\u003c/p>\n\u003ch2>What I'd tell someone trying this\u003c/h2>\n\u003cul>\n\u003cli>\u003cstrong>Ask what your counter actually counts.\u003c/strong> Mine counted when a browser opened. The bill counted every second it was open.\u003c/li>\n\u003cli>\u003cstrong>A free plan that stops is a feature.\u003c/strong> When nobody is depending on it yet, a hard stop is worth more than headroom.\u003c/li>\n\u003cli>\u003cstrong>Ask what happens if someone skips your page.\u003c/strong> Limits in the page are suggestions; limits in the service are rules.\u003c/li>\n\u003cli>\u003cstrong>Test it live, on the real thing.\u003c/strong> Every one of the last bugs looked fine until a real export hit it.\u003c/li>\n\u003c/ul>\n\u003ch2>A frontend developer's backend\u003c/h2>\n\u003cp>I'm a frontend developer. Servers, browser quotas, billing plans and video encoding are exactly the parts of a project I'd normally avoid. Through all of this I never read the service's code, and I didn't need to.\u003c/p>\n\u003cp>Claude did that part. It read Cloudflare's own pricing and limits pages before comparing plans. It measured what an export really cost on the live service instead of guessing. It explained every trade-off in plain words, so the decisions stayed mine: stay free, keep the hard stop, fix the counter. And when something broke, it traced the problem back to its cause: a counter that charged for opening a browser but not for keeping it open, a rule that refuses a second browser for 20 seconds, a font that Linux doesn't have.\u003c/p>\n\u003cp>It isn't magic, and it isn't always right. Several bugs in this story were in code Claude had written itself a few days earlier, and some of its first explanations were wrong until a live test showed otherwise. What made it work was testing on the real thing, and questions. \"Why do we need to switch?\" \"What if someone bypasses the frontend?\" \"Shouldn't it apply to all models?\" I didn't need to understand how the backend worked. I needed to know what to ask about it.\u003c/p>\n\u003cp class=\"close\">You can try it on any model in \u003ca href=\"https://css3dlab.edgarasneverdauskas.com\">CSS 3D Lab\u003c/a>: open one, press Image or Video, and it's drawn by the service this story is about, within its ten free minutes a day.\u003c/p>"}</script>
+</body>
+</html>

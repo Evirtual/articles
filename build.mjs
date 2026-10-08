@@ -34,6 +34,19 @@ const ANALYTICS = 'https://articles.goatcounter.com/count';
 // medium / linkedin: the story's other copies. project: the thing the story is about.
 const ALL_ARTICLES = [
   {
+    slug: 'css-3d-lab-export',
+    dir: path.join(here, 'articles', 'css-3d-lab-export'),
+    sourceHtml: 'source.html',
+    medium: '',
+    linkedin: '',
+    project: 'https://css3dlab.edgarasneverdauskas.com',
+    mirrorDir: null,
+    kicker: 'Three weeks · 10 free minutes a day',
+    coverInCopy: true,
+    theme: 'css-3d-lab',
+    fontsLink: '',
+  },
+  {
     slug: 'css-3d-lab-shapes',
     dir: path.join(here, 'articles', 'css-3d-lab-shapes'),
     sourceHtml: 'source.html',
@@ -176,6 +189,11 @@ const IMAGE_LABELS = {
   'cover-medium-1500x750.png': 'Medium cover',
   // the shapes story (draft): one picture per model it explains
   'edgeon-1400.png': 'The coin edge-on, with and without its rim',
+  // the export story: how an export travels, and the glow test
+  'flow-1400.png': 'How an export travels',
+  'glow-1400.png': 'A large glow, here and on the service',
+  'fonts-1400.png': 'The card in the system font, here and on the service',
+  'star-1400.png': 'The typed star, here and on the service',
   'coin-1400.png': 'The coin',
   'rubik-1400.png': 'The puzzle cube',
   'torus-1400.png': 'The torus',

@@ -1,0 +1,10 @@
+My CSS 3D Lab lets you save any of its 3D models as a picture or a video. Behind that button is a little server that gets just ten free minutes a day ⏱️
+
+One morning it ran out, and its own counter swore only six minutes were used. Turns out it was counting the wrong thing.
+
+I could have paid for more. I chose to keep it free, because free simply stops when the time is up, while paid plans keep going and send a bill.
+
+So we made it thriftier: a picture now uses a few seconds instead of three minutes. Along the way we found very large glows being chopped into rectangles and stars drawn in the wrong font.
+
+The whole story, in plain words 👇
+[article link]
