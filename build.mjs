@@ -6,6 +6,7 @@
 // Links inside the site are relative; canonical, og:url, og:image and the sitemap are absolute.
 // No dependencies. The source folders are only read, never written.
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -32,6 +33,20 @@ const ANALYTICS = 'https://articles.goatcounter.com/count';
 // --- the articles (newest first, the order of the home page) ----------------------------------
 // medium / linkedin: the story's other copies. project: the thing the story is about.
 const ALL_ARTICLES = [
+  {
+    slug: 'css-3d-lab-shapes',
+    dir: path.join(here, 'articles', 'css-3d-lab-shapes'),
+    sourceHtml: 'source.html',
+    medium: '',
+    linkedin: '',
+    project: 'https://css3dlab.edgarasneverdauskas.com/groups/shapes/',
+    mirrorDir: null,
+    kicker: 'Shapes & solids · 30 models',
+    coverInCopy: true,
+    theme: 'css-3d-lab',
+    fontsLink: '',
+    // the first of eight stories, one per group of models
+  },
   {
     slug: 'css-3d-lab-reddit',
     // Newer stories can live inside this repository instead of depending on a Desktop sibling.
@@ -159,6 +174,12 @@ const LISTED = ON_SITE.filter((a) => !a.draft);
 const AUTHOR = 'Edgaras Neverdauskas';
 const IMAGE_LABELS = {
   'cover-medium-1500x750.png': 'Medium cover',
+  // the shapes story (draft): one picture per model it explains
+  'edgeon-1400.png': 'The coin edge-on, with and without its rim',
+  'coin-1400.png': 'The coin',
+  'rubik-1400.png': 'The puzzle cube',
+  'torus-1400.png': 'The torus',
+  'gear-1400.png': 'The gears',
   'cover-linkedin-1920x1080.png': 'LinkedIn cover',
   'numbers-1400.png': 'Numbers card',
   'arrows-1400.png': 'Ledger strip',
@@ -215,7 +236,7 @@ const TOKENS = {
 // Text pairs that must reach 4.5:1 (WCAG AA for body text).
 const PAIRS = [
   ['text', 'bg'], ['text', 'surface'], ['text', 'surface2'], ['strong', 'bg'], ['strong', 'surface'], ['strong', 'surface2'],
-  ['muted', 'bg'], ['muted', 'surface'], ['muted', 'surface2'], ['link', 'bg'], ['link', 'surface'],
+  ['muted', 'bg'], ['muted', 'surface'], ['muted', 'surface2'], ['link', 'bg'], ['link', 'surface'], ['link', 'surface2'],
   ['accent2', 'bg'], ['accent2', 'surface'], ['btnText', 'btnBg'], ['btnText', 'btnBg2'], ['bg', 'strong'],
   ['accJarvis', 'surface'], ['accSaw', 'surface'], ['accCss', 'surface'], ['accLedger', 'surface'],
 ];
@@ -249,6 +270,43 @@ ${sel}[data-theme="dark"] { color-scheme: dark; ${cssVars(dark)} }`;
 
 // --- helpers ----------------------------------------------------------------------------------
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+// A fenced code block on the page: its language over it and a Copy button that copies exactly the
+// code (site.js copies the element a data-copy names, and says how many characters it copied).
+// CSS is coloured by a small tokenizer: comments, selectors and property names, the values as
+// written. Colours are tokens checked for contrast on surface2, the block's background.
+function codeBlock(b) {
+  const lang = (/^```([A-Za-z]*)/.exec(b)?.[1] ?? '').toLowerCase();
+  const src = b.replace(/^```[^\n]*\n?/, '').replace(/\n?```$/, '');
+  const id = `code-${createHash('sha1').update(src).digest('hex').slice(0, 8)}`;
+  const label = lang ? lang.toUpperCase() : 'Code';
+  return `<div class="code"><div class="code__bar"><span class="code__lang">${label}</span>`
+    + `<button type="button" class="chip code__copy" data-copy="${id}" aria-label="Copy ${lang ? label : 'code'}">Copy</button></div>`
+    + `<pre><code id="${id}">${lang === 'css' ? highlightCss(src) : esc(src)}</code></pre></div>`;
+}
+
+/** CSS as spans: comments, selectors (outside braces), property names (a word before a colon at the start of a declaration). */
+function highlightCss(src) {
+  const parts = src.match(/\/\*[\s\S]*?\*\/|"[^"]*"|'[^']*'|[{};:]|[^{};:'"/]+|\//g) ?? [];
+  let depth = 0, declStart = false, out = '';
+  const span = (cls, t) => `<span class="tk-${cls}">${esc(t)}</span>`;
+  parts.forEach((t, i) => {
+    if (t.startsWith('/*')) { out += span('c', t); return; }
+    if (t === '{') { depth++; declStart = true; out += esc(t); return; }
+    if (t === '}') { depth = Math.max(0, depth - 1); declStart = depth > 0; out += esc(t); return; }
+    if (t === ';') { declStart = depth > 0; out += esc(t); return; }
+    if (depth === 0) { out += /\S/.test(t) ? span('s', t) : esc(t); return; }
+    if (declStart && t !== ':' && /\S/.test(t) && parts[i + 1] === ':') {
+      const [, lead, name] = /^(\s*)([\s\S]*)$/.exec(t);
+      out += esc(lead) + span('p', name);
+      declStart = false;
+      return;
+    }
+    if (/\S/.test(t)) declStart = false;
+    out += esc(t);
+  });
+  return out;
+}
 const attr = (s) => esc(s).replace(/"/g, '&quot;');
 const decode = (s) => String(s ?? '').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 const stripTags = (s) => decode(String(s).replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
@@ -545,7 +603,8 @@ for (const a of ARTICLES) {
     else if (j === rest.length - 1 && a.closeNote !== false) both((m) => `<p class="close">${a.closeEm ? `<em>${inline(b, a, m)}</em>` : inline(b, a, m)}</p>`);
     // a fenced code block: kept as written, never run through inline(), so its backticks do not
     // leak into the page (the d00ed98 block in the ledger article rendered as ``<code>…</code>``)
-    else if (b.startsWith('```')) both(() => `<pre><code>${esc(b.replace(/^```[^\n]*\n?/, '').replace(/\n?```$/, ''))}</code></pre>`);
+    // On the page it gets a bar with its language and a Copy button; the paste copy stays plain.
+    else if (b.startsWith('```')) both((m) => (m === 'copy' ? `<pre><code>${esc(b.replace(/^```[^\n]*\n?/, '').replace(/\n?```$/, ''))}</code></pre>` : codeBlock(b)));
     else both((m) => `<p>${inline(b, a, m)}</p>`);
     if (a.numbersAfter?.test(b)) pushNumbers();
   });

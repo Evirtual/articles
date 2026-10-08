@@ -482,3 +482,14 @@ html.has-box { overflow: hidden; }
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
   .card:hover { transform: none; }
 }
+
+/* A code block: its language and a Copy button over the code (build.mjs, codeBlock). The colours
+   are tokens the build checks for contrast on surface2, the block's background. */
+.prose .code { margin: 1.4em 0; background: var(--surface2); border-radius: 8px; overflow: hidden; }
+.prose .code pre { margin: 0; border-radius: 0; }
+.code__bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 8px 6px 14px; border-bottom: 1px solid var(--line); }
+.code__lang { font: 600 11.5px/1 var(--f-ui); letter-spacing: 0.08em; color: var(--muted); }
+.code__copy { min-height: 28px; padding: 4px 11px; }
+.tk-c { color: var(--muted); font-style: italic; }
+.tk-s { color: var(--strong); }
+.tk-p { color: var(--link); }

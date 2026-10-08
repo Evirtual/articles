@@ -1,0 +1,8 @@
+Fun fact about web pages: nothing on them is solid. Every shape is flat paper, and if you turn one exactly sideways, it disappears 🪙
+
+My CSS 3D Lab has 30 3D shapes made only with CSS, the code that styles websites. Claude, an AI, writes the code; I ask for things and check whether they hold up from every angle.
+
+So how do you make a coin that doesn't vanish when it spins? You give it a rim of 24 tiny slats. A puzzle cube? Three flat boxes with the stickers painted on. A donut? 24 circles standing in a ring.
+
+Wrote up how four of them work, with pictures 👇
+[article link]

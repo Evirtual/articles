@@ -1,0 +1,1 @@
+Nothing in CSS is solid: turn an element edge-on and it draws nothing. Here's how a coin, a puzzle cube, a donut and two gears in pure CSS get around that: [article link]

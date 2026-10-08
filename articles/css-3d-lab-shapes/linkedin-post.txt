@@ -1,0 +1,18 @@
+CSS can't make anything solid. Every element is a flat rectangle, and turned exactly edge-on it draws nothing at all.
+
+CSS 3D Lab has 30 shapes and solids anyway. I don't write the CSS: Claude does. My part is asking for things, often fairly random ones, and checking whether they hold up from every side. Most of the shapes are tricks for that one moment when something turns sideways.
+
+Four of them show how:
+→ A coin is two discs that vanish edge-on, until it gets a rim of 24 thin slats standing around the edge.
+→ A 3×3×3 puzzle cube is 162 faces, or three flat boxes with the stickers painted on, because a layer only ever turns as one piece.
+→ A donut is 24 circles, each turned and moved sideways, so they read as slices of one ring.
+→ A pair of gears borrows the coin's trick for every edge, and meshes properly: the small one turns exactly eight of its teeth for each turn of the big one.
+
+Three rules came out of all 30:
+Give every edge something to be. Merge what moves together. Build round things from slices.
+
+Each model has a live preview and the code to copy.
+
+Which shape would you try next in pure CSS?
+
+The full story: [article link]
