@@ -1,3 +1,5 @@
+<p align="center"><img src="src/icons/index.png" width="112" alt="Articles"></p>
+
 # Articles site
 
 A small static site for four articles: J.A.R.V.I.S., Self-Aware Writing, CSS 3D Lab and the CSS 3D
