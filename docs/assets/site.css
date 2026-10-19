@@ -512,3 +512,8 @@ html.has-box { overflow: hidden; }
 .tk-c { color: var(--muted); font-style: italic; }
 .tk-s { color: var(--strong); }
 .tk-p { color: var(--link); }
+
+/* The header's right side: Posts, the sister site, then the theme switch. */
+.head-end { display: flex; align-items: center; gap: 16px; }
+.head-link { color: var(--muted); text-decoration: none; }
+.head-link:hover { color: var(--strong); text-decoration: underline; }

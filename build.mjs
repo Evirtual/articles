@@ -22,6 +22,8 @@ const SYNC_PROJECTS = process.argv.includes('--sync-projects');
 const SITE_URL = 'https://articles.edgarasneverdauskas.com';
 const SITE_HOST = new URL(SITE_URL).host;
 const HOME_URL = 'https://edgarasneverdauskas.com';
+// The short posts for Ko-fi, Facebook, Instagram and LinkedIn: a sister site in the same design.
+const POSTS_URL = 'https://posts.edgarasneverdauskas.com';
 
 // The articles are outreach, so they are counted: a visitor count tells me
 // whether writing the next one sends anyone to the project. The copies mirrored
@@ -671,7 +673,13 @@ for (const a of CARRIED) {
   const html = fs.readFileSync(file, 'utf8');
   const re = new RegExp(`<nav class="more" aria-labelledby="more-${a.slug}">[\\s\\S]*?</nav>`);
   if (!re.test(html)) throw new Error(`${a.slug}: no "More build stories" block to update in docs/${a.slug}/index.html`);
-  fs.writeFileSync(file, html.replace(re, () => moreNav(a, LISTED)));
+  let out = html.replace(re, () => moreNav(a, LISTED));
+  // The header's right side, for the same reason: a page carried from before Posts existed still
+  // gets the link to it, and the theme switch beside it is the build's current markup.
+  const headEnd = /(<header class="site-head">[\s\S]*?)(?:<div class="head-end">[\s\S]*?<\/button><\/div>|<button type="button" class="theme-switch"[\s\S]*?<\/button>)(\s*<\/header>)/;
+  if (!headEnd.test(out)) throw new Error(`${a.slug}: no header theme switch to update in docs/${a.slug}/index.html`);
+  out = out.replace(headEnd, (_, start, end) => `${start}<div class="head-end"><a class="head-link" href="${POSTS_URL}/">Posts</a>${themeSwitchHtml()}</div>${end}`);
+  fs.writeFileSync(file, out);
 }
 
 // the home page and the sitemap: every listed story, built here or carried, in home-page order
@@ -858,7 +866,7 @@ function articlePage(a, body, md, kitData, { mirror = false } = {}) {
 <a class="skip" href="#story">Skip to the article</a>
 <header class="site-head">
   <nav aria-label="Site"><a class="home" href="${mirror ? `${SITE_URL}/` : '../'}"><span aria-hidden="true">←</span> All articles</a></nav>
-  ${themeSwitchHtml()}
+  <div class="head-end"><a class="head-link" href="${POSTS_URL}/">Posts</a>${themeSwitchHtml()}</div>
 </header>
 <main class="layout" id="main">
   ${kit(a, md)}
@@ -927,7 +935,7 @@ function indexPage(list) {
        printing it again beside a logo that already says it was the third time on one screen. The
        accessible name carries it, because a logo is a picture to anything that cannot see it. -->
   <nav aria-label="Site"><a class="home" href="${HOME_URL}" aria-label="${attr(AUTHOR)} — the portfolio">${markSvg()}</a></nav>
-  ${themeSwitchHtml()}
+  <div class="head-end"><a class="head-link" href="${POSTS_URL}/">Posts</a>${themeSwitchHtml()}</div>
 </header>
 <main class="index" id="main" tabindex="-1">
   <header class="index-head">
